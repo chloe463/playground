@@ -1,9 +1,9 @@
 import { AnimateSharedLayout } from "framer-motion";
 import { useState } from "react";
 import styled from "styled-components";
-import { PillsContainer } from "./PillsContainer";
-import { SelectedItems } from "./SelectedItems";
-import { SelectedItems2 } from "./SelectedItems2";
+import { PillsContainer } from "./components/PillsContainer";
+import { SelectedItems } from "./components/SelectedItems";
+import { SelectedItems2 } from "./components/SelectedItems2";
 import { Item } from "./types";
 
 export default function App() {

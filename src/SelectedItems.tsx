@@ -1,12 +1,8 @@
 import { motion } from "framer-motion";
-import React, {
-  useCallback,
-
-  useLayoutEffect,
-  useRef
-} from "react";
+import React from "react";
 import styled from "styled-components";
 import { pillVariants } from "./constants";
+import { useLayoutAnimation } from "./hooks/useLayoutAnimation";
 import { Item } from "./types";
 
 type Props = {
@@ -50,48 +46,11 @@ const SelectedItemPillBase = styled.span`
   cursor: pointer;
 `;
 
-type Delta = { x: number, y : number };
-
 const SelectedItemPill = ({ item }: { item: Item }) => {
-  const ref = useRef<HTMLSpanElement | null>(null);
-  const prevPosition = useRef<DOMRect | null>(null);
-
-  const translate = useCallback(
-    (delta: Delta, duration: number) => {
-      window.requestAnimationFrame(() => {
-        if (ref.current) {
-          const { x, y } = delta;
-          ref.current.style.transform = `translate(-${x}px, -${y}px)`;
-          ref.current.style.transition = `transform`;
-
-          window.requestAnimationFrame(() => {
-            if (ref.current) {
-              ref.current.style.transform = `translate(0, 0)`;
-              ref.current.style.transition = `${duration}ms cubic-bezier(.3, .3, .3, 1)`;
-            }
-          });
-        }
-      });
-    },
-    []
-  );
-
-  useLayoutEffect(() => {
-    if (ref.current && prevPosition.current) {
-      const x =
-        ref.current.getBoundingClientRect().left - prevPosition.current.left;
-      const y =
-        ref.current.getBoundingClientRect().top - prevPosition.current.top;
-      // translate({ x, y }, 400);
-      translate({ x, y: 0 }, 400);
-    }
-    if (ref.current) {
-      prevPosition.current = ref.current.getBoundingClientRect();
-    }
-  });
+  const animationTargetRef = useLayoutAnimation({ duration: 400, axis: "Y" });
 
   return (
-    <SelectedItemPillLayoutAnimator ref={ref}>
+    <SelectedItemPillLayoutAnimator ref={animationTargetRef}>
       <SelectedItemPillFadeInAnimator
         variants={pillVariants}
         initial="hidden"

@@ -47,7 +47,11 @@ const SelectedItemPillBase = styled.span`
 `;
 
 const SelectedItemPill = ({ item }: { item: Item }) => {
-  const animationTargetRef = useLayoutAnimation({ duration: 400, axis: "Y" });
+  const animationTargetRef = useLayoutAnimation({
+    duration: 400,
+    timingFunction: "ease-out",
+    axis: "X"
+  });
 
   return (
     <SelectedItemPillLayoutAnimator ref={animationTargetRef}>

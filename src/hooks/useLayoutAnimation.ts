@@ -4,11 +4,12 @@ type Delta = { x: number, y : number };
 
 type LayoutAnimationParams = {
   duration: number;
+  timingFunction?: CSSStyleDeclaration["animationTimingFunction"];
   axis?: "X" | "Y" | "XY";
 };
 
 export const useLayoutAnimation = (params: LayoutAnimationParams) => {
-  const { duration, axis } = params;
+  const { duration, timingFunction, axis } = params;
   const animationTargetRef = useRef<HTMLSpanElement | null>(null);
   const prevPosition = useRef<DOMRect | null>(null);
 
@@ -18,18 +19,21 @@ export const useLayoutAnimation = (params: LayoutAnimationParams) => {
         if (animationTargetRef.current) {
           const { x, y } = delta;
           animationTargetRef.current.style.transform = `translate(-${x}px, -${y}px)`;
+          animationTargetRef.current.style.transformOrigin = `50%, 50%, 0`;
           animationTargetRef.current.style.transition = `transform`;
 
           window.requestAnimationFrame(() => {
             if (animationTargetRef.current) {
               animationTargetRef.current.style.transform = `translate(0, 0)`;
-              animationTargetRef.current.style.transition = `${duration}ms cubic-bezier(.3, .3, .3, 1)`;
+              animationTargetRef.current.style.transformOrigin = `50%, 50%, 0`;
+              animationTargetRef.current.style.transitionDuration = `${duration}ms`;
+              animationTargetRef.current.style.transitionTimingFunction = timingFunction || `cubic-bezier(.3, .3, .3, 1)`;
             }
           });
         }
       });
     },
-    [duration]
+    [duration, timingFunction]
   );
 
   useLayoutEffect(() => {

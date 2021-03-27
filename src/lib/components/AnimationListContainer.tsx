@@ -3,6 +3,7 @@
 
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { usePrevious } from "../hooks/usePrevious";
+import { AnimationParams, Delta } from "../types";
 
 type _ReactNode = React.ReactElement;
 
@@ -48,18 +49,9 @@ const calculateBoundingBoxes = (children: React.ReactNode) => {
   return boundingBoxes;
 };
 
-type AnimationParams = {
-  readonly duration?: number;
-  readonly delay?: number;
-  readonly timingFunction?: CSSStyleDeclaration["animationTimingFunction"];
-  readonly axis?: "X" | "Y" | "XY";
-};
-
 type AnimationListContainerProps = {
   readonly animationParams: AnimationParams;
 }
-
-type Delta = { x: number, y : number };
 
 export const AnimationListContainer: React.FC<AnimationListContainerProps> = (props) => {
   const { animationParams: params, children } = props;

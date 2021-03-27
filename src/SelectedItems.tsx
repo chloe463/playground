@@ -49,10 +49,10 @@ const SelectedItemPillBase = styled.span`
 const SelectedItemPill = ({ item }: { item: Item }) => {
   const animationTargetRef = useLayoutAnimation({
     duration: 400,
+    delay: 50,
     timingFunction: "ease-out",
-    axis: "X"
+    axis: "X",
   });
-
   return (
     <SelectedItemPillLayoutAnimator ref={animationTargetRef}>
       <SelectedItemPillFadeInAnimator

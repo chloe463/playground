@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
 import { pillVariants } from "./constants";
-import { useLayoutAnimation } from "./hooks/useLayoutAnimation";
+import { useLayoutAnimation } from "./lib/hooks/useLayoutAnimation";
 import { Item } from "./types";
 
 type Props = {

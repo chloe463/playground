@@ -1,15 +1,10 @@
 import { useCallback, useLayoutEffect, useRef } from "react";
+import { AnimationParams, Delta } from "../types";
 
-type Delta = { x: number, y : number };
+type useLayoutAnimationParams = AnimationParams;
 
-type LayoutAnimationParams = {
-  duration: number;
-  timingFunction?: CSSStyleDeclaration["animationTimingFunction"];
-  axis?: "X" | "Y" | "XY";
-};
-
-export const useLayoutAnimation = (params: LayoutAnimationParams) => {
-  const { duration, timingFunction, axis } = params;
+export const useLayoutAnimation = (params: useLayoutAnimationParams) => {
+  const { duration, timingFunction, axis } = params
   const animationTargetRef = useRef<HTMLSpanElement | null>(null);
   const prevPosition = useRef<DOMRect | null>(null);
 

@@ -2,6 +2,7 @@ import { AnimateSharedLayout } from "framer-motion";
 import { useState } from "react";
 import styled from "styled-components";
 import { AppBase } from "../components/layout";
+import { PageHeader } from "../components/PageHeader";
 import { PillsContainer } from "../components/PillsContainer";
 import { SelectedItems } from "../components/SelectedItems";
 import { SelectedItems2 } from "../components/SelectedItems2";
@@ -80,11 +81,7 @@ export const LayoutAnimation = () => {
 
   return (
     <AppBase>
-      <Header>
-        <PageTitle>
-          Layout animation example
-        </PageTitle>
-      </Header>
+      <PageHeader title={"Layout animation example"} />
       <Buttons>
         <Button onClick={addItem}>Add an item</Button>
         <Button onClick={removeRandomly}>Remove an item randomly</Button>
@@ -98,18 +95,6 @@ export const LayoutAnimation = () => {
     </AppBase>
   );
 }
-
-const Header = styled.header`
-`;
-
-const PageTitle = styled.h2`
-  margin: 0;
-  padding: 0;
-  font-family: Poppins;
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 44px;
-`;
 
 const Buttons = styled.div`
   display: flex;

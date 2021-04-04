@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Header } from "./components/Header";
 import { LayoutAnimation } from "./pages/LayoutAnimation";
 import { ListToDetail } from "./pages/ListToDetail";
+import { VirtualizedList } from "./pages/VirtualizedList";
 
 const routes = [
   {
@@ -14,6 +15,11 @@ const routes = [
     key: "layoutAnimation",
     path: "/layout-animation",
     component: LayoutAnimation,
+  },
+  {
+    key: "virtualizedList",
+    path: "/virtualized-list",
+    component: VirtualizedList,
   },
   {
     key: "listToDetail",

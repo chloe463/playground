@@ -10,6 +10,7 @@ export const SelectedItemsContainer = styled.div`
   line-height: 48px;
   border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.03);
+  box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%);
   &:empty {
     height: 48px;
   }

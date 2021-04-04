@@ -1,11 +1,21 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
+export const AppBase = styled.div`
+  display: block;
+  width: 80%;
+  max-width: 1280px;
+  min-width: 720px;
+  margin: 0 auto;
+`;
+
 export const SelectedItemsContainer = styled.div`
   display: flex;
   margin: 64px auto;
   padding: 24px;
-  width: 720px;
+  width: 100%;
+  min-width: 720px;
+  max-width: 1280px;
   overflow-x: scroll;
   line-height: 48px;
   border-radius: 4px;

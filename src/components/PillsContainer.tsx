@@ -8,7 +8,7 @@ const Base = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width: 320px;
+  width: 640px;
   margin: 16px auto 0;
 `;
 

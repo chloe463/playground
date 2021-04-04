@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Header } from "./components/Header";
 import { LayoutAnimation } from "./pages/LayoutAnimation";
 import { ListToDetail } from "./pages/ListToDetail";
 
@@ -23,15 +24,20 @@ const routes = [
 
 const AppRouter = () => {
   return (
-    <BrowserRouter>
-      <Switch>
-        {routes.map((route) => {
-          return (
-            <Route key={route.key} path={route.path} component={route.component} exact={route.exact} />
-          );
-        })}
-      </Switch>
-    </BrowserRouter>
+    <>
+      <Header />
+      <div style={{ marginTop: "80px" }}>
+        <BrowserRouter>
+          <Switch>
+            {routes.map((route) => {
+              return (
+                <Route key={route.key} path={route.path} component={route.component} exact={route.exact} />
+              );
+            })}
+          </Switch>
+        </BrowserRouter>
+      </div>
+    </>
   );
 };
 

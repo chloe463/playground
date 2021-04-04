@@ -116,12 +116,20 @@
             "description": "https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types",
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "PostEdge",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "PostEdge",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -176,9 +184,13 @@
             "description": "https://facebook.github.io/relay/graphql/connections.htm#sec-Node",
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "Post",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Post",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -369,9 +381,13 @@
               }
             ],
             "type": {
-              "kind": "OBJECT",
-              "name": "PostConnection",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PostConnection",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null

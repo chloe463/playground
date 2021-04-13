@@ -1,7 +1,7 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { relayStylePagination } from "@apollo/client/utilities";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Header } from "./components/Header";
-import { mergePostConnections } from "./hooks/VirtualizedList.hooks";
 import { LayoutAnimation } from "./pages/LayoutAnimation";
 import { ListToDetail } from "./pages/ListToDetail";
 import { VirtualizedList } from "./pages/VirtualizedList";
@@ -12,12 +12,9 @@ const inMemoryCache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        postConnection: {
-          keyArgs: false,
-          merge: mergePostConnections,
-        }
+        postConnection: relayStylePagination(["query"]),
       }
-    }
+    },
   }
 })
 

@@ -1,18 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { AppBase } from "../components/layout";
 import { PageHeader } from "../components/PageHeader";
 import { useVirtualizedList } from "../hooks/VirtualizedList.hooks";
 
 export const VirtualizedList = () => {
-  const { posts, postsLoading, fetchMorePosts } = useVirtualizedList();
-  console.log({ posts, postsLoading });
-  const onClickFetchMore = () => {
-    fetchMorePosts();
+  const [query, setQuery] = useState("");
+  const {
+    posts,
+    postsLoading,
+    fetchMorePosts,
+    refetchPosts,
+  } = useVirtualizedList();
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    refetchPosts(query);
   };
+
   return (
     <AppBase>
-      <button onClick={onClickFetchMore} disabled={postsLoading}>fetchMore</button>
+      <form onSubmit={onSubmit}>
+        <input type="text" value={query} onChange={(e) => setQuery(e.currentTarget.value)} />
+      </form>
+      <button onClick={fetchMorePosts} disabled={postsLoading}>fetchMore</button>
       <PageHeader title={"Virtualized List example"} />
       <Contents>
         <PostList>

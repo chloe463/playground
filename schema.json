@@ -295,10 +295,10 @@
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 },
-                "defaultValue": "0",
+                "defaultValue": "\"0\"",
                 "isDeprecated": false,
                 "deprecationReason": null
               },
@@ -331,6 +331,18 @@
             "name": "postConnection",
             "description": null,
             "args": [
+              {
+                "name": "query",
+                "description": "Dummy arg",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
               {
                 "name": "first",
                 "description": "Returns the first n elements from the list.",

@@ -41,6 +41,8 @@ type State = {
   lastCursor: string;
 }
 
+const lastElement = <T>(a: T[]): T => a.slice(-1)[0];
+
 export const useVirtualizedList = () => {
   const [variables, setVariables] = useState<GetPostConnectionQueryVariables>({
     first: DEFAULT_FETCH_SIZE,
@@ -61,7 +63,7 @@ export const useVirtualizedList = () => {
     const m = new Map();
     data.postConnection.edges.forEach((edge) => m.set(edge.node.id, edge.node));
     const posts = Array.from(m.values());
-    const lastCursor = data.postConnection.edges[data.postConnection.edges.length - 1]?.cursor || `${posts[posts.length - 1].id}`;
+    const lastCursor = lastElement(data.postConnection.edges).cursor || `${lastElement(posts).id}`;
 
     return { posts, lastCursor };
   }, [data]);

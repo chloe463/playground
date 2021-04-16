@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { AppBase } from "../components/layout";
 import { PageHeader } from "../components/PageHeader";
 import { Post } from "../components/Post";
+import { PostPlaceholder } from "../components/PostPlaceholder";
 import { useVirtualizedList } from "../hooks/VirtualizedList.hooks";
 
 export const VirtualizedList = () => {
-  const { posts } = useVirtualizedList();
+  const { posts, postsLoading } = useVirtualizedList();
 
   return (
     <AppBase>
@@ -17,6 +18,13 @@ export const VirtualizedList = () => {
             return (
               <PostListItem key={post.id}>
                 <Post post={post} />
+              </PostListItem>
+            );
+          })}
+          {Array.from({length:3}, (_, i) => i).map((v) => {
+            return (
+              <PostListItem key={v} $loading={true}>
+                <PostPlaceholder />
               </PostListItem>
             );
           })}
@@ -37,7 +45,7 @@ const PostList = styled.ul`
   padding: 0;
 `;
 
-const PostListItem = styled.li`
+const PostListItem = styled.li<{ $loading?: boolean }>`
   list-style: none;
   display: flex;
   align-items: center;
@@ -46,8 +54,8 @@ const PostListItem = styled.li`
   transition: all 50ms ease-out;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.03);
-    cursor: pointer;
+    background-color: ${({ $loading }) => $loading ? "#ffffff" : "rgba(0, 0, 0, 0.03)"};
+    cursor: ${({ $loading }) => $loading ?  "default" : "pointer"};
   }
 
   & + & {

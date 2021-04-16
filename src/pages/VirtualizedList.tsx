@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { AppBase } from "../components/layout";
 import { PageHeader } from "../components/PageHeader";
@@ -7,25 +7,10 @@ import { useVirtualizedList } from "../hooks/VirtualizedList.hooks";
 const avatarUrl = "https://dummyimage.com/64x64/b3b3b3/ffffff";
 
 export const VirtualizedList = () => {
-  const [query, setQuery] = useState("");
-  const {
-    posts,
-    postsLoading,
-    fetchMorePosts,
-    refetchPosts,
-  } = useVirtualizedList();
-
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    refetchPosts(query);
-  };
+  const { posts } = useVirtualizedList();
 
   return (
     <AppBase>
-      <form onSubmit={onSubmit}>
-        <input type="text" value={query} onChange={(e) => setQuery(e.currentTarget.value)} />
-      </form>
-      <button onClick={fetchMorePosts} disabled={postsLoading}>fetchMore</button>
       <PageHeader title={"Virtualized List example"} />
       <Contents>
         <PostList>

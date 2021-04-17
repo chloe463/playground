@@ -107,7 +107,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "PostConnection",
+        "name": "QueryPostConnection_Connection",
         "description": null,
         "specifiedByUrl": null,
         "fields": [
@@ -145,6 +145,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "PageInfo",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "totalCount",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -397,7 +413,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "PostConnection",
+                "name": "QueryPostConnection_Connection",
                 "ofType": null
               }
             },

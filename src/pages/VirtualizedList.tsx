@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { InfiniteLoader, List, ListRowRenderer, WindowScroller } from "react-virtualized";
+import { AutoSizer, InfiniteLoader, List, ListRowRenderer, WindowScroller } from "react-virtualized";
 import 'react-virtualized/styles.css';
 import styled from "styled-components";
 import { AppBase } from "../components/layout";
@@ -43,21 +43,27 @@ export const VirtualizedList = () => {
           {({ onRowsRendered, registerChild }) => {
             return (
               <WindowScroller>
-                {({ width, height, isScrolling, scrollTop, onChildScroll }) => {
+                {({ height, isScrolling, scrollTop, onChildScroll }) => {
                   return (
-                    <List
-                      autoHeight
-                      height={height}
-                      width={width}
-                      isScrolling={isScrolling}
-                      scrollTop={scrollTop}
-                      onScroll={onChildScroll}
-                      onRowsRendered={onRowsRendered}
-                      ref={registerChild}
-                      rowCount={totalCount}
-                      rowHeight={96 + 8}
-                      rowRenderer={rowRenderer}
-                    />
+                    <AutoSizer disableHeight={true} >
+                      {({ width }) => {
+                        return (
+                          <List
+                            autoHeight
+                            height={height}
+                            width={width}
+                            isScrolling={isScrolling}
+                            scrollTop={scrollTop}
+                            onScroll={onChildScroll}
+                            onRowsRendered={onRowsRendered}
+                            ref={registerChild}
+                            rowCount={totalCount}
+                            rowHeight={96 + 8}
+                            rowRenderer={rowRenderer}
+                          />
+                        );
+                      }}
+                    </AutoSizer>
                   );
                 }}
               </WindowScroller>

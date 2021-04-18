@@ -21,6 +21,7 @@ const GET_POSTS_QUERY = gql`
         startCursor
         endCursor
       }
+      totalCount
       edges {
         node {
           ...PostFragment
@@ -100,6 +101,7 @@ export const useVirtualizedList = () => {
 
   return {
     data,
+    totalCount: data?.postConnection.totalCount || 0,
     posts,
     postsLoading: loading,
     refetchPosts,

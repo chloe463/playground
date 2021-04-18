@@ -1,8 +1,27 @@
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { relayStylePagination } from "@apollo/client/utilities";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Header } from "./components/Header";
 import { LayoutAnimation } from "./pages/LayoutAnimation";
 import { ListToDetail } from "./pages/ListToDetail";
 import { VirtualizedList } from "./pages/VirtualizedList";
+
+const GRAPHQL_SERVER_URI = process.env.GRAPHQL_SERVER_URI || "http://localhost:4000";
+
+const inMemoryCache = new InMemoryCache({
+  typePolicies: {
+    Query: {
+      fields: {
+        postConnection: relayStylePagination(["query"]),
+      }
+    },
+  }
+})
+
+const client = new ApolloClient({
+  uri: `${GRAPHQL_SERVER_URI}/graphql`,
+  cache: inMemoryCache,
+});
 
 const routes = [
   {
@@ -30,7 +49,7 @@ const routes = [
 
 const AppRouter = () => {
   return (
-    <>
+    <ApolloProvider client={client}>
       <Header />
       <div style={{ marginTop: "80px" }}>
         <BrowserRouter>
@@ -43,7 +62,7 @@ const AppRouter = () => {
           </Switch>
         </BrowserRouter>
       </div>
-    </>
+    </ApolloProvider>
   );
 };
 

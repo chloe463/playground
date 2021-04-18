@@ -17,13 +17,10 @@ export const VirtualizedList = () => {
 
   const rowRenderer: ListRowRenderer = useCallback(({ key, index, style }) => {
     const post = posts[index];
-    if (!post) {
-      return null;
-    }
     return (
       <div key={key} style={style}>
         <PostListItem >
-          <Post post={post} />
+          {post ? <Post post={post} /> : <PostPlaceholder />}
         </PostListItem>
       </div>
     );
@@ -70,13 +67,6 @@ export const VirtualizedList = () => {
             );
           }}
         </InfiniteLoader>
-        {posts.length < totalCount && Array.from({length:3}, (_, i) => i).map((v) => {
-          return (
-            <PostListItem key={v} $loading={true}>
-              <PostPlaceholder />
-            </PostListItem>
-          );
-        })}
       </Contents>
     </AppBase>
   );

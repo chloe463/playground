@@ -8,6 +8,11 @@ import { Post } from "../components/Post";
 import { PostPlaceholder } from "../components/PostPlaceholder";
 import { useVirtualizedList } from "../hooks/VirtualizedList.hooks";
 
+const INFINITE_LOAD_THRESHOLD = 3;
+const INFINITE_LOAD_MIN_BATCH_SIZE = 1;
+const ROW_HEIGHT = 96;
+const ROW_MARGIN = 8;
+
 export const VirtualizedList = () => {
   const { posts, totalCount, fetchMorePosts } = useVirtualizedList();
 
@@ -34,8 +39,8 @@ export const VirtualizedList = () => {
           isRowLoaded={isRowLoaded}
           loadMoreRows={fetchMorePosts}
           rowCount={totalCount}
-          threshold={3}
-          minimumBatchSize={1}
+          threshold={INFINITE_LOAD_THRESHOLD}
+          minimumBatchSize={INFINITE_LOAD_MIN_BATCH_SIZE}
         >
           {({ onRowsRendered, registerChild }) => {
             return (
@@ -55,7 +60,7 @@ export const VirtualizedList = () => {
                             onRowsRendered={onRowsRendered}
                             ref={registerChild}
                             rowCount={totalCount}
-                            rowHeight={96 + 8}
+                            rowHeight={ROW_HEIGHT + ROW_MARGIN}
                             rowRenderer={rowRenderer}
                           />
                         );

@@ -14,6 +14,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
 };
 
 const Header = styled.header`
+  padding: 0 24px;
 `;
 
 const PageTitle = styled.h2`

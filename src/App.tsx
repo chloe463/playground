@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Header } from "./components/Header";
 import { LayoutAnimation } from "./pages/LayoutAnimation";
 import { ListToDetail } from "./pages/ListToDetail";
+import { PostDetail } from "./pages/PostDetail";
 import { VirtualizedList } from "./pages/VirtualizedList";
 
 const GRAPHQL_SERVER_URI = process.env.GRAPHQL_SERVER_URI || "http://localhost:4000";
@@ -39,6 +40,11 @@ const routes = [
     key: "virtualizedList",
     path: "/virtualized-list",
     component: VirtualizedList,
+  },
+  {
+    key: "virtualizedList",
+    path: "/post/:id",
+    component: PostDetail,
   },
   {
     key: "listToDetail",

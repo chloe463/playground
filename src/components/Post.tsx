@@ -1,4 +1,5 @@
 import React from "react";
+import { Link as _Link } from "react-router-dom";
 import styled from "styled-components";
 import { PostFragment } from "../hooks/__generated__/PostFragment";
 
@@ -10,7 +11,7 @@ type Props = {
 
 export const Post: React.VFC<Props> = ({ post }) => {
   return (
-    <>
+    <Link to={`/post/${post.id}`}>
       <DummyAvatar src={AVATAR_URL} />
       <PostListItemContent>
         <ItemHeader>
@@ -24,9 +25,24 @@ export const Post: React.VFC<Props> = ({ post }) => {
           </ItemText>
         </ItemBody>
       </PostListItemContent>
-    </>
+    </Link>
   );
 }
+
+const Link = styled(_Link)`
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 16px 24px;
+  border-radius: 4px;
+  transition: all 50ms ease-out;
+  text-decoration: none;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    cursor: pointer;
+  }
+`;
 
 const DummyAvatar = styled.img`
   border-radius: 50%;

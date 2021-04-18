@@ -83,14 +83,6 @@ const Contents = styled.div`
 `;
 
 const PostListItem = styled.div<{ $loading?: boolean }>`
-  list-style: none;
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-  padding: 16px 24px;
-  border-radius: 4px;
-  transition: all 50ms ease-out;
-
   &:hover {
     background-color: ${({ $loading }) => $loading ? "#ffffff" : "rgba(0, 0, 0, 0.03)"};
     cursor: ${({ $loading }) => $loading ?  "default" : "pointer"};

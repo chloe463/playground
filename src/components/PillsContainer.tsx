@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import { pillVariants } from "./constants";
-import { Item } from "./types";
+import { pillVariants } from "../constants";
+import { Item } from "../types";
 
 const Base = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width: 320px;
+  width: 640px;
   margin: 16px auto 0;
 `;
 

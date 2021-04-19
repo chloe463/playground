@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, Transition } from "framer-motion";
 import styled from "styled-components";
 
-export const AppBase = styled.div`
+export const AppBase = styled(motion.div)`
   display: block;
   width: 80%;
   max-width: 1280px;
@@ -48,3 +48,8 @@ export const SelectedItemPillBase = styled.span`
   word-break: keep-all;
   cursor: pointer;
 `;
+
+export const transition: Transition = {
+  ease: [0.3, 0.3, 0.3, 1],
+  duration: 0.3,
+};

@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React from "react";
 import { Link as _Link } from "react-router-dom";
 import styled from "styled-components";
@@ -11,15 +12,15 @@ type Props = {
 
 export const Post: React.VFC<Props> = ({ post }) => {
   return (
-    <Link to={`/post/${post.id}`}>
-      <DummyAvatar src={AVATAR_URL} />
+    <Link to={`/virtualized-list/${post.id}`}>
+      <DummyAvatar src={AVATAR_URL} layoutId={`avatarImage-${post.id}`} />
       <PostListItemContent>
         <ItemHeader>
-          <ItemTitle>
+          <ItemTitle layoutId={`postTitle-${post.id}`}>
             {post.id}. {post.title}
           </ItemTitle>
         </ItemHeader>
-        <ItemBody>
+        <ItemBody layoutId={`postId-${post.id}`}>
           <ItemText>
             {post.body}
           </ItemText>
@@ -44,7 +45,7 @@ const Link = styled(_Link)`
   }
 `;
 
-const DummyAvatar = styled.img`
+const DummyAvatar = styled(motion.img)`
   border-radius: 50%;
 `;
 
@@ -54,7 +55,7 @@ const PostListItemContent = styled.div`
 
 const ItemHeader = styled.header``;
 
-const ItemTitle = styled.h3`
+const ItemTitle = styled(motion.h3)`
   margin: 0;
   padding: 0;
   font-size: 22px;
@@ -62,7 +63,7 @@ const ItemTitle = styled.h3`
   color: rgba(0, 0, 0, 0.86);
 `;
 
-const ItemBody = styled.div`
+const ItemBody = styled(motion.div)`
   margin-top: 4px;
 `;
 

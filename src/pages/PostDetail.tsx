@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useEffect } from "react";
+import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { PostFragment } from "../hooks/__generated__/PostFragment";
@@ -12,7 +13,23 @@ type Props = {
 
 export const PostDetail: React.VFC<Props> = (props) => {
   const { post } = props;
-  return (
+
+  useEffect(() => {
+    const body = document.querySelector("body")
+
+    let original = "scroll";
+    if (body) {
+      original = body.style.overflow;
+      body.style.overflow = "hidden";
+    }
+    return () => {
+      if (body) {
+        body.style.overflow = original;
+      }
+    }
+  }, []);
+
+  return ReactDOM.createPortal(
     <>
       <Overlay
         initial={{ opacity: 0 }}
@@ -35,7 +52,8 @@ export const PostDetail: React.VFC<Props> = (props) => {
           </PostBody>
         </Card>
       </Overlay>
-    </>
+    </>,
+    document.querySelector("body") as HTMLElement
   );
 };
 

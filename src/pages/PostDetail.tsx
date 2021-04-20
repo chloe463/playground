@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { PostFragment } from "../hooks/__generated__/PostFragment";
 
-const AVATAR_URL = "https://dummyimage.com/64x64/b3b3b3/ffffff";
+const AVATAR_URL = "https://dummyimage.com/88x88/b3b3b3/ffffff";
 
 type Props = {
   post: PostFragment;
@@ -40,12 +40,13 @@ export const PostDetail: React.VFC<Props> = (props) => {
         className="overlay"
       >
         <Link to={`/virtualized-list`} />
-        {/* <Card layoutId={`post-${post.id}`}> */}
         <Card>
-          <AvatarImage src={AVATAR_URL} layoutId={`avatarImage-${post.id}`}/>
-          <PostTitle layoutId={`postTitle-${post.id}`}>
-            {post.id}. {post.title}
-          </PostTitle>
+          <Header>
+            <AvatarImage src={AVATAR_URL} layoutId={`avatarImage-${post.id}`}/>
+            <PostTitle layoutId={`postTitle-${post.id}`}>
+              {post.id}. {post.title}
+            </PostTitle>
+          </Header>
           <PostBody layoutId={`postId-${post.id}`}>
             <PostBodyText>
               {post.body}
@@ -81,19 +82,36 @@ const Overlay = styled(motion.div)`
 
 const Card = styled(motion.div)`
   display: block;
-  width: 640px;
+  box-sizing: border-box;
+  width: 80%;
+  max-width: 1280px;
+  min-width: 720px;
   padding: 40px 24px;
   background-color: white;
   border-radius: 12px;
   z-index: 1;
 `;
 
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const AvatarImage = styled(motion.img)`
   border-radius: 50%;
 `;
 
-const PostTitle = styled(motion.h3)``;
+const PostTitle = styled(motion.h3)`
+  margin: 0;
+  margin-left: 16px;
+  padding: 0;
+  font-size: 32px;
+  line-height: 44px;
+  color: rgba(0, 0, 0, 0.86);
+`;
 
-const PostBody = styled(motion.div)``
+const PostBody = styled(motion.div)`
+  margin-top: 32px;
+`
 
 const PostBodyText = styled.p``;

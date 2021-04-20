@@ -37,7 +37,6 @@ const Link = styled(_Link)`
   padding: 16px 24px;
   border-radius: 4px;
   transition: all 50ms ease-out;
-  background-color: white;
   text-decoration: none;
 
   &:hover {
@@ -52,6 +51,7 @@ const DummyAvatar = styled(motion.img)`
 
 const PostListItemContent = styled.div`
   margin-left: 16px;
+  width: calc(100% - 64px - 16px);
 `;
 
 const ItemHeader = styled.header``;

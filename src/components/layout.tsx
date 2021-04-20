@@ -51,5 +51,5 @@ export const SelectedItemPillBase = styled.span`
 
 export const transition: Transition = {
   ease: [0.3, 0.3, 0.3, 1],
-  duration: 0.3,
+  duration: 0.5,
 };

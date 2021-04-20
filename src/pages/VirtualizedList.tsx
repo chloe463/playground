@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import { RouteProps, useRouteMatch } from "react-router";
+import { Link } from "react-router-dom";
 import { AutoSizer, InfiniteLoader, List, ListRowRenderer, WindowScroller } from "react-virtualized";
 import 'react-virtualized/styles.css';
 import styled from "styled-components";
@@ -45,8 +46,14 @@ export const VirtualizedList: React.FC<Props> = (props) => {
   }, [posts]);
 
   return (
-    <AppBase exit={{ opacity: 0, y: -15 }} transition={transition}>
+    <AppBase
+      initial={{ opacity: 1, y: 25 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={transition}
+    >
       <PageHeader title={"Virtualized List example"} />
+      <Link to={`/layout-animation`}>Layout animation</Link>
       <Contents>
         {postId && post && <PostDetail post={post} />}
         <InfiniteLoader

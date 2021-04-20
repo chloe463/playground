@@ -37,6 +37,7 @@ const Link = styled(_Link)`
   padding: 16px 24px;
   border-radius: 4px;
   transition: all 50ms ease-out;
+  background-color: white;
   text-decoration: none;
 
   &:hover {

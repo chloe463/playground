@@ -40,6 +40,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
         className="overlay"
       >
         <Link to={`/virtualized-list`} />
+        {/* <Card layoutId={`post-${post.id}`}> */}
         <Card>
           <AvatarImage src={AVATAR_URL} layoutId={`avatarImage-${post.id}`}/>
           <PostTitle layoutId={`postTitle-${post.id}`}>
@@ -58,7 +59,6 @@ export const PostDetail: React.VFC<Props> = (props) => {
 };
 
 const Overlay = styled(motion.div)`
-  z-index: 1;
   position: fixed;
   background: rgba(204, 204, 204, 0.64);
   will-change: opacity;
@@ -79,13 +79,13 @@ const Overlay = styled(motion.div)`
   }
 `;
 
-const Card = styled.div`
+const Card = styled(motion.div)`
   display: block;
   width: 640px;
   padding: 40px 24px;
   background-color: white;
   border-radius: 12px;
-  z-index: 2;
+  z-index: 1;
 `;
 
 const AvatarImage = styled(motion.img)`

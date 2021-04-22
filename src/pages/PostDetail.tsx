@@ -36,18 +36,11 @@ export const PostDetail: React.VFC<Props> = (props) => {
   });
 
   useEffect(() => {
-    const body = document.querySelector("body")
-
-    let original = "scroll";
-    if (body) {
-      original = body.style.overflow;
-      body.style.overflow = "hidden";
-    }
+    let original = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
     return () => {
-      if (body) {
-        body.style.overflow = original;
-      }
-    }
+      document.documentElement.style.overflow = original;
+    };
   }, []);
 
   return ReactDOM.createPortal(
@@ -57,7 +50,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0, transition: { duration: 0.15 } }}
         transition={{ duration: 0.2, delay: 0.15 }}
-        style={{ pointerEvents: "auto" }}
+        style={{ pointerEvents: "auto", overflow: "scroll" }}
         className="overlay"
       >
         <Link to={`/virtualized-list`} />

@@ -6,7 +6,7 @@ export const AppBase = styled(motion.div)`
   width: 80%;
   max-width: 1280px;
   min-width: 720px;
-  margin: 0 auto;
+  margin-left: max(72px, ((100vw - min(max(720px, (100vw - 240px) * 0.8), 1200px)) / 2) - 240px);
 `;
 
 export const SelectedItemsContainer = styled.div`

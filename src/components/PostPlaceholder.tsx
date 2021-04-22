@@ -22,6 +22,7 @@ const Base = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  padding: 16px 24px;
 `;
 
 const DummyAvatar = styled.div`

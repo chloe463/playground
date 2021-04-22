@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { motion } from "framer-motion";
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -28,12 +28,26 @@ const GET_COMMENTS_QUERY = gql`
 
 export const PostDetail: React.VFC<Props> = (props) => {
   const { post } = props;
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
   const { data: commentsQueryRes, loading } = useQuery<GetCommentsQuery, GetCommentsQueryVariables>(GET_COMMENTS_QUERY, {
     variables: {
       postId: post.id,
     },
   });
+
+  useLayoutEffect(() => {
+    if (!contentRef.current) {
+      return;
+    }
+    if (contentRef.current.getBoundingClientRect().height > window.innerHeight * 0.6) {
+      contentRef.current.style.position = "relative";
+      contentRef.current.style.top = "15vh";
+      contentRef.current.style.borderBottomLeftRadius = "0px";
+      contentRef.current.style.borderBottomRightRadius = "0px";
+      contentRef.current.style.paddingBottom = "96px";
+    }
+  }, []);
 
   useEffect(() => {
     let original = document.documentElement.style.overflow;
@@ -54,7 +68,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
         className="overlay"
       >
         <Link to={`/virtualized-list`} />
-        <Card>
+        <Card ref={contentRef}>
           <Header>
             <AvatarImage src={AVATAR_URL} layoutId={`avatarImage-${post.id}`}/>
             <PostTitle layoutId={`postTitle-${post.id}`}>

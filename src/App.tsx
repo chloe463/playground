@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import { Header } from "./components/Header";
 import { LayoutAnimation } from "./pages/LayoutAnimation";
-import { ListToDetail } from "./pages/ListToDetail";
 import { VirtualizedList } from "./pages/VirtualizedList";
 
 const GRAPHQL_SERVER_URI = process.env.GRAPHQL_SERVER_URI || "http://localhost:4000";
@@ -43,11 +42,6 @@ const routes = [
     path: ["/virtualized-list", "/virtualized-list/:id"],
     component: VirtualizedList,
     expect: false,
-  },
-  {
-    key: "listToDetail",
-    path: ["/list-to-detail", "/list-to-detail/:id"],
-    component: ListToDetail,
   },
 ];
 

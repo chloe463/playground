@@ -40,6 +40,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
     if (!contentRef.current) {
       return;
     }
+    console.log(contentRef.current.getBoundingClientRect().height, window.innerHeight * 0.6);
     if (contentRef.current.getBoundingClientRect().height > window.innerHeight * 0.6) {
       contentRef.current.style.position = "relative";
       contentRef.current.style.top = "15vh";
@@ -47,7 +48,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
       contentRef.current.style.borderBottomRightRadius = "0px";
       contentRef.current.style.paddingBottom = "96px";
     }
-  }, []);
+  }, [post, commentsQueryRes]);
 
   useEffect(() => {
     let original = document.documentElement.style.overflow;
@@ -139,9 +140,7 @@ const Overlay = styled(motion.div)`
 const Card = styled(motion.div)`
   display: block;
   box-sizing: border-box;
-  width: 80%;
-  max-width: 1280px;
-  min-width: 720px;
+  width:640px;
   padding: 40px 24px;
   background-color: white;
   border-radius: 12px;

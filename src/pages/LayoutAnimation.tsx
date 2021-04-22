@@ -88,7 +88,6 @@ export const LayoutAnimation = () => {
       transition={transition}
     >
       <PageHeader title={"Layout animation example"} />
-      <Link to={`/virtualized-list`}>virtualized list</Link>
       <Buttons>
         <Button onClick={addItem}>Add an item</Button>
         <Button onClick={removeRandomly}>Remove an item randomly</Button>

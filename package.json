@@ -25,14 +25,14 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"yarn codegen:types:watch\"",
+    "start": "concurrently \"react-scripts start\" \"yarn codegen:watch\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "codegen:download-shcema": "apollo client:download-schema --endpoint http://localhost:4000/graphql schema.json",
-    "codegen:types": "apollo client:codegen --target=typescript --includes='src/**/*.{ts,tsx}' --localSchemaFile=./schema.json --globalTypesFile=src/__generated__/globalTypes.d.ts --tsFileExtension='d.ts'",
-    "codegen:types:watch": "yarn codegen:types --watch",
-    "clean:types": "./scripts/clean-types.sh"
+    "clean:types": "./scripts/clean-types.sh",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen:watch": "graphql-codegen --config codegen.yml --watch"
   },
   "eslintConfig": {
     "extends": [
@@ -53,11 +53,15 @@
     ]
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^1.21.4",
+    "@graphql-codegen/cli": "1.21.4",
     "@types/react-router": "^5.1.13",
     "@types/react-router-dom": "^5.1.7",
     "@types/react-virtualized": "^9.21.11",
     "@types/styled-components": "^5.1.9",
-    "concurrently": "^6.0.0"
+    "concurrently": "^6.0.0",
+    "@graphql-codegen/typescript": "1.22.0",
+    "@graphql-codegen/typescript-operations": "1.17.16",
+    "@graphql-codegen/typescript-react-apollo": "2.2.4",
+    "@graphql-codegen/introspection": "1.18.2"
   }
 }

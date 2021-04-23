@@ -53,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.21.4",
     "@types/react-router": "^5.1.13",
     "@types/react-router-dom": "^5.1.7",
     "@types/react-virtualized": "^9.21.11",

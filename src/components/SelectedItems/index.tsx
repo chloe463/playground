@@ -1,8 +1,8 @@
 import React from "react";
-import { pillVariants } from "../constants";
-import { useLayoutAnimation } from "../lib/hooks/useLayoutAnimation";
-import { Item } from "../types";
-import { SelectedItemPillBase, SelectedItemPillFadeInAnimator, SelectedItemPillLayoutAnimator, SelectedItemsContainer } from "./layout";
+import { pillVariants } from "../../constants";
+import { useLayoutAnimation } from "../../lib/hooks/useLayoutAnimation";
+import { Item } from "../../types";
+import { SelectedItemPillBase, SelectedItemPillFadeInAnimator, SelectedItemPillLayoutAnimator, SelectedItemsContainer } from "../layout";
 
 type Props = {
   items: Item[];

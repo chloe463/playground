@@ -4,7 +4,7 @@ import React, { useEffect, useLayoutEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { PostFragment, useGetCommentsQuery } from "../generated/graphql";
+import { PostFragment, useGetCommentsQuery } from "../../generated/graphql";
 
 const AVATAR_URL = "https://dummyimage.com/88x88/b3b3b3/ffffff";
 const AVATAR_URL_36 = "https://dummyimage.com/36x36/b3b3b3/ffffff";

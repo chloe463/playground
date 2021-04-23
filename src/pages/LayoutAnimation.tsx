@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { AppBase, transition } from "../components/layout";
 import { PageHeader } from "../components/PageHeader";
-import { PillsContainer } from "../components/PillsContainer";
+import { PillsContainer } from "../components/PillContainer";
 import { SelectedItems } from "../components/SelectedItems";
 import { SelectedItems2 } from "../components/SelectedItems2";
 import { Item } from "../types";

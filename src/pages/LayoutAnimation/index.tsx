@@ -2,12 +2,12 @@ import { AnimateSharedLayout } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { AppBase, transition } from "../components/layout";
-import { PageHeader } from "../components/PageHeader";
-import { PillsContainer } from "../components/PillContainer";
-import { SelectedItems } from "../components/SelectedItems";
-import { SelectedItems2 } from "../components/SelectedItems2";
-import { Item } from "../types";
+import { AppBase, transition } from "../../components/layout";
+import { PageHeader } from "../../components/PageHeader";
+import { PillsContainer } from "../../components/PillContainer";
+import { SelectedItems } from "../../components/SelectedItems";
+import { SelectedItems2 } from "../../components/SelectedItems2";
+import { Item } from "../../types";
 
 export const LayoutAnimation = () => {
   const [items, setItems] = useState<Item[]>([

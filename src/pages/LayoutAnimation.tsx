@@ -1,7 +1,8 @@
 import { AnimateSharedLayout } from "framer-motion";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { AppBase } from "../components/layout";
+import { AppBase, transition } from "../components/layout";
 import { PageHeader } from "../components/PageHeader";
 import { PillsContainer } from "../components/PillsContainer";
 import { SelectedItems } from "../components/SelectedItems";
@@ -80,8 +81,14 @@ export const LayoutAnimation = () => {
   };
 
   return (
-    <AppBase>
+    <AppBase
+      initial={{ opacity: 1, y: 25 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={transition}
+    >
       <PageHeader title={"Layout animation example"} />
+      <Link to={`/virtualized-list`}>virtualized list</Link>
       <Buttons>
         <Button onClick={addItem}>Add an item</Button>
         <Button onClick={removeRandomly}>Remove an item randomly</Button>

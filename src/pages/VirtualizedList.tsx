@@ -1,10 +1,13 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
+import { RouteProps, useRouteMatch } from "react-router";
+import { Link } from "react-router-dom";
 import { AutoSizer, InfiniteLoader, List, ListRowRenderer, WindowScroller } from "react-virtualized";
 import 'react-virtualized/styles.css';
 import styled from "styled-components";
-import { AppBase } from "../components/layout";
+import { AppBase, transition } from "../components/layout";
 import { PageHeader } from "../components/PageHeader";
 import { Post } from "../components/Post";
+import { PostDetail } from "../components/PostDetail";
 import { PostPlaceholder } from "../components/PostPlaceholder";
 import { useVirtualizedList } from "../hooks/VirtualizedList.hooks";
 
@@ -13,8 +16,19 @@ const INFINITE_LOAD_MIN_BATCH_SIZE = 1;
 const ROW_HEIGHT = 96;
 const ROW_MARGIN = 8;
 
-export const VirtualizedList = () => {
+type Props = {} & RouteProps;
+
+export const VirtualizedList: React.FC<Props> = (props) => {
   const { posts, totalCount, fetchMorePosts } = useVirtualizedList();
+  const matches = useRouteMatch<{ id: string }>("/virtualized-list/:id");
+  const postId = matches ? parseInt(`${matches.params.id}`, 10) : null;
+
+  const post = useMemo(() => {
+    if (posts) {
+      return posts.find((post) => post.id === postId);
+    }
+    return null;
+  }, [postId, posts]);
 
   const isRowLoaded = useCallback(({ index }: { index: number }) => {
     return Boolean(posts[index]);
@@ -32,9 +46,16 @@ export const VirtualizedList = () => {
   }, [posts]);
 
   return (
-    <AppBase>
+    <AppBase
+      initial={{ opacity: 1, y: 25 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={transition}
+    >
       <PageHeader title={"Virtualized List example"} />
+      <Link to={`/layout-animation`}>Layout animation</Link>
       <Contents>
+        {postId && post && <PostDetail post={post} />}
         <InfiniteLoader
           isRowLoaded={isRowLoaded}
           loadMoreRows={fetchMorePosts}
@@ -83,14 +104,6 @@ const Contents = styled.div`
 `;
 
 const PostListItem = styled.div<{ $loading?: boolean }>`
-  list-style: none;
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-  padding: 16px 24px;
-  border-radius: 4px;
-  transition: all 50ms ease-out;
-
   &:hover {
     background-color: ${({ $loading }) => $loading ? "#ffffff" : "rgba(0, 0, 0, 0.03)"};
     cursor: ${({ $loading }) => $loading ?  "default" : "pointer"};

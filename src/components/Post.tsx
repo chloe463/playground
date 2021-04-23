@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import { Link as _Link } from "react-router-dom";
 import styled from "styled-components";
-import { PostFragment } from "../hooks/__generated__/PostFragment";
+import { PostFragment } from "../generated/graphql";
 
 const AVATAR_URL = "https://dummyimage.com/64x64/b3b3b3/ffffff";
 

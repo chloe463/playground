@@ -1,4 +1,3 @@
-import { gql } from "@apollo/client";
 import { useMemo, useState } from "react";
 import {
   GetPostConnectionDocument,
@@ -6,33 +5,6 @@ import {
   PostFragment as Post,
   useGetPostConnectionQuery
 } from "../generated/graphql";
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const GET_POSTS_QUERY = gql`
-  fragment Post on Post {
-    id
-    userId
-    title
-    body
-  }
-  query GetPostConnection($first: Int, $after: String, $query: String) {
-    postConnection(first: $first, after: $after, query: $query) {
-      pageInfo {
-        hasNextPage
-        hasPreviousPage
-        startCursor
-        endCursor
-      }
-      totalCount
-      edges {
-        node {
-          ...Post
-        }
-        cursor
-      }
-    }
-  }
-`;
 
 const DEFAULT_FETCH_SIZE = 10;
 const FIRST_CURSOR = "0";

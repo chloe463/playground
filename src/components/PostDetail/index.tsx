@@ -1,4 +1,3 @@
-import { gql } from "@apollo/client";
 import { motion } from "framer-motion";
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import ReactDOM from "react-dom";
@@ -12,19 +11,6 @@ const AVATAR_URL_36 = "https://dummyimage.com/36x36/b3b3b3/ffffff";
 type Props = {
   post: PostFragment;
 };
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const GET_COMMENTS_QUERY = gql`
-  query GetComments($postId: Int!) {
-    comments(postId: $postId) {
-      id
-      postId
-      name
-      email
-      body
-    }
-  }
-`;
 
 export const PostDetail: React.VFC<Props> = (props) => {
   const { post } = props;

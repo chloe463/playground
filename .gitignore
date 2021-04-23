@@ -24,3 +24,5 @@ yarn-error.log*
 
 # generated type definition files
 src/**/__generated__/*
+src/generated/*
+

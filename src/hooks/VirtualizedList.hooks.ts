@@ -1,19 +1,21 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 import { useMemo, useState } from "react";
-import { GetPostConnectionQuery, GetPostConnectionQueryVariables } from "./__generated__/GetPostConnectionQuery";
-import { PostFragment as Post } from "./__generated__/PostFragment";
+import {
+  GetPostConnectionDocument,
+  GetPostConnectionQueryVariables,
+  PostFragment as Post,
+  useGetPostConnectionQuery
+} from "../generated/graphql";
 
-const PostFragment = gql`
-  fragment PostFragment on Post {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const GET_POSTS_QUERY = gql`
+  fragment Post on Post {
     id
     userId
     title
     body
   }
-`;
-
-const GET_POSTS_QUERY = gql`
-  query GetPostConnectionQuery($first: Int, $after: String, $query: String) {
+  query GetPostConnection($first: Int, $after: String, $query: String) {
     postConnection(first: $first, after: $after, query: $query) {
       pageInfo {
         hasNextPage
@@ -24,13 +26,12 @@ const GET_POSTS_QUERY = gql`
       totalCount
       edges {
         node {
-          ...PostFragment
+          ...Post
         }
         cursor
       }
     }
   }
-  ${PostFragment}
 `;
 
 const DEFAULT_FETCH_SIZE = 10;
@@ -50,10 +51,7 @@ export const useVirtualizedList = () => {
     after: FIRST_CURSOR,
     query: "",
   });
-  const { data, loading, refetch, fetchMore } = useQuery<
-    GetPostConnectionQuery,
-    GetPostConnectionQueryVariables
-  >(GET_POSTS_QUERY, {
+  const { data, loading, refetch, fetchMore } = useGetPostConnectionQuery({
     variables,
   });
 
@@ -72,7 +70,7 @@ export const useVirtualizedList = () => {
   const { fetchMorePosts, refetchPosts } = useMemo(() => ({
     fetchMorePosts: async () => {
       await fetchMore({
-        query: GET_POSTS_QUERY,
+        query: GetPostConnectionDocument,
         variables: {
           ...variables,
           after: lastCursor,

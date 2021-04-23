@@ -1,11 +1,10 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 import { motion } from "framer-motion";
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { PostFragment } from "../hooks/__generated__/PostFragment";
-import { GetCommentsQuery, GetCommentsQueryVariables } from "./__generated__/GetCommentsQuery";
+import { PostFragment, useGetCommentsQuery } from "../generated/graphql";
 
 const AVATAR_URL = "https://dummyimage.com/88x88/b3b3b3/ffffff";
 const AVATAR_URL_36 = "https://dummyimage.com/36x36/b3b3b3/ffffff";
@@ -14,8 +13,9 @@ type Props = {
   post: PostFragment;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const GET_COMMENTS_QUERY = gql`
-  query GetCommentsQuery($postId: Int!) {
+  query GetComments($postId: Int!) {
     comments(postId: $postId) {
       id
       postId
@@ -30,7 +30,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
   const { post } = props;
   const contentRef = useRef<HTMLDivElement | null>(null);
 
-  const { data: commentsQueryRes, loading } = useQuery<GetCommentsQuery, GetCommentsQueryVariables>(GET_COMMENTS_QUERY, {
+  const { data: commentsQueryRes, loading } = useGetCommentsQuery({
     variables: {
       postId: post.id,
     },

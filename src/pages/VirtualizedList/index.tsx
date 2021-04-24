@@ -3,12 +3,12 @@ import { RouteProps, useRouteMatch } from "react-router";
 import { AutoSizer, InfiniteLoader, List, ListRowRenderer, WindowScroller } from "react-virtualized";
 import 'react-virtualized/styles.css';
 import styled from "styled-components";
-import { AppBase, transition } from "../components/layout";
-import { PageHeader } from "../components/PageHeader";
-import { Post } from "../components/Post";
-import { PostDetail } from "../components/PostDetail";
-import { PostPlaceholder } from "../components/PostPlaceholder";
-import { useVirtualizedList } from "../hooks/VirtualizedList.hooks";
+import { AppBase, transition } from "../../components/layout";
+import { PageHeader } from "../../components/PageHeader";
+import { Post } from "../../components/Post";
+import { PostDetail } from "../../components/PostDetail";
+import { PostPlaceholder } from "../../components/PostPlaceholder";
+import { useVirtualizedList } from "../../hooks/VirtualizedList.hooks";
 
 const INFINITE_LOAD_THRESHOLD = 3;
 const INFINITE_LOAD_MIN_BATCH_SIZE = 1;

@@ -1,8 +1,8 @@
 import React, { createRef, forwardRef } from "react";
-import { pillVariants } from "../constants";
-import { AnimationListContainer } from "../lib/components/AnimationListContainer";
-import { Item } from "../types";
-import { SelectedItemPillBase, SelectedItemPillFadeInAnimator, SelectedItemPillLayoutAnimator, SelectedItemsContainer } from "./layout";
+import { pillVariants } from "../../constants";
+import { AnimationListContainer } from "../../lib/components/AnimationListContainer";
+import { Item } from "../../types";
+import { SelectedItemPillBase, SelectedItemPillFadeInAnimator, SelectedItemPillLayoutAnimator, SelectedItemsContainer } from "../layout";
 
 const SelectedItemPill = forwardRef<HTMLSpanElement, { item: Item }>((props, ref) => {
   const { item } = props;

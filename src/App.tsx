@@ -4,7 +4,6 @@ import { AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import { useLocation } from "react-router";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
-import { Header } from "./components/Header";
 import { Page, SideBar, SIDEBAR_WIDTH } from "./components/SideBar";
 import { LayoutAnimation } from "./pages/LayoutAnimation";
 import { VirtualizedList } from "./pages/VirtualizedList";
@@ -104,8 +103,7 @@ export default function App() {
             <SideBar pages={pages} />
           </LeftColumn>
           <RightColumn>
-            <Header />
-            <div style={{ marginTop: "80px" }}>
+            <div style={{ marginTop: "156px" }}>
               <AppRouter />
             </div>
           </RightColumn>

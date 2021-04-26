@@ -3,8 +3,8 @@ import { relayStylePagination } from "@apollo/client/utilities";
 import { AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import { useLocation } from "react-router";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { createGlobalStyle } from "styled-components";
-import { Header } from "./components/Header";
+import styled, { createGlobalStyle } from "styled-components";
+import { Page, SideBar, SIDEBAR_WIDTH } from "./components/SideBar";
 import { LayoutAnimation } from "./pages/LayoutAnimation";
 import { VirtualizedList } from "./pages/VirtualizedList";
 
@@ -44,6 +44,11 @@ const routes = [
     expect: false,
   },
 ];
+
+const pages: Page[] = routes.map((route) => ({
+  name: route.key,
+  url: Array.isArray(route.path) ? route.path[0] : route.path,
+}));
 
 const AppRouter = () => {
   const location = useLocation();
@@ -93,11 +98,35 @@ export default function App() {
     <ApolloProvider client={client}>
       <GlobalStyle />
       <BrowserRouter>
-        <Header />
-        <div style={{ marginTop: "80px" }}>
-          <AppRouter />
-        </div>
+        <PageLayout>
+          <LeftColumn>
+            <SideBar pages={pages} />
+          </LeftColumn>
+          <RightColumn>
+            <div style={{ marginTop: "156px" }}>
+              <AppRouter />
+            </div>
+          </RightColumn>
+        </PageLayout>
       </BrowserRouter>
     </ApolloProvider>
   );
 };
+
+const PageLayout = styled.div`
+  display: flex;
+`;
+
+const LeftColumn = styled.div`
+  position: sticky;
+  top: 0;
+  display: block;
+  width: ${SIDEBAR_WIDTH}px;
+  height: 100vh;
+`;
+
+const RightColumn = styled.div`
+  display: block;
+  width: calc(100vw - ${SIDEBAR_WIDTH}px);
+  box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%);
+`;

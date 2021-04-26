@@ -32,7 +32,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
       contentRef.current.style.borderBottomRightRadius = "0px";
       contentRef.current.style.paddingBottom = "96px";
     }
-  }, []);
+  }, [post, commentsQueryRes]);
 
   useEffect(() => {
     let original = document.documentElement.style.overflow;

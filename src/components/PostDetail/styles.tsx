@@ -25,9 +25,7 @@ export const Overlay = styled(motion.div)`
 export const Card = styled(motion.div)`
   display: block;
   box-sizing: border-box;
-  width: 80%;
-  max-width: 1280px;
-  min-width: 720px;
+  width:640px;
   padding: 40px 24px;
   background-color: white;
   border-radius: 12px;

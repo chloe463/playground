@@ -1,6 +1,5 @@
 import { AnimateSharedLayout } from "framer-motion";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { AppBase, transition } from "../../components/layout";
 import { PageHeader } from "../../components/PageHeader";

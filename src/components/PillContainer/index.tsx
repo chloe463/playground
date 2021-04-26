@@ -12,21 +12,18 @@ const Base = styled.div`
   margin: 16px auto 0;
 `;
 
-const PillPositionAnimator = styled(motion.span)`
-  margin-top: 16px;
-  & + & {
-    margin-left: 8px;
-  }
+const PillPositionAnimator = styled(motion.div)`
+  padding: 6px;
 `;
 
-const PillFadeInAnimator = styled(motion.span)``;
+const PillFadeInAnimator = styled(motion.div)``;
 
-const Pill = styled.span`
+const Pill = styled.div`
   background: linear-gradient(250deg, #7b2ff7, #f107a3);
   font-size: 16px;
   font-weight: 300;
   line-height: 28px;
-  padding: 8px 24px;
+  padding: 14px 24px;
   border-radius: 9999vmax;
   color: white;
   cursor: pointer;

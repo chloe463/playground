@@ -1,3 +1,4 @@
+import faker from "faker";
 import { AnimateSharedLayout } from "framer-motion";
 import { useState } from "react";
 import styled from "styled-components";
@@ -8,34 +9,32 @@ import { SelectedItems } from "../../components/SelectedItems";
 import { SelectedItems2 } from "../../components/SelectedItems2";
 import { Item } from "../../types";
 
+const initialItems: Item[] = Array.from({ length: 3 }, (_, i) => i).map((v) => {
+  return {
+    key: faker.datatype.uuid(),
+    name: faker.name.findName(),
+  };
+});
+
 export const LayoutAnimation = () => {
-  const [items, setItems] = useState<Item[]>([
-    { key: "1", name: "item1" },
-    { key: "2", name: "item2" },
-    { key: "3", name: "item3" }
-  ]);
+  const [items, setItems] = useState<Item[]>(initialItems);
   const [selectedItems, setSelectedItems] = useState<Item[]>([]);
 
   const resetAll = () => {
-    setItems([
-      { key: "1", name: "item1" },
-      { key: "2", name: "item2" },
-      { key: "3", name: "item3" }
-    ]);
+    setItems(initialItems);
     setSelectedItems([]);
   };
 
   const addItem = () => {
     const rand = Math.ceil(Math.random() * 1000);
-    const now = new Date().getTime();
 
     if (items.length === 0) {
-      setItems([{ key: `${rand}--${now}`, name: `item0` }]);
+      setItems([{ key: faker.datatype.uuid(), name: faker.name.findName() }]);
       return;
     }
 
     const pos = rand % items.length;
-    const newItem = { key: `${rand}--${now}`, name: `item${pos}` };
+    const newItem = { key: faker.datatype.uuid(), name: faker.name.findName() };
     setItems((current) => {
       return [
         ...current.slice(0, pos),
@@ -116,7 +115,7 @@ const Button = styled.button`
   background-color: transparent;
   font-size: 14px;
   line-height: 24px;
-  padding: 6px 16px;
+  padding: 10px 18px;
   border-radius: 9999vmax;
   text-transform: uppercase;
   cursor: pointer;

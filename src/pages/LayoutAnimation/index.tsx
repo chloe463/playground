@@ -92,7 +92,7 @@ export const LayoutAnimation = () => {
         <Button onClick={removeRandomly}>Remove an item randomly</Button>
         <Button onClick={resetAll}>reset all</Button>
       </Buttons>
-      <AnimateSharedLayout>
+      <AnimateSharedLayout type="crossfade">
         <PillsContainer items={items} selectItem={selectItem} />
         <SelectedItems items={selectedItems} />
       </AnimateSharedLayout>

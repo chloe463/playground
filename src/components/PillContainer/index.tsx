@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
 import { pillVariants } from "../../constants";
 import { Item } from "../../types";
@@ -39,27 +39,29 @@ type Props = {
 export const PillsContainer = (props: Props) => {
   const { items, selectItem } = props;
   return (
-    <Base>
-      {items.map((item) => (
-        <PillPositionAnimator
-          key={item.key}
-          layout="position"
-          transition={{
-            duration: 0.3
-          }}
-        >
-          <PillFadeInAnimator
-            variants={pillVariants}
-            initial="hidden"
-            animate="visible"
+    <AnimatePresence initial={true}>
+      <Base>
+        {items.map((item) => (
+          <PillPositionAnimator
+            key={item.key}
+            layout="position"
             transition={{
-              delay: 0.4
+              duration: 0.3
             }}
           >
-            <Pill onClick={() => selectItem(item)}>{item.name}</Pill>
-          </PillFadeInAnimator>
-        </PillPositionAnimator>
-      ))}
-    </Base>
+            <PillFadeInAnimator
+              variants={pillVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{
+                delay: 0.4
+              }}
+            >
+              <Pill onClick={() => selectItem(item)}>{item.name}</Pill>
+            </PillFadeInAnimator>
+          </PillPositionAnimator>
+        ))}
+      </Base>
+    </AnimatePresence>
   );
 };

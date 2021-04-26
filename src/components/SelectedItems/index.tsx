@@ -1,4 +1,5 @@
 import React from "react";
+import { AnimatePresence } from "framer-motion";
 import { pillVariants } from "../../constants";
 import { useLayoutAnimation } from "../../lib/hooks/useLayoutAnimation";
 import { Item } from "../../types";
@@ -36,10 +37,12 @@ export const SelectedItems = (props: Props) => {
   const { items } = props;
 
   return (
-    <SelectedItemsContainer>
-      {items.map((item) => (
-        <SelectedItemPill key={item.key} item={item} />
-      ))}
-    </SelectedItemsContainer>
+    <AnimatePresence initial={true}>
+      <SelectedItemsContainer>
+        {items.map((item) => (
+          <SelectedItemPill key={item.key} item={item} />
+        ))}
+      </SelectedItemsContainer>
+    </AnimatePresence>
   );
 };

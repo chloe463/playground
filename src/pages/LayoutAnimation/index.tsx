@@ -1,6 +1,6 @@
+import faker from "faker";
 import { AnimateSharedLayout } from "framer-motion";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { AppBase, transition } from "../../components/layout";
 import { PageHeader } from "../../components/PageHeader";
@@ -9,46 +9,44 @@ import { SelectedItems } from "../../components/SelectedItems";
 import { SelectedItems2 } from "../../components/SelectedItems2";
 import { Item } from "../../types";
 
+const initialItems: Item[] = Array.from({ length: 3 }, (_, i) => i).map((v) => {
+  return {
+    key: faker.datatype.uuid(),
+    name: faker.name.findName(),
+  };
+});
+
 export const LayoutAnimation = () => {
-  const [items, setItems] = useState<Item[]>([
-    { key: "1", name: "item1" },
-    { key: "2", name: "item2" },
-    { key: "3", name: "item3" }
-  ]);
+  const [items, setItems] = useState<Item[]>(initialItems);
   const [selectedItems, setSelectedItems] = useState<Item[]>([]);
 
   const resetAll = () => {
-    setItems([
-      { key: "1", name: "item1" },
-      { key: "2", name: "item2" },
-      { key: "3", name: "item3" }
-    ]);
+    setItems(initialItems);
     setSelectedItems([]);
   };
 
   const addItem = () => {
-    const rand = Math.ceil(Math.random() * 1000);
-    const now = new Date().getTime();
-
     if (items.length === 0) {
-      setItems([{ key: `${rand}--${now}`, name: `item0` }]);
+      setItems([{ key: faker.datatype.uuid(), name: faker.name.findName() }]);
       return;
     }
 
-    const pos = rand % items.length;
-    const newItem = { key: `${rand}--${now}`, name: `item${pos}` };
+    const count = faker.datatype.number(10);
+    const newItems = Array.from({ length: count }).map((_) => {
+      return {
+        key: faker.datatype.uuid(),
+        name: faker.name.findName(),
+      };
+    });
+
+    const pos = faker.datatype.number() % items.length;
     setItems((current) => {
       return [
         ...current.slice(0, pos),
-        newItem,
+        ...newItems,
         ...current.slice(pos, current.length)
       ];
     });
-
-    if (selectedItems.find((v) => v.key === newItem.key)) {
-      return;
-    }
-    setSelectedItems((current) => [newItem, ...current]);
   };
 
   const selectItem = (item: Item) => {
@@ -58,25 +56,10 @@ export const LayoutAnimation = () => {
     setSelectedItems((current) => [item, ...current]);
   };
 
-  const removeItem = (id: string) => {
-    setItems((current) => {
-      return current.filter((item) => item.key !== id);
-    });
-  };
-
-  const removeRandomly = () => {
-    if (items.length === 0) {
-      return;
-    }
-
-    const rand = Math.ceil(Math.random() * 1000);
-    const pos = rand % items.length;
-
-    setItems((current) => {
-      return [
-        ...current.slice(0, pos),
-        ...current.slice(pos + 1, current.length)
-      ];
+  const removeItem = (item: Item) => {
+    const { key } = item;
+    setSelectedItems((current) => {
+      return current.filter((item) => item.key !== key);
     });
   };
 
@@ -90,14 +73,13 @@ export const LayoutAnimation = () => {
       <PageHeader title={"Layout animation example"} />
       <Buttons>
         <Button onClick={addItem}>Add an item</Button>
-        <Button onClick={removeRandomly}>Remove an item randomly</Button>
         <Button onClick={resetAll}>reset all</Button>
       </Buttons>
-      <AnimateSharedLayout>
+      <AnimateSharedLayout type="crossfade">
         <PillsContainer items={items} selectItem={selectItem} />
-        <SelectedItems items={selectedItems} />
+        <SelectedItems items={selectedItems} removeItem={removeItem} />
       </AnimateSharedLayout>
-      <SelectedItems2 items={selectedItems} />
+      <SelectedItems2 items={selectedItems} removeItem={removeItem} />
     </AppBase>
   );
 }
@@ -117,7 +99,7 @@ const Button = styled.button`
   background-color: transparent;
   font-size: 14px;
   line-height: 24px;
-  padding: 6px 16px;
+  padding: 10px 18px;
   border-radius: 9999vmax;
   text-transform: uppercase;
   cursor: pointer;

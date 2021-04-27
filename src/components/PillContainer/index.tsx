@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
 import { pillVariants } from "../../constants";
 import { Item } from "../../types";
@@ -12,21 +12,18 @@ const Base = styled.div`
   margin: 16px auto 0;
 `;
 
-const PillPositionAnimator = styled(motion.span)`
-  margin-top: 16px;
-  & + & {
-    margin-left: 8px;
-  }
+const PillPositionAnimator = styled(motion.div)`
+  padding: 6px;
 `;
 
-const PillFadeInAnimator = styled(motion.span)``;
+const PillFadeInAnimator = styled(motion.div)``;
 
-const Pill = styled.span`
+const Pill = styled.div`
   background: linear-gradient(250deg, #7b2ff7, #f107a3);
   font-size: 16px;
   font-weight: 300;
   line-height: 28px;
-  padding: 8px 24px;
+  padding: 14px 24px;
   border-radius: 9999vmax;
   color: white;
   cursor: pointer;
@@ -39,27 +36,29 @@ type Props = {
 export const PillsContainer = (props: Props) => {
   const { items, selectItem } = props;
   return (
-    <Base>
-      {items.map((item) => (
-        <PillPositionAnimator
-          key={item.key}
-          layout="position"
-          transition={{
-            duration: 0.3
-          }}
-        >
-          <PillFadeInAnimator
-            variants={pillVariants}
-            initial="hidden"
-            animate="visible"
+    <AnimatePresence initial={true}>
+      <Base>
+        {items.map((item) => (
+          <PillPositionAnimator
+            key={item.key}
+            layout="position"
             transition={{
-              delay: 0.4
+              duration: 0.3
             }}
           >
-            <Pill onClick={() => selectItem(item)}>{item.name}</Pill>
-          </PillFadeInAnimator>
-        </PillPositionAnimator>
-      ))}
-    </Base>
+            <PillFadeInAnimator
+              variants={pillVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{
+                delay: 0.4
+              }}
+            >
+              <Pill onClick={() => selectItem(item)}>{item.name}</Pill>
+            </PillFadeInAnimator>
+          </PillPositionAnimator>
+        ))}
+      </Base>
+    </AnimatePresence>
   );
 };

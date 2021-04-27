@@ -4,8 +4,8 @@ import { AnimationListContainer } from "../../lib/components/AnimationListContai
 import { Item } from "../../types";
 import { SelectedItemPillBase, SelectedItemPillFadeInAnimator, SelectedItemPillLayoutAnimator, SelectedItemsContainer } from "../layout";
 
-const SelectedItemPill = forwardRef<HTMLSpanElement, { item: Item }>((props, ref) => {
-  const { item } = props;
+const SelectedItemPill = forwardRef<HTMLSpanElement, { item: Item, removeItem: () => void }>((props, ref) => {
+  const { item, removeItem } = props;
   return (
     <SelectedItemPillLayoutAnimator ref={ref}>
       <SelectedItemPillFadeInAnimator
@@ -17,16 +17,19 @@ const SelectedItemPill = forwardRef<HTMLSpanElement, { item: Item }>((props, ref
           duration: 0.3
         }}
       >
-        <SelectedItemPillBase>{item.name}</SelectedItemPillBase>
+        <SelectedItemPillBase onClick={() => removeItem()}>{item.name}</SelectedItemPillBase>
       </SelectedItemPillFadeInAnimator>
     </SelectedItemPillLayoutAnimator>
   );
 });
 
-type Props = { items: Item[] };
+type Props = {
+  items: Item[];
+  removeItem: (item: Item) => void;
+};
 
 export const SelectedItems2: React.FC<Props> = (props)=> {
-  const { items } = props;
+  const { items, removeItem } = props;
 
   return (
     <SelectedItemsContainer>
@@ -37,7 +40,7 @@ export const SelectedItems2: React.FC<Props> = (props)=> {
         axis: "X",
       }}>
         {items.map((item) => (
-          <SelectedItemPill key={item.key} item={item} ref={createRef()} />
+          <SelectedItemPill key={item.key} item={item} removeItem={() => removeItem(item)} ref={createRef()} />
         ))}
       </AnimationListContainer>
     </SelectedItemsContainer>

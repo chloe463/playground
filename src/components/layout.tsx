@@ -21,13 +21,22 @@ export const SelectedItemsContainer = styled.div`
   border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.03);
   box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%);
+
+  box-sizing: border-box;
   &:empty {
-    height: 48px;
+    height: 96px;
   }
+
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  align-items: center;
+  margin-right: 12px;
+  overflow-x: scroll;
 `;
-// const SelectedItemPillLayoutAnimator = styled(motion.span)`
+
 export const SelectedItemPillLayoutAnimator = styled.span`
-  -webkit-backface-visibility: hidden;
+  flex-shrink: 0;
   backface-visibility: hidden;
   transition-property: all;
   & + & {

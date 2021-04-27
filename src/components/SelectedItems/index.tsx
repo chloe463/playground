@@ -1,5 +1,5 @@
-import React from "react";
 import { AnimatePresence } from "framer-motion";
+import React from "react";
 import { pillVariants } from "../../constants";
 import { useLayoutAnimation } from "../../lib/hooks/useLayoutAnimation";
 import { Item } from "../../types";
@@ -7,9 +7,10 @@ import { SelectedItemPillBase, SelectedItemPillFadeInAnimator, SelectedItemPillL
 
 type Props = {
   items: Item[];
+  removeItem: (item: Item) => void;
 };
 
-const SelectedItemPill = ({ item }: { item: Item }) => {
+const SelectedItemPill = ({ item, removeItem }: { item: Item, removeItem: () => void }) => {
   const animationTargetRef = useLayoutAnimation({
     duration: 400,
     delay: 50,
@@ -27,7 +28,7 @@ const SelectedItemPill = ({ item }: { item: Item }) => {
           duration: 0.3
         }}
       >
-        <SelectedItemPillBase>{item.name}</SelectedItemPillBase>
+        <SelectedItemPillBase onClick={() => removeItem()}>{item.name}</SelectedItemPillBase>
       </SelectedItemPillFadeInAnimator>
     </SelectedItemPillLayoutAnimator>
   );
@@ -40,7 +41,7 @@ export const SelectedItems = (props: Props) => {
     <AnimatePresence initial={true}>
       <SelectedItemsContainer>
         {items.map((item) => (
-          <SelectedItemPill key={item.key} item={item} />
+          <SelectedItemPill key={item.key} item={item} removeItem={() => props.removeItem(item)} />
         ))}
       </SelectedItemsContainer>
     </AnimatePresence>

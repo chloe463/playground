@@ -56,25 +56,10 @@ export const LayoutAnimation = () => {
     setSelectedItems((current) => [item, ...current]);
   };
 
-  const removeItem = (id: string) => {
-    setItems((current) => {
-      return current.filter((item) => item.key !== id);
-    });
-  };
-
-  const removeRandomly = () => {
-    if (items.length === 0) {
-      return;
-    }
-
-    const rand = Math.ceil(Math.random() * 1000);
-    const pos = rand % items.length;
-
-    setItems((current) => {
-      return [
-        ...current.slice(0, pos),
-        ...current.slice(pos + 1, current.length)
-      ];
+  const removeItem = (item: Item) => {
+    const { key } = item;
+    setSelectedItems((current) => {
+      return current.filter((item) => item.key !== key);
     });
   };
 
@@ -88,14 +73,13 @@ export const LayoutAnimation = () => {
       <PageHeader title={"Layout animation example"} />
       <Buttons>
         <Button onClick={addItem}>Add an item</Button>
-        <Button onClick={removeRandomly}>Remove an item randomly</Button>
         <Button onClick={resetAll}>reset all</Button>
       </Buttons>
       <AnimateSharedLayout type="crossfade">
         <PillsContainer items={items} selectItem={selectItem} />
-        <SelectedItems items={selectedItems} />
+        <SelectedItems items={selectedItems} removeItem={removeItem} />
       </AnimateSharedLayout>
-      <SelectedItems2 items={selectedItems} />
+      <SelectedItems2 items={selectedItems} removeItem={removeItem} />
     </AppBase>
   );
 }

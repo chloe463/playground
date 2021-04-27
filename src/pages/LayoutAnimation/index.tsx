@@ -26,27 +26,27 @@ export const LayoutAnimation = () => {
   };
 
   const addItem = () => {
-    const rand = Math.ceil(Math.random() * 1000);
-
     if (items.length === 0) {
       setItems([{ key: faker.datatype.uuid(), name: faker.name.findName() }]);
       return;
     }
 
-    const pos = rand % items.length;
-    const newItem = { key: faker.datatype.uuid(), name: faker.name.findName() };
+    const count = faker.datatype.number(10);
+    const newItems = Array.from({ length: count }).map((_) => {
+      return {
+        key: faker.datatype.uuid(),
+        name: faker.name.findName(),
+      };
+    });
+
+    const pos = faker.datatype.number() % items.length;
     setItems((current) => {
       return [
         ...current.slice(0, pos),
-        newItem,
+        ...newItems,
         ...current.slice(pos, current.length)
       ];
     });
-
-    if (selectedItems.find((v) => v.key === newItem.key)) {
-      return;
-    }
-    setSelectedItems((current) => [newItem, ...current]);
   };
 
   const selectItem = (item: Item) => {

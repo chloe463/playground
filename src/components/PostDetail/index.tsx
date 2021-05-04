@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
-import { PostFragment, useGetCommentsQuery } from "../../generated/graphql";
+import { PostFragment, useGetCommentsQuery } from "../../__generated__/graphql";
 import * as S from "./styles";
 
 const AVATAR_URL = "https://dummyimage.com/88x88/b3b3b3/ffffff";

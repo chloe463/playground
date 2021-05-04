@@ -1,10 +1,10 @@
 import { useMemo, useState } from "react";
 import {
-  GetPostConnectionDocument,
-  GetPostConnectionQueryVariables,
-  PostFragment as Post,
-  useGetPostConnectionQuery
-} from "../generated/graphql";
+    GetPostConnectionDocument,
+    GetPostConnectionQueryVariables,
+    PostFragment as Post,
+    useGetPostConnectionQuery
+} from "../__generated__/graphql";
 
 const DEFAULT_FETCH_SIZE = 10;
 const FIRST_CURSOR = "0";

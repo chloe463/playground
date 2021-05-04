@@ -4,7 +4,7 @@ import {
     GetPostConnectionQueryVariables,
     PostFragment as Post,
     useGetPostConnectionQuery
-} from "../__generated__/graphql";
+} from "./__generated__/post-connection-query.generated";
 
 const DEFAULT_FETCH_SIZE = 10;
 const FIRST_CURSOR = "0";

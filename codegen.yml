@@ -1,12 +1,18 @@
 overwrite: true
 schema: "http://localhost:4000/graphql"
-documents: "src/**/!(*.d).{ts,tsx,graphql}"
+documents: "src/**/!(*.d|*.generated).{ts,tsx,graphql}"
 generates:
-  src/__generated__/graphql.tsx:
+  src/__generated__/types.ts:
+    - typescript
+  src/:
+    preset: near-operation-file
+    presetConfig:
+      extension: .generated.tsx
+      baseTypesPath: __generated__/types.ts
+      folder: __generated__
     plugins:
-      - "typescript"
-      - "typescript-operations"
-      - "typescript-react-apollo"
+      - typescript-operations
+      - typescript-react-apollo
 hooks:
   afterAllFileWrite:
     - prettier --write

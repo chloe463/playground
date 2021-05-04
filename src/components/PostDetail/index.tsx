@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
-import { PostFragment } from "../../hooks/__generated__/VirtualizedList.hooks.generated";
+import { PostFragment } from "../Post/__generated__/index.generated";
 import * as S from "./styles";
 import { useGetCommentsQuery } from "./__generated__/index.generated";
 

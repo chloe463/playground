@@ -1,9 +1,10 @@
 import { gql } from "@apollo/client";
 import { useMemo, useState } from "react";
+import { _POST_FRAGMENT } from "../components/Post";
+import { PostFragment as Post } from "../components/Post/__generated__/index.generated";
 import {
   GetPostConnectionDocument,
   GetPostConnectionQueryVariables,
-  PostFragment as Post,
   useGetPostConnectionQuery
 } from "./__generated__/VirtualizedList.hooks.generated";
 
@@ -26,12 +27,7 @@ const _GET_POST_CONNECTION_QUERY = gql`
       }
     }
   }
-  fragment Post on Post {
-    id
-    userId
-    title
-    body
-  }
+  ${_POST_FRAGMENT}
 `;
 
 const DEFAULT_FETCH_SIZE = 10;

@@ -1,10 +1,34 @@
+import { gql } from "@apollo/client";
 import { useMemo, useState } from "react";
+import { _POST_FRAGMENT } from "../components/Post";
+import { PostFragment as Post } from "../components/Post/__generated__/index.generated";
 import {
   GetPostConnectionDocument,
   GetPostConnectionQueryVariables,
-  PostFragment as Post,
   useGetPostConnectionQuery
-} from "../generated/graphql";
+} from "./__generated__/VirtualizedList.hooks.generated";
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const _GET_POST_CONNECTION_QUERY = gql`
+  query GetPostConnection($first: Int, $after: String, $query: String) {
+    postConnection(first: $first, after: $after, query: $query) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+      }
+      totalCount
+      edges {
+        node {
+          ...Post
+        }
+        cursor
+      }
+    }
+  }
+  ${_POST_FRAGMENT}
+`;
 
 const DEFAULT_FETCH_SIZE = 10;
 const FIRST_CURSOR = "0";

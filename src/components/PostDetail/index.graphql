@@ -1,9 +1,0 @@
-query GetComments($postId: Int!) {
-  comments(postId: $postId) {
-    id
-    postId
-    name
-    email
-    body
-  }
-}

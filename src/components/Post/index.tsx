@@ -1,10 +1,21 @@
+import { gql } from "@apollo/client";
 import { motion } from "framer-motion";
 import React from "react";
 import { Link as _Link } from "react-router-dom";
 import styled from "styled-components";
-import { PostFragment } from "../../generated/graphql";
+import { PostFragment } from "./__generated__/index.generated";
 
 const AVATAR_URL = "https://dummyimage.com/64x64/b3b3b3/ffffff";
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const _POST_FRAGMENT = gql`
+  fragment Post on Post {
+    id
+    userId
+    title
+    body
+  }
+`;
 
 type Props = {
   post: PostFragment;

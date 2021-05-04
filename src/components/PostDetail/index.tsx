@@ -1,11 +1,27 @@
+import { gql } from "@apollo/client";
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
-import { PostFragment, useGetCommentsQuery } from "../../generated/graphql";
+import { PostFragment } from "../Post/__generated__/index.generated";
 import * as S from "./styles";
+import { useGetCommentsQuery } from "./__generated__/index.generated";
 
 const AVATAR_URL = "https://dummyimage.com/88x88/b3b3b3/ffffff";
 const AVATAR_URL_36 = "https://dummyimage.com/36x36/b3b3b3/ffffff";
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const _GET_COMMENTS_FRAGMENT = gql`
+  query GetComments($postId: Int!) {
+    comments(postId: $postId) {
+      id
+      postId
+      name
+      email
+      body
+    }
+  }
+`;
+
 
 type Props = {
   post: PostFragment;

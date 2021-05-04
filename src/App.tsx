@@ -16,6 +16,7 @@ const inMemoryCache = new InMemoryCache({
     Query: {
       fields: {
         postConnection: relayStylePagination(["query"]),
+        questionnaireConnection: relayStylePagination(),
       }
     },
   }

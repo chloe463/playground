@@ -47,7 +47,7 @@ const routes = [
   },
   {
     key: "crud",
-    path: ["/crud", "/crud/:id"],
+    path: ["/crud", "/crud/new"],
     component: Crud,
     expect: false,
   },

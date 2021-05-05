@@ -1,10 +1,22 @@
 import React from "react";
+import { RouteComponentProps } from "react-router";
+import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import { AppBase, transition } from "../../components/layout";
 import { PageHeader } from "../../components/PageHeader";
 import { QuestionnaireListContainer } from "../../components/QuestionnaireListContainer";
 
-export const Crud: React.VFC = () => {
+type Props = RouteComponentProps;
+
+export const Crud: React.VFC<Props> = (props) => {
+
+  console.log({props})
+  const location = props.location;
+  const [_, rootPath] = location.pathname.split("/");
+
+  const navigateToCreatePage = () => {
+    props.history.push("/crud/new");
+  };
 
   return (
     <AppBase
@@ -13,16 +25,33 @@ export const Crud: React.VFC = () => {
       exit={{ opacity: 0, y: -50 }}
       transition={transition}
     >
-      <PageHeader title={"CRUD examples"}>
-        <ButtonPosition>
-          <PrimaryButton type="button">
-            Create New
-          </PrimaryButton>
-        </ButtonPosition>
-      </PageHeader>
-      <Contents>
-        <QuestionnaireListContainer />
-      </Contents>
+      <Switch location={location} key={rootPath}>
+        <Route path="/crud" exact={true} render={() => {
+          return (
+            <> 
+              <PageHeader title={"CRUD examples"}>
+                <ButtonPosition>
+                  <PrimaryButton type="button" onClick={() => navigateToCreatePage()}>
+                    Create New
+                  </PrimaryButton>
+                </ButtonPosition>
+              </PageHeader>
+              <Contents>
+                <QuestionnaireListContainer />
+              </Contents>
+            </>
+          );
+        }}>
+        </Route>
+        <Route path="/crud/new" render={() => {
+          return (
+            <>
+              <PageHeader title={"Create New Questionnaire"}></PageHeader>
+            </>
+          );
+        }}>
+        </Route>
+      </Switch>
     </AppBase>
   );
 };

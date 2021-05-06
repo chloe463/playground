@@ -1,8 +1,9 @@
 import React from "react";
 import { RouteComponentProps } from "react-router";
-import { Route, Switch } from "react-router-dom";
+import { Link as _Link, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import { AppBase, transition } from "../../components/layout";
+import { NewQuestionnaireForm } from "../../components/NewQuestionnaireForm";
 import { PageHeader } from "../../components/PageHeader";
 import { QuestionnaireListContainer } from "../../components/QuestionnaireListContainer";
 
@@ -47,6 +48,14 @@ export const Crud: React.VFC<Props> = (props) => {
           return (
             <>
               <PageHeader title={"Create New Questionnaire"}></PageHeader>
+              <LinkWrapper>
+                <Link to={"/crud"}>
+                  Back to list
+                </Link>
+              </LinkWrapper>
+              <Contents>
+                <NewQuestionnaireForm />
+              </Contents>
             </>
           );
         }}>
@@ -107,5 +116,24 @@ const PrimaryButton = styled.button`
     &:after {
       background-color: rgba(0, 0, 0, 0.06);
     }
+  }
+`;
+
+const LinkWrapper = styled.div`
+  margin-top: 16px;
+  padding: 0 24px;
+`;
+
+const Link = styled(_Link)`
+  font-size: 16px;
+  line-height: 32px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.56);
+  transition: all 200ms ease-out;
+  &:hover, &:active {
+    color: rgba(0, 0, 0, 0.74);
+  }
+  &:visited {
+    color: rgba(0, 0, 0, 0.56);
   }
 `;

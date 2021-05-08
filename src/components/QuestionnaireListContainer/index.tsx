@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client";
 import React from "react";
 import styled from "styled-components";
+import { colors } from "../../lib/styles";
 import { QUESTIONNAIRE_FRAGMENT } from "../Questionnaire";
 import { QuestionnaireList } from "../QuestionnaireList";
 import { useQuestionnaireConnectionQuery } from "./__generated__/index.generated";
@@ -80,7 +81,7 @@ const LoadMoreButton = styled.button`
   border: none;
   background-color: transparent;
 
-  color: rgba(0, 0, 0, 0.74);
+  color: ${colors.blackAlpha700};
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
@@ -91,9 +92,9 @@ const LoadMoreButton = styled.button`
   overflow: hidden;
 
   &:hover, &:focus {
-    color: rgba(0, 0, 0, 0.86);
+    color: ${colors.blackAlpha800};
   }
   &:active {
-    color: rgba(0, 0, 0, 0.86);
+    color: ${colors.blackAlpha800};
   }
 `;

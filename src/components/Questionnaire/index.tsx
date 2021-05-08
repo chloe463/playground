@@ -2,6 +2,7 @@ import { gql } from "@apollo/client";
 import React from "react";
 import { Link as _Link } from "react-router-dom";
 import styled from "styled-components";
+import { colors } from "../../lib/styles";
 import { QuestionnaireFragment } from "./__generated__/index.generated";
 
 const DUMMY_COVER_IMAGE_URL = "https://dummyimage.com/128x64/b3b3b3/ffffff";
@@ -29,10 +30,10 @@ const STATES: string[] = [
 ];
 
 const INDICATOR_COLORS: string[] = [
-  "rgba(0, 0, 0, 0.12)",
-  "#7b2ff7",
-  "rgba(0, 0, 0, 0.40)",
-  "rgba(0, 0, 0, 0.56)",
+  colors.blackAlpha200,
+  colors.brand,
+  colors.blackAlpha400,
+  colors.blackAlpha500,
 ];
 
 export const Questionnaire: React.VFC<Props> = ({ questionnaire }) => {
@@ -97,14 +98,14 @@ const ItemBase = styled.li`
 const Link = styled(_Link)`
   display: block;
   text-decoration: none;
-  color: rgba(0, 0, 0, 0.86);
+  color: ${colors.blackAlpha800};
 
   &:hover {
     text-decoration: none;
     cursor: pointer;
   }
   &:visited {
-    color: rgba(0, 0, 0, 0.86);
+    color: ${colors.blackAlpha800};
   }
 `;
 
@@ -115,7 +116,7 @@ const ItemContent = styled.div`
   padding: 12px 24px;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.03);
+    background-color: ${colors.blackAlpha50};
   }
 `;
 
@@ -130,7 +131,7 @@ const KeyInfo = styled.div`
 const Title = styled.h3`
   font-size: 20px;
   line-height: 36px;
-  color: rgba(0, 0, 0, 0.86);
+  color: ${colors.blackAlpha800};
   letter-spacing: 0.2px;
 `;
 
@@ -150,28 +151,28 @@ const State = styled.p`
   margin-left: 8px;
   font-size: 14px;
   line-height: 24px;
-  color: rgba(0, 0, 0, 0.56);
+  color: ${colors.blackAlpha500};
 `;
 
 const Delimiter = styled.span`
   margin-left: 8px;
   font-size: 16px;
   line-height: 24px;
-  color: rgba(0, 0, 0, 0.56);
+  color: ${colors.blackAlpha500};
 `;
 
 const QuestionCount = styled.p`
   margin-left: 8px;
   font-size: 14px;
   line-height: 24px;
-  color: rgba(0, 0, 0, 0.56);
+  color: ${colors.blackAlpha500};
 `;
 
 const Period = styled.p`
   margin-left: 8px;
   font-size: 14px;
   line-height: 24px;
-  color: rgba(0, 0, 0, 0.56);
+  color: ${colors.blackAlpha500};
 `;
 
 const FloatingButtons = styled.div.attrs({ className: "floating-buttons" })`
@@ -192,7 +193,7 @@ const IconButton = styled.button`
   font-size: 14px;
   line-height: 24px;
   padding: 12px 24px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid ${colors.blackAlpha200};
   border-radius: 9999vmax;
 
   & + & {

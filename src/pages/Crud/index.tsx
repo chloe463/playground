@@ -6,6 +6,7 @@ import { AppBase, transition } from "../../components/layout";
 import { NewQuestionnaireForm } from "../../components/NewQuestionnaireForm";
 import { PageHeader } from "../../components/PageHeader";
 import { QuestionnaireListContainer } from "../../components/QuestionnaireListContainer";
+import { colors } from "../../lib/styles";
 
 type Props = RouteComponentProps;
 
@@ -79,7 +80,7 @@ const PrimaryButton = styled.button`
   appearance: none;
   outline: none;
   border: none;
-  background-color: #FF6D00;
+  background-color: ${colors.brand};
 
   color: #ffffff;
   font-size: 14px;
@@ -104,13 +105,13 @@ const PrimaryButton = styled.button`
   &:hover {
     box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%);
     &:after {
-      background-color: rgba(0, 0, 0, 0.03);
+      background-color: ${colors.blackAlpha50};
     }
   }
 
   &:active {
     &:after {
-      background-color: rgba(0, 0, 0, 0.06);
+      background-color: ${colors.blackAlpha100};
     }
   }
 `;
@@ -124,12 +125,12 @@ const Link = styled(RouterLink)`
   font-size: 16px;
   line-height: 32px;
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.56);
+  color: ${colors.blackAlpha500};
   transition: all 200ms ease-out;
   &:hover, &:active {
-    color: rgba(0, 0, 0, 0.74);
+    color: ${colors.blackAlpha700};
   }
   &:visited {
-    color: rgba(0, 0, 0, 0.56);
+    color: ${colors.blackAlpha500};
   }
 `;

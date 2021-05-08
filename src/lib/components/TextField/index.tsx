@@ -86,6 +86,7 @@ const Label = styled.p.attrs({ className: "placeholder" })`
   line-height: 28px;
   transition: all 180ms cubic-bezier(0.3, 0.3, 0.3, 1);
   transform-origin: 0 0;
+  pointer-events: none;
 `;
 
 const BottomBorder = styled.span.attrs({ className: "bottom-border" })`

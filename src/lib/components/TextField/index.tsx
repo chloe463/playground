@@ -1,5 +1,6 @@
 import React, { InputHTMLAttributes } from "react";
 import styled from "styled-components";
+import { colors } from "../../styles";
 
 type TextFieldProps = {} & InputHTMLAttributes<HTMLInputElement>;
 
@@ -32,18 +33,18 @@ const TextInput = styled.input`
   border: none;
   margin: 0;
   padding: 0;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: ${colors.blackAlpha50};
   box-sizing: border-box;
   width: 100%;
   padding: 20px 16px 6px 16px;
 
   border-top: 1px solid transparent;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.54);
+  border-bottom: 1px solid ${colors.blackAlpha500};
   font-size: 16px;
   line-height: 28px;
 
   &:focus {
-    background-color: rgba(0, 0, 0, 0.06);
+    background-color: ${colors.blackAlpha100};
   }
 
   &:placeholder-shown + .placeholder {
@@ -56,7 +57,7 @@ const TextInput = styled.input`
 
   &:focus + .placeholder {
     transform: translateY(-12px) scale(.75);
-    color: #66327c;
+    color: ${colors.brand};
   }
 
   &:not(:placeholder-shown) ~ .bottom-border {
@@ -70,7 +71,7 @@ const TextInput = styled.input`
     display: block;
     width: 100%;
     height: 2px;
-    background-color: #66327c;
+    background-color: ${colors.brand};
     transform: scaleX(1);
   }
 `;
@@ -79,7 +80,7 @@ const Label = styled.p.attrs({ className: "placeholder" })`
   position: absolute;
   top: 16px;
   left: 16px;
-  color: rgba(0, 0, 0, 0.4);
+  color: ${colors.blackAlpha400};
   font-size: 16px;
   font-weight: 500;
   line-height: 28px;

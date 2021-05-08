@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import { Link as _Link } from "react-router-dom";
 import styled from "styled-components";
+import { colors } from "../../lib/styles";
 import { PostFragment } from "./__generated__/index.generated";
 
 const AVATAR_URL = "https://dummyimage.com/64x64/b3b3b3/ffffff";
@@ -51,7 +52,7 @@ const Link = styled(_Link)`
   text-decoration: none;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.03);
+    background-color: ${colors.blackAlpha50};
     cursor: pointer;
   }
 `;
@@ -72,7 +73,7 @@ const ItemTitle = styled(motion.h3)`
   padding: 0;
   font-size: 22px;
   line-height: 32px;
-  color: rgba(0, 0, 0, 0.86);
+  color: ${colors.blackAlpha800};
 `;
 
 const ItemBody = styled(motion.div)`
@@ -84,7 +85,7 @@ const ItemText = styled.p`
   padding: 0;
   font-size: 14px;
   line-height: 18px;
-  color: rgba(0, 0, 0, 0.56);
+  color: ${colors.blackAlpha500};
 
   max-width: calc(1280px - 64px - 16px - 48px);
   min-width: calc(720px - 64px - 16px - 48px);

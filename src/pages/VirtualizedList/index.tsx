@@ -9,6 +9,7 @@ import { Post } from "../../components/Post";
 import { PostDetail } from "../../components/PostDetail";
 import { PostPlaceholder } from "../../components/PostPlaceholder";
 import { useVirtualizedList } from "../../hooks/VirtualizedList.hooks";
+import { colors } from "../../lib/styles";
 
 const INFINITE_LOAD_THRESHOLD = 3;
 const INFINITE_LOAD_MIN_BATCH_SIZE = 1;
@@ -103,7 +104,7 @@ const Contents = styled.div`
 
 const PostListItem = styled.div<{ $loading?: boolean }>`
   &:hover {
-    background-color: ${({ $loading }) => $loading ? "#ffffff" : "rgba(0, 0, 0, 0.03)"};
+    background-color: ${({ $loading }) => $loading ? "#ffffff" : colors.blackAlpha50};
     cursor: ${({ $loading }) => $loading ?  "default" : "pointer"};
   }
 `;

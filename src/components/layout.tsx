@@ -1,5 +1,6 @@
 import { motion, Transition } from "framer-motion";
 import styled from "styled-components";
+import { colors } from "../lib/styles";
 
 export const AppBase = styled(motion.div)`
   display: block;
@@ -19,7 +20,7 @@ export const SelectedItemsContainer = styled.div`
   overflow-x: scroll;
   line-height: 48px;
   border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: ${colors.blackAlpha50};
   box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%);
 
   box-sizing: border-box;
@@ -47,7 +48,7 @@ export const SelectedItemPillLayoutAnimator = styled.span`
 export const SelectedItemPillFadeInAnimator = styled(motion.span)``;
 
 export const SelectedItemPillBase = styled.span`
-  background: rgba(0, 0, 0, 0.4);
+  background-color: ${colors.blackAlpha400};
   font-size: 16px;
   font-weight: 300;
   line-height: 28px;

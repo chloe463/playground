@@ -7,6 +7,7 @@ import { PageHeader } from "../../components/PageHeader";
 import { PillsContainer } from "../../components/PillContainer";
 import { SelectedItems } from "../../components/SelectedItems";
 import { SelectedItems2 } from "../../components/SelectedItems2";
+import { colors } from "../../lib/styles";
 import { Item } from "../../types";
 
 const initialItems: Item[] = Array.from({ length: 3 }, (_, i) => i).map((v) => {
@@ -107,10 +108,10 @@ const Button = styled.button`
   transition-duration: 0.3s;
   transition-timing-function: cubic-bezier(0.3, 0.3, 0.3, 1);
   &:hover {
-    background-color: rgba(0, 0, 0, 0.03);
+    background-color: ${colors.blackAlpha50};
   }
   &:focus,
   &:active {
-    background-color: rgba(0, 0, 0, 0.06);
+    background-color: ${colors.blackAlpha100};
   }
 `;

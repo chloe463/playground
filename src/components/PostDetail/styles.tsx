@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import { motion } from "framer-motion";
+import styled from "styled-components";
+import { colors } from "../../lib/styles";
 
 export const Overlay = styled(motion.div)`
   position: fixed;
@@ -27,7 +28,7 @@ export const Card = styled(motion.div)`
   box-sizing: border-box;
   width:640px;
   padding: 40px 24px;
-  background-color: white;
+  background-color: ${colors.whiteAlpha800};
   border-radius: 12px;
   z-index: 1;
 `;
@@ -47,7 +48,7 @@ export const PostTitle = styled(motion.h3)`
   padding: 0;
   font-size: 32px;
   line-height: 44px;
-  color: rgba(0, 0, 0, 0.86);
+  color: ${colors.blackAlpha800};
 `;
 
 export const PostBody = styled(motion.div)`
@@ -84,7 +85,7 @@ export const CommentUserName = styled.p`
   margin-left: 8px;
   font-size: 18px;
   line-height: 28px;
-  color: rgba(0, 0, 0, 0.74);
+  color: ${colors.blackAlpha700};
 `;
 
 export const CommentDummy = styled.li`
@@ -92,7 +93,7 @@ export const CommentDummy = styled.li`
   display: block;
   height: 24px;
   width: 480px;
-  background-color: rgba(0, 0, 0, 0.06);
+  background-color: ${colors.blackAlpha100};
   border-radius: 12px;
   & + & {
     margin-top: 16px;
@@ -102,5 +103,5 @@ export const CommentDummy = styled.li`
 export const CommentText = styled.p`
   font-size: 14px;
   line-height: 24px;
-  color: rgba(0, 0, 0, 0.54);
+  color: ${colors.blackAlpha500};
 `;

@@ -1,6 +1,6 @@
 import React from "react";
 import { RouteComponentProps } from "react-router";
-import { Link as _Link, Route, Switch } from "react-router-dom";
+import { Link as RouterLink, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import { AppBase, transition } from "../../components/layout";
 import { NewQuestionnaireForm } from "../../components/NewQuestionnaireForm";
@@ -10,14 +10,8 @@ import { QuestionnaireListContainer } from "../../components/QuestionnaireListCo
 type Props = RouteComponentProps;
 
 export const Crud: React.VFC<Props> = (props) => {
-
-  console.log({props})
   const location = props.location;
   const [_, rootPath] = location.pathname.split("/");
-
-  const navigateToCreatePage = () => {
-    props.history.push("/crud/new");
-  };
 
   return (
     <AppBase
@@ -32,9 +26,11 @@ export const Crud: React.VFC<Props> = (props) => {
             <> 
               <PageHeader title={"CRUD examples"}>
                 <ButtonPosition>
-                  <PrimaryButton type="button" onClick={() => navigateToCreatePage()}>
-                    Create New
-                  </PrimaryButton>
+                  <RouterLink to="/crud/new">
+                    <PrimaryButton type="button">
+                      Create New
+                    </PrimaryButton>
+                  </RouterLink>
                 </ButtonPosition>
               </PageHeader>
               <Contents>
@@ -124,7 +120,7 @@ const LinkWrapper = styled.div`
   padding: 0 24px;
 `;
 
-const Link = styled(_Link)`
+const Link = styled(RouterLink)`
   font-size: 16px;
   line-height: 32px;
   font-weight: 500;

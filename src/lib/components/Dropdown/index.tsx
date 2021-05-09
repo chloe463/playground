@@ -24,8 +24,17 @@ export const Dropdown: React.VFC<DropdownProps> = (props) => {
       <SelectedValue>{value}</SelectedValue>
       <BottomBorder $focus={isOpen} />
       {isOpen && (
-        <Popper onClose={() => setIsOpen(false)} shouldCloseClickOverlay>
-          <Options options={props.options} baseRef={baseRef} isOpen={isOpen} onChange={(v) => onChange?.(v)}/>
+        <Popper onClose={() => setIsOpen(false)} shouldCloseClickOverlay shouldCloseOnKeyupEscape>
+          <Options
+            options={props.options}
+            baseRef={baseRef}
+            isOpen={isOpen}
+            selectedItem={value}
+            onChange={(v) => {
+              onChange?.(v)
+              setIsOpen(false);
+            }}
+          />
         </Popper>
       )}
     </DropdownBase>

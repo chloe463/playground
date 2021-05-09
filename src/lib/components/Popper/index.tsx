@@ -5,19 +5,20 @@ import styled from "styled-components";
 type PopperProps = {
   onClose: (args?: any) => void;
   shouldCloseClickOverlay?: boolean;
+  shouldCloseOnKeyupEscape?: boolean;
   children: React.ReactNode;
 };
 
-export const Popper: React.VFC<PopperProps> = ({ onClose, shouldCloseClickOverlay, children }) => {
+export const Popper: React.VFC<PopperProps> = ({ onClose, shouldCloseClickOverlay, shouldCloseOnKeyupEscape, children }) => {
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.key === "Escape" && shouldCloseOnKeyupEscape) {
         onClose();
       }
     };
     document.addEventListener("keyup", listener);
     return () => document.removeEventListener("keyup", listener);
-  }, [onClose]);
+  }, [onClose, shouldCloseOnKeyupEscape]);
 
   const onClickOverlay = useCallback((e: React.MouseEvent) => {
     e.preventDefault();

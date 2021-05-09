@@ -4,8 +4,8 @@ import React, {
 } from "react";
 import styled, { css } from "styled-components";
 import { colors } from "../../styles";
+import { Popper } from "../Popper";
 import { Options } from "./Options";
-import { Popper } from "./Popper";
 
 type DropdownProps<T = string> = {
   options: T[];

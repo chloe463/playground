@@ -2,20 +2,25 @@ import React, {
   useLayoutEffect,
   useRef
 } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { colors } from "../../styles";
 
 type OptionsProps<T = string> = {
   isOpen: boolean;
   baseRef: React.MutableRefObject<HTMLDivElement | null>;
   options: T[];
+  selectedItem: T;
   onChange: (v: T) => void;
 };
+
+type GetItemType<Comp> = Comp extends React.VFC<OptionsProps<infer T>> ? T : unknown;
+type ItemType = GetItemType<typeof Options>;
 
 export const Options: React.VFC<OptionsProps> = ({
   baseRef,
   isOpen,
   options,
+  selectedItem,
   onChange,
 }) => {
   const listRef = useRef<HTMLUListElement | null>(null);
@@ -33,10 +38,24 @@ export const Options: React.VFC<OptionsProps> = ({
     return null;
   }
 
+  const onClickItem = (e: React.MouseEvent, v: ItemType) => {
+    e.stopPropagation();
+    e.preventDefault();
+    onChange(v);
+  };
+
   return (
     <OptionList ref={listRef}>
       {options.map((option) => {
-        return <OptionItem key={option} onClick={() => onChange(option)}>{option}</OptionItem>;
+        return (
+          <OptionItem
+            key={option}
+            $selected={selectedItem === option}
+            onClick={(e) => onClickItem(e, option)}
+          >
+            {option}
+          </OptionItem>
+        );
       })}
     </OptionList>
   );
@@ -52,7 +71,7 @@ const OptionList = styled.ul`
   overflow-y: auto;
 `;
 
-const OptionItem = styled.li`
+const OptionItem = styled.li<{ $selected: boolean}>`
   position: relative;
   display: block;
   box-sizing: border-box;
@@ -63,6 +82,10 @@ const OptionItem = styled.li`
   height: 44px;
   background-color: white;
   cursor: pointer;
+
+  ${({ $selected }) => $selected && css`
+    background-color: ${colors.blackAlpha100};
+  `}
 
   &:after {
     content: " ";

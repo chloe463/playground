@@ -19,6 +19,7 @@ const MONTHS = [
 ];
 
 const WEEK_DAYS = ["S", "M", "T", "W", "T", "F", "S"];
+type PickingTarget = "DATE" | "YEAR_MONTH";
 
 type CalendarProp = {
   placeholder?: string;
@@ -33,6 +34,8 @@ export const Calendar: React.VFC<CalendarProp > = ({
 }) => {
   const calendarRef = useRef<HTMLDivElement | null>(null);
   const [innerValue, setInnerValue] = useState(new Date());
+  const [picking, setPicking] = useState<PickingTarget>("DATE");
+
   useLayoutEffect(() => {
     if (baseRef.current && calendarRef.current) {
       const { x, y, height } = baseRef.current.getBoundingClientRect();
@@ -74,6 +77,16 @@ export const Calendar: React.VFC<CalendarProp > = ({
     });
   }, [daysInMonth, innerValue]);
 
+  const years = useMemo(() => {
+    const thisYear = new Date().getFullYear(); 
+    return Array.from({ length: 200 }, (_, i) => i + 1900).map((year) => {
+      return {
+        year,
+        thisYear: thisYear === year,
+      }
+    });
+  }, []);
+
   const nextMonthDates = useMemo(() => {
     const lastDay = dayjs(innerValue).set("date", 1).add(1, "month").subtract(1, "day").get("day");
     return Array.from({ length: 6 - lastDay }, (_, i) => i + 1);
@@ -97,6 +110,13 @@ export const Calendar: React.VFC<CalendarProp > = ({
     onSelectDate?.(next);
   };
 
+  const onClickYearCell = (year: number) => {
+    const next = new Date(innerValue.setFullYear(year));
+    setInnerValue(next);
+    setPicking("DATE");
+    onSelectDate?.(next);
+  }
+
   return (
     <CalendarBase ref={calendarRef}>
       <Header>
@@ -104,54 +124,85 @@ export const Calendar: React.VFC<CalendarProp > = ({
           <YearMonth>
             {MONTHS[innerValue.getMonth()]} {innerValue.getFullYear()}
           </YearMonth>
-          <IconButton type="button">
+          <IconButton
+            type="button"
+            onClick={() => setPicking((current) => current === "YEAR_MONTH" ? "DATE" : "YEAR_MONTH")}
+          >
             <TriangleDown />
           </IconButton>
         </HeaderLeft>
-        <HeaderRight>
-          <IconButton type="button" onClick={() => onClickChevronLeft()}>
-            <ChevronLeft />
-          </IconButton>
-          <IconButton type="button" onClick={() => onClickChevronRight()}>
-            <ChevronRight />
-          </IconButton>
-        </HeaderRight>
+        {picking === "DATE" && (
+          <HeaderRight>
+            <IconButton type="button" onClick={() => onClickChevronLeft()}>
+              <ChevronLeft />
+            </IconButton>
+            <IconButton type="button" onClick={() => onClickChevronRight()}>
+              <ChevronRight />
+            </IconButton>
+          </HeaderRight>
+        )}
       </Header>
       <Body>
-        <WeekDays>
-          {WEEK_DAYS.map((day, idx) => {
-            return (
-              <span key={`${day}--${idx}`}>
-                {day}
-              </span>
-            );
-          })}
-        </WeekDays>
-        <DaysGrid>
-          {emptyCells.map((i) => {
-            return (
-              <span key={i} />
-            );
-          })}
-          {days.map(({ date, isToday }) => {
-            return (
-              <DateCell type="button" key={date} $today={isToday} onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                onClickDateCell(date)
-              }}>
-                {date}
-              </DateCell>
-            );
-          })}
-          {nextMonthDates.map((d) => {
-            return (
-              <DateCell type="button" key={d} $today={false} disabled>
-                {d}
-              </DateCell>
-            );
-          })}
-        </DaysGrid>
+        {picking === "DATE" ? (
+          <>
+            <WeekDays>
+              {WEEK_DAYS.map((day, idx) => {
+                return (
+                  <span key={`${day}--${idx}`}>
+                    {day}
+                  </span>
+                );
+              })}
+            </WeekDays>
+            <DaysGrid>
+              {emptyCells.map((i) => {
+                return (
+                  <span key={i} />
+                );
+              })}
+              {days.map(({ date, isToday }) => {
+                return (
+                  <DateCell type="button" key={date} $today={isToday} onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    onClickDateCell(date)
+                  }}>
+                    {date}
+                  </DateCell>
+                );
+              })}
+              {nextMonthDates.map((d) => {
+                return (
+                  <DateCell type="button" key={d} $today={false} disabled>
+                    {d}
+                  </DateCell>
+                );
+              })}
+            </DaysGrid>
+          </>
+        ) : (
+          <>
+            <YearGrid>
+              {years.map(({ thisYear, year }) => {
+                return (
+                  <YearCell
+                    type="button"
+                    key={year}
+                    $thisYear={thisYear}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      onClickYearCell(year);
+                    }}
+                    data-year={year}
+                  >
+                    {year}
+                  </YearCell>
+                );
+              })}
+            </YearGrid>
+          </>
+        )}
       </Body>
       <Footer>
       </Footer>
@@ -288,6 +339,8 @@ const DateCell = styled.button<{ $today: boolean }>`
   border: ${({ $today }) => $today ? `1px solid ${colors.brand}` : `none`};
   border-radius: 50%;
   font-size: 14px;
+  font-weight: 600;
+  color: ${colors.blackAlpha500};
   line-height: 14px;
   cursor: pointer;
 
@@ -303,5 +356,47 @@ const DateCell = styled.button<{ $today: boolean }>`
     border: none;
   }
 `;
+
+const YearGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 56px);
+  max-height: calc(280px - 52px);
+  overflow-y: auto;
+  place-items: center;
+  margin: 4px 8px 8px 12px;
+  text-align: center;
+`;
+
+const YearCell = styled.button<{ $thisYear: boolean }>`
+  appearance: none;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  display: block;
+  margin: 2px;
+  padding: 0;
+  width: 52px;
+  height: 28px;
+  border: ${({ $thisYear}) => $thisYear ? `1px solid ${colors.brand}` : `none`};
+  border-radius: 9999vmax;
+  font-size: 14px;
+  font-weight: 600;
+  color: ${colors.blackAlpha500};
+  line-height: 14px;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid ${colors.blackAlpha400};
+  }
+
+  &:disabled {
+    color: ${colors.blackAlpha400};
+    cursor: default;
+  }
+  &:disabled:hover {
+    border: none;
+  }
+`;
+
 
 const Footer = styled.footer``;

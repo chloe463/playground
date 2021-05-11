@@ -38,18 +38,18 @@ export const Calendar: React.VFC<CalendarProp > = ({
       const { x, y, height } = baseRef.current.getBoundingClientRect();
       calendarRef.current.style.position = "fixed";
       calendarRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
-      // window.requestAnimationFrame(() => {
-      //   if (calendarRef.current) {
-      //     calendarRef.current.style.transform = `translate(${x}px, ${y + height - 16}px)`;
-      //   }
-      //   window.requestAnimationFrame(() => {
-      //     if (calendarRef.current) {
-      //       calendarRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
-      //       calendarRef.current.style.transitionProperty = "transform";
-      //       calendarRef.current.style.transitionDuration = "180ms";
-      //     }
-      //   })
-      // });
+      window.requestAnimationFrame(() => {
+        if (calendarRef.current) {
+          calendarRef.current.style.transform = `translate(${x}px, ${y + height - 16}px)`;
+        }
+        window.requestAnimationFrame(() => {
+          if (calendarRef.current) {
+            calendarRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
+            calendarRef.current.style.transitionProperty = "transform";
+            calendarRef.current.style.transitionDuration = "180ms";
+          }
+        })
+      });
     }
   }, [baseRef, calendarRef]);
 

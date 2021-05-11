@@ -33,6 +33,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
   onSelectDate,
 }) => {
   const calendarRef = useRef<HTMLDivElement | null>(null);
+  const yearGridRef = useRef<HTMLDivElement | null>(null);
   const [innerValue, setInnerValue] = useState(new Date());
   const [picking, setPicking] = useState<PickingTarget>("DATE");
 
@@ -55,6 +56,15 @@ export const Calendar: React.VFC<CalendarProp > = ({
       });
     }
   }, [baseRef, calendarRef]);
+
+  useLayoutEffect(() => {
+    if (picking === "YEAR_MONTH" && yearGridRef.current) {
+      const selectedYearDOM = Array.from(yearGridRef.current.children).find((v) => (v as HTMLButtonElement).dataset["selected"] === "true");
+      if (selectedYearDOM) {
+        selectedYearDOM.scrollIntoView({ block: "center" });
+      }
+    }
+  }, [yearGridRef, picking]);
 
   const daysInMonth = useMemo(() => {
     return dayjs(innerValue).daysInMonth();
@@ -83,9 +93,10 @@ export const Calendar: React.VFC<CalendarProp > = ({
       return {
         year,
         thisYear: thisYear === year,
+        selected: innerValue.getFullYear() === year,
       }
     });
-  }, []);
+  }, [innerValue]);
 
   const nextMonthDates = useMemo(() => {
     const lastDay = dayjs(innerValue).set("date", 1).add(1, "month").subtract(1, "day").get("day");
@@ -182,8 +193,8 @@ export const Calendar: React.VFC<CalendarProp > = ({
           </>
         ) : (
           <>
-            <YearGrid>
-              {years.map(({ thisYear, year }) => {
+            <YearGrid ref={yearGridRef}>
+              {years.map(({ thisYear, year, selected }) => {
                 return (
                   <YearCell
                     type="button"
@@ -194,7 +205,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
                       e.stopPropagation();
                       onClickYearCell(year);
                     }}
-                    data-year={year}
+                    data-selected={selected}
                   >
                     {year}
                   </YearCell>

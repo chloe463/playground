@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
@@ -10,6 +10,7 @@ type PopperProps = {
 };
 
 export const Popper: React.VFC<PopperProps> = ({ onClose, shouldCloseClickOverlay, shouldCloseOnKeyupEscape, children }) => {
+  const overlayRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
       if (e.key === "Escape" && shouldCloseOnKeyupEscape) {
@@ -21,15 +22,17 @@ export const Popper: React.VFC<PopperProps> = ({ onClose, shouldCloseClickOverla
   }, [onClose, shouldCloseOnKeyupEscape]);
 
   const onClickOverlay = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (shouldCloseClickOverlay) {
-      onClose();
+    if (e.target === overlayRef.current) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (shouldCloseClickOverlay) {
+        onClose();
+      }
     }
   }, [onClose, shouldCloseClickOverlay]);
 
   return ReactDOM.createPortal(
-    <Overlay onClick={onClickOverlay}>
+    <Overlay ref={overlayRef} onClick={onClickOverlay}>
       {children}
     </Overlay>,
     document.querySelector("body") as Element

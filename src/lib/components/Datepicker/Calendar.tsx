@@ -77,12 +77,14 @@ export const Calendar: React.VFC<CalendarProp > = ({
 
   const days = useMemo(() => {
     const formattedToday = dayjs().format("YYYY-MM-DD");
+    const selectedDate = dayjs(innerValue).format("YYYY-MM-DD");
     return Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => {
       const fullDate = dayjs(innerValue).set("date", d).format("YYYY-MM-DD");
       return {
         date: d,
         fullDate,
         isToday: formattedToday === fullDate,
+        selected: selectedDate === fullDate,
       }
     });
   }, [daysInMonth, innerValue]);
@@ -171,20 +173,26 @@ export const Calendar: React.VFC<CalendarProp > = ({
                   <span key={i} />
                 );
               })}
-              {days.map(({ date, isToday }) => {
+              {days.map(({ date, isToday, selected }) => {
                 return (
-                  <DateCell type="button" key={date} $today={isToday} onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    onClickDateCell(date)
-                  }}>
+                  <DateCell
+                    type="button"
+                    key={date}
+                    $today={isToday}
+                    $selected={selected}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      onClickDateCell(date)
+                    }}
+                  >
                     {date}
                   </DateCell>
                 );
               })}
               {nextMonthDates.map((d) => {
                 return (
-                  <DateCell type="button" key={d} $today={false} disabled>
+                  <DateCell type="button" key={d} $today={false} $selected={false} disabled>
                     {d}
                   </DateCell>
                 );
@@ -200,6 +208,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
                     type="button"
                     key={year}
                     $thisYear={thisYear}
+                    $selected={selected}
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
@@ -337,11 +346,11 @@ const DaysGrid = styled.div`
   text-align: center;
 `;
 
-const DateCell = styled.button<{ $today: boolean }>`
+const DateCell = styled.button<{ $today: boolean, $selected: boolean }>`
   appearance: none;
   outline: none;
   border: none;
-  background-color: transparent;
+  background-color: ${({ $selected }) => $selected ? colors.brand : "transparent" };
   display: block;
   margin: 2px;
   padding: 0;
@@ -351,7 +360,7 @@ const DateCell = styled.button<{ $today: boolean }>`
   border-radius: 50%;
   font-size: 14px;
   font-weight: 600;
-  color: ${colors.blackAlpha500};
+  color: ${({ $selected }) => $selected ? colors.whiteAlpha800 : colors.blackAlpha500};
   line-height: 14px;
   cursor: pointer;
 
@@ -378,11 +387,11 @@ const YearGrid = styled.div`
   text-align: center;
 `;
 
-const YearCell = styled.button<{ $thisYear: boolean }>`
+const YearCell = styled.button<{ $thisYear: boolean, $selected: boolean }>`
   appearance: none;
   outline: none;
   border: none;
-  background-color: transparent;
+  background-color: ${({ $selected }) => $selected ? colors.brand : "transparent" };
   display: block;
   margin: 2px;
   padding: 0;
@@ -392,7 +401,7 @@ const YearCell = styled.button<{ $thisYear: boolean }>`
   border-radius: 9999vmax;
   font-size: 14px;
   font-weight: 600;
-  color: ${colors.blackAlpha500};
+  color: ${({ $selected }) => $selected ? colors.whiteAlpha800 : colors.blackAlpha500};
   line-height: 14px;
   cursor: pointer;
 

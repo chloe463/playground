@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../styles";
 
@@ -97,10 +97,6 @@ export const Calendar: React.VFC<CalendarProp > = ({
     onSelectDate?.(next);
   };
 
-  useEffect(() => {
-    console.log({ innerValue });
-  }, [innerValue]);
-
   return (
     <CalendarBase ref={calendarRef}>
       <Header>
@@ -174,7 +170,7 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 8px 12px 24px;
+  padding: 16px 16px 12px 24px;
 `;
 
 const HeaderLeft = styled.div`
@@ -212,7 +208,7 @@ const IconButton = styled.button`
   height: 24px;
 
   & + & {
-    margin-left: 24px;
+    margin-left: 12px;
   }
 `;
 
@@ -224,6 +220,10 @@ const TriangleDown = styled.span`
   height: 6px;
   background-color: ${colors.blackAlpha500};
   clip-path: polygon(0 0, 100% 0%, 50% 100%);
+
+  &:hover {
+    background-color: ${colors.blackAlpha700};
+  }
 `;
 
 const ChevronLeft = styled.span`

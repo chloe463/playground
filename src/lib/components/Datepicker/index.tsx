@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import React, { useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import { colors } from "../../styles";
@@ -7,21 +8,35 @@ import { Calendar } from "./Calendar";
 type DatepickerProps = {
   value: Date | null;
   placeholder?: string;
+  name?: string;
+  format?: "YYYY/MM/DD" | "MM/DD/YYYY";
+  disabled?: boolean;
   onChange: (v: Date) => void;
 };
 
-const formatDate = (d: Date | null) => {
-  return d ? d.toISOString().substring(0, 10).replace(/-/g, "/") : "";
-};
-
-export const Datepicker: React.VFC<DatepickerProps> = ({ placeholder, value, onChange }) => {
+export const Datepicker: React.VFC<DatepickerProps> = ({
+  placeholder,
+  value,
+  name,
+  format = "YYYY/MM/DD",
+  disabled,
+  onChange,
+}) => {
   const baseRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <Base ref={baseRef} onClick={() => setIsOpen(v => !v)} $focus={isOpen}>
+      <Base ref={baseRef} onClick={() => disabled || setIsOpen(v => !v)} $focus={isOpen} $disabled={disabled}>
+        <VisuallyHiddenInput
+          type="date"
+          name={name}
+          defaultValue={value ? dayjs(value).format(format) : ""}
+          disabled={disabled}
+        />
         <Placeholder $focus={isOpen} $hasValue={Boolean(value)}>{placeholder}</Placeholder>
-        <SelectedValue>{formatDate(value)}</SelectedValue>
+        {value && (
+          <SelectedValue>{dayjs(value).format(format)}</SelectedValue>
+        )}
         <BottomBorder $focus={isOpen} />
       </Base>
       {isOpen && (
@@ -33,7 +48,7 @@ export const Datepicker: React.VFC<DatepickerProps> = ({ placeholder, value, onC
   );
 };
 
-const Base = styled.div<{ $focus: boolean }>`
+const Base = styled.div<{ $focus: boolean, $disabled?: boolean }>`
   position: relative;
   display: block;
   width: 100%;
@@ -52,6 +67,21 @@ const Base = styled.div<{ $focus: boolean }>`
       transform: rotate(180deg);
     }
   `}
+
+  ${({ $disabled }) => $disabled && css`
+    background-color: ${colors.blackAlpha100};
+    cursor: initial;
+  `}
+`;
+
+const VisuallyHiddenInput = styled.input`
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 0;
+  height: 0;
+  opacity: 0;
 `;
 
 type PlaceholderProps = {

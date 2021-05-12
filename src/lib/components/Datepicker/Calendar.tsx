@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../styles";
@@ -20,7 +20,28 @@ const MONTHS = [
 ];
 
 const WEEK_DAYS = ["S", "M", "T", "W", "T", "F", "S"];
+
 type PickingTarget = "DATE" | "YEAR_MONTH";
+
+const variants: Variants = {
+  initial: { opacity: 0, y: -16 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.2,
+      ease: [0.3, 0.3, 0.3, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -16,
+    transition: {
+      duration: 0.2,
+      ease: [0.3, 0.3, 0.3, 1],
+    },
+  }
+};
 
 type CalendarProp = {
   placeholder?: string;
@@ -43,18 +64,6 @@ export const Calendar: React.VFC<CalendarProp > = ({
       const { x, y, height } = baseRef.current.getBoundingClientRect();
       calendarRef.current.style.position = "fixed";
       calendarRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
-      // window.requestAnimationFrame(() => {
-      //   if (calendarRef.current) {
-      //     calendarRef.current.style.transform = `translate(${x}px, ${y + height - 16}px)`;
-      //   }
-      //   window.requestAnimationFrame(() => {
-      //     if (calendarRef.current) {
-      //       calendarRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
-      //       calendarRef.current.style.transitionProperty = "transform";
-      //       calendarRef.current.style.transitionDuration = "180ms";
-      //     }
-      //   })
-      // });
     }
   }, [baseRef, calendarRef]);
 
@@ -133,23 +142,10 @@ export const Calendar: React.VFC<CalendarProp > = ({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: -16 }}
-      animate={{
-        opacity: 1,
-        y: 0,
-        transition: {
-          duration: 0.2,
-          ease: [0.3, 0.3, 0.3, 1],
-        },
-      }}
-      exit={{
-        opacity: 0,
-        y: -16,
-        transition: {
-          duration: 0.2,
-          ease: [0.3, 0.3, 0.3, 1],
-        },
-      }}
+      variants={variants}
+      initial={"initial"}
+      animate={"animate"}
+      exit={"exit"}
     >
       <CalendarBase ref={calendarRef}>
         <Header>

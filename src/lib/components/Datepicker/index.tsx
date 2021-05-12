@@ -40,7 +40,6 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
         )}
         <BottomBorder $focus={isOpen} />
       </Base>
-      {/* <AnimatePresence exitBeforeEnter> */}
       <AnimatePresence>
         {isOpen && (
           <Popper shouldCloseClickOverlay shouldCloseOnKeyupEscape onClose={() => setIsOpen(v => !v)}>

@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { motion } from "framer-motion";
 import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../styles";
@@ -42,18 +43,18 @@ export const Calendar: React.VFC<CalendarProp > = ({
       const { x, y, height } = baseRef.current.getBoundingClientRect();
       calendarRef.current.style.position = "fixed";
       calendarRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
-      window.requestAnimationFrame(() => {
-        if (calendarRef.current) {
-          calendarRef.current.style.transform = `translate(${x}px, ${y + height - 16}px)`;
-        }
-        window.requestAnimationFrame(() => {
-          if (calendarRef.current) {
-            calendarRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
-            calendarRef.current.style.transitionProperty = "transform";
-            calendarRef.current.style.transitionDuration = "180ms";
-          }
-        })
-      });
+      // window.requestAnimationFrame(() => {
+      //   if (calendarRef.current) {
+      //     calendarRef.current.style.transform = `translate(${x}px, ${y + height - 16}px)`;
+      //   }
+      //   window.requestAnimationFrame(() => {
+      //     if (calendarRef.current) {
+      //       calendarRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
+      //       calendarRef.current.style.transitionProperty = "transform";
+      //       calendarRef.current.style.transitionDuration = "180ms";
+      //     }
+      //   })
+      // });
     }
   }, [baseRef, calendarRef]);
 
@@ -131,102 +132,122 @@ export const Calendar: React.VFC<CalendarProp > = ({
   }
 
   return (
-    <CalendarBase ref={calendarRef}>
-      <Header>
-        <HeaderLeft>
-          <YearMonth>
-            {MONTHS[innerValue.getMonth()]} {innerValue.getFullYear()}
-          </YearMonth>
-          <IconButton
-            type="button"
-            onClick={() => setPicking((current) => current === "YEAR_MONTH" ? "DATE" : "YEAR_MONTH")}
-          >
-            <TriangleDown />
-          </IconButton>
-        </HeaderLeft>
-        {picking === "DATE" && (
-          <HeaderRight>
-            <IconButton type="button" onClick={() => onClickChevronLeft()}>
-              <ChevronLeft />
+    <motion.div
+      initial={{ opacity: 0, y: -16 }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.2,
+          ease: [0.3, 0.3, 0.3, 1],
+        },
+      }}
+      exit={{
+        opacity: 0,
+        y: -16,
+        transition: {
+          duration: 0.2,
+          ease: [0.3, 0.3, 0.3, 1],
+        },
+      }}
+    >
+      <CalendarBase ref={calendarRef}>
+        <Header>
+          <HeaderLeft>
+            <YearMonth>
+              {MONTHS[innerValue.getMonth()]} {innerValue.getFullYear()}
+            </YearMonth>
+            <IconButton
+              type="button"
+              onClick={() => setPicking((current) => current === "YEAR_MONTH" ? "DATE" : "YEAR_MONTH")}
+            >
+              <TriangleDown />
             </IconButton>
-            <IconButton type="button" onClick={() => onClickChevronRight()}>
-              <ChevronRight />
-            </IconButton>
-          </HeaderRight>
-        )}
-      </Header>
-      <Body>
-        {picking === "DATE" ? (
-          <>
-            <WeekDays>
-              {WEEK_DAYS.map((day, idx) => {
-                return (
-                  <span key={`${day}--${idx}`}>
-                    {day}
-                  </span>
-                );
-              })}
-            </WeekDays>
-            <DaysGrid>
-              {emptyCells.map((i) => {
-                return (
-                  <span key={i} />
-                );
-              })}
-              {days.map(({ date, isToday, selected }) => {
-                return (
-                  <DateCell
-                    type="button"
-                    key={date}
-                    $today={isToday}
-                    $selected={selected}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      onClickDateCell(date)
-                    }}
-                  >
-                    {date}
-                  </DateCell>
-                );
-              })}
-              {nextMonthDates.map((d) => {
-                return (
-                  <DateCell type="button" key={d} $today={false} $selected={false} disabled>
-                    {d}
-                  </DateCell>
-                );
-              })}
-            </DaysGrid>
-          </>
-        ) : (
-          <>
-            <YearGrid ref={yearGridRef}>
-              {years.map(({ thisYear, year, selected }) => {
-                return (
-                  <YearCell
-                    type="button"
-                    key={year}
-                    $thisYear={thisYear}
-                    $selected={selected}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      onClickYearCell(year);
-                    }}
-                    data-selected={selected}
-                  >
-                    {year}
-                  </YearCell>
-                );
-              })}
-            </YearGrid>
-          </>
-        )}
-      </Body>
-      <Footer>
-      </Footer>
-    </CalendarBase>
+          </HeaderLeft>
+          {picking === "DATE" && (
+            <HeaderRight>
+              <IconButton type="button" onClick={() => onClickChevronLeft()}>
+                <ChevronLeft />
+              </IconButton>
+              <IconButton type="button" onClick={() => onClickChevronRight()}>
+                <ChevronRight />
+              </IconButton>
+            </HeaderRight>
+          )}
+        </Header>
+        <Body>
+          {picking === "DATE" ? (
+            <>
+              <WeekDays>
+                {WEEK_DAYS.map((day, idx) => {
+                  return (
+                    <span key={`${day}--${idx}`}>
+                      {day}
+                    </span>
+                  );
+                })}
+              </WeekDays>
+              <DaysGrid>
+                {emptyCells.map((i) => {
+                  return (
+                    <span key={i} />
+                  );
+                })}
+                {days.map(({ date, isToday, selected }) => {
+                  return (
+                    <DateCell
+                      type="button"
+                      key={date}
+                      $today={isToday}
+                      $selected={selected}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onClickDateCell(date)
+                      }}
+                    >
+                      {date}
+                    </DateCell>
+                  );
+                })}
+                {nextMonthDates.map((d) => {
+                  return (
+                    <DateCell type="button" key={d} $today={false} $selected={false} disabled>
+                      {d}
+                    </DateCell>
+                  );
+                })}
+              </DaysGrid>
+            </>
+          ) : (
+            <>
+              <YearGrid ref={yearGridRef}>
+                {years.map(({ thisYear, year, selected }) => {
+                  return (
+                    <YearCell
+                      type="button"
+                      key={year}
+                      $thisYear={thisYear}
+                      $selected={selected}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onClickYearCell(year);
+                      }}
+                      data-selected={selected}
+                    >
+                      {year}
+                    </YearCell>
+                  );
+                })}
+              </YearGrid>
+            </>
+          )}
+        </Body>
+        <Footer>
+        </Footer>
+      </CalendarBase>
+    </motion.div>
   );
 };
 

@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { AnimatePresence } from "framer-motion";
 import React, { useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import { colors } from "../../styles";
@@ -39,11 +40,14 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
         )}
         <BottomBorder $focus={isOpen} />
       </Base>
-      {isOpen && (
-        <Popper shouldCloseClickOverlay shouldCloseOnKeyupEscape onClose={() => setIsOpen(v => !v)}>
-          <Calendar placeholder={placeholder} baseRef={baseRef} onSelectDate={onChange} />
-        </Popper>
-      )}
+      {/* <AnimatePresence exitBeforeEnter> */}
+      <AnimatePresence>
+        {isOpen && (
+          <Popper shouldCloseClickOverlay shouldCloseOnKeyupEscape onClose={() => setIsOpen(v => !v)}>
+            <Calendar placeholder={placeholder} baseRef={baseRef} onSelectDate={onChange} />
+          </Popper>
+        )}
+      </AnimatePresence>
     </>
   );
 };

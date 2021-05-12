@@ -43,10 +43,14 @@ const variants: Variants = {
   }
 };
 
+export type DateString = `${number}/${number}/${number}`;
+
 type CalendarProp = {
   selectedDate: Date;
   placeholder?: string;
   baseRef: React.MutableRefObject<HTMLDivElement | null>;
+  min?: Date | DateString;
+  max?: Date | DateString;
   onSelectDate?: (d: Date) => void;
 };
 
@@ -54,6 +58,8 @@ export const Calendar: React.VFC<CalendarProp > = ({
   selectedDate,
   placeholder,
   baseRef,
+  min: _min,
+  max: _max,
   onSelectDate,
 }) => {
   const calendarRef = useRef<HTMLDivElement | null>(null);
@@ -61,6 +67,10 @@ export const Calendar: React.VFC<CalendarProp > = ({
   const [innerValue, setInnerValue] = useState(selectedDate);
   const [displayingMonth, setDisplayingMonth] = useState(selectedDate);
   const [picking, setPicking] = useState<PickingTarget>("DATE");
+
+  const min = typeof _min === "string" ? dayjs(_min) : _min ? _min : dayjs("1900-01-01");
+  const max = typeof _max === "string" ? dayjs(_max) : _max ? _max : dayjs("2100-12-31");
+  console.log({min,max});
 
   useLayoutEffect(() => {
     if (baseRef.current && calendarRef.current) {
@@ -98,9 +108,10 @@ export const Calendar: React.VFC<CalendarProp > = ({
         fullDate,
         isToday: formattedToday === fullDate,
         selected: selectedDate === fullDate,
-      }
+        disabled: dayjs(fullDate) < min || max < dayjs(fullDate),
+      };
     });
-  }, [daysInMonth, innerValue, displayingMonth]);
+  }, [innerValue, daysInMonth, displayingMonth, min, max]);
 
   const years = useMemo(() => {
     const thisYear = new Date().getFullYear(); 
@@ -193,7 +204,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
                     <span key={i} />
                   );
                 })}
-                {days.map(({ date, isToday, selected }) => {
+                {days.map(({ date, isToday, selected, disabled }) => {
                   return (
                     <DateCell
                       type="button"
@@ -205,6 +216,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
                         e.stopPropagation();
                         onClickDateCell(date)
                       }}
+                      disabled={disabled}
                     >
                       {date}
                     </DateCell>

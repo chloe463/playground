@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import { colors } from "../../styles";
 import { Popper } from "../Popper";
-import { Calendar } from "./Calendar";
+import { Calendar, DateString } from "./Calendar";
 
 type DatepickerProps = {
   value: Date | null;
@@ -12,6 +12,8 @@ type DatepickerProps = {
   name?: string;
   format?: "YYYY/MM/DD" | "MM/DD/YYYY";
   disabled?: boolean;
+  min?: Date | DateString;
+  max?: Date | DateString;
   onChange: (v: Date) => void;
 };
 
@@ -21,6 +23,8 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
   name,
   format = "YYYY/MM/DD",
   disabled,
+  min,
+  max,
   onChange,
 }) => {
   const baseRef = useRef<HTMLDivElement | null>(null);
@@ -47,6 +51,8 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
               placeholder={placeholder}
               baseRef={baseRef}
               selectedDate={value || new Date()}
+              min={min}
+              max={max}
               onSelectDate={onChange}
             />
           </Popper>

@@ -43,7 +43,12 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
       <AnimatePresence>
         {isOpen && (
           <Popper shouldCloseClickOverlay shouldCloseOnKeyupEscape onClose={() => setIsOpen(v => !v)}>
-            <Calendar placeholder={placeholder} baseRef={baseRef} onSelectDate={onChange} />
+            <Calendar
+              placeholder={placeholder}
+              baseRef={baseRef}
+              selectedDate={value || new Date()}
+              onSelectDate={onChange}
+            />
           </Popper>
         )}
       </AnimatePresence>

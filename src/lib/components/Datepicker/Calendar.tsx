@@ -64,12 +64,11 @@ export const Calendar: React.VFC<CalendarProp > = ({
 }) => {
   const calendarRef = useRef<HTMLDivElement | null>(null);
   const yearGridRef = useRef<HTMLDivElement | null>(null);
-  const [innerValue, setInnerValue] = useState(selectedDate);
-  const [displayingMonth, setDisplayingMonth] = useState(selectedDate);
+  const [displayingDate, setDisplayingDate] = useState(selectedDate);
   const [picking, setPicking] = useState<PickingTarget>("DATE");
 
-  const min = typeof _min === "string" ? dayjs(_min) : _min ? _min : dayjs("1900-01-01");
-  const max = typeof _max === "string" ? dayjs(_max) : _max ? _max : dayjs("2100-12-31");
+  const min = typeof _min === "string" ? dayjs(_min) : _min ? dayjs(_min) : dayjs("1900-01-01");
+  const max = typeof _max === "string" ? dayjs(_max) : _max ? dayjs(_max) : dayjs("2100-12-31");
   console.log({min,max});
 
   useLayoutEffect(() => {
@@ -89,68 +88,67 @@ export const Calendar: React.VFC<CalendarProp > = ({
     }
   }, [yearGridRef, picking]);
 
-  const daysInMonth = useMemo(() => {
-    return dayjs(displayingMonth).daysInMonth();
-  }, [displayingMonth]);
-
   const emptyCells = useMemo(() => {
-    const firstDay = dayjs(displayingMonth).set("date", 1).get('day');
+    const firstDay = dayjs(displayingDate).set("date", 1).get('day');
     return Array.from({ length: firstDay }, (_, i) => i);
-  }, [displayingMonth]);
+  }, [displayingDate]);
 
   const days = useMemo(() => {
     const formattedToday = dayjs().format("YYYY-MM-DD");
-    const selectedDate = dayjs(innerValue).format("YYYY-MM-DD");
+    const formattedSelectedDate = dayjs(selectedDate).format("YYYY-MM-DD");
+    const daysInMonth = dayjs(displayingDate).daysInMonth();
     return Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => {
-      const fullDate = dayjs(displayingMonth).set("date", d).format("YYYY-MM-DD");
+      const fullDate = dayjs(displayingDate).set("date", d).format("YYYY-MM-DD");
       return {
         date: d,
         fullDate,
         isToday: formattedToday === fullDate,
-        selected: selectedDate === fullDate,
+        selected: formattedSelectedDate === fullDate,
         disabled: dayjs(fullDate) < min || max < dayjs(fullDate),
       };
     });
-  }, [innerValue, daysInMonth, displayingMonth, min, max]);
+  }, [selectedDate, displayingDate, min, max]);
 
   const years = useMemo(() => {
     const thisYear = new Date().getFullYear(); 
+    const selectedYear = selectedDate.getFullYear();
+    const minYear = min.year();
+    const maxYear = max.year();
     return Array.from({ length: 200 }, (_, i) => i + 1900).map((year) => {
       return {
         year,
         thisYear: thisYear === year,
-        selected: innerValue.getFullYear() === year,
+        selected: selectedYear === year,
+        disabled: year < minYear || maxYear < year,
       }
     });
-  }, [innerValue]);
+  }, [selectedDate, min, max]);
 
   const nextMonthDates = useMemo(() => {
-    const lastDay = dayjs(innerValue).set("date", 1).add(1, "month").subtract(1, "day").get("day");
+    const lastDay = dayjs(displayingDate).set("date", 1).add(1, "month").subtract(1, "day").get("day");
     return Array.from({ length: 6 - lastDay }, (_, i) => i + 1);
-  }, [innerValue]);
+  }, [displayingDate]);
 
   const onClickChevronLeft = () => {
-    setDisplayingMonth((current) => {
+    setDisplayingDate((current) => {
       return dayjs(current).subtract(1, "month").toDate();
     });
   };
 
   const onClickChevronRight = () => {
-    setDisplayingMonth((current) => {
+    setDisplayingDate((current) => {
       return dayjs(current).add(1, "month").toDate();
     });
   };
 
-  const onClickDateCell = (d: number) => {
-    const next = new Date(innerValue.setDate(d));
-    setInnerValue(next);
+  const onClickDateCell = (date: number) => {
+    const next = dayjs(displayingDate).set("date", date).toDate();
     onSelectDate?.(next);
   };
 
   const onClickYearCell = (year: number) => {
-    const next = new Date(innerValue.setFullYear(year));
-    setInnerValue(next);
-    setDisplayingMonth(next);
+    const next = dayjs(displayingDate).set("year", year).toDate();
+    setDisplayingDate(next);
     setPicking("DATE");
     onSelectDate?.(next);
   }
@@ -166,7 +164,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
         <Header>
           <HeaderLeft>
             <YearMonth>
-              {MONTHS[displayingMonth.getMonth()]} {displayingMonth.getFullYear()}
+              {MONTHS[displayingDate.getMonth()]} {displayingDate.getFullYear()}
             </YearMonth>
             <IconButton
               type="button"
@@ -234,7 +232,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
           ) : (
             <>
               <YearGrid ref={yearGridRef}>
-                {years.map(({ thisYear, year, selected }) => {
+                {years.map(({ thisYear, year, selected, disabled }) => {
                   return (
                     <YearCell
                       type="button"
@@ -247,6 +245,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
                         onClickYearCell(year);
                       }}
                       data-selected={selected}
+                      disabled={disabled}
                     >
                       {year}
                     </YearCell>
@@ -267,6 +266,7 @@ const CalendarBase = styled.div`
   display: block;
   width: 256px;
   border-radius: 4px;
+  background-color: ${colors.white};
   box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
 `;
 

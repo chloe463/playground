@@ -17,5 +17,6 @@ export const colors = {
   whiteAlpha600: "rgba(255, 255, 255, 0.64)",
   whiteAlpha700: "rgba(255, 255, 255, 0.72)",
   whiteAlpha800: "rgba(255, 255, 255, 0.88)",
+  white: "rgb(255, 255, 255)",
   brand: "#66327c",
 };

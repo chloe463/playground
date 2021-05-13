@@ -35,7 +35,7 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
         <VisuallyHiddenInput
           type="date"
           name={name}
-          defaultValue={value ? dayjs(value).format(format) : ""}
+          defaultValue={value ? dayjs(value).format("YYYY-MM-DD") : ""}
           disabled={disabled}
         />
         <Placeholder $focus={isOpen} $hasValue={Boolean(value)}>{placeholder}</Placeholder>

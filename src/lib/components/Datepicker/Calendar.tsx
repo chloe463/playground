@@ -69,7 +69,6 @@ export const Calendar: React.VFC<CalendarProp > = ({
 
   const min = typeof _min === "string" ? dayjs(_min) : _min ? dayjs(_min) : dayjs("1900-01-01");
   const max = typeof _max === "string" ? dayjs(_max) : _max ? dayjs(_max) : dayjs("2100-12-31");
-  console.log({min,max});
 
   useLayoutEffect(() => {
     if (baseRef.current && calendarRef.current) {

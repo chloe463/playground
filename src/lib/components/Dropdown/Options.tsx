@@ -23,14 +23,24 @@ export const Options: React.VFC<OptionsProps> = ({
   selectedItem,
   onChange,
 }) => {
-  const listRef = useRef<HTMLUListElement | null>(null);
+  const listRef = useRef<HTMLUListElement>(null);
 
   useLayoutEffect(() => {
     if (baseRef.current && listRef.current) {
+      const selectedItemEl = Array.from(listRef.current.children).find((el) => el.getAttribute("aria-selected") === "true");
+      if (selectedItemEl) {
+        selectedItemEl.scrollIntoView({ block: "center" });
+      }
+
       const { x, y, width, height } = baseRef.current.getBoundingClientRect();
       listRef.current.style.position = "fixed";
       listRef.current.style.width = `${width}px`;
-      listRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
+      if (selectedItemEl) {
+        const { y: selectedItemElY } = selectedItemEl.getBoundingClientRect();
+        listRef.current.style.transform = `translate(${x}px, ${y + height - 44 - selectedItemElY}px)`;
+      } else {
+        listRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
+      }
     }
   }, [baseRef, listRef]);
 
@@ -52,6 +62,7 @@ export const Options: React.VFC<OptionsProps> = ({
             key={option}
             $selected={selectedItem === option}
             onClick={(e) => onClickItem(e, option)}
+            aria-selected={selectedItem === option}
           >
             {option}
           </OptionItem>
@@ -68,6 +79,7 @@ const OptionList = styled.ul`
   display: block;
   border-radius: 4px;
   max-height: calc((44px * 8) + 16px);
+  background-color: ${colors.white};
   overflow-y: auto;
 `;
 

@@ -6,10 +6,17 @@ type PopperProps = {
   onClose: (args?: any) => void;
   shouldCloseClickOverlay?: boolean;
   shouldCloseOnKeyupEscape?: boolean;
+  scrollLock?: boolean;
   children: React.ReactNode;
 };
 
-export const Popper: React.VFC<PopperProps> = ({ onClose, shouldCloseClickOverlay, shouldCloseOnKeyupEscape, children }) => {
+export const Popper: React.VFC<PopperProps> = ({
+  onClose,
+  shouldCloseClickOverlay,
+  shouldCloseOnKeyupEscape,
+  scrollLock,
+  children
+}) => {
   const overlayRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
@@ -20,6 +27,16 @@ export const Popper: React.VFC<PopperProps> = ({ onClose, shouldCloseClickOverla
     document.addEventListener("keyup", listener);
     return () => document.removeEventListener("keyup", listener);
   }, [onClose, shouldCloseOnKeyupEscape]);
+
+  useEffect(() => {
+    if (scrollLock) {
+      const origin = document.documentElement.style.overflow;
+      document.documentElement.style.overflow = "hidden";
+      return () => {
+        document.documentElement.style.overflow = origin;
+      }
+    }
+  }, [scrollLock]);
 
   const onClickOverlay = useCallback((e: React.MouseEvent) => {
     if (e.target === overlayRef.current) {

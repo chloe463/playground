@@ -83,8 +83,14 @@ export const Calendar: React.VFC<CalendarProp > = ({
   useLayoutEffect(() => {
     if (baseRef.current && calendarRef.current) {
       const { x, y, height } = baseRef.current.getBoundingClientRect();
+      const { height: calendarHeight } = calendarRef.current.getBoundingClientRect();
+      const innerHeight = window.innerHeight;
       calendarRef.current.style.position = "fixed";
-      calendarRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
+      if (y + height + calendarHeight > innerHeight) {
+        calendarRef.current.style.transform = `translate(${x}px, ${y - calendarHeight - 16}px)`;
+      } else {
+        calendarRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
+      }
     }
   }, [baseRef, calendarRef]);
 
@@ -101,8 +107,13 @@ export const Calendar: React.VFC<CalendarProp > = ({
     const listener = throttle((e: Event) => {
       if (baseRef.current && calendarRef.current) {
         const { x, y, height } = baseRef.current?.getBoundingClientRect();
-        console.log({ height: window.innerHeight }, Date.now());
-        calendarRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
+        const { height: calendarHeight } = calendarRef.current.getBoundingClientRect();
+        const innerHeight = window.innerHeight;
+        if (y + height + calendarHeight > innerHeight) {
+          calendarRef.current.style.transform = `translate(${x}px, ${y - calendarHeight - 16}px)`;
+        } else {
+          calendarRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
+        }
       }
     }, 150);
     window.addEventListener("resize", listener);

@@ -1,8 +1,18 @@
 import dayjs from "dayjs";
 import { motion, Variants } from "framer-motion";
-import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../styles";
+
+const throttle = (fn: (...args: any[]) => void, interval: number) => {
+  let lastTime = Date.now() - interval;
+  return () => {
+    if ((lastTime + interval) < Date.now()) {
+      lastTime = Date.now();
+      fn();
+    }
+  };
+};
 
 const MONTHS = [
   "January",
@@ -86,6 +96,18 @@ export const Calendar: React.VFC<CalendarProp > = ({
       }
     }
   }, [yearGridRef, picking]);
+
+  useEffect(() => {
+    const listener = throttle((e: Event) => {
+      if (baseRef.current && calendarRef.current) {
+        const { x, y, height } = baseRef.current?.getBoundingClientRect();
+        console.log({ height: window.innerHeight }, Date.now());
+        calendarRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
+      }
+    }, 150);
+    window.addEventListener("resize", listener);
+    return () => window.removeEventListener("resize", listener);
+  }, [baseRef, calendarRef]);
 
   const emptyCells = useMemo(() => {
     const firstDay = dayjs(displayingDate).set("date", 1).get('day');

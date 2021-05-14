@@ -35,12 +35,30 @@ export const Options: React.VFC<OptionsProps> = ({
       const { x, y, width, height } = baseRef.current.getBoundingClientRect();
       listRef.current.style.position = "fixed";
       listRef.current.style.width = `${width}px`;
+      let transitionOrigin = "0 0";
       if (selectedItemEl) {
         const { y: selectedItemElY } = selectedItemEl.getBoundingClientRect();
         listRef.current.style.transform = `translate(${x}px, ${y + height - 44 - selectedItemElY}px)`;
+        transitionOrigin = `0 ${selectedItemElY}px`;
       } else {
         listRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
       }
+      window.requestAnimationFrame(() => {
+        if (listRef.current) {
+          const transform = listRef.current.style.transform;
+          listRef.current.style.transformOrigin = transitionOrigin;
+          listRef.current.style.opacity = "0";
+          listRef.current.style.transform = `${transform} scale(0.8)`;
+          window.requestAnimationFrame(() => {
+            if (listRef.current) {
+              listRef.current.style.opacity = "1";
+              listRef.current.style.transform = `${transform} scale(1)`;
+              listRef.current.style.transitionDuration = "250ms";
+              listRef.current.style.transitionTimingFunction= "cubic-bezier(0.3, 0.3, 0.3, 1)";
+            }
+          });
+        }
+      });
     }
   }, [baseRef, listRef]);
 

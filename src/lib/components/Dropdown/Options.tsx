@@ -83,11 +83,7 @@ const OptionItem = styled.li<{ $selected: boolean}>`
   background-color: white;
   cursor: pointer;
 
-  ${({ $selected }) => $selected && css`
-    background-color: ${colors.blackAlpha100};
-  `}
-
-  &:after {
+  &:before, &:after {
     content: " ";
     position: absolute;
     top: 0;
@@ -102,4 +98,10 @@ const OptionItem = styled.li<{ $selected: boolean}>`
       background-color: ${colors.blackAlpha50};
     }
   }
+
+  ${({ $selected }) => $selected && css`
+    &:before {
+      background-color: ${colors.blackAlpha100};
+    }
+  `}
 `;

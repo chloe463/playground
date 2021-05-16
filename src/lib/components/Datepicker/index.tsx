@@ -8,8 +8,9 @@ import { Calendar, DateString } from "./Calendar";
 
 type DatepickerProps = {
   value: Date | null;
-  placeholder?: string;
+  id?: string;
   name?: string;
+  placeholder?: string;
   format?: "YYYY/MM/DD" | "MM/DD/YYYY";
   disabled?: boolean;
   min?: Date | DateString;
@@ -21,9 +22,10 @@ const DEFAULT_MAX = "2100/12/31";
 const DEFAULT_MIN = "1900/01/01";
 
 export const Datepicker: React.VFC<DatepickerProps> = ({
+  id,
+  name,
   placeholder,
   value,
-  name,
   format = "YYYY/MM/DD",
   disabled,
   min: _min,
@@ -55,13 +57,14 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
   return (
     <>
       <Base ref={baseRef} onClick={() => disabled || setIsOpen(v => !v)} $focus={isOpen} $disabled={disabled}>
+        <Placeholder htmlFor={id} $focus={isOpen} $hasValue={Boolean(value)}>{placeholder}</Placeholder>
         <VisuallyHiddenInput
+          id={id}
           type="hidden"
           name={name}
           value={innerValue ? dayjs(innerValue).format("YYYY-MM-DD") : ""}
           disabled={disabled}
         />
-        <Placeholder $focus={isOpen} $hasValue={Boolean(value)}>{placeholder}</Placeholder>
         {value && innerValue && (
           <SelectedValue>{dayjs(innerValue).format(format)}</SelectedValue>
         )}
@@ -133,7 +136,7 @@ type PlaceholderProps = {
   $hasValue: boolean;
 };
 
-const Placeholder = styled.p<PlaceholderProps>`
+const Placeholder = styled.label<PlaceholderProps>`
   position: absolute;
   top: 16px;
   left: 16px;

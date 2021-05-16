@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useLayoutEffect,
   useRef
 } from "react";
@@ -30,6 +31,7 @@ export const Options: React.VFC<OptionsProps> = ({
       const selectedItemEl = Array.from(listRef.current.children).find((el) => el.getAttribute("aria-selected") === "true");
       if (selectedItemEl) {
         selectedItemEl.scrollIntoView({ block: "center" });
+        (selectedItemEl as HTMLElement).focus();
       }
 
       const { x, y, width, height } = baseRef.current.getBoundingClientRect();
@@ -62,6 +64,43 @@ export const Options: React.VFC<OptionsProps> = ({
     }
   }, [baseRef, listRef]);
 
+  useEffect(() => {
+    if (isOpen) {
+      const listener = (e: KeyboardEvent) => {
+        if (listRef.current) {
+          const selectedItemIndex = Array.from(listRef.current.children).findIndex((el) => el.getAttribute("data-selected") === "true");
+          switch(e.key) {
+            case "ArrowDown": {
+              if (selectedItemIndex !== -1) {
+                (listRef.current.children[selectedItemIndex] as HTMLElement).setAttribute("data-selected", "false");
+              }
+              const nextIndex = selectedItemIndex === listRef.current.children.length - 1 ? selectedItemIndex : selectedItemIndex + 1;
+              (listRef.current.children[nextIndex] as HTMLElement).focus({ preventScroll: true });
+              (listRef.current.children[nextIndex] as HTMLElement).setAttribute("data-selected", "true");
+              break;
+            }
+            case "ArrowUp": {
+              if (selectedItemIndex !== -1) {
+                (listRef.current.children[selectedItemIndex] as HTMLElement).setAttribute("data-selected", "false");
+              }
+              const nextIndex = selectedItemIndex === 0 ? selectedItemIndex : selectedItemIndex - 1;
+              (listRef.current.children[nextIndex] as HTMLElement).focus({ preventScroll: true });
+              (listRef.current.children[nextIndex] as HTMLElement).setAttribute("data-selected", "true");
+              break;
+            }
+            case "Enter": {
+              if (selectedItemIndex !== -1) {
+                onChange(options[selectedItemIndex]);
+              }
+            }
+          }
+        }
+      };
+      window.addEventListener("keydown", listener);
+      return () => window.removeEventListener("keydown", listener);
+    }
+  }, [isOpen, options, listRef, onChange]);
+
   if (!isOpen) {
     return null;
   }
@@ -80,7 +119,9 @@ export const Options: React.VFC<OptionsProps> = ({
             key={option}
             $selected={selectedItem === option}
             onClick={(e) => onClickItem(e, option)}
+            tabIndex={0}
             aria-selected={selectedItem === option}
+            data-selected={selectedItem === option}
           >
             {option}
           </OptionItem>
@@ -112,6 +153,11 @@ const OptionItem = styled.li<{ $selected: boolean}>`
   height: 44px;
   background-color: white;
   cursor: pointer;
+
+  &:focus {
+    outline: none;
+    background-color: ${colors.blackAlpha50};
+  }
 
   &:before, &:after {
     content: " ";

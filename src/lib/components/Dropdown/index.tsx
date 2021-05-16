@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useRef,
   useState
 } from "react";
@@ -18,13 +19,29 @@ export const Dropdown: React.VFC<DropdownProps> = (props) => {
   const { placeholder, value, onChange } = props;
   const [isOpen, setIsOpen] = useState(false);
   const baseRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const listener = (e: KeyboardEvent) => {
+      if (e.key === "Enter" && e.target === baseRef.current && isOpen === false) {
+        setIsOpen(v => !v);
+      }
+    };
+    window.addEventListener("keyup", listener);
+    return () => window.removeEventListener("keyup", listener);
+  }, [isOpen]);
+
   return (
-    <DropdownBase ref={baseRef} onClick={() => setIsOpen(v => !v)} $focus={isOpen}>
-      <Placeholder $focus={isOpen} $hasValue={Boolean(value)}>{placeholder}</Placeholder>
+    <DropdownBase ref={baseRef} onClick={() => setIsOpen(v => !v)} $focus={isOpen} tabIndex={0}>
+      <Placeholder className={"dropdown-placeholder"} $focus={isOpen} $hasValue={Boolean(value)}>{placeholder}</Placeholder>
       <SelectedValue>{value}</SelectedValue>
-      <BottomBorder $focus={isOpen} />
+      <BottomBorder className={"dropdown-bottom-border"} $focus={isOpen} />
       {isOpen && (
-        <Popper onClose={() => setIsOpen(false)} shouldCloseClickOverlay shouldCloseOnKeyupEscape>
+        <Popper
+          shouldCloseClickOverlay
+          shouldCloseOnKeyupEscape
+          scrollLock
+          onClose={() => setIsOpen(false)}
+        >
           <Options
             options={props.options}
             baseRef={baseRef}
@@ -72,6 +89,25 @@ const DropdownBase = styled.div<{ $focus: boolean }>`
       transform: rotate(180deg);
     }
   `}
+
+  &:focus {
+    outline: none;
+    background-color: ${colors.blackAlpha100};
+    & > .dropdown-placeholder {
+      color: ${colors.brand};
+    }
+    & > .dropdown-bottom-border {
+      opacity: 1;
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: ${colors.brand};
+      transform: scaleX(1) translateY(-2px);
+    }
+  }
 `;
 
 type PlaceholderProps = {

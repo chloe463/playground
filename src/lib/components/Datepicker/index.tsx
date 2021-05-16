@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { AnimatePresence } from "framer-motion";
-import React, { useRef, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import { colors } from "../../styles";
 import { Popper } from "../Popper";
@@ -17,44 +17,48 @@ type DatepickerProps = {
   onChange: (v: Date | null) => void;
 };
 
+const DEFAULT_MAX = "2100/12/31";
+const DEFAULT_MIN = "1900/01/01";
+
 export const Datepicker: React.VFC<DatepickerProps> = ({
   placeholder,
   value,
   name,
   format = "YYYY/MM/DD",
   disabled,
-  min,
-  max,
+  min: _min,
+  max: _max,
   onChange,
 }) => {
-  const baseRef = useRef<HTMLDivElement | null>(null);
+  const baseRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [defaultValue, setDefaultValue] = useState(value);
   const [innerValue, setInnerValue] = useState<Date | null>(value);
 
-  const onSelectDate = (date: Date) => {
-    setInnerValue(date);
-  };
+  const min = useMemo(() => typeof _min === "string" ? dayjs(_min) : _min ? dayjs(_min) : dayjs(DEFAULT_MIN), [_min]);
+  const max = useMemo(() => typeof _max === "string" ? dayjs(_max) : _max ? dayjs(_max) : dayjs(DEFAULT_MAX), [_max]);
 
-  const onClickCancel = () => {
+  const onClickCancel = useCallback(() => {
     setInnerValue(defaultValue);
     onChange(defaultValue);
     setIsOpen(false);
-  };
+  }, [defaultValue, onChange]);
 
-  const onClickOk = () => {
-    setDefaultValue(innerValue);
-    onChange(innerValue);
+  const onClickOk = useCallback(() => {
+    const input = baseRef.current?.querySelector("input");
+    const nextValue = dayjs(input?.value).toDate();
+    setDefaultValue(nextValue);
+    onChange(nextValue);
     setIsOpen(false);
-  }
+  }, [onChange]);
 
   return (
     <>
       <Base ref={baseRef} onClick={() => disabled || setIsOpen(v => !v)} $focus={isOpen} $disabled={disabled}>
         <VisuallyHiddenInput
-          type="date"
+          type="hidden"
           name={name}
-          defaultValue={value ? dayjs(value).format("YYYY-MM-DD") : ""}
+          value={innerValue ? dayjs(innerValue).format("YYYY-MM-DD") : ""}
           disabled={disabled}
         />
         <Placeholder $focus={isOpen} $hasValue={Boolean(value)}>{placeholder}</Placeholder>
@@ -69,7 +73,7 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
             shouldCloseClickOverlay
             shouldCloseOnKeyupEscape
             scrollLock
-            onClose={() => setIsOpen(v => !v)}
+            onClose={() => setIsOpen(false)}
           >
             <Calendar
               placeholder={placeholder}
@@ -77,7 +81,7 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
               innerValue={innerValue}
               min={min}
               max={max}
-              onSelectDate={onSelectDate}
+              onSelectDate={setInnerValue}
               onClickCancel={onClickCancel}
               onClickOk={onClickOk}
             />

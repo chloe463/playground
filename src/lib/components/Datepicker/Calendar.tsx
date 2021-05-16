@@ -59,19 +59,28 @@ type CalendarProp = {
   innerValue: Date | null;
   placeholder?: string;
   baseRef: React.MutableRefObject<HTMLDivElement | null>;
-  min?: Date | DateString;
-  max?: Date | DateString;
-  onSelectDate?: (d: Date) => void;
+  min: dayjs.Dayjs;
+  max: dayjs.Dayjs;
+  onSelectDate?: React.Dispatch<React.SetStateAction<Date | null>>;
   onClickCancel: () => void;
   onClickOk: () => void;
 };
+
+const isInRange = (min: dayjs.Dayjs, max: dayjs.Dayjs, value: dayjs.Dayjs): boolean => {
+  if (min && dayjs(min) > value) {
+    return false;
+  } else if (max && dayjs(max) < value) {
+    return false;
+  }
+  return true;
+}
 
 export const Calendar: React.VFC<CalendarProp > = ({
   innerValue,
   placeholder,
   baseRef,
-  min: _min,
-  max: _max,
+  min,
+  max,
   onSelectDate,
   onClickCancel,
   onClickOk,
@@ -80,9 +89,6 @@ export const Calendar: React.VFC<CalendarProp > = ({
   const yearGridRef = useRef<HTMLDivElement | null>(null);
   const [displayingDate, setDisplayingDate] = useState(innerValue || new Date());
   const [picking, setPicking] = useState<PickingTarget>("DATE");
-
-  const min = typeof _min === "string" ? dayjs(_min) : _min ? dayjs(_min) : dayjs("1900-01-01");
-  const max = typeof _max === "string" ? dayjs(_max) : _max ? dayjs(_max) : dayjs("2100-12-31");
 
   useLayoutEffect(() => {
     if (baseRef.current && calendarRef.current) {
@@ -106,6 +112,60 @@ export const Calendar: React.VFC<CalendarProp > = ({
       }
     }
   }, [yearGridRef, picking]);
+
+  useEffect(() => {
+    const listener = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case "ArrowUp": {
+          onSelectDate?.((current) => {
+            const next = dayjs(current || new Date()).subtract(7, "days");
+            return isInRange(min, max, next) ? next.toDate() : current;
+          });
+          break;
+        }
+        case "ArrowDown": {
+          onSelectDate?.((current) => {
+            const next = dayjs(current || new Date()).add(7, "days");
+            return isInRange(min, max, next) ? next.toDate() : current;
+          });
+          break;
+        }
+        case "ArrowRight": {
+          onSelectDate?.((current) => {
+            const next = dayjs(current || new Date()).add(1, "day");
+            return isInRange(min, max, next) ? next.toDate() : current;
+          });
+          break;
+        }
+        case "ArrowLeft": {
+          onSelectDate?.((current) => {
+            const next = dayjs(current || new Date()).subtract(1, "day");
+            return isInRange(min, max, next) ? next.toDate() : current;
+          });
+          break;
+        }
+        case "Enter": {
+          onClickOk();
+          break;
+        }
+        case "Escape": {
+          onClickCancel();
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+    };
+    window.addEventListener("keydown", listener);
+    return () => window.removeEventListener("keydown", listener);
+  }, [onSelectDate, min, max, onClickOk, onClickCancel]);
+
+  useEffect(() => {
+    if (innerValue) {
+      setDisplayingDate(innerValue);
+    }
+  }, [innerValue]);
 
   useEffect(() => {
     const listener = throttle((e: Event) => {

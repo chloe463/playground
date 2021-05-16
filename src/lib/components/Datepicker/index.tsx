@@ -29,7 +29,7 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
 }) => {
   const baseRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [initialDate] = useState(value);
+  const [defaultValue, setDefaultValue] = useState(value);
   const [innerValue, setInnerValue] = useState<Date | null>(value);
 
   const onSelectDate = (date: Date) => {
@@ -37,12 +37,13 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
   };
 
   const onClickCancel = () => {
-    setInnerValue(initialDate);
-    onChange(initialDate);
+    setInnerValue(defaultValue);
+    onChange(defaultValue);
     setIsOpen(false);
   };
 
   const onClickOk = () => {
+    setDefaultValue(innerValue);
     onChange(innerValue);
     setIsOpen(false);
   }

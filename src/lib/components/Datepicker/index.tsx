@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { AnimatePresence } from "framer-motion";
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import { colors } from "../../styles";
 import { Popper } from "../Popper";
@@ -40,6 +40,16 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
   const min = useMemo(() => typeof _min === "string" ? dayjs(_min) : _min ? dayjs(_min) : dayjs(DEFAULT_MIN), [_min]);
   const max = useMemo(() => typeof _max === "string" ? dayjs(_max) : _max ? dayjs(_max) : dayjs(DEFAULT_MAX), [_max]);
 
+  useEffect(() => {
+    const listener = (e: KeyboardEvent) => {
+      if (e.key === "Enter" && e.target === baseRef.current) {
+        setIsOpen(v => !v);
+      }
+    };
+    window.addEventListener("keyup", listener);
+    return () => window.removeEventListener("keyup", listener);
+  }, []);
+
   const onClickCancel = useCallback(() => {
     setInnerValue(defaultValue);
     onChange(defaultValue);
@@ -56,8 +66,21 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
 
   return (
     <>
-      <Base ref={baseRef} onClick={() => disabled || setIsOpen(v => !v)} $focus={isOpen} $disabled={disabled}>
-        <Placeholder htmlFor={id} $focus={isOpen} $hasValue={Boolean(value)}>{placeholder}</Placeholder>
+      <Base
+        ref={baseRef}
+        $focus={isOpen}
+        $disabled={disabled}
+        tabIndex={0}
+        onClick={() => disabled || setIsOpen(v => !v)}
+      >
+        <Placeholder
+          htmlFor={id}
+          className={"datepicker-label"}
+          $focus={isOpen}
+          $hasValue={Boolean(value)}
+        >
+          {placeholder}
+        </Placeholder>
         <VisuallyHiddenInput
           id={id}
           type="hidden"
@@ -68,7 +91,7 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
         {value && innerValue && (
           <SelectedValue>{dayjs(innerValue).format(format)}</SelectedValue>
         )}
-        <BottomBorder $focus={isOpen} />
+        <BottomBorder className={"datepicker-bottom-border"} $focus={isOpen} />
       </Base>
       <AnimatePresence>
         {isOpen && (
@@ -106,6 +129,26 @@ const Base = styled.div<{ $focus: boolean, $disabled?: boolean }>`
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   cursor: pointer;
+
+  &:focus {
+    outline: none;
+    background-color: ${colors.blackAlpha100};
+
+    & > .datepicker-label {
+      color: ${colors.brand};
+    }
+    & > .datepicker-bottom-border {
+      opacity: 1;
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: ${colors.brand};
+      transform: scaleX(1) translateY(-2px);
+    }
+  }
 
   ${({ $focus }) => $focus && css`
     background-color: ${colors.blackAlpha100};

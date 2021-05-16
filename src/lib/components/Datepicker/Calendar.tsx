@@ -95,6 +95,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
       const { x, y, height } = baseRef.current.getBoundingClientRect();
       const { height: calendarHeight } = calendarRef.current.getBoundingClientRect();
       const innerHeight = window.innerHeight;
+      calendarRef.current.focus();
       calendarRef.current.style.position = "fixed";
       if (y + height + calendarHeight > innerHeight) {
         calendarRef.current.style.transform = `translate(${x}px, ${y - calendarHeight - 16}px)`;
@@ -184,6 +185,11 @@ export const Calendar: React.VFC<CalendarProp > = ({
     return () => window.removeEventListener("resize", listener);
   }, [baseRef, calendarRef]);
 
+  useEffect(() => {
+    const baseDom = baseRef.current;
+    return () => baseDom?.focus();
+  }, [baseRef]);
+
   const emptyCells = useMemo(() => {
     const firstDay = dayjs(displayingDate).set("date", 1).get('day');
     return Array.from({ length: firstDay }, (_, i) => i);
@@ -256,7 +262,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
       animate={"animate"}
       exit={"exit"}
     >
-      <CalendarBase ref={calendarRef}>
+      <CalendarBase ref={calendarRef} tabIndex={0}>
         <Header>
           <HeaderLeft>
             <YearMonth>
@@ -366,6 +372,9 @@ const CalendarBase = styled.div`
   border-radius: 4px;
   background-color: ${colors.white};
   box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+  &:focus {
+    outline: none;
+  }
 `;
 
 const Header = styled.header`

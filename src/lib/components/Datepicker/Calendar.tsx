@@ -56,35 +56,46 @@ const variants: Variants = {
 export type DateString = `${number}/${number}/${number}`;
 
 type CalendarProp = {
-  selectedDate: Date;
+  innerValue: Date | null;
   placeholder?: string;
   baseRef: React.MutableRefObject<HTMLDivElement | null>;
-  min?: Date | DateString;
-  max?: Date | DateString;
-  onSelectDate?: (d: Date) => void;
+  min: dayjs.Dayjs;
+  max: dayjs.Dayjs;
+  onSelectDate?: React.Dispatch<React.SetStateAction<Date | null>>;
+  onClickCancel: () => void;
+  onClickOk: () => void;
 };
 
+const isInRange = (min: dayjs.Dayjs, max: dayjs.Dayjs, value: dayjs.Dayjs): boolean => {
+  if (min && dayjs(min) > value) {
+    return false;
+  } else if (max && dayjs(max) < value) {
+    return false;
+  }
+  return true;
+}
+
 export const Calendar: React.VFC<CalendarProp > = ({
-  selectedDate,
+  innerValue,
   placeholder,
   baseRef,
-  min: _min,
-  max: _max,
+  min,
+  max,
   onSelectDate,
+  onClickCancel,
+  onClickOk,
 }) => {
   const calendarRef = useRef<HTMLDivElement | null>(null);
   const yearGridRef = useRef<HTMLDivElement | null>(null);
-  const [displayingDate, setDisplayingDate] = useState(selectedDate);
+  const [displayingDate, setDisplayingDate] = useState(innerValue || new Date());
   const [picking, setPicking] = useState<PickingTarget>("DATE");
-
-  const min = typeof _min === "string" ? dayjs(_min) : _min ? dayjs(_min) : dayjs("1900-01-01");
-  const max = typeof _max === "string" ? dayjs(_max) : _max ? dayjs(_max) : dayjs("2100-12-31");
 
   useLayoutEffect(() => {
     if (baseRef.current && calendarRef.current) {
       const { x, y, height } = baseRef.current.getBoundingClientRect();
       const { height: calendarHeight } = calendarRef.current.getBoundingClientRect();
       const innerHeight = window.innerHeight;
+      calendarRef.current.focus();
       calendarRef.current.style.position = "fixed";
       if (y + height + calendarHeight > innerHeight) {
         calendarRef.current.style.transform = `translate(${x}px, ${y - calendarHeight - 16}px)`;
@@ -104,6 +115,60 @@ export const Calendar: React.VFC<CalendarProp > = ({
   }, [yearGridRef, picking]);
 
   useEffect(() => {
+    const listener = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case "ArrowUp": {
+          onSelectDate?.((current) => {
+            const next = dayjs(current || new Date()).subtract(7, "days");
+            return isInRange(min, max, next) ? next.toDate() : current;
+          });
+          break;
+        }
+        case "ArrowDown": {
+          onSelectDate?.((current) => {
+            const next = dayjs(current || new Date()).add(7, "days");
+            return isInRange(min, max, next) ? next.toDate() : current;
+          });
+          break;
+        }
+        case "ArrowRight": {
+          onSelectDate?.((current) => {
+            const next = dayjs(current || new Date()).add(1, "day");
+            return isInRange(min, max, next) ? next.toDate() : current;
+          });
+          break;
+        }
+        case "ArrowLeft": {
+          onSelectDate?.((current) => {
+            const next = dayjs(current || new Date()).subtract(1, "day");
+            return isInRange(min, max, next) ? next.toDate() : current;
+          });
+          break;
+        }
+        case "Enter": {
+          onClickOk();
+          break;
+        }
+        case "Escape": {
+          onClickCancel();
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+    };
+    window.addEventListener("keydown", listener);
+    return () => window.removeEventListener("keydown", listener);
+  }, [onSelectDate, min, max, onClickOk, onClickCancel]);
+
+  useEffect(() => {
+    if (innerValue) {
+      setDisplayingDate(innerValue);
+    }
+  }, [innerValue]);
+
+  useEffect(() => {
     const listener = throttle((e: Event) => {
       if (baseRef.current && calendarRef.current) {
         const { x, y, height } = baseRef.current?.getBoundingClientRect();
@@ -120,6 +185,11 @@ export const Calendar: React.VFC<CalendarProp > = ({
     return () => window.removeEventListener("resize", listener);
   }, [baseRef, calendarRef]);
 
+  useEffect(() => {
+    const baseDom = baseRef.current;
+    return () => baseDom?.focus();
+  }, [baseRef]);
+
   const emptyCells = useMemo(() => {
     const firstDay = dayjs(displayingDate).set("date", 1).get('day');
     return Array.from({ length: firstDay }, (_, i) => i);
@@ -127,7 +197,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
 
   const days = useMemo(() => {
     const formattedToday = dayjs().format("YYYY-MM-DD");
-    const formattedSelectedDate = dayjs(selectedDate).format("YYYY-MM-DD");
+    const formattedInnerValue = innerValue ? dayjs(innerValue).format("YYYY-MM-DD") : "";
     const daysInMonth = dayjs(displayingDate).daysInMonth();
     return Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => {
       const fullDate = dayjs(displayingDate).set("date", d).format("YYYY-MM-DD");
@@ -135,15 +205,15 @@ export const Calendar: React.VFC<CalendarProp > = ({
         date: d,
         fullDate,
         isToday: formattedToday === fullDate,
-        selected: formattedSelectedDate === fullDate,
+        selected: formattedInnerValue === fullDate,
         disabled: dayjs(fullDate) < min || max < dayjs(fullDate),
       };
     });
-  }, [selectedDate, displayingDate, min, max]);
+  }, [innerValue, displayingDate, min, max]);
 
   const years = useMemo(() => {
     const thisYear = new Date().getFullYear(); 
-    const selectedYear = selectedDate.getFullYear();
+    const selectedYear = innerValue ? innerValue.getFullYear() : 0;
     const minYear = min.year();
     const maxYear = max.year();
     return Array.from({ length: 200 }, (_, i) => i + 1900).map((year) => {
@@ -154,7 +224,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
         disabled: year < minYear || maxYear < year,
       }
     });
-  }, [selectedDate, min, max]);
+  }, [innerValue, min, max]);
 
   const nextMonthDates = useMemo(() => {
     const lastDay = dayjs(displayingDate).set("date", 1).add(1, "month").subtract(1, "day").get("day");
@@ -192,7 +262,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
       animate={"animate"}
       exit={"exit"}
     >
-      <CalendarBase ref={calendarRef}>
+      <CalendarBase ref={calendarRef} tabIndex={0}>
         <Header>
           <HeaderLeft>
             <YearMonth>
@@ -288,6 +358,8 @@ export const Calendar: React.VFC<CalendarProp > = ({
           )}
         </Body>
         <Footer>
+          <CancelButton type="button" onClick={onClickCancel}>Cancel</CancelButton>
+          <SubmitButton type="button" onClick={onClickOk}>OK</SubmitButton>
         </Footer>
       </CalendarBase>
     </motion.div>
@@ -300,6 +372,9 @@ const CalendarBase = styled.div`
   border-radius: 4px;
   background-color: ${colors.white};
   box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+  &:focus {
+    outline: none;
+  }
 `;
 
 const Header = styled.header`
@@ -483,5 +558,53 @@ const YearCell = styled.button<{ $thisYear: boolean, $selected: boolean }>`
   }
 `;
 
+const Footer = styled.footer`
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px;
+`;
 
-const Footer = styled.footer``;
+const BaseButton = styled.button`
+  position: relative;
+  display: inline-block;
+  padding: 8px 24px;
+  appearance: none;
+  outline: none;
+  border: none;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  text-transform: uppercase;
+  border-radius: 9999vmax;
+  cursor: pointer;
+  transition: all 200ms cubic-bezier(0.3, 0.3, 0.3, 1);
+  overflow: hidden;
+  background-color: ${colors.white};
+  color: ${colors.blackAlpha500};
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &:hover {
+    &:after {
+      background-color: ${colors.blackAlpha50};
+    }
+  }
+
+  &:active {
+    &:after {
+      background-color: ${colors.blackAlpha100};
+    }
+  }
+`;
+
+const CancelButton = styled(BaseButton)``;
+
+const SubmitButton = styled(BaseButton)``;

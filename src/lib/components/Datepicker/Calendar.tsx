@@ -56,25 +56,29 @@ const variants: Variants = {
 export type DateString = `${number}/${number}/${number}`;
 
 type CalendarProp = {
-  selectedDate: Date;
+  innerValue: Date | null;
   placeholder?: string;
   baseRef: React.MutableRefObject<HTMLDivElement | null>;
   min?: Date | DateString;
   max?: Date | DateString;
   onSelectDate?: (d: Date) => void;
+  onClickCancel: () => void;
+  onClickOk: () => void;
 };
 
 export const Calendar: React.VFC<CalendarProp > = ({
-  selectedDate,
+  innerValue,
   placeholder,
   baseRef,
   min: _min,
   max: _max,
   onSelectDate,
+  onClickCancel,
+  onClickOk,
 }) => {
   const calendarRef = useRef<HTMLDivElement | null>(null);
   const yearGridRef = useRef<HTMLDivElement | null>(null);
-  const [displayingDate, setDisplayingDate] = useState(selectedDate);
+  const [displayingDate, setDisplayingDate] = useState(innerValue || new Date());
   const [picking, setPicking] = useState<PickingTarget>("DATE");
 
   const min = typeof _min === "string" ? dayjs(_min) : _min ? dayjs(_min) : dayjs("1900-01-01");
@@ -127,7 +131,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
 
   const days = useMemo(() => {
     const formattedToday = dayjs().format("YYYY-MM-DD");
-    const formattedSelectedDate = dayjs(selectedDate).format("YYYY-MM-DD");
+    const formattedInnerValue = innerValue ? dayjs(innerValue).format("YYYY-MM-DD") : "";
     const daysInMonth = dayjs(displayingDate).daysInMonth();
     return Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => {
       const fullDate = dayjs(displayingDate).set("date", d).format("YYYY-MM-DD");
@@ -135,15 +139,15 @@ export const Calendar: React.VFC<CalendarProp > = ({
         date: d,
         fullDate,
         isToday: formattedToday === fullDate,
-        selected: formattedSelectedDate === fullDate,
+        selected: formattedInnerValue === fullDate,
         disabled: dayjs(fullDate) < min || max < dayjs(fullDate),
       };
     });
-  }, [selectedDate, displayingDate, min, max]);
+  }, [innerValue, displayingDate, min, max]);
 
   const years = useMemo(() => {
     const thisYear = new Date().getFullYear(); 
-    const selectedYear = selectedDate.getFullYear();
+    const selectedYear = innerValue ? innerValue.getFullYear() : 0;
     const minYear = min.year();
     const maxYear = max.year();
     return Array.from({ length: 200 }, (_, i) => i + 1900).map((year) => {
@@ -154,7 +158,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
         disabled: year < minYear || maxYear < year,
       }
     });
-  }, [selectedDate, min, max]);
+  }, [innerValue, min, max]);
 
   const nextMonthDates = useMemo(() => {
     const lastDay = dayjs(displayingDate).set("date", 1).add(1, "month").subtract(1, "day").get("day");
@@ -288,6 +292,8 @@ export const Calendar: React.VFC<CalendarProp > = ({
           )}
         </Body>
         <Footer>
+          <CancelButton type="button" onClick={onClickCancel}>Cancel</CancelButton>
+          <SubmitButton type="button" onClick={onClickOk}>OK</SubmitButton>
         </Footer>
       </CalendarBase>
     </motion.div>
@@ -483,5 +489,53 @@ const YearCell = styled.button<{ $thisYear: boolean, $selected: boolean }>`
   }
 `;
 
+const Footer = styled.footer`
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px;
+`;
 
-const Footer = styled.footer``;
+const BaseButton = styled.button`
+  position: relative;
+  display: inline-block;
+  padding: 8px 24px;
+  appearance: none;
+  outline: none;
+  border: none;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  text-transform: uppercase;
+  border-radius: 9999vmax;
+  cursor: pointer;
+  transition: all 200ms cubic-bezier(0.3, 0.3, 0.3, 1);
+  overflow: hidden;
+  background-color: ${colors.white};
+  color: ${colors.blackAlpha500};
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &:hover {
+    &:after {
+      background-color: ${colors.blackAlpha50};
+    }
+  }
+
+  &:active {
+    &:after {
+      background-color: ${colors.blackAlpha100};
+    }
+  }
+`;
+
+const CancelButton = styled(BaseButton)``;
+
+const SubmitButton = styled(BaseButton)``;

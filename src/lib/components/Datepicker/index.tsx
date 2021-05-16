@@ -14,7 +14,7 @@ type DatepickerProps = {
   disabled?: boolean;
   min?: Date | DateString;
   max?: Date | DateString;
-  onChange: (v: Date) => void;
+  onChange: (v: Date | null) => void;
 };
 
 export const Datepicker: React.VFC<DatepickerProps> = ({
@@ -29,6 +29,24 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
 }) => {
   const baseRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [initialDate] = useState(value);
+  const [innerValue, setInnerValue] = useState<Date | null>(value);
+
+  const onSelectDate = (date: Date) => {
+    setInnerValue(date);
+  };
+
+  const onClickCancel = () => {
+    setInnerValue(initialDate);
+    onChange(initialDate);
+    setIsOpen(false);
+  };
+
+  const onClickOk = () => {
+    onChange(innerValue);
+    setIsOpen(false);
+  }
+
   return (
     <>
       <Base ref={baseRef} onClick={() => disabled || setIsOpen(v => !v)} $focus={isOpen} $disabled={disabled}>
@@ -39,8 +57,8 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
           disabled={disabled}
         />
         <Placeholder $focus={isOpen} $hasValue={Boolean(value)}>{placeholder}</Placeholder>
-        {value && (
-          <SelectedValue>{dayjs(value).format(format)}</SelectedValue>
+        {value && innerValue && (
+          <SelectedValue>{dayjs(innerValue).format(format)}</SelectedValue>
         )}
         <BottomBorder $focus={isOpen} />
       </Base>
@@ -55,10 +73,12 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
             <Calendar
               placeholder={placeholder}
               baseRef={baseRef}
-              selectedDate={value || new Date()}
+              innerValue={innerValue}
               min={min}
               max={max}
-              onSelectDate={onChange}
+              onSelectDate={onSelectDate}
+              onClickCancel={onClickCancel}
+              onClickOk={onClickOk}
             />
           </Popper>
         )}

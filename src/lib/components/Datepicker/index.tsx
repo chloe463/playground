@@ -1,3 +1,4 @@
+import { FocusScope } from "@react-aria/focus";
 import dayjs from "dayjs";
 import { AnimatePresence } from "framer-motion";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -101,16 +102,18 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
             scrollLock
             onClose={() => setIsOpen(false)}
           >
-            <Calendar
-              placeholder={placeholder}
-              baseRef={baseRef}
-              innerValue={innerValue}
-              min={min}
-              max={max}
-              onSelectDate={setInnerValue}
-              onClickCancel={onClickCancel}
-              onClickOk={onClickOk}
-            />
+            <FocusScope contain restoreFocus autoFocus>
+              <Calendar
+                placeholder={placeholder}
+                baseRef={baseRef}
+                innerValue={innerValue}
+                min={min}
+                max={max}
+                onSelectDate={setInnerValue}
+                onClickCancel={onClickCancel}
+                onClickOk={onClickOk}
+              />
+            </FocusScope>
           </Popper>
         )}
       </AnimatePresence>

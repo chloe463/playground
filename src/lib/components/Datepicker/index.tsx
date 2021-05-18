@@ -132,6 +132,11 @@ const Base = styled.div<{ $focus: boolean, $disabled?: boolean }>`
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   cursor: pointer;
+  transition: all 150ms ease-out;
+
+  &:hover {
+    background-color: ${colors.blackAlpha100};
+  }
 
   &:focus {
     outline: none;

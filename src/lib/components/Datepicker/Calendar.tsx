@@ -417,6 +417,11 @@ const IconButton = styled.button`
   align-items: center;
   width: 24px;
   height: 24px;
+  border-radius: 50%;
+
+  &:focus {
+    background-color: ${colors.blackAlpha100};
+  }
 
   & + & {
     margin-left: 12px;
@@ -508,6 +513,11 @@ const DateCell = styled.button<{ $today: boolean, $selected: boolean }>`
     border: 1px solid ${colors.blackAlpha400};
   }
 
+  &:focus {
+    background-color: ${({ $selected }) => $selected ? colors.brand : colors.blackAlpha100 };
+    color: ${({ $selected }) => $selected ? colors.whiteAlpha800 : colors.blackAlpha700 };
+  }
+
   &:disabled {
     color: ${colors.blackAlpha400};
     cursor: default;
@@ -593,6 +603,12 @@ const BaseButton = styled.button`
   }
 
   &:hover {
+    &:after {
+      background-color: ${colors.blackAlpha50};
+    }
+  }
+
+  &:focus {
     &:after {
       background-color: ${colors.blackAlpha50};
     }

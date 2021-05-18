@@ -119,28 +119,36 @@ export const Calendar: React.VFC<CalendarProp > = ({
       switch (e.key) {
         case "ArrowUp": {
           onSelectDate?.((current) => {
-            const next = dayjs(current || new Date()).subtract(7, "days");
+            const next = picking === "DATE" ?
+              dayjs(current || new Date()).subtract(7, "days") :
+              dayjs(current || new Date()).subtract(4, "years");
             return isInRange(min, max, next) ? next.toDate() : current;
           });
           break;
         }
         case "ArrowDown": {
           onSelectDate?.((current) => {
-            const next = dayjs(current || new Date()).add(7, "days");
+            const next = picking === "DATE" ?
+              dayjs(current || new Date()).add(7, "days") :
+              dayjs(current || new Date()).add(4, "years");
             return isInRange(min, max, next) ? next.toDate() : current;
           });
           break;
         }
         case "ArrowRight": {
           onSelectDate?.((current) => {
-            const next = dayjs(current || new Date()).add(1, "day");
+            const next = picking === "DATE" ?
+              dayjs(current || new Date()).add(1, "day") :
+              dayjs(current || new Date()).add(1, "years");
             return isInRange(min, max, next) ? next.toDate() : current;
           });
           break;
         }
         case "ArrowLeft": {
           onSelectDate?.((current) => {
-            const next = dayjs(current || new Date()).subtract(1, "day");
+            const next = picking === "DATE" ?
+              dayjs(current || new Date()).subtract(1, "day") :
+              dayjs(current || new Date()).subtract(1, "years");
             return isInRange(min, max, next) ? next.toDate() : current;
           });
           break;
@@ -160,7 +168,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
     };
     window.addEventListener("keydown", listener);
     return () => window.removeEventListener("keydown", listener);
-  }, [onSelectDate, min, max, onClickOk, onClickCancel]);
+  }, [onSelectDate, min, max, onClickOk, onClickCancel, picking]);
 
   useEffect(() => {
     if (innerValue) {
@@ -417,6 +425,11 @@ const IconButton = styled.button`
   align-items: center;
   width: 24px;
   height: 24px;
+  border-radius: 50%;
+
+  &:focus {
+    background-color: ${colors.blackAlpha100};
+  }
 
   & + & {
     margin-left: 12px;
@@ -508,6 +521,11 @@ const DateCell = styled.button<{ $today: boolean, $selected: boolean }>`
     border: 1px solid ${colors.blackAlpha400};
   }
 
+  &:focus {
+    background-color: ${({ $selected }) => $selected ? colors.brand : colors.blackAlpha100 };
+    color: ${({ $selected }) => $selected ? colors.whiteAlpha800 : colors.blackAlpha700 };
+  }
+
   &:disabled {
     color: ${colors.blackAlpha400};
     cursor: default;
@@ -547,6 +565,11 @@ const YearCell = styled.button<{ $thisYear: boolean, $selected: boolean }>`
 
   &:hover {
     border: 1px solid ${colors.blackAlpha400};
+  }
+
+  &:focus {
+    background-color: ${({ $selected }) => $selected ? colors.brand : colors.blackAlpha100 };
+    color: ${({ $selected }) => $selected ? colors.whiteAlpha800 : colors.blackAlpha700 };
   }
 
   &:disabled {
@@ -593,6 +616,12 @@ const BaseButton = styled.button`
   }
 
   &:hover {
+    &:after {
+      background-color: ${colors.blackAlpha50};
+    }
+  }
+
+  &:focus {
     &:after {
       background-color: ${colors.blackAlpha50};
     }

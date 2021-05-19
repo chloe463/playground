@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import { useOverlay, usePreventScroll } from "@react-aria/overlays";
+import React, { useRef } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
@@ -18,38 +19,17 @@ export const Popper: React.VFC<PopperProps> = ({
   children
 }) => {
   const overlayRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    const listener = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && shouldCloseOnKeyupEscape) {
-        onClose();
-      }
-    };
-    document.addEventListener("keyup", listener);
-    return () => document.removeEventListener("keyup", listener);
-  }, [onClose, shouldCloseOnKeyupEscape]);
-
-  useEffect(() => {
-    if (scrollLock) {
-      const origin = document.documentElement.style.overflow;
-      document.documentElement.style.overflow = "hidden";
-      return () => {
-        document.documentElement.style.overflow = origin;
-      }
-    }
-  }, [scrollLock]);
-
-  const onClickOverlay = useCallback((e: React.MouseEvent) => {
-    if (e.target === overlayRef.current) {
-      e.preventDefault();
-      e.stopPropagation();
-      if (shouldCloseClickOverlay) {
-        onClose();
-      }
-    }
-  }, [onClose, shouldCloseClickOverlay]);
+  const { overlayProps } = useOverlay({
+    isOpen: true,
+    onClose,
+    isDismissable: true,
+    shouldCloseOnBlur: shouldCloseClickOverlay,
+    isKeyboardDismissDisabled: shouldCloseOnKeyupEscape,
+  }, overlayRef);
+  usePreventScroll({ isDisabled: !scrollLock });
 
   return ReactDOM.createPortal(
-    <Overlay ref={overlayRef} onClick={onClickOverlay}>
+    <Overlay {...overlayProps} ref={overlayRef}>
       {children}
     </Overlay>,
     document.querySelector("body") as Element

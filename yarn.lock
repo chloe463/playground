@@ -2467,6 +2467,17 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
+"@react-aria/dialog@^3.1.3":
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/@react-aria/dialog/-/dialog-3.1.3.tgz#9cef554ca959f92095955fb7ae678db91e4f7af2"
+  integrity sha512-qKqY4QX8D3ITSNTdqEcXsKrZHvBgjs567JzhUs6s9lBOCZ0Mc+SwhgwEOowFiaYWhEfNyuLZNltUgzUxOtBxzg==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/focus" "^3.3.0"
+    "@react-aria/utils" "^3.8.0"
+    "@react-stately/overlays" "^3.1.2"
+    "@react-types/dialog" "^3.3.0"
+
 "@react-aria/focus@^3.3.0":
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/@react-aria/focus/-/focus-3.3.0.tgz#5ffc0c5ad640b6ad3b975cf78a8c35784b8057b0"
@@ -2565,6 +2576,14 @@
   dependencies:
     "@react-types/shared" "^3.4.0"
 
+"@react-types/dialog@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@react-types/dialog/-/dialog-3.3.0.tgz#60a2b53f250ee082b53aef9340c80f1afe654bc7"
+  integrity sha512-63Vsr/UOZiaajlNDQUgWDi6v3EMenV1f8Cwh+L4lcyIJnbC6WeC2VEV3ld/TYVC0U58SQ0k7u2EIyHkWjc5kdQ==
+  dependencies:
+    "@react-types/overlays" "^3.2.1"
+    "@react-types/shared" "^3.2.1"
+
 "@react-types/overlays@^3.2.1", "@react-types/overlays@^3.4.0":
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/@react-types/overlays/-/overlays-3.4.0.tgz#3c4619906bb12e3697e770b59c2090bb18da25bd"
@@ -2572,7 +2591,7 @@
   dependencies:
     "@react-types/shared" "^3.3.0"
 
-"@react-types/shared@^3.3.0", "@react-types/shared@^3.4.0", "@react-types/shared@^3.6.0":
+"@react-types/shared@^3.2.1", "@react-types/shared@^3.3.0", "@react-types/shared@^3.4.0", "@react-types/shared@^3.6.0":
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/@react-types/shared/-/shared-3.6.0.tgz#e3f32bdef168de9245648e9f0357930b13795bc2"
   integrity sha512-oa8m+GP881IUQmi+L0UoM5aC5t/6L6QIEA2I1FUMgwMeJn24qPAcEqYrTWeJzX2S+gAfa5r9qbzcVEgpQorEUw==

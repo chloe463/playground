@@ -1,3 +1,4 @@
+import { useDialog } from "@react-aria/dialog";
 import dayjs from "dayjs";
 import { motion, Variants } from "framer-motion";
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
@@ -61,6 +62,7 @@ type CalendarProp = {
   baseRef: React.MutableRefObject<HTMLDivElement | null>;
   min: dayjs.Dayjs;
   max: dayjs.Dayjs;
+  name?: string;
   onSelectDate?: React.Dispatch<React.SetStateAction<Date | null>>;
   onClickCancel: () => void;
   onClickOk: () => void;
@@ -77,7 +79,7 @@ const isInRange = (min: dayjs.Dayjs, max: dayjs.Dayjs, value: dayjs.Dayjs): bool
 
 export const Calendar: React.VFC<CalendarProp > = ({
   innerValue,
-  placeholder,
+  name,
   baseRef,
   min,
   max,
@@ -89,6 +91,12 @@ export const Calendar: React.VFC<CalendarProp > = ({
   const yearGridRef = useRef<HTMLDivElement | null>(null);
   const [displayingDate, setDisplayingDate] = useState(innerValue || new Date());
   const [picking, setPicking] = useState<PickingTarget>("DATE");
+
+  const id = useMemo(() => name ? `${name}-date-picker` : "date-picker", [name]);
+  const { dialogProps, titleProps } = useDialog({
+    role: "dialog",
+    "aria-labelledby": id,
+  }, calendarRef);
 
   useLayoutEffect(() => {
     if (baseRef.current && calendarRef.current) {
@@ -113,6 +121,10 @@ export const Calendar: React.VFC<CalendarProp > = ({
       }
     }
   }, [yearGridRef, picking]);
+
+  useEffect(() => {
+    baseRef.current?.querySelector("h2")?.focus();
+  }, [baseRef]);
 
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
@@ -270,10 +282,10 @@ export const Calendar: React.VFC<CalendarProp > = ({
       animate={"animate"}
       exit={"exit"}
     >
-      <CalendarBase ref={calendarRef} tabIndex={0}>
+      <CalendarBase ref={calendarRef} tabIndex={0} {...dialogProps}>
         <Header>
           <HeaderLeft>
-            <YearMonth>
+            <YearMonth {...titleProps} id={id}>
               {MONTHS[displayingDate.getMonth()]} {displayingDate.getFullYear()}
             </YearMonth>
             <IconButton
@@ -402,7 +414,7 @@ const HeaderRight = styled.div`
   align-items: center;
 `;
 
-const YearMonth = styled.p`
+const YearMonth = styled.h2`
   display: inline-block;
   color: ${colors.blackAlpha500};
   font-size: 14px;

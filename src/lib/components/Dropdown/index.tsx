@@ -1,3 +1,4 @@
+import { FocusScope } from "@react-aria/focus";
 import React, {
   useEffect,
   useRef,
@@ -31,10 +32,12 @@ export const Dropdown: React.VFC<DropdownProps> = (props) => {
   }, [isOpen]);
 
   return (
-    <DropdownBase ref={baseRef} onClick={() => setIsOpen(v => !v)} $focus={isOpen} tabIndex={0}>
-      <Placeholder className={"dropdown-placeholder"} $focus={isOpen} $hasValue={Boolean(value)}>{placeholder}</Placeholder>
-      <SelectedValue>{value}</SelectedValue>
-      <BottomBorder className={"dropdown-bottom-border"} $focus={isOpen} />
+    <>
+      <DropdownBase ref={baseRef} onClick={() => setIsOpen(v => !v)} $focus={isOpen} tabIndex={0}>
+        <Placeholder className={"dropdown-placeholder"} $focus={isOpen} $hasValue={Boolean(value)}>{placeholder}</Placeholder>
+        <SelectedValue>{value}</SelectedValue>
+        <BottomBorder className={"dropdown-bottom-border"} $focus={isOpen} />
+      </DropdownBase>
       {isOpen && (
         <Popper
           shouldCloseClickOverlay
@@ -42,19 +45,21 @@ export const Dropdown: React.VFC<DropdownProps> = (props) => {
           scrollLock
           onClose={() => setIsOpen(false)}
         >
-          <Options
-            options={props.options}
-            baseRef={baseRef}
-            isOpen={isOpen}
-            selectedItem={value}
-            onChange={(v) => {
-              onChange?.(v)
-              setIsOpen(false);
-            }}
-          />
+          <FocusScope contain autoFocus restoreFocus>
+            <Options
+              options={props.options}
+              baseRef={baseRef}
+              isOpen={isOpen}
+              selectedItem={value}
+              onChange={(v) => {
+                onChange?.(v)
+                setIsOpen(false);
+              }}
+            />
+          </FocusScope>
         </Popper>
       )}
-    </DropdownBase>
+    </>
   );
 };
 

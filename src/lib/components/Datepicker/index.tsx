@@ -104,6 +104,7 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
           >
             <FocusScope contain restoreFocus autoFocus>
               <Calendar
+                name={name}
                 placeholder={placeholder}
                 baseRef={baseRef}
                 innerValue={innerValue}

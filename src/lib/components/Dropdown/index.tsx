@@ -12,23 +12,28 @@ import { Options } from "./Options";
 type DropdownProps<T = string> = {
   options: T[];
   value: T,
+  itemToString: (v: T) => string;
   onChange?: (v: T) => void;
   placeholder?: string;
 };
 
 export const Dropdown: React.VFC<DropdownProps> = (props) => {
-  const { placeholder, value, onChange } = props;
+  const { placeholder, value, itemToString, onChange } = props;
   const [isOpen, setIsOpen] = useState(false);
   const baseRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
-      if (e.key === "Enter" && e.target === baseRef.current && isOpen === false) {
+      e.preventDefault();
+      e.stopPropagation();
+      if ((e.key === "Enter" || e.key === " ") && e.target === baseRef.current) {
         setIsOpen(v => !v);
+      } else if (e.key === "Escape" && isOpen) {
+        setIsOpen(false);
       }
     };
-    window.addEventListener("keyup", listener);
-    return () => window.removeEventListener("keyup", listener);
+    window.addEventListener("keydown", listener);
+    return () => window.removeEventListener("keydown", listener);
   }, [isOpen]);
 
   return (
@@ -49,8 +54,8 @@ export const Dropdown: React.VFC<DropdownProps> = (props) => {
             <Options
               options={props.options}
               baseRef={baseRef}
-              isOpen={isOpen}
               selectedItem={value}
+              itemToString={itemToString}
               onChange={(v) => {
                 onChange?.(v)
                 setIsOpen(false);

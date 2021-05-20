@@ -72,6 +72,7 @@ export const NewQuestionnaireForm: React.VFC = () => {
           placeholder={"Dropdown"}
           options={options}
           value={state}
+          itemToString={(v) => v}
           onChange={onChangeState}
         />
       </Field>

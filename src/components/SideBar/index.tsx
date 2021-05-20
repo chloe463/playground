@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router";
 import { Link as RouterLink } from "react-router-dom";
 import styled, { css } from "styled-components";
+import { colors } from "../../lib/styles";
 
 export type Page = {
   name: string;
@@ -57,7 +58,7 @@ const DummyLogo = styled.div`
   display: block;
   width: 36px;
   height: 36px;
-  background-color: rgba(0, 0, 0, 0.56);
+  background-color: ${colors.blackAlpha500};
   border-radius: 4px;
 `;
 
@@ -65,9 +66,9 @@ const Title = styled.h2`
   margin-left: 16px;
   font-size: 24px;
   line-height: 32px;
-  color: rgba(0, 0, 0, 0.74);
+  color: ${colors.blackAlpha700};
   &:hover {
-    color: rgba(0, 0, 0, 0.86);
+    color: ${colors.blackAlpha800};
   }
 `;
 
@@ -78,10 +79,10 @@ const List = styled.ul`
 const Item = styled.li<{ $selected: boolean }>`
   ${({ $selected }) => $selected && css`
     .dummy-icon-area {
-      background-color: rgba(0, 0, 0, 0.56);
+      background-color: ${colors.blackAlpha500};
     }
     .link {
-      color: rgba(0, 0, 0, 0.74);
+      color: ${colors.blackAlpha700};
     }
   `}
 `;
@@ -93,21 +94,21 @@ const Link = styled(RouterLink).attrs({ className: "link" })`
   font-size: 16px;
   font-weight: 500;
   line-height: 28px;
-  color: rgba(0, 0, 0, 0.56);
+  color: ${colors.blackAlpha500};
   text-decoration: none;
   text-transform: uppercase;
   transition: all 0.2s ease-out;
 
   &:hover, &:active {
-    color: rgba(0, 0, 0, 0.74);
+    color: ${colors.blackAlpha700};
     text-decoration: none;
 
     .dummy-icon-area {
-      background-color: rgba(0, 0, 0, 0.56);
+      background-color: ${colors.blackAlpha500};
     }
   }
   &:visited {
-    color: rgba(0, 0, 0, 0.56);
+    color: ${colors.blackAlpha500};
     text-decoration: none;
   }
 `;
@@ -117,7 +118,7 @@ const DummyIconArea = styled.div.attrs({ className: "dummy-icon-area" })`
   width: 24px;
   height: 24px;
   border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: ${colors.blackAlpha400};
   margin-right: 16px;
   transition: all 0.2s ease-out;
 `;

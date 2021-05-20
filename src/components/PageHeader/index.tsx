@@ -5,15 +5,17 @@ type PageHeaderProps = {
   title: string;
 };
 
-export const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
+export const PageHeader: React.FC<PageHeaderProps> = ({ title, children }) => {
   return (
     <Header>
       <PageTitle>{title}</PageTitle>
+      {children}
     </Header>
   );
 };
 
 const Header = styled.header`
+  position: relative;
   padding: 0 24px;
 `;
 

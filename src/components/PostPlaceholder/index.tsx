@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import { colors } from "../../lib/styles";
 
 export const PostPlaceholder: React.VFC = () => {
   return (
@@ -30,7 +31,7 @@ const DummyAvatar = styled.div`
   width: 64px;
   height: 64px;
   border-radius: 32px;
-  background-color: rgba(0, 0, 0, 0.06);
+  background-color: ${colors.blackAlpha100};
 `;
 
 const PostListItemContent = styled.div`
@@ -45,7 +46,7 @@ const ItemTitle = styled.h3`
   margin: 0;
   padding: 0;
   font-size: 22px;
-  background-color: rgba(0, 0, 0, 0.06);
+  background-color: ${colors.blackAlpha100};
   border-radius: 16px;
 `;
 
@@ -60,7 +61,7 @@ const ItemText = styled.p`
   font-size: 14px;
   width: 240px;
   height: 18px;
-  background-color: rgba(0, 0, 0, 0.06);
+  background-color: ${colors.blackAlpha100};
   border-radius: 9px;
 `;
 

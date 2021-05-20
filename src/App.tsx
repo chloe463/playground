@@ -5,6 +5,7 @@ import { useLocation } from "react-router";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import { Page, SideBar, SIDEBAR_WIDTH } from "./components/SideBar";
+import { Crud } from "./pages/Crud";
 import { LayoutAnimation } from "./pages/LayoutAnimation";
 import { VirtualizedList } from "./pages/VirtualizedList";
 
@@ -15,6 +16,7 @@ const inMemoryCache = new InMemoryCache({
     Query: {
       fields: {
         postConnection: relayStylePagination(["query"]),
+        questionnaireConnection: relayStylePagination(),
       }
     },
   }
@@ -41,6 +43,12 @@ const routes = [
     key: "virtualizedList",
     path: ["/virtualized-list", "/virtualized-list/:id"],
     component: VirtualizedList,
+    expect: false,
+  },
+  {
+    key: "crud",
+    path: ["/crud", "/crud/new"],
+    component: Crud,
     expect: false,
   },
 ];

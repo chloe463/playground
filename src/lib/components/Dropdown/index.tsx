@@ -15,17 +15,16 @@ type DropdownProps<T = string> = {
   itemToString: (v: T) => string;
   onChange?: (v: T) => void;
   placeholder?: string;
+  disabled?: boolean;
 };
 
 export const Dropdown: React.VFC<DropdownProps> = (props) => {
-  const { placeholder, value, itemToString, onChange } = props;
+  const { placeholder, value, itemToString, onChange, disabled } = props;
   const [isOpen, setIsOpen] = useState(false);
   const baseRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
       if ((e.key === "Enter" || e.key === " ") && e.target === baseRef.current) {
         setIsOpen(v => !v);
       } else if (e.key === "Escape" && isOpen) {
@@ -38,9 +37,15 @@ export const Dropdown: React.VFC<DropdownProps> = (props) => {
 
   return (
     <>
-      <DropdownBase ref={baseRef} onClick={() => setIsOpen(v => !v)} $focus={isOpen} tabIndex={0}>
+      <DropdownBase
+        ref={baseRef}
+        onClick={() => !disabled && setIsOpen(v => !v)}
+        tabIndex={disabled ? -1 : 0}
+        $focus={isOpen}
+        $disabled={disabled}
+      >
         <Placeholder className={"dropdown-placeholder"} $focus={isOpen} $hasValue={Boolean(value)}>{placeholder}</Placeholder>
-        <SelectedValue>{value}</SelectedValue>
+        <SelectedValue className={"dropdown-selected-value"}>{value}</SelectedValue>
         <BottomBorder className={"dropdown-bottom-border"} $focus={isOpen} />
       </DropdownBase>
       {isOpen && (
@@ -68,17 +73,17 @@ export const Dropdown: React.VFC<DropdownProps> = (props) => {
   );
 };
 
-const DropdownBase = styled.div<{ $focus: boolean }>`
+const DropdownBase = styled.div<{ $focus: boolean, $disabled?: boolean }>`
   position: relative;
   display: block;
   width: 100%;
   height: 56px;
   box-sizing: border-box;
-  background-color: ${colors.blackAlpha50};
+  background-color: ${({ $disabled }) => $disabled ? colors.blackAlpha100 : colors.blackAlpha50};
   border-bottom: 1px solid ${colors.blackAlpha500};
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  cursor: pointer;
+  cursor: ${({ $disabled }) => $disabled ? "normal" : "cursor"};
 
   &:after {
     content: "";
@@ -100,23 +105,31 @@ const DropdownBase = styled.div<{ $focus: boolean }>`
     }
   `}
 
-  &:focus {
-    outline: none;
-    background-color: ${colors.blackAlpha100};
-    & > .dropdown-placeholder {
-      color: ${colors.brand};
-    }
-    & > .dropdown-bottom-border {
-      opacity: 1;
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      display: block;
-      width: 100%;
-      height: 2px;
-      background-color: ${colors.brand};
-      transform: scaleX(1) translateY(-2px);
-    }
+  ${({ $disabled }) =>
+    $disabled ? css`
+      & > p.dropdown-selected-value {
+        color: ${colors.blackAlpha500};
+      }
+    ` : css`
+      &:focus {
+        outline: none;
+        background-color: ${colors.blackAlpha100};
+        & > label.dropdown-placeholder {
+          color: ${colors.brand};
+        }
+        & > .dropdown-bottom-border {
+          opacity: 1;
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          display: block;
+          width: 100%;
+          height: 2px;
+          background-color: ${colors.brand};
+          transform: scaleX(1) translateY(-2px);
+        }
+      }
+    `
   }
 `;
 
@@ -125,7 +138,7 @@ type PlaceholderProps = {
   $hasValue: boolean;
 };
 
-const Placeholder = styled.p<PlaceholderProps>`
+const Placeholder = styled.label<PlaceholderProps>`
   position: absolute;
   top: 16px;
   left: 16px;

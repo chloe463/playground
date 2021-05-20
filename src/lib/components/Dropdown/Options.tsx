@@ -1,3 +1,4 @@
+import { useFocusManager } from "@react-aria/focus";
 import React, {
   useEffect,
   useLayoutEffect,
@@ -7,10 +8,10 @@ import styled, { css } from "styled-components";
 import { colors } from "../../styles";
 
 type OptionsProps<T = string> = {
-  isOpen: boolean;
   baseRef: React.MutableRefObject<HTMLDivElement | null>;
   options: T[];
   selectedItem: T;
+  itemToString:(v: T) => string;
   onChange: (v: T) => void;
 };
 
@@ -19,12 +20,13 @@ type ItemType = GetItemType<typeof Options>;
 
 export const Options: React.VFC<OptionsProps> = ({
   baseRef,
-  isOpen,
   options,
   selectedItem,
+  itemToString,
   onChange,
 }) => {
   const listRef = useRef<HTMLUListElement>(null);
+  const focusManager = useFocusManager();
 
   useLayoutEffect(() => {
     if (baseRef.current && listRef.current) {
@@ -67,54 +69,47 @@ export const Options: React.VFC<OptionsProps> = ({
   }, [baseRef, listRef]);
 
   useEffect(() => {
-    if (isOpen) {
-      const listener = (e: KeyboardEvent) => {
-        if (listRef.current) {
-          const selectedItemIndex = Array.from(listRef.current.children).findIndex((el) => el.getAttribute("data-selected") === "true");
-          switch(e.key) {
-            case "ArrowDown": {
-              if (selectedItemIndex !== -1) {
-                (listRef.current.children[selectedItemIndex] as HTMLElement).setAttribute("data-selected", "false");
-              }
-              const nextIndex = selectedItemIndex === listRef.current.children.length - 1 ? selectedItemIndex : selectedItemIndex + 1;
-              (listRef.current.children[nextIndex] as HTMLElement).focus({ preventScroll: true });
-              (listRef.current.children[nextIndex] as HTMLElement).setAttribute("data-selected", "true");
-              break;
-            }
-            case "ArrowUp": {
-              if (selectedItemIndex !== -1) {
-                (listRef.current.children[selectedItemIndex] as HTMLElement).setAttribute("data-selected", "false");
-              }
-              const nextIndex = selectedItemIndex === 0 ? selectedItemIndex : selectedItemIndex - 1;
-              (listRef.current.children[nextIndex] as HTMLElement).focus({ preventScroll: true });
-              (listRef.current.children[nextIndex] as HTMLElement).setAttribute("data-selected", "true");
-              break;
-            }
-            case "Enter": {
-              if (selectedItemIndex !== -1) {
-                onChange(options[selectedItemIndex]);
-              }
-            }
-          }
+    const listener = (e: KeyboardEvent) => {
+      if (!listRef.current) {
+        return;
+      }
+      e.stopPropagation();
+      e.preventDefault();
+      const activeElement = document.activeElement;
+      const selectedItemIndex = Array.from(listRef.current.children).findIndex((el) => el === activeElement);
+      switch(e.key) {
+        case "ArrowDown": {
+          focusManager.focusNext({ wrap: true});
+          break;
         }
-      };
-      window.addEventListener("keydown", listener);
-      return () => window.removeEventListener("keydown", listener);
+        case "ArrowUp": {
+          focusManager.focusPrevious({ wrap: true });
+          break;
+        }
+        case " ": {
+          if (selectedItemIndex !== -1) {
+            onChange(options[selectedItemIndex]);
+          }
+          break;
+        }
+        case "Enter": {
+          if (selectedItemIndex !== -1) {
+            onChange(options[selectedItemIndex]);
+          }
+          break;
+        }
+      }
     }
-  }, [isOpen, options, listRef, onChange]);
+    window.addEventListener("keydown", listener);
+    return () => window.removeEventListener("keydown", listener);
+  }, [options, listRef, onChange, focusManager]);
 
   useEffect(() => {
     const baseDom = baseRef.current;
     return () => baseDom?.focus();
   }, [baseRef]);
 
-  if (!isOpen) {
-    return null;
-  }
-
   const onClickItem = (e: React.MouseEvent, v: ItemType) => {
-    e.stopPropagation();
-    e.preventDefault();
     onChange(v);
   };
 
@@ -130,7 +125,7 @@ export const Options: React.VFC<OptionsProps> = ({
             aria-selected={selectedItem === option}
             data-selected={selectedItem === option}
           >
-            {option}
+            {itemToString(option)}
           </OptionItem>
         );
       })}

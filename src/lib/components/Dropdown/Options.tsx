@@ -66,25 +66,6 @@ export const Options: React.VFC<OptionsProps> = ({
     }
   }, [baseRef, listRef]);
 
-  useLayoutEffect(() => {
-    const listDom = listRef.current;
-    return () => {
-      window.requestAnimationFrame(() => {
-        if (listDom) {
-          listDom.style.opacity = "1";
-          window.requestAnimationFrame(() => {
-            if (listDom) {
-              console.log("unmount", listDom);
-              listDom.style.opacity = "0";
-              listDom.style.transitionDuration = "250ms";
-              listDom.style.transitionTimingFunction= "cubic-bezier(0.3, 0.3, 0.3, 1)";
-            }
-          })
-        }
-      });
-    };
-  }, []);
-
   useEffect(() => {
     if (isOpen) {
       const listener = (e: KeyboardEvent) => {

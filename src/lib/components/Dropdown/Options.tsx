@@ -32,6 +32,8 @@ export const Options: React.VFC<OptionsProps> = ({
       if (selectedItemEl) {
         selectedItemEl.scrollIntoView({ block: "center" });
         (selectedItemEl as HTMLElement).focus();
+      } else {
+        listRef.current.focus();
       }
 
       const { x, y, width, height } = baseRef.current.getBoundingClientRect();
@@ -119,6 +121,11 @@ export const Options: React.VFC<OptionsProps> = ({
       return () => window.removeEventListener("keydown", listener);
     }
   }, [isOpen, options, listRef, onChange]);
+
+  useEffect(() => {
+    const baseDom = baseRef.current;
+    return () => baseDom?.focus();
+  }, [baseRef]);
 
   if (!isOpen) {
     return null;

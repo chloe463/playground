@@ -17,8 +17,8 @@ export const NewQuestionnaireForm: React.VFC = () => {
     setTitle(s);
   };
 
-  const onChangeDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setDescription(e.currentTarget.value);
+  const onChangeDescription = (s: string) => {
+    setDescription(s);
   };
 
   const onChangeState = (v: string) => {
@@ -72,7 +72,13 @@ export const NewQuestionnaireForm: React.VFC = () => {
         />
       </Field>
       <Field>
-        <TextArea placeholder={"Description"} value={description} onChange={onChangeDescription}/>
+        <TextArea
+          id="description"
+          label={"Description"}
+          name="description"
+          value={description}
+          onChange={onChangeDescription}
+        />
       </Field>
       <Field>
         <Dropdown

@@ -1,18 +1,25 @@
-import React, { TextareaHTMLAttributes } from "react";
+import { AriaTextFieldOptions, useTextField } from "@react-aria/textfield";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { colors } from "../../styles";
 
-type TextAreaProps = {} & TextareaHTMLAttributes<HTMLTextAreaElement>;
+type TextAreaProps = {} & AriaTextFieldOptions;
 
 export const TextArea: React.VFC<TextAreaProps> = (props) => {
-  const { placeholder, ...rest } = props;
+  const ref = useRef<HTMLTextAreaElement>(null);
+  const { inputProps, labelProps } = useTextField(props, ref) as {
+    inputProps: React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+    labelProps: React.LabelHTMLAttributes<HTMLLabelElement>,
+  };
+
   return (
     <Base>
       <StyledTextArea
+        {...inputProps}
         placeholder="&nbsp;"
-        {...rest}
+        ref={ref}
       />
-      <Label>{props.placeholder}</Label>
+      <Label {...labelProps} className="placeholder-label">{props.label}</Label>
       <BottomBorder />
     </Base>
   );
@@ -47,15 +54,15 @@ const StyledTextArea = styled.textarea`
     background-color: ${colors.blackAlpha100};
   }
 
-  &:placeholder-shown + .placeholder {
+  &:placeholder-shown + .placeholder-label {
     display: block;
   }
 
-  &:not(:placeholder-shown) + .placeholder {
+  &:not(:placeholder-shown) + .placeholder-label {
     transform: translateY(-12px) scale(.75);
   }
 
-  &:focus + .placeholder {
+  &:focus + .placeholder-label {
     transform: translateY(-12px) scale(.75);
     color: ${colors.brand};
   }
@@ -76,11 +83,11 @@ const StyledTextArea = styled.textarea`
   }
 `;
 
-const Label = styled.p.attrs({ className: "placeholder" })`
+const Label = styled.label`
   position: absolute;
   top: 16px;
   left: 16px;
-  color: ${colors.blackAlpha400};
+  color: ${colors.blackAlpha500};
   font-size: 16px;
   font-weight: 500;
   line-height: 28px;

@@ -2510,6 +2510,16 @@
     "@react-aria/utils" "^3.8.0"
     "@react-types/shared" "^3.6.0"
 
+"@react-aria/label@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@react-aria/label/-/label-3.1.2.tgz#3ed367f1e7fcf67304eaefc5202ec027bea27a1b"
+  integrity sha512-XwwmNfHYD12We7wjTMkfz37A8bN1L+Qkr3pSlsmuRYfSs0bg1RUDaQ6dzHL01sDilQWQidGSHibGKzwmELaMTw==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/utils" "^3.8.0"
+    "@react-types/label" "^3.2.1"
+    "@react-types/shared" "^3.6.0"
+
 "@react-aria/overlays@^3.6.3":
   version "3.6.3"
   resolved "https://registry.yarnpkg.com/@react-aria/overlays/-/overlays-3.6.3.tgz#e739bf1f3ed03762bb78701ad74faafac9ddce03"
@@ -2531,6 +2541,18 @@
   integrity sha512-+M0wrUlc2eTuMiwTfd0iFZJGu2hvMeYBLE8gRdbPJCDjLhrNWOQLKR/y6ntxQ9u8zjrNl/YPOdRtcqkA2EBnAQ==
   dependencies:
     "@babel/runtime" "^7.6.2"
+
+"@react-aria/textfield@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@react-aria/textfield/-/textfield-3.3.0.tgz#18d8f64d9f43289875485ce72172129bee4eaa32"
+  integrity sha512-KX12+dbYkNc310YNBuDFYcBjzNnmWmsCHMU9BGXm7UakBMEK47BGKiUWpTtA0aqAykLQcU/4YcOkeoBv8W5p4Q==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/focus" "^3.3.0"
+    "@react-aria/label" "^3.1.2"
+    "@react-aria/utils" "^3.8.0"
+    "@react-types/shared" "^3.6.0"
+    "@react-types/textfield" "^3.2.2"
 
 "@react-aria/utils@^3.8.0":
   version "3.8.0"
@@ -2584,6 +2606,13 @@
     "@react-types/overlays" "^3.2.1"
     "@react-types/shared" "^3.2.1"
 
+"@react-types/label@^3.2.1":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@react-types/label/-/label-3.4.0.tgz#6023dc9dd0146324ead52e08540cd60e57a3e27f"
+  integrity sha512-l84ysm1dcjL/5qVk9iN74z+/Ul0999XqnwTu6aTbuwAXqMk2sTU45eK2Yp/FJ7YWeflcF1vsomTkjMkX0BHKMw==
+  dependencies:
+    "@react-types/shared" "^3.4.0"
+
 "@react-types/overlays@^3.2.1", "@react-types/overlays@^3.4.0":
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/@react-types/overlays/-/overlays-3.4.0.tgz#3c4619906bb12e3697e770b59c2090bb18da25bd"
@@ -2595,6 +2624,13 @@
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/@react-types/shared/-/shared-3.6.0.tgz#e3f32bdef168de9245648e9f0357930b13795bc2"
   integrity sha512-oa8m+GP881IUQmi+L0UoM5aC5t/6L6QIEA2I1FUMgwMeJn24qPAcEqYrTWeJzX2S+gAfa5r9qbzcVEgpQorEUw==
+
+"@react-types/textfield@^3.2.2":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@react-types/textfield/-/textfield-3.2.2.tgz#2f310c125df7c4a64a19d7c5064537218f909d38"
+  integrity sha512-S+U+Uc0WDgMK8X28j5WUtmkCL25iTQ+oGfCRFf4/GJtiwfO9lVLCgH/NWxpoVuNsPGvt36rlDnyS82Ge9H1/qA==
+  dependencies:
+    "@react-types/shared" "^3.2.1"
 
 "@rollup/plugin-node-resolve@^7.1.1":
   version "7.1.3"

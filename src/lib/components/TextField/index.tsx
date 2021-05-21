@@ -1,20 +1,26 @@
-import React, { InputHTMLAttributes } from "react";
+import { AriaTextFieldOptions, useTextField } from "@react-aria/textfield";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { colors } from "../../styles";
 
-type TextFieldProps = {} & InputHTMLAttributes<HTMLInputElement>;
+type TextFieldProps = {} & AriaTextFieldOptions;
 
 export const TextField: React.VFC<TextFieldProps> = (props) => {
-  const { placeholder, ...rest } = props;
+  const ref = useRef<HTMLInputElement>(null);
+  const { inputProps, labelProps } = useTextField(props, ref) as {
+    inputProps: React.InputHTMLAttributes<HTMLInputElement>,
+    labelProps: React.LabelHTMLAttributes<HTMLLabelElement>,
+  };
+
   return (
     <Base>
       <TextInput
-        type="text"
+        {...inputProps}
         placeholder="&nbsp;"
-        {...rest}
+        ref={ref}
       />
-      <Label>{props.placeholder}</Label>
-      <BottomBorder />
+      <Label {...labelProps} className="placeholder-label">{props.label}</Label>
+      <BottomBorder className="bottom-border"/>
     </Base>
   );
 };
@@ -37,6 +43,7 @@ const TextInput = styled.input`
   box-sizing: border-box;
   width: 100%;
   padding: 20px 16px 6px 16px;
+  color: ${colors.blackAlpha800};
 
   border-top: 1px solid transparent;
   border-bottom: 1px solid ${colors.blackAlpha500};
@@ -47,15 +54,15 @@ const TextInput = styled.input`
     background-color: ${colors.blackAlpha100};
   }
 
-  &:placeholder-shown + .placeholder {
+  &:placeholder-shown + label.placeholder-label {
     display: block;
   }
 
-  &:not(:placeholder-shown) + .placeholder {
+  &:not(:placeholder-shown) + label.placeholder-label {
     transform: translateY(-12px) scale(.75);
   }
 
-  &:focus + .placeholder {
+  &:focus + label.placeholder-label {
     transform: translateY(-12px) scale(.75);
     color: ${colors.brand};
   }
@@ -76,11 +83,11 @@ const TextInput = styled.input`
   }
 `;
 
-const Label = styled.p.attrs({ className: "placeholder" })`
+const Label = styled.label`
   position: absolute;
   top: 16px;
   left: 16px;
-  color: ${colors.blackAlpha400};
+  color: ${colors.blackAlpha500};
   font-size: 16px;
   font-weight: 500;
   line-height: 28px;
@@ -89,7 +96,7 @@ const Label = styled.p.attrs({ className: "placeholder" })`
   pointer-events: none;
 `;
 
-const BottomBorder = styled.span.attrs({ className: "bottom-border" })`
+const BottomBorder = styled.span`
   opacity: 0;
   transform-origin: 50% 50%;
   transform: scaleX(.5);

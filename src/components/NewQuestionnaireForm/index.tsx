@@ -13,8 +13,8 @@ export const NewQuestionnaireForm: React.VFC = () => {
   const [startAt, setStartAt] = useState<Date>(new Date());
   const [endAt, setEndAt] = useState<Date>(new Date());
 
-  const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.currentTarget.value);
+  const onChangeTitle = (s: string) => {
+    setTitle(s);
   };
 
   const onChangeDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -62,7 +62,14 @@ export const NewQuestionnaireForm: React.VFC = () => {
   return (
     <Base>
       <Field>
-        <TextField placeholder={"Title"} value={title} onChange={onChangeTitle}/>
+        <TextField
+          id="title"
+          label={"Title"}
+          name="title"
+          value={title}
+          autoComplete="off"
+          onChange={onChangeTitle}
+        />
       </Field>
       <Field>
         <TextArea placeholder={"Description"} value={description} onChange={onChangeDescription}/>

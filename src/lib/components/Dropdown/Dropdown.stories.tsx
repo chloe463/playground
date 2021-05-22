@@ -25,3 +25,20 @@ export const Normal = () => {
     />
   );
 };
+
+export const WithEntryPoint = () => {
+  const [value, setValue] = useState("");
+  return (
+    <>
+      <Dropdown
+        placeholder={"Dropdown"}
+        options={options}
+        value={value}
+        itemToString={(v) => v}
+        onChange={action("onChange")}
+        optionsEntryPoingId="options-entry-point"
+      />
+      <div id="options-entry-point" />
+    </>
+  );
+};

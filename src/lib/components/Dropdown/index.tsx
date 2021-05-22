@@ -16,10 +16,11 @@ type DropdownProps<T = string> = {
   onChange?: (v: T) => void;
   placeholder?: string;
   disabled?: boolean;
+  optionsEntryPoingId?: string;
 };
 
 export const Dropdown: React.VFC<DropdownProps> = (props) => {
-  const { placeholder, value, itemToString, onChange, disabled } = props;
+  const { placeholder, value, itemToString, onChange, disabled, optionsEntryPoingId } = props;
   const [isOpen, setIsOpen] = useState(false);
   const baseRef = useRef<HTMLDivElement | null>(null);
 
@@ -54,6 +55,7 @@ export const Dropdown: React.VFC<DropdownProps> = (props) => {
           shouldCloseOnKeyupEscape
           scrollLock
           onClose={() => setIsOpen(false)}
+          entryPointId={optionsEntryPoingId}
         >
           <FocusScope contain autoFocus restoreFocus>
             <Options

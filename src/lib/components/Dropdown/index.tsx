@@ -92,7 +92,7 @@ const DropdownBase = styled.div<{ $focus: boolean, $disabled?: boolean }>`
     top: 24px;
     width: 8px;
     height: 6px;
-    background-color: ${colors.blackAlpha400};
+    background-color: ${colors.blackAlpha500};
     clip-path: polygon(0 0, 100% 0%, 50% 100%);
     /* transition: all 100ms ease-out; */
   }
@@ -142,7 +142,7 @@ const Placeholder = styled.label<PlaceholderProps>`
   position: absolute;
   top: 16px;
   left: 16px;
-  color: ${colors.blackAlpha400};
+  color: ${colors.blackAlpha500};
   font-size: 16px;
   font-weight: 500;
   line-height: 28px;

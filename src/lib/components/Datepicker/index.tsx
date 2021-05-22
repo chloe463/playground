@@ -16,6 +16,7 @@ type DatepickerProps = {
   disabled?: boolean;
   min?: Date | DateString;
   max?: Date | DateString;
+  calendarEntryPoint?: string;
   onChange: (v: Date | null) => void;
 };
 
@@ -31,6 +32,7 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
   disabled,
   min: _min,
   max: _max,
+  calendarEntryPoint,
   onChange,
 }) => {
   const baseRef = useRef<HTMLDivElement>(null);
@@ -100,6 +102,7 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
             shouldCloseClickOverlay
             shouldCloseOnKeyupEscape
             scrollLock
+            entryPointId={calendarEntryPoint}
             onClose={() => setIsOpen(false)}
           >
             <FocusScope contain restoreFocus autoFocus>

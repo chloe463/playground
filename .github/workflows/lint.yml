@@ -1,0 +1,16 @@
+name: lint
+
+on: [pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    env:
+      SKIP_PREFLIGHT_CHECK: true
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run linter
+        run: |
+          yarn install
+          yarn lint

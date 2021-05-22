@@ -49,6 +49,11 @@ const StyledTextArea = styled.textarea`
   font-family: inherit;
   font-size: 16px;
   line-height: 28px;
+  transition: all 150ms cubic-bezier(0.3, 0.3, 0.3, 1);
+
+  &:hover {
+    background-color: ${colors.blackAlpha100};
+  }
 
   &:focus {
     background-color: ${colors.blackAlpha100};

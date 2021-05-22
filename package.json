@@ -36,7 +36,7 @@
     "prebuild": "yarn codegen",
     "lint": "eslint . --ext .tsx --ext .ts",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "TZ=Asia/Tokyo react-scripts test",
     "eject": "react-scripts eject",
     "codegen": "graphql-codegen --config codegen.yml",
     "codegen:clean": "./scripts/clean-types.sh",

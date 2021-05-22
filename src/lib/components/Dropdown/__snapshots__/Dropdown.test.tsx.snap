@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown shoud opens options list on click 1`] = `
+<div>
+  <div
+    class="sc-hKgILt faeLCm"
+    tabindex="0"
+  >
+    <label
+      class="sc-eCssSg jMHCfh dropdown-placeholder"
+    >
+      placeholder
+    </label>
+    <p
+      class="sc-jSgupP emmsEv dropdown-selected-value"
+    />
+    <span
+      class="sc-gKsewC hTHtqV dropdown-bottom-border"
+    />
+  </div>
+  <div
+    id="options-entry-point"
+  >
+    <div
+      class="sc-bdfBwQ iVirlS"
+    >
+      <span
+        hidden=""
+      />
+      <ul
+        class="sc-gsTCUz ieLYSO"
+        style="position: fixed; width: 0px; transform: translate(undefinedpx, NaNpx);"
+      >
+        <li
+          aria-selected="false"
+          class="sc-dlfnbm bKLfJy"
+          data-selected="false"
+          tabindex="0"
+        >
+          Option1
+        </li>
+        <li
+          aria-selected="false"
+          class="sc-dlfnbm bKLfJy"
+          data-selected="false"
+          tabindex="0"
+        >
+          Option2
+        </li>
+        <li
+          aria-selected="false"
+          class="sc-dlfnbm bKLfJy"
+          data-selected="false"
+          tabindex="0"
+        >
+          Option3
+        </li>
+      </ul>
+      <span
+        hidden=""
+      />
+    </div>
+  </div>
+</div>
+`;

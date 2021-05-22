@@ -1,0 +1,407 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown shoud opens options list on click 1`] = `
+<div>
+  <div
+    class="sc-bkzZxe eytNqS"
+    tabindex="0"
+  >
+    <label
+      class="sc-dIUggk ODXsY datepicker-label"
+    />
+    <input
+      class="sc-idOhPF sRzPA"
+      type="hidden"
+      value="2021-05-23"
+    />
+    <p
+      class="sc-hHftDr bKcKqc"
+    >
+      2021/05/23
+    </p>
+    <span
+      class="sc-dmlrTW imHFoD datepicker-bottom-border"
+    />
+  </div>
+  <div
+    id="calendar-entry-point"
+  >
+    <div
+      class="sc-bdfBwQ iVirlS"
+    >
+      <span
+        hidden=""
+      />
+      <div
+        style="opacity: 0; transform: translateY(-16px) translateZ(0);"
+      >
+        <div
+          aria-labelledby="date-picker"
+          class="sc-gsTCUz bJoTiW"
+          role="dialog"
+          style="position: fixed; transform: translate(undefinedpx, NaNpx);"
+          tabindex="-1"
+        >
+          <header
+            class="sc-dlfnbm kVrWBQ"
+          >
+            <div
+              class="sc-hKgILt chiWrn"
+            >
+              <h2
+                class="sc-jSgupP lkerYl"
+                id="date-picker"
+              >
+                May
+                 
+                2021
+              </h2>
+              <button
+                aria-label="Switch to year picker"
+                class="sc-gKsewC dbAoBs"
+                type="button"
+              >
+                <span
+                  class="sc-iBPRYJ iNPwGu"
+                />
+              </button>
+            </div>
+            <div
+              class="sc-eCssSg lffWUo"
+            >
+              <button
+                aria-label="Show previous month"
+                class="sc-gKsewC dbAoBs"
+                type="button"
+              >
+                <span
+                  class="sc-fubCfw jSOIpw"
+                />
+              </button>
+              <button
+                aria-label="Show next month"
+                class="sc-gKsewC dbAoBs"
+                type="button"
+              >
+                <span
+                  class="sc-pFZIQ eepctN"
+                />
+              </button>
+            </div>
+          </header>
+          <div
+            class="sc-jrAGrp"
+          >
+            <div
+              class="sc-kEjbxe grDMmH"
+            >
+              <span>
+                S
+              </span>
+              <span>
+                M
+              </span>
+              <span>
+                T
+              </span>
+              <span>
+                W
+              </span>
+              <span>
+                T
+              </span>
+              <span>
+                F
+              </span>
+              <span>
+                S
+              </span>
+            </div>
+            <div
+              class="sc-iqHYGH ccGfrD"
+            >
+              <span />
+              <span />
+              <span />
+              <span />
+              <span />
+              <span />
+              <button
+                aria-label="2021-05-01"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                1
+              </button>
+              <button
+                aria-label="2021-05-02"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                2
+              </button>
+              <button
+                aria-label="2021-05-03"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                3
+              </button>
+              <button
+                aria-label="2021-05-04"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                4
+              </button>
+              <button
+                aria-label="2021-05-05"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                5
+              </button>
+              <button
+                aria-label="2021-05-06"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                6
+              </button>
+              <button
+                aria-label="2021-05-07"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                7
+              </button>
+              <button
+                aria-label="2021-05-08"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                8
+              </button>
+              <button
+                aria-label="2021-05-09"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                9
+              </button>
+              <button
+                aria-label="2021-05-10"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                10
+              </button>
+              <button
+                aria-label="2021-05-11"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                11
+              </button>
+              <button
+                aria-label="2021-05-12"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                12
+              </button>
+              <button
+                aria-label="2021-05-13"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                13
+              </button>
+              <button
+                aria-label="2021-05-14"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                14
+              </button>
+              <button
+                aria-label="2021-05-15"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                15
+              </button>
+              <button
+                aria-label="2021-05-16"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                16
+              </button>
+              <button
+                aria-label="2021-05-17"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                17
+              </button>
+              <button
+                aria-label="2021-05-18"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                18
+              </button>
+              <button
+                aria-label="2021-05-19"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                19
+              </button>
+              <button
+                aria-label="2021-05-20"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                20
+              </button>
+              <button
+                aria-label="2021-05-21"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                21
+              </button>
+              <button
+                aria-label="2021-05-22"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                22
+              </button>
+              <button
+                aria-label="2021-05-23"
+                class="sc-crrsfI iskuVt"
+                type="button"
+              >
+                23
+              </button>
+              <button
+                aria-label="2021-05-24"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                24
+              </button>
+              <button
+                aria-label="2021-05-25"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                25
+              </button>
+              <button
+                aria-label="2021-05-26"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                26
+              </button>
+              <button
+                aria-label="2021-05-27"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                27
+              </button>
+              <button
+                aria-label="2021-05-28"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                28
+              </button>
+              <button
+                aria-label="2021-05-29"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                29
+              </button>
+              <button
+                aria-label="2021-05-30"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                30
+              </button>
+              <button
+                aria-label="2021-05-31"
+                class="sc-crrsfI csimPa"
+                type="button"
+              >
+                31
+              </button>
+              <button
+                class="sc-crrsfI csimPa"
+                disabled=""
+                type="button"
+              >
+                1
+              </button>
+              <button
+                class="sc-crrsfI csimPa"
+                disabled=""
+                type="button"
+              >
+                2
+              </button>
+              <button
+                class="sc-crrsfI csimPa"
+                disabled=""
+                type="button"
+              >
+                3
+              </button>
+              <button
+                class="sc-crrsfI csimPa"
+                disabled=""
+                type="button"
+              >
+                4
+              </button>
+              <button
+                class="sc-crrsfI csimPa"
+                disabled=""
+                type="button"
+              >
+                5
+              </button>
+            </div>
+          </div>
+          <footer
+            class="sc-kstrdz dOREyJ"
+          >
+            <button
+              class="sc-hBEYos sc-fodVxV JoxAl"
+              type="button"
+            >
+              Cancel
+            </button>
+            <button
+              class="sc-hBEYos sc-fFubgz JoxAl"
+              type="button"
+            >
+              OK
+            </button>
+          </footer>
+        </div>
+      </div>
+      <span
+        hidden=""
+      />
+    </div>
+  </div>
+</div>
+`;

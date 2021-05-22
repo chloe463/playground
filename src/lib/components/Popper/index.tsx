@@ -9,6 +9,7 @@ type PopperProps = {
   shouldCloseOnKeyupEscape?: boolean;
   scrollLock?: boolean;
   children: React.ReactNode;
+  entryPointId?: string;
 };
 
 export const Popper: React.VFC<PopperProps> = ({
@@ -16,6 +17,7 @@ export const Popper: React.VFC<PopperProps> = ({
   shouldCloseClickOverlay,
   shouldCloseOnKeyupEscape,
   scrollLock,
+  entryPointId,
   children
 }) => {
   const overlayRef = useRef<HTMLDivElement | null>(null);
@@ -28,11 +30,17 @@ export const Popper: React.VFC<PopperProps> = ({
   }, overlayRef);
   usePreventScroll({ isDisabled: !scrollLock });
 
+  const entryPoint = entryPointId ? document.getElementById(entryPointId) : document.querySelector("body");
+  
+  if (!entryPoint) {
+    throw new Error(`Entry point dom is not found!! entryPointId: ${entryPointId}`);
+  }
+
   return ReactDOM.createPortal(
     <Overlay {...overlayProps} ref={overlayRef}>
       {children}
     </Overlay>,
-    document.querySelector("body") as Element
+    entryPoint as Element
   );
 }
 

@@ -30,21 +30,19 @@ describe("Dropdown", () => {
 
     const dropDownBase = container.querySelector("div");
     expect(dropDownBase).toBeTruthy();
-    if (!dropDownBase) {
-      throw new Error("No dropdown base found");
-    }
+    if (!dropDownBase) throw new Error("No dropdown base found");
+
     fireEvent.click(dropDownBase);
     expect(container).toMatchSnapshot();
+
     const portalBase = container.querySelector("#options-entry-point");
     expect(portalBase).toBeTruthy();
-    if (!portalBase) {
-      throw new Error("No portal base found");
-    }
+
+    if (!portalBase) throw new Error("No portal base found");
     const list = portalBase.querySelector("ul");
     expect(list).toBeTruthy();
-    if (!list) {
-      throw new Error("No list found");
-    }
+    if (!list) throw new Error("No list found");
+
     expect(list.children.length).toBe(3);
   });
 });

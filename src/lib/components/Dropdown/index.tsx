@@ -83,7 +83,7 @@ const DropdownBase = styled.div<{ $focus: boolean, $disabled?: boolean }>`
   border-bottom: 1px solid ${colors.blackAlpha500};
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  cursor: ${({ $disabled }) => $disabled ? "normal" : "cursor"};
+  cursor: ${({ $disabled }) => $disabled ? "normal" : "pointer"};
 
   &:after {
     content: "";

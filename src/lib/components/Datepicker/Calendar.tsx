@@ -290,6 +290,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
             </YearMonth>
             <IconButton
               type="button"
+              aria-label={picking === "DATE" ? "Switch to year picker" : "Switch to month date picker"}
               onClick={() => setPicking((current) => current === "YEAR_MONTH" ? "DATE" : "YEAR_MONTH")}
             >
               <TriangleDown />
@@ -297,10 +298,18 @@ export const Calendar: React.VFC<CalendarProp > = ({
           </HeaderLeft>
           {picking === "DATE" && (
             <HeaderRight>
-              <IconButton type="button" onClick={() => onClickChevronLeft()}>
+              <IconButton
+                type="button"
+                aria-label={"Show previous month"}
+                onClick={() => onClickChevronLeft()}
+              >
                 <ChevronLeft />
               </IconButton>
-              <IconButton type="button" onClick={() => onClickChevronRight()}>
+              <IconButton
+                type="button"
+                aria-label={"Show next month"}
+                onClick={() => onClickChevronRight()}
+              >
                 <ChevronRight />
               </IconButton>
             </HeaderRight>
@@ -324,7 +333,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
                     <span key={i} />
                   );
                 })}
-                {days.map(({ date, isToday, selected, disabled }) => {
+                {days.map(({ date, fullDate, isToday, selected, disabled }) => {
                   return (
                     <DateCell
                       type="button"
@@ -337,6 +346,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
                         onClickDateCell(date)
                       }}
                       disabled={disabled}
+                      aria-label={fullDate}
                     >
                       {date}
                     </DateCell>
@@ -368,6 +378,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
                       }}
                       data-selected={selected}
                       disabled={disabled}
+                      aria-label={`${year}`}
                     >
                       {year}
                     </YearCell>
@@ -499,7 +510,7 @@ const WeekDays = styled.div`
   margin: 0 16px;
   font-size: 12px;
   line-height: 14px;
-  color: ${colors.blackAlpha400};
+  color: ${colors.blackAlpha500};
 `;
 
 const DaysGrid = styled.div`

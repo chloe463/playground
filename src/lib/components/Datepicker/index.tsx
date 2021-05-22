@@ -192,7 +192,7 @@ const Placeholder = styled.label<PlaceholderProps>`
   position: absolute;
   top: 16px;
   left: 16px;
-  color: ${colors.blackAlpha400};
+  color: ${colors.blackAlpha500};
   font-size: 16px;
   font-weight: 500;
   line-height: 28px;

@@ -8,6 +8,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: |
-        yarn install
-        yarn lint
+      - name: Run linter
+        run: |
+          yarn install
+          yarn lint

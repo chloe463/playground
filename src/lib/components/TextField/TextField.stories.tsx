@@ -5,7 +5,7 @@ export default {
   title: "TextField",
 };
 
-export const _Default = () => {
+export const Normal = () => {
   const [value, setValue] = useState("");
   return (
     <TextField

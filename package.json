@@ -34,6 +34,7 @@
     "prestart": "yarn codegen:clean",
     "start": "concurrently \"react-scripts start\" \"yarn codegen:watch\"",
     "prebuild": "yarn codegen",
+    "lint": "eslint . --ext .tsx --ext .ts",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

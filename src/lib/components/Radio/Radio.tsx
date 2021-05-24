@@ -12,7 +12,7 @@ type RadioProps = {
 } & AriaRadioProps;
 
 const FOCUS_RIPPLE_DURATION_MS = 250;
-const CLICK_RIPPLE_DURATION_MS = 300;
+const CLICK_RIPPLE_DURATION_MS = 800;
 
 export const Radio: React.VFC<RadioProps> = (props) => {
   const { children } = props;
@@ -115,13 +115,21 @@ const FocusRipple = styled.span`
 
 
 const rippleExiting = keyframes`
-  from {
-    opacity: 0.4;
-    transform: scale(0.7);
+  0% {
+    transform: scale(0);
+    opacity: 1;
   }
-  to {
-    opacity: 0;
+  40% {
     transform: scale(1);
+    opacity: 0.2;
+  }
+  90% {
+    transform: scale(1);
+    opacity: 0.05;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
   }
 `;
 

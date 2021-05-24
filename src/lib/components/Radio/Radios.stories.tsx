@@ -1,3 +1,4 @@
+import { colors } from "../../styles";
 import { Radio } from "./Radio";
 import { RadioGroup } from "./RadioGroup";
 
@@ -26,6 +27,26 @@ export const Normal = () => {
           </Radio> 
         );
       })}
+    </RadioGroup>
+  );
+};
+
+export const WithSomeStyle = () => {
+  return (
+    <RadioGroup label={"Foo"} name={"bar"}>
+      <div style={{ marginTop: "16px" }}>
+        {OPTIONS.map((option) => {
+          return (
+            <div key={option.value} style={{ marginTop: "8px" }}>
+              <Radio value={`${option.value}`}>
+                <span style={{ fontSize: "14px", lineHeight: "24px", color: colors.blackAlpha800 }}>
+                  {option.label}
+                </span>
+              </Radio> 
+            </div>
+          );
+        })}
+      </div>
     </RadioGroup>
   );
 };

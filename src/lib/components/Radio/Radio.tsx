@@ -65,8 +65,9 @@ export const Radio: React.VFC<RadioProps> = (props) => {
 };
 
 const Label = styled.label`
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 const RadioButton = styled.span`
@@ -112,7 +113,6 @@ const FocusRipple = styled.span`
   animation-duration: ${FOCUS_RIPPLE_DURATION_MS}ms;
   animation-timing-function: cubic-bezier(0.5, 0.5, 0.5, 1);
 `;
-
 
 const rippleExiting = keyframes`
   0% {

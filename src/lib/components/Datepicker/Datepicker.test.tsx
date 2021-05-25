@@ -4,7 +4,7 @@ import { Datepicker } from "./index";
 describe("Dropdown", () => {
   it ("should render without crash", () => {
     const onChange = jest.fn();
-    const { container } = render(<Datepicker value={new Date()} onChange={onChange} />);
+    const { container } = render(<Datepicker value={new Date(2021, 0, 1)} onChange={onChange} />);
     const input = container.querySelector("div");
     expect(input).toBeTruthy();
   });
@@ -14,7 +14,7 @@ describe("Dropdown", () => {
     const { container } = render(
       <>
         <Datepicker
-          value={new Date()}
+          value={new Date(2021, 0, 1)}
           onChange={onChange}
           calendarEntryPoint="calendar-entry-point"
         />

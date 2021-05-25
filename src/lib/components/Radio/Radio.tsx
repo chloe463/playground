@@ -3,7 +3,7 @@ import { useRadio } from "@react-aria/radio";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { AriaRadioProps } from "@react-types/radio";
 import React, { useContext, useMemo, useRef, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { colors } from "../../styles/colors";
 import { RadioContext } from "./RadioGroup";
 
@@ -43,12 +43,17 @@ export const Radio: React.VFC<RadioProps> = (props) => {
 
   return (
     <Label $disabled={isDisabled}>
-      <RadioButton $disabled={isDisabled} onClick={() => !isDisabled && onClickRadioButton()}>
+      <RadioButton
+        $selected={isSelected}
+        $disabled={isDisabled}
+        onClick={() => !isDisabled && onClickRadioButton()}
+      >
         <VisuallyHidden>
           <input {...inputProps} {...focusProps} ref={ref} />
         </VisuallyHidden>
         <svg width={24} height={24} aria-hidden="true" style={{ marginRight: 4 }}>
           <circle
+            className={"outer-circle"}
             cx={12}
             cy={12}
             r={10}
@@ -57,10 +62,11 @@ export const Radio: React.VFC<RadioProps> = (props) => {
             strokeWidth={2}
           />
           <circle
+            className={"inner-circle"}
             cx={12}
             cy={12}
             r={5}
-            fill={isSelected ? colors.brand : "none"}
+            fill={isDisabled ? colors.blackAlpha200 : colors.brand}
             stroke="none"
           />
         </svg>
@@ -81,11 +87,33 @@ const Label = styled.label<{ $disabled?: boolean }>`
   color: ${colors.blackAlpha400};
 `;
 
-const RadioButton = styled.span<{ $disabled?: boolean }>`
+const RadioButton = styled.span<{
+  $selected: boolean,
+  $disabled?: boolean,
+}>`
   position: relative;
   display: inline-grid;
   place-items: center;
   cursor: ${({ $disabled }) => $disabled ? "normal" : "pointer"};
+
+  .inner-circle {
+    transition-property: all;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.5, 0.5, 0.5, 1);
+    transform-origin: 50% 50%;
+  }
+
+  ${({ $selected }) => $selected ? css`
+    .inner-circle {
+      transform: scale(1);
+      fill-opacity: 1;
+    }
+  ` : css`
+    .inner-circle {
+      transform: scale(0);
+      fill-opacity: 0;
+    }
+  `}
 `;
 
 const RippleRoot = styled.span`

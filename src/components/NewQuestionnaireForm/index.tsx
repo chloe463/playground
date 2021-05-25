@@ -3,8 +3,10 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { Datepicker } from "../../lib/components/Datepicker";
 import { Dropdown } from "../../lib/components/Dropdown";
+import { Radio, RadioGroup } from "../../lib/components/Radio";
 import { TextArea } from "../../lib/components/TextArea";
 import { TextField } from "../../lib/components/TextField";
+import { colors } from "../../lib/styles";
 
 export const NewQuestionnaireForm: React.VFC = () => {
   const [title, setTitle] = useState("");
@@ -109,6 +111,25 @@ export const NewQuestionnaireForm: React.VFC = () => {
           onChange={onChangeEndAt}
         />
       </Field>
+      <Field>
+        <RadioGroupOuter>
+          <RadioGroup label={"RadioGroup"} name={"radio-group"}>
+            <RadioGroupInner>
+              {["Option1", "Option2", "Option3", "Option4"].map((v, i) => {
+                return (
+                  <RadioWrapper key={v}>
+                    <Radio value={v} isDisabled={i===3}>
+                      <RadioLabel $disabled={i===3}>
+                        {v}
+                      </RadioLabel>
+                    </Radio>
+                  </RadioWrapper>
+                );
+              })}
+            </RadioGroupInner>
+          </RadioGroup>
+        </RadioGroupOuter>
+      </Field>
     </Base>
   );
 };
@@ -118,8 +139,28 @@ const Base = styled.div`
 `;
 
 const Field = styled.div`
-  width: 320px;
+  width: 480px;
   & + & {
     margin-top: 32px;
   }
+`;
+
+const RadioGroupOuter = styled.div`
+  padding: 0 16px;
+`;
+
+const RadioGroupInner = styled.div`
+  margin-top: 16px;
+`;
+
+const RadioWrapper = styled.div`
+  display: inline-block;
+  & + & {
+    margin-left: 16px;
+  }
+`;
+
+const RadioLabel = styled.span<{ $disabled?: boolean }>`
+  margin-left: 4px;
+  color: ${({ $disabled }) => $disabled ? colors.blackAlpha400 : colors.blackAlpha800};
 `;

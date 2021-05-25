@@ -12,12 +12,12 @@ exports[`Dropdown shoud opens options list on click 1`] = `
     <input
       class="sc-idOhPF sRzPA"
       type="hidden"
-      value="2021-05-23"
+      value="2021-01-01"
     />
     <p
       class="sc-hHftDr bKcKqc"
     >
-      2021/05/23
+      2021/01/01
     </p>
     <span
       class="sc-dmlrTW imHFoD datepicker-bottom-border"
@@ -52,7 +52,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
                 class="sc-jSgupP lkerYl"
                 id="date-picker"
               >
-                May
+                January
                  
                 2021
               </h2>
@@ -125,219 +125,218 @@ exports[`Dropdown shoud opens options list on click 1`] = `
               <span />
               <span />
               <span />
-              <span />
               <button
-                aria-label="2021-05-01"
-                class="sc-crrsfI csimPa"
+                aria-label="2021-01-01"
+                class="sc-crrsfI cKPAwV"
                 type="button"
               >
                 1
               </button>
               <button
-                aria-label="2021-05-02"
+                aria-label="2021-01-02"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 2
               </button>
               <button
-                aria-label="2021-05-03"
+                aria-label="2021-01-03"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 3
               </button>
               <button
-                aria-label="2021-05-04"
+                aria-label="2021-01-04"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 4
               </button>
               <button
-                aria-label="2021-05-05"
+                aria-label="2021-01-05"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 5
               </button>
               <button
-                aria-label="2021-05-06"
+                aria-label="2021-01-06"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 6
               </button>
               <button
-                aria-label="2021-05-07"
+                aria-label="2021-01-07"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 7
               </button>
               <button
-                aria-label="2021-05-08"
+                aria-label="2021-01-08"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 8
               </button>
               <button
-                aria-label="2021-05-09"
+                aria-label="2021-01-09"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 9
               </button>
               <button
-                aria-label="2021-05-10"
+                aria-label="2021-01-10"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 10
               </button>
               <button
-                aria-label="2021-05-11"
+                aria-label="2021-01-11"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 11
               </button>
               <button
-                aria-label="2021-05-12"
+                aria-label="2021-01-12"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 12
               </button>
               <button
-                aria-label="2021-05-13"
+                aria-label="2021-01-13"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 13
               </button>
               <button
-                aria-label="2021-05-14"
+                aria-label="2021-01-14"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 14
               </button>
               <button
-                aria-label="2021-05-15"
+                aria-label="2021-01-15"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 15
               </button>
               <button
-                aria-label="2021-05-16"
+                aria-label="2021-01-16"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 16
               </button>
               <button
-                aria-label="2021-05-17"
+                aria-label="2021-01-17"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 17
               </button>
               <button
-                aria-label="2021-05-18"
+                aria-label="2021-01-18"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 18
               </button>
               <button
-                aria-label="2021-05-19"
+                aria-label="2021-01-19"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 19
               </button>
               <button
-                aria-label="2021-05-20"
+                aria-label="2021-01-20"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 20
               </button>
               <button
-                aria-label="2021-05-21"
+                aria-label="2021-01-21"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 21
               </button>
               <button
-                aria-label="2021-05-22"
+                aria-label="2021-01-22"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 22
               </button>
               <button
-                aria-label="2021-05-23"
-                class="sc-crrsfI iskuVt"
+                aria-label="2021-01-23"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 23
               </button>
               <button
-                aria-label="2021-05-24"
+                aria-label="2021-01-24"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 24
               </button>
               <button
-                aria-label="2021-05-25"
+                aria-label="2021-01-25"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 25
               </button>
               <button
-                aria-label="2021-05-26"
+                aria-label="2021-01-26"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 26
               </button>
               <button
-                aria-label="2021-05-27"
+                aria-label="2021-01-27"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 27
               </button>
               <button
-                aria-label="2021-05-28"
+                aria-label="2021-01-28"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 28
               </button>
               <button
-                aria-label="2021-05-29"
+                aria-label="2021-01-29"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 29
               </button>
               <button
-                aria-label="2021-05-30"
+                aria-label="2021-01-30"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
                 30
               </button>
               <button
-                aria-label="2021-05-31"
+                aria-label="2021-01-31"
                 class="sc-crrsfI csimPa"
                 type="button"
               >
@@ -377,6 +376,13 @@ exports[`Dropdown shoud opens options list on click 1`] = `
                 type="button"
               >
                 5
+              </button>
+              <button
+                class="sc-crrsfI csimPa"
+                disabled=""
+                type="button"
+              >
+                6
               </button>
             </div>
           </div>

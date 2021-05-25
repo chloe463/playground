@@ -115,11 +115,11 @@ export const NewQuestionnaireForm: React.VFC = () => {
         <RadioGroupOuter>
           <RadioGroup label={"RadioGroup"} name={"radio-group"}>
             <RadioGroupInner>
-              {["Option1", "Option2", "Option3"].map((v) => {
+              {["Option1", "Option2", "Option3", "Option4"].map((v, i) => {
                 return (
                   <RadioWrapper key={v}>
-                    <Radio value={v}>
-                      <RadioLabel>
+                    <Radio value={v} isDisabled={i===3}>
+                      <RadioLabel $disabled={i===3}>
                         {v}
                       </RadioLabel>
                     </Radio>
@@ -139,7 +139,7 @@ const Base = styled.div`
 `;
 
 const Field = styled.div`
-  width: 360px;
+  width: 480px;
   & + & {
     margin-top: 32px;
   }
@@ -160,7 +160,7 @@ const RadioWrapper = styled.div`
   }
 `;
 
-const RadioLabel = styled.span`
+const RadioLabel = styled.span<{ $disabled?: boolean }>`
   margin-left: 4px;
-  color: ${colors.blackAlpha800};
+  color: ${({ $disabled }) => $disabled ? colors.blackAlpha400 : colors.blackAlpha800};
 `;

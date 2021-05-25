@@ -3,7 +3,7 @@
 exports[`Dropdown shoud opens options list on click 1`] = `
 <div>
   <div
-    class="sc-bkzZxe eytNqS"
+    class="sc-bkzZxe iIWQPe"
     tabindex="0"
   >
     <label
@@ -14,11 +14,11 @@ exports[`Dropdown shoud opens options list on click 1`] = `
       type="hidden"
       value="2021-01-01"
     />
-    <p
+    <span
       class="sc-hHftDr bKcKqc"
     >
       2021/01/01
-    </p>
+    </span>
     <span
       class="sc-dmlrTW imHFoD datepicker-bottom-border"
     />

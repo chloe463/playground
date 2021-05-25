@@ -73,17 +73,18 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
         ref={baseRef}
         $focus={isOpen}
         $disabled={disabled}
-        tabIndex={0}
-        onClick={() => disabled || setIsOpen(v => !v)}
+        tabIndex={disabled ? -1 : 0}
+        onClick={() => !disabled && setIsOpen(v => !v)}
+        aria-disabled={disabled}
       >
-        <Placeholder
+        <Label
           htmlFor={id}
           className={"datepicker-label"}
           $focus={isOpen}
           $hasValue={Boolean(value)}
         >
           {placeholder}
-        </Placeholder>
+        </Label>
         <VisuallyHiddenInput
           id={id}
           type="hidden"
@@ -92,7 +93,7 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
           disabled={disabled}
         />
         {value && innerValue && (
-          <SelectedValue>{dayjs(innerValue).format(format)}</SelectedValue>
+          <SelectedValue $disabled={disabled}>{dayjs(innerValue).format(format)}</SelectedValue>
         )}
         <BottomBorder className={"datepicker-bottom-border"} $focus={isOpen} />
       </Base>
@@ -142,25 +143,27 @@ const Base = styled.div<{ $focus: boolean, $disabled?: boolean }>`
     background-color: ${colors.blackAlpha100};
   }
 
-  &:focus {
-    outline: none;
-    background-color: ${colors.blackAlpha100};
+  ${({ $disabled }) => !$disabled && css`
+    &:focus {
+      outline: none;
+      background-color: ${colors.blackAlpha100};
 
-    & > .datepicker-label {
-      color: ${colors.brand};
+      & > .datepicker-label {
+        color: ${colors.brand};
+      }
+      & > .datepicker-bottom-border {
+        opacity: 1;
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: ${colors.brand};
+        transform: scaleX(1) translateY(-2px);
+      }
     }
-    & > .datepicker-bottom-border {
-      opacity: 1;
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      display: block;
-      width: 100%;
-      height: 2px;
-      background-color: ${colors.brand};
-      transform: scaleX(1) translateY(-2px);
-    }
-  }
+  `}
 
   ${({ $focus }) => $focus && css`
     background-color: ${colors.blackAlpha100};
@@ -191,7 +194,7 @@ type PlaceholderProps = {
   $hasValue: boolean;
 };
 
-const Placeholder = styled.label<PlaceholderProps>`
+const Label = styled.label<PlaceholderProps>`
   position: absolute;
   top: 16px;
   left: 16px;
@@ -213,11 +216,11 @@ const Placeholder = styled.label<PlaceholderProps>`
   `}
 `;
 
-const SelectedValue = styled.p`
+const SelectedValue = styled.span<{ $disabled?: boolean }>`
   position: absolute;
   top: 20px;
   left: 16px;
-  color: ${colors.blackAlpha800};
+  color: ${({ $disabled }) => $disabled ? colors.blackAlpha500 : colors.blackAlpha800};
   font-size: 16px;
   font-weight: 500;
   line-height: 28px;

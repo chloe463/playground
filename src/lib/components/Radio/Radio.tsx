@@ -2,7 +2,7 @@ import { useFocusRing } from "@react-aria/focus";
 import { useRadio } from "@react-aria/radio";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { AriaRadioProps } from "@react-types/radio";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useMemo, useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { colors } from "../../styles/colors";
 import { RadioContext } from "./RadioGroup";
@@ -15,7 +15,7 @@ const FOCUS_RIPPLE_DURATION_MS = 250;
 const CLICK_RIPPLE_DURATION_MS = 800;
 
 export const Radio: React.VFC<RadioProps> = (props) => {
-  const { children } = props;
+  const { children, isDisabled } = props;
   const ref = useRef<HTMLInputElement>(null);
   const state = useContext(RadioContext);
   const { inputProps } = useRadio(props, state, ref);
@@ -31,9 +31,19 @@ export const Radio: React.VFC<RadioProps> = (props) => {
     }, CLICK_RIPPLE_DURATION_MS);
   };
 
+  const strokeColor = useMemo(() => {
+    if (isDisabled) {
+      return colors.blackAlpha200;
+    }
+    if (isSelected) {
+      return colors.brand;
+    }
+    return colors.blackAlpha400;
+  }, [isSelected, isDisabled]);
+
   return (
-    <Label>
-      <RadioButton onClick={() => onClickRadioButton()}>
+    <Label $disabled={isDisabled}>
+      <RadioButton $disabled={isDisabled} onClick={() => !isDisabled && onClickRadioButton()}>
         <VisuallyHidden>
           <input {...inputProps} {...focusProps} ref={ref} />
         </VisuallyHidden>
@@ -43,7 +53,7 @@ export const Radio: React.VFC<RadioProps> = (props) => {
             cy={12}
             r={10}
             fill="none"
-            stroke={isSelected ? colors.brand : colors.blackAlpha400}
+            stroke={strokeColor}
             strokeWidth={2}
           />
           <circle
@@ -64,17 +74,18 @@ export const Radio: React.VFC<RadioProps> = (props) => {
   );
 };
 
-const Label = styled.label`
+const Label = styled.label<{ $disabled?: boolean }>`
   display: inline-flex;
   align-items: center;
-  cursor: pointer;
+  cursor: ${({ $disabled }) => $disabled ? "default" : "pointer"};
+  color: ${colors.blackAlpha400};
 `;
 
-const RadioButton = styled.span`
+const RadioButton = styled.span<{ $disabled?: boolean }>`
   position: relative;
   display: inline-grid;
   place-items: center;
-  cursor: pointer;
+  cursor: ${({ $disabled }) => $disabled ? "normal" : "pointer"};
 `;
 
 const RippleRoot = styled.span`

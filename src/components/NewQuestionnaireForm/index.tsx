@@ -109,6 +109,7 @@ export const NewQuestionnaireForm: React.VFC = () => {
           value={endAt}
           min={startAt ? dayjs(startAt).subtract(1, "day").toDate() : dayjs().subtract(1, "day").toDate()}
           onChange={onChangeEndAt}
+          disabled
         />
       </Field>
       <Field>

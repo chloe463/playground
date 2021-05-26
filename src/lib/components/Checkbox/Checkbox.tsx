@@ -15,12 +15,13 @@ const FOCUS_RIPPLE_DURATION_MS = 250;
 const CLICK_RIPPLE_DURATION_MS = 800;
 
 export const Checkbox: React.VFC<CheckboxProps> = (props) => {
-  const { children } = props;
+  const { children, isIndeterminate } = props;
   const ref = useRef<HTMLInputElement>(null);
   const state = useContext(CheckboxGroupContext);
   const { inputProps } = useCheckboxGroupItem(props, state, ref);
   const { isFocusVisible, focusProps } = useFocusRing();
 
+  console.log(state);
   const isDisabled = state.isDisabled || props.isDisabled;
   const isSelected = state.isSelected(props.value);
 
@@ -36,11 +37,11 @@ export const Checkbox: React.VFC<CheckboxProps> = (props) => {
     if (isDisabled) {
       return colors.blackAlpha200;
     }
-    if (isSelected) {
+    if (isSelected || isIndeterminate) {
       return colors.brand;
     }
     return colors.blackAlpha400;
-  }, [isSelected, isDisabled]);
+  }, [isIndeterminate, isSelected, isDisabled]);
 
   return (
     <Label $disabled={isDisabled}>
@@ -59,6 +60,7 @@ export const Checkbox: React.VFC<CheckboxProps> = (props) => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           style={{ marginRight: 4 }}
+          aria-hidden="true"
         >
           <rect
             x="2"
@@ -66,7 +68,7 @@ export const Checkbox: React.VFC<CheckboxProps> = (props) => {
             width="20"
             height="20"
             rx="2"
-            fill={isSelected ? colors.brand : "none"}
+            fill={isSelected || isIndeterminate ? colors.brand : "none"}
             stroke={strokeColor}
             strokeWidth={2}
           />
@@ -80,11 +82,13 @@ export const Checkbox: React.VFC<CheckboxProps> = (props) => {
               transition: "all 200ms linear"
             }}
           />
+          {isIndeterminate && (
+            <path d="M4 12H20" stroke="white" stroke-width="2"/>
+          )}
         </svg>
         <RippleRoot>
           {isFocusVisible && <FocusRipple />}
           {isRippleVisible && <ClickRipple />}
-          {/* <ClickRipple /> */}
         </RippleRoot>
       </CheckboxButton>
       {children}

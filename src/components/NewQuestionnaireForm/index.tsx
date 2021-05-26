@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
+import { Checkbox, CheckboxGroup } from "../../lib/components/Checkbox";
 import { Datepicker } from "../../lib/components/Datepicker";
 import { Dropdown } from "../../lib/components/Dropdown";
 import { Radio, RadioGroup } from "../../lib/components/Radio";
@@ -129,6 +130,25 @@ export const NewQuestionnaireForm: React.VFC = () => {
               })}
             </RadioGroupInner>
           </RadioGroup>
+        </RadioGroupOuter>
+      </Field>
+      <Field>
+        <RadioGroupOuter>
+          <CheckboxGroup label={"CheckboxGroup"}>
+            <RadioGroupInner>
+              {["Option1", "Option2", "Option3", "Option4"].map((v, i) => {
+                return (
+                  <RadioWrapper key={v}>
+                    <Checkbox value={v} isDisabled={i===3} name={v}>
+                      <RadioLabel $disabled={i===3}>
+                        {v}
+                      </RadioLabel>
+                    </Checkbox>
+                  </RadioWrapper>
+                );
+              })}
+            </RadioGroupInner>
+          </CheckboxGroup>
         </RadioGroupOuter>
       </Field>
     </Base>

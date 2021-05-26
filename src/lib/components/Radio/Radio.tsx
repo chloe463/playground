@@ -71,6 +71,7 @@ export const Radio: React.VFC<RadioProps> = (props) => {
           />
         </svg>
         <RippleRoot>
+          {!isDisabled && <MouseOverRing />}
           {isFocusVisible && <FocusRipple />}
           {isRippleVisible && <ClickRipple />}
         </RippleRoot>
@@ -122,6 +123,26 @@ const RippleRoot = styled.span`
   right: 0;
   bottom: 0;
   left: 0;
+`;
+
+const MouseOverRing = styled.span`
+  position: absolute;
+  top: -12px;
+  right: 0;
+  bottom: 0;
+  left: -12px;
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  opacity: 0;
+  background-color: ${colors.brand};
+  transition-property: opacity;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.3, 0.3, 0.3, 1);
+  &:hover {
+    opacity: 0.1;
+  }
 `;
 
 const rippleEntering = keyframes`

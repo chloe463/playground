@@ -1,5 +1,5 @@
+import { colors } from "../../styles";
 import { Checkbox } from "./Checkbox";
-// import { Radio } from "./Radio";
 import { CheckboxGroup } from "./CheckboxGroup";
 
 export default {
@@ -27,22 +27,22 @@ export const Normal = () => {
   );
 };
 
-// export const WithSomeStyle = () => {
-//   return (
-//     <RadioGroup label={"Foo"} name={"bar"}>
-//       <div style={{ marginTop: "16px" }}>
-//         {OPTIONS.map((option) => {
-//           return (
-//             <div key={option.value} style={{ marginTop: "8px" }}>
-//               <Radio value={`${option.value}`}>
-//                 <span style={{ fontSize: "14px", lineHeight: "24px", color: colors.blackAlpha800 }}>
-//                   {option.label}
-//                 </span>
-//               </Radio> 
-//             </div>
-//           );
-//         })}
-//       </div>
-//     </RadioGroup>
-//   );
-// };
+export const WithSomeStyle = () => {
+  return (
+    <CheckboxGroup label={"Foo"}>
+      <div style={{ marginTop: "16px" }}>
+        {OPTIONS.map((option) => {
+          return (
+            <div key={option.value} style={{ marginTop: "8px" }}>
+              <Checkbox value={`${option.value}`} isDisabled={option.value === 4}>
+                <span style={{ fontSize: "14px", lineHeight: "24px", color: colors.blackAlpha800 }}>
+                  {option.label}
+                </span>
+              </Checkbox> 
+            </div>
+          );
+        })}
+      </div>
+    </CheckboxGroup>
+  );
+};

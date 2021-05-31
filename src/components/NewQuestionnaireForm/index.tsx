@@ -1,5 +1,7 @@
+import { DevTool } from "@hookform/devtools";
 import dayjs from "dayjs";
-import React, { useCallback, useState } from "react";
+import React from "react";
+import { Controller, useForm } from "react-hook-form";
 import styled from "styled-components";
 import { Checkbox, CheckboxGroup } from "../../lib/components/Checkbox";
 import { Datepicker } from "../../lib/components/Datepicker";
@@ -10,38 +12,19 @@ import { TextField } from "../../lib/components/TextField";
 import { colors } from "../../lib/styles";
 
 export const NewQuestionnaireForm: React.VFC = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [state, setState] = useState("");
-  const [startAt, setStartAt] = useState<Date>(new Date());
-  const [endAt, setEndAt] = useState<Date>(new Date());
-
-  const onChangeTitle = (s: string) => {
-    setTitle(s);
-  };
-
-  const onChangeDescription = (s: string) => {
-    setDescription(s);
-  };
-
-  const onChangeState = (v: string) => {
-    setState(v);
-  };
-
-  const onChangeStartAt = useCallback((v: Date | null) => {
-    if (!v) {
-      return;
+  const { handleSubmit, control, watch, formState } = useForm({
+    defaultValues: {
+      title: "",
+      description: "",
+      dropdown: "",
+      startAt: new Date(),
+      endAt: new Date(),
+      "radio-group": "",
+      "checkbox-group": [],
     }
-    setStartAt(v);
-    if (dayjs(v) > dayjs(endAt)) {
-      setEndAt(v);
-    }
-  }, [endAt]);
-  const onChangeEndAt = (v: Date | null) => {
-    if (!v) {
-      return;
-    }
-    setEndAt(v);
+  });
+  const onSubmit = (data: any) =>{
+    console.log({ data, formState: formState.touchedFields });
   };
 
   const options = [
@@ -64,93 +47,167 @@ export const NewQuestionnaireForm: React.VFC = () => {
 
   return (
     <Base>
-      <Field>
-        <TextField
-          id="title"
-          label={"Title"}
-          name="title"
-          value={title}
-          autoComplete="off"
-          onChange={onChangeTitle}
-        />
-      </Field>
-      <Field>
-        <TextArea
-          id="description"
-          label={"Description"}
-          name="description"
-          value={description}
-          onChange={onChangeDescription}
-        />
-      </Field>
-      <Field>
-        <Dropdown
-          placeholder={"Dropdown"}
-          options={options}
-          value={state}
-          itemToString={(v) => v}
-          onChange={onChangeState}
-        />
-      </Field>
-      <Field>
-        <Datepicker
-          id="start-at-date-picker"
-          name="startAt"
-          placeholder={"Date"}
-          value={startAt}
-          min={"2021/05/15"}
-          onChange={onChangeStartAt}
-        />
-      </Field>
-      <Field>
-        <Datepicker
-          id="end-at-date-picker"
-          name="startAt"
-          placeholder={"Date"}
-          value={endAt}
-          min={startAt ? dayjs(startAt).subtract(1, "day").toDate() : dayjs().subtract(1, "day").toDate()}
-          onChange={onChangeEndAt}
-          disabled
-        />
-      </Field>
-      <Field>
-        <RadioGroupOuter>
-          <RadioGroup label={"RadioGroup"} name={"radio-group"}>
-            <RadioGroupInner>
-              {["Option1", "Option2", "Option3", "Option4"].map((v, i) => {
-                return (
-                  <RadioWrapper key={v}>
-                    <Radio value={v} isDisabled={i===3}>
-                      <RadioLabel $disabled={i===3}>
-                        {v}
-                      </RadioLabel>
-                    </Radio>
-                  </RadioWrapper>
-                );
-              })}
-            </RadioGroupInner>
-          </RadioGroup>
-        </RadioGroupOuter>
-      </Field>
-      <Field>
-        <RadioGroupOuter>
-          <CheckboxGroup label={"CheckboxGroup"}>
-            <RadioGroupInner>
-              {["Option1", "Option2", "Option3", "Option4"].map((v, i) => {
-                return (
-                  <RadioWrapper key={v}>
-                    <Checkbox value={v} isDisabled={i===3} name={v}>
-                      <RadioLabel $disabled={i===3}>
-                        {v}
-                      </RadioLabel>
-                    </Checkbox>
-                  </RadioWrapper>
-                );
-              })}
-            </RadioGroupInner>
-          </CheckboxGroup>
-        </RadioGroupOuter>
-      </Field>
+      {process.env.NODE_ENV !== "production" && (
+        <DevTool control={control} placement="top-right" />
+      )}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Field>
+          <Controller
+            name="title"
+            control={control}
+            render={({ field }) => {
+              const { value, onChange, onBlur } = field;
+              return (
+                <TextField
+                  id="title"
+                  label={"Title"}
+                  name="title"
+                  value={value}
+                  autoComplete="off"
+                  onChange={onChange}
+                  onBlur={onBlur}
+                />
+              );
+            }}
+          />
+        </Field>
+        <Field>
+          <Controller
+            name="description"
+            control={control}
+            render={({ field }) => {
+              const { value, onChange, onBlur } = field;
+              return (
+                <TextArea
+                  id="description"
+                  label={"Description"}
+                  name="description"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                />
+              );
+            }}
+          />
+        </Field>
+        <Field>
+          <Controller
+            name="dropdown"
+            control={control}
+            render={({ field }) => {
+              const { value, onChange } = field;
+              return (
+                <Dropdown
+                  placeholder={"Dropdown"}
+                  options={options}
+                  value={value}
+                  itemToString={(v) => v}
+                  onChange={onChange}
+                />
+              );
+            }}
+          />
+        </Field>
+        <Field>
+          <Controller
+            name="startAt"
+            control={control}
+            render={({ field }) => {
+              const { value, onChange } = field;
+              return (
+                <Datepicker
+                  id="start-at-date-picker"
+                  name="startAt"
+                  placeholder={"Date"}
+                  value={value}
+                  min={"2021/05/15"}
+                  onChange={onChange}
+                />
+              );
+            }}
+          />
+        </Field>
+        <Field>
+          <Controller
+            name="endAt"
+            control={control}
+            render={({ field }) => {
+              const { value, onChange } = field;
+              const startAt = watch("startAt");
+              return (
+                <Datepicker
+                  id="end-at-date-picker"
+                  name="startAt"
+                  placeholder={"Date"}
+                  value={value}
+                  min={startAt ? dayjs(startAt).subtract(1, "day").toDate() : dayjs().subtract(1, "day").toDate()}
+                  onChange={onChange}
+                  disabled
+                />
+              );
+            }}
+          />
+        </Field>
+        <Field>
+          <Controller
+            name="radio-group"
+            control={control}
+            render={({ field }) => {
+              const { value, onChange, onBlur } = field;
+              return (
+                <RadioGroupOuter>
+                  <RadioGroup label={"RadioGroup"} name={"radio-group"} value={value} onChange={onChange}>
+                    <RadioGroupInner>
+                      {["Option1", "Option2", "Option3", "Option4"].map((v, i) => {
+                        return (
+                          <RadioWrapper key={v}>
+                            <Radio value={v} isDisabled={i===3} onBlur={onBlur}>
+                              <RadioLabel $disabled={i===3}>
+                                {v}
+                              </RadioLabel>
+                            </Radio>
+                          </RadioWrapper>
+                        );
+                      })}
+                    </RadioGroupInner>
+                  </RadioGroup>
+                </RadioGroupOuter>
+              );
+            }}
+          />
+        </Field>
+        <Field>
+          <Controller
+            name="checkbox-group"
+            control={control}
+            render={({ field }) => {
+              const { value, onChange, onBlur } = field;
+              return (
+                <RadioGroupOuter>
+                  <CheckboxGroup label={"CheckboxGroup"} value={value} onChange={onChange}>
+                    <RadioGroupInner>
+                      {["Option1", "Option2", "Option3", "Option4"].map((v, i) => {
+                        return (
+                          <RadioWrapper key={v}>
+                            <Checkbox value={v} isDisabled={i===3} name={v} onBlur={onBlur}>
+                              <RadioLabel $disabled={i===3}>
+                                {v}
+                              </RadioLabel>
+                            </Checkbox>
+                          </RadioWrapper>
+                        );
+                      })}
+                    </RadioGroupInner>
+                  </CheckboxGroup>
+                </RadioGroupOuter>
+              );
+            }}
+          />
+        </Field>
+        <Field>
+          <button type="submit">submit</button>
+        </Field>
+      </form>
     </Base>
   );
 };

@@ -95,7 +95,7 @@ export const NewQuestionnaireForm: React.VFC = () => {
             name="dropdown"
             control={control}
             render={({ field }) => {
-              const { value, onChange } = field;
+              const { value, onChange, onBlur } = field;
               return (
                 <Dropdown
                   placeholder={"Dropdown"}
@@ -103,6 +103,7 @@ export const NewQuestionnaireForm: React.VFC = () => {
                   value={value}
                   itemToString={(v) => v}
                   onChange={onChange}
+                  onBlur={onBlur}
                 />
               );
             }}

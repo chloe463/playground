@@ -1,5 +1,6 @@
 import { FocusScope } from "@react-aria/focus";
 import React, {
+  useCallback,
   useEffect,
   useRef,
   useState
@@ -12,15 +13,25 @@ import { Options } from "./Options";
 type DropdownProps<T = string> = {
   options: T[];
   value: T,
-  itemToString: (v: T) => string;
-  onChange?: (v: T) => void;
   placeholder?: string;
   disabled?: boolean;
   optionsEntryPoingId?: string;
+  itemToString: (v: T) => string;
+  onChange?: (v: T) => void;
+  onBlur?: () => void;
 };
 
 export const Dropdown: React.VFC<DropdownProps> = (props) => {
-  const { placeholder, value, itemToString, onChange, disabled, optionsEntryPoingId } = props;
+  const {
+    placeholder,
+    options,
+    value,
+    disabled,
+    optionsEntryPoingId,
+    itemToString,
+    onChange,
+    onBlur,
+  } = props;
   const [isOpen, setIsOpen] = useState(false);
   const baseRef = useRef<HTMLDivElement | null>(null);
 
@@ -30,11 +41,23 @@ export const Dropdown: React.VFC<DropdownProps> = (props) => {
         setIsOpen(v => !v);
       } else if (e.key === "Escape" && isOpen) {
         setIsOpen(false);
+        onBlur?.();
       }
     };
     window.addEventListener("keydown", listener);
     return () => window.removeEventListener("keydown", listener);
-  }, [isOpen]);
+  }, [isOpen, onBlur]);
+
+  const onCloseList = useCallback(() => {
+    setIsOpen(false);
+    onBlur?.();
+  }, [onBlur]);
+
+  const onSelectItem = useCallback((v: string) => {
+    onChange?.(v);
+    onBlur?.();
+    setIsOpen(false);
+  }, [onBlur, onChange]);
 
   return (
     <>
@@ -54,19 +77,16 @@ export const Dropdown: React.VFC<DropdownProps> = (props) => {
           shouldCloseClickOverlay
           shouldCloseOnKeyupEscape
           scrollLock
-          onClose={() => setIsOpen(false)}
+          onClose={onCloseList}
           entryPointId={optionsEntryPoingId}
         >
           <FocusScope contain autoFocus restoreFocus>
             <Options
-              options={props.options}
+              options={options}
               baseRef={baseRef}
               selectedItem={value}
               itemToString={itemToString}
-              onChange={(v) => {
-                onChange?.(v)
-                setIsOpen(false);
-              }}
+              onChange={onSelectItem}
             />
           </FocusScope>
         </Popper>

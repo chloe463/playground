@@ -114,7 +114,7 @@ export const NewQuestionnaireForm: React.VFC = () => {
             name="startAt"
             control={control}
             render={({ field }) => {
-              const { value, onChange } = field;
+              const { value, onChange, onBlur } = field;
               return (
                 <Datepicker
                   id="start-at-date-picker"
@@ -123,6 +123,7 @@ export const NewQuestionnaireForm: React.VFC = () => {
                   value={value}
                   min={"2021/05/15"}
                   onChange={onChange}
+                  onBlur={onBlur}
                 />
               );
             }}
@@ -133,7 +134,7 @@ export const NewQuestionnaireForm: React.VFC = () => {
             name="endAt"
             control={control}
             render={({ field }) => {
-              const { value, onChange } = field;
+              const { value, onChange, onBlur } = field;
               const startAt = watch("startAt");
               return (
                 <Datepicker
@@ -143,6 +144,7 @@ export const NewQuestionnaireForm: React.VFC = () => {
                   value={value}
                   min={startAt ? dayjs(startAt).subtract(1, "day").toDate() : dayjs().subtract(1, "day").toDate()}
                   onChange={onChange}
+                  onBlur={onBlur}
                   disabled
                 />
               );

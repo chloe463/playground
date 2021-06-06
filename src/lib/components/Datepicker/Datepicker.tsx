@@ -18,6 +18,7 @@ type DatepickerProps = {
   max?: Date | DateString;
   calendarEntryPoint?: string;
   onChange: (v: Date | null) => void;
+  onBlur?: () => void;
 };
 
 const DEFAULT_MAX = "2100/12/31";
@@ -34,6 +35,7 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
   max: _max,
   calendarEntryPoint,
   onChange,
+  onBlur,
 }) => {
   const baseRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -56,8 +58,9 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
   const onClickCancel = useCallback(() => {
     setInnerValue(defaultValue);
     onChange(defaultValue);
+    onBlur?.();
     setIsOpen(false);
-  }, [defaultValue, onChange]);
+  }, [defaultValue, onChange, onBlur]);
 
   const onClickOk = useCallback(() => {
     const input = baseRef.current?.querySelector("input");
@@ -65,7 +68,10 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
     setDefaultValue(nextValue);
     onChange(nextValue);
     setIsOpen(false);
-  }, [onChange]);
+    onBlur?.();
+  }, [onChange, onBlur]);
+
+  const onClosePopper = onClickCancel;
 
   return (
     <>
@@ -104,7 +110,7 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
             shouldCloseOnKeyupEscape
             scrollLock
             entryPointId={calendarEntryPoint}
-            onClose={() => setIsOpen(false)}
+            onClose={onClosePopper}
           >
             <FocusScope contain restoreFocus autoFocus>
               <Calendar

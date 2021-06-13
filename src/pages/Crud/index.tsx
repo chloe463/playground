@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import { RouteComponentProps } from "react-router";
 import { Link as RouterLink, Route, Switch } from "react-router-dom";
@@ -14,7 +15,6 @@ type Props = RouteComponentProps;
 
 export const Crud: React.VFC<Props> = (props) => {
   const location = props.location;
-  const [_, rootPath] = location.pathname.split("/");
 
   return (
     <AppBase
@@ -23,59 +23,76 @@ export const Crud: React.VFC<Props> = (props) => {
       exit={{ opacity: 0, y: -50 }}
       transition={transition}
     >
-      <Switch location={location} key={location.pathname}>
-        <Route path="/crud" exact={true} render={() => {
-          return (
-            <> 
-              <PageHeader title={"CRUD examples"}>
-                <ButtonPosition>
-                  <RouterLink to="/crud/new">
-                    <PrimaryButton type="button">
-                      Create New
-                    </PrimaryButton>
-                  </RouterLink>
-                </ButtonPosition>
-              </PageHeader>
-              <Contents>
-                <QuestionnaireListContainer />
-              </Contents>
-            </>
-          );
-        }}>
-        </Route>
-        <Route path="/crud/new" render={() => {
-          return (
-            <>
-              <PageHeader title={"Create New Questionnaire"}></PageHeader>
-              <LinkWrapper>
-                <Link to={"/crud"}>
-                  Back to list
-                </Link>
-              </LinkWrapper>
-              <Contents>
-                <NewQuestionnaireFormContainer />
-              </Contents>
-            </>
-          );
-        }}>
-        </Route>
-        <Route path="/crud/:id/edit" render={() => {
-          return (
-            <>
-              <PageHeader title={"Edit a questionnaire"}></PageHeader>
-              <LinkWrapper>
-                <Link to={"/crud"}>
-                  Back to list
-                </Link>
-              </LinkWrapper>
-              <Contents>
-                <NewQuestionEditFormContainer />
-              </Contents>
-            </>
-          );
-        }}>
-        </Route>
-      </Switch>
+      <AnimatePresence initial={false} exitBeforeEnter>
+        <Switch location={location} key={location.pathname}>
+          <Route path="/crud" exact={true} render={() => {
+            return (
+              <motion.div
+                initial={{ opacity: 0, x: 32 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -32 }}
+                transition={transition}
+              > 
+                <PageHeader title={"CRUD examples"}>
+                  <ButtonPosition>
+                    <RouterLink to="/crud/new">
+                      <PrimaryButton type="button">
+                        Create New
+                      </PrimaryButton>
+                    </RouterLink>
+                  </ButtonPosition>
+                </PageHeader>
+                <Contents>
+                  <QuestionnaireListContainer />
+                </Contents>
+              </motion.div>
+            );
+          }}>
+          </Route>
+          <Route path="/crud/new" render={() => {
+            return (
+              <motion.div
+                initial={{ opacity: 0, x: 32 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -32 }}
+                transition={transition}
+              >
+                <PageHeader title={"Create New Questionnaire"}></PageHeader>
+                <LinkWrapper>
+                  <Link to={"/crud"}>
+                    Back to list
+                  </Link>
+                </LinkWrapper>
+                <Contents>
+                  <NewQuestionnaireFormContainer />
+                </Contents>
+              </motion.div>
+            );
+          }}>
+          </Route>
+          <Route path="/crud/:id/edit" render={() => {
+            return (
+              <motion.div
+                initial={{ opacity: 0, x: 32 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -32 }}
+                transition={transition}
+              >
+                <PageHeader title={"Edit a questionnaire"}></PageHeader>
+                <LinkWrapper>
+                  <Link to={"/crud"}>
+                    Back to list
+                  </Link>
+                </LinkWrapper>
+                <Contents>
+                  <NewQuestionEditFormContainer />
+                </Contents>
+              </motion.div>
+            );
+          }}>
+          </Route>
+        </Switch>
+      </AnimatePresence>
     </AppBase>
   );
 };

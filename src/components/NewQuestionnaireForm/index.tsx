@@ -3,47 +3,27 @@ import dayjs from "dayjs";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import styled from "styled-components";
-import { Checkbox, CheckboxGroup } from "../../lib/components/Checkbox";
+import { PrimaryButton as _PrimaryButton } from "../../lib/components/Button";
 import { Datepicker } from "../../lib/components/Datepicker";
-import { Dropdown } from "../../lib/components/Dropdown";
-import { Radio, RadioGroup } from "../../lib/components/Radio";
 import { TextArea } from "../../lib/components/TextArea";
 import { TextField } from "../../lib/components/TextField";
-import { colors } from "../../lib/styles";
+import { CreateQuestionnaireInput } from "../../__generated__/types";
 
-export const NewQuestionnaireForm: React.VFC = () => {
-  const { handleSubmit, control, watch, formState } = useForm({
+type Props = {
+  onSubmit: (data: CreateQuestionnaireInput) => void;
+};
+
+export const NewQuestionnaireForm: React.VFC<Props> = ({ onSubmit }) => {
+  const { formState, handleSubmit, control, watch } = useForm<CreateQuestionnaireInput>({
+    mode: "onChange",
     defaultValues: {
       title: "",
       description: "",
-      dropdown: "",
       startAt: new Date(),
       endAt: new Date(),
-      "radio-group": "",
-      "checkbox-group": [],
     }
   });
-  const onSubmit = (data: any) =>{
-    console.log({ data, formState: formState.touchedFields });
-  };
-
-  const options = [
-    "Option1",
-    "Option2",
-    "Option3",
-    "Option4",
-    "Option5",
-    "Option6",
-    "Option7",
-    "Option8",
-    "Option9",
-    "Option10",
-    "Option11",
-    "Option12",
-    "Option13",
-    "Option14",
-    "Option15",
-  ];
+  const { isDirty, isValid } = formState;
 
   return (
     <Base>
@@ -55,6 +35,7 @@ export const NewQuestionnaireForm: React.VFC = () => {
           <Controller
             name="title"
             control={control}
+            rules={{ required: true }}
             render={({ field }) => {
               const { value, onChange, onBlur } = field;
               return (
@@ -83,25 +64,6 @@ export const NewQuestionnaireForm: React.VFC = () => {
                   label={"Description"}
                   name="description"
                   value={value}
-                  onChange={onChange}
-                  onBlur={onBlur}
-                />
-              );
-            }}
-          />
-        </Field>
-        <Field>
-          <Controller
-            name="dropdown"
-            control={control}
-            render={({ field }) => {
-              const { value, onChange, onBlur } = field;
-              return (
-                <Dropdown
-                  placeholder={"Dropdown"}
-                  options={options}
-                  value={value}
-                  itemToString={(v) => v}
                   onChange={onChange}
                   onBlur={onBlur}
                 />
@@ -145,71 +107,14 @@ export const NewQuestionnaireForm: React.VFC = () => {
                   min={startAt ? dayjs(startAt).subtract(1, "day").toDate() : dayjs().subtract(1, "day").toDate()}
                   onChange={onChange}
                   onBlur={onBlur}
-                  disabled
                 />
               );
             }}
           />
         </Field>
-        <Field>
-          <Controller
-            name="radio-group"
-            control={control}
-            render={({ field }) => {
-              const { value, onChange, onBlur } = field;
-              return (
-                <RadioGroupOuter>
-                  <RadioGroup label={"RadioGroup"} name={"radio-group"} value={value} onChange={onChange}>
-                    <RadioGroupInner>
-                      {["Option1", "Option2", "Option3", "Option4"].map((v, i) => {
-                        return (
-                          <RadioWrapper key={v}>
-                            <Radio value={v} isDisabled={i===3} onBlur={onBlur}>
-                              <RadioLabel $disabled={i===3}>
-                                {v}
-                              </RadioLabel>
-                            </Radio>
-                          </RadioWrapper>
-                        );
-                      })}
-                    </RadioGroupInner>
-                  </RadioGroup>
-                </RadioGroupOuter>
-              );
-            }}
-          />
-        </Field>
-        <Field>
-          <Controller
-            name="checkbox-group"
-            control={control}
-            render={({ field }) => {
-              const { value, onChange, onBlur } = field;
-              return (
-                <RadioGroupOuter>
-                  <CheckboxGroup label={"CheckboxGroup"} value={value} onChange={onChange}>
-                    <RadioGroupInner>
-                      {["Option1", "Option2", "Option3", "Option4"].map((v, i) => {
-                        return (
-                          <RadioWrapper key={v}>
-                            <Checkbox value={v} isDisabled={i===3} name={v} onBlur={onBlur}>
-                              <RadioLabel $disabled={i===3}>
-                                {v}
-                              </RadioLabel>
-                            </Checkbox>
-                          </RadioWrapper>
-                        );
-                      })}
-                    </RadioGroupInner>
-                  </CheckboxGroup>
-                </RadioGroupOuter>
-              );
-            }}
-          />
-        </Field>
-        <Field>
-          <button type="submit">submit</button>
-        </Field>
+        <div style={{ marginTop: 48, display: "flex", justifyContent: "center" }}>
+          <PrimaryButton type="submit" disabled={!isValid || !isDirty}>Submit</PrimaryButton>
+        </div>
       </form>
     </Base>
   );
@@ -220,28 +125,12 @@ const Base = styled.div`
 `;
 
 const Field = styled.div`
-  width: 480px;
+  width: 720px;
   & + & {
     margin-top: 32px;
   }
 `;
 
-const RadioGroupOuter = styled.div`
-  padding: 0 16px;
-`;
-
-const RadioGroupInner = styled.div`
-  margin-top: 16px;
-`;
-
-const RadioWrapper = styled.div`
-  display: inline-block;
-  & + & {
-    margin-left: 16px;
-  }
-`;
-
-const RadioLabel = styled.span<{ $disabled?: boolean }>`
-  margin-left: 4px;
-  color: ${({ $disabled }) => $disabled ? colors.blackAlpha400 : colors.blackAlpha800};
+const PrimaryButton = styled(_PrimaryButton)`
+  width: 136px;
 `;

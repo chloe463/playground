@@ -23,6 +23,7 @@ export const QUESTIONNAIRE_FRAGMENT = gql`
 
 type Props = {
   questionnaire: QuestionnaireFragment;
+  onClickEdit: (id: number) => void;
 };
 
 const STATES: string[] = [
@@ -36,12 +37,12 @@ const INDICATOR_COLORS: string[] = [
   colors.blackAlpha500,
 ];
 
-export const Questionnaire: React.VFC<Props> = ({ questionnaire }) => {
+export const Questionnaire: React.VFC<Props> = ({ questionnaire, onClickEdit }) => {
 
-  const onClickEdit = (e: React.MouseEvent) => {
+  const onClickPencil = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
-    console.log("edit cliecked");
+    onClickEdit(questionnaire.id);
   };
 
   const onClickAnswers = (e: React.MouseEvent) => {
@@ -75,10 +76,10 @@ export const Questionnaire: React.VFC<Props> = ({ questionnaire }) => {
             </StateWrapper>
           </KeyInfo>
           <FloatingButtons>
-            <IconButton type="button" onClick={onClickEdit}>
+            <IconButton role="button" onClick={onClickPencil}>
               Edit
             </IconButton>
-            <IconButton type="button" onClick={onClickAnswers}>
+            <IconButton role="button" onClick={onClickAnswers}>
               Answers
             </IconButton>
           </FloatingButtons>
@@ -184,7 +185,7 @@ const FloatingButtons = styled.div.attrs({ className: "floating-buttons" })`
   transform: translateX(16px);
 `;
 
-const IconButton = styled.button`
+const IconButton = styled.span`
   appearance: none;
   background: transparent;
   outline: none;

@@ -1,4 +1,5 @@
 import { useFocusRing } from "@react-aria/focus";
+import { useFocusWithin } from "@react-aria/interactions";
 import { useRadio } from "@react-aria/radio";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { AriaRadioProps } from "@react-types/radio";
@@ -20,6 +21,9 @@ export const Radio: React.VFC<RadioProps> = (props) => {
   const state = useContext(RadioContext);
   const { inputProps } = useRadio(props, state, ref);
   const { isFocusVisible, focusProps } = useFocusRing();
+  const { focusWithinProps } = useFocusWithin({
+    onBlurWithin: (e) => props.onBlur?.(e),
+  });
 
   const isSelected = state.selectedValue === props.value;
 
@@ -42,7 +46,7 @@ export const Radio: React.VFC<RadioProps> = (props) => {
   }, [isSelected, isDisabled]);
 
   return (
-    <Label $disabled={isDisabled}>
+    <Label $disabled={isDisabled} {...focusWithinProps}>
       <RadioButton
         $selected={isSelected}
         $disabled={isDisabled}

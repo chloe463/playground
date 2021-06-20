@@ -1,29 +1,31 @@
 import { AriaTextFieldOptions, useTextField } from "@react-aria/textfield";
-import React, { useRef } from "react";
+import React, { forwardRef, useRef } from "react";
+import mergeRefs from "react-merge-refs";
 import styled from "styled-components";
 import { colors } from "../../styles";
 
 type TextFieldProps = {} & AriaTextFieldOptions;
 
-export const TextField: React.VFC<TextFieldProps> = (props) => {
-  const ref = useRef<HTMLInputElement>(null);
-  const { inputProps, labelProps } = useTextField(props, ref) as {
+export const TextField: React.VFC<TextFieldProps> = forwardRef((props, ref) => {
+  const localRef = useRef<HTMLInputElement>(null);
+  const { inputProps, labelProps } = useTextField(props, localRef) as {
     inputProps: React.InputHTMLAttributes<HTMLInputElement>,
     labelProps: React.LabelHTMLAttributes<HTMLLabelElement>,
   };
+  const mergedRef = mergeRefs([ref, localRef])
 
   return (
     <Base>
       <TextInput
         {...inputProps}
         placeholder="&nbsp;"
-        ref={ref}
+        ref={mergedRef}
       />
       <Label {...labelProps} className="placeholder-label">{props.label}</Label>
       <BottomBorder className="bottom-border"/>
     </Base>
   );
-};
+});
 
 const Base = styled.div`
   position: relative;

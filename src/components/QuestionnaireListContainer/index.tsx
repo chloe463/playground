@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 import React from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import { colors } from "../../lib/styles";
 import { QUESTIONNAIRE_FRAGMENT } from "../Questionnaire";
@@ -31,6 +32,7 @@ const GET_QUESTIONNAIRE_CONNECTION_QUERY = gql`
 const PER = 10;
 
 export const QuestionnaireListContainer: React.VFC = () => {
+  const history = useHistory();
   const { data, loading, error, fetchMore } = useQuestionnaireConnectionQuery({
     variables: {
       first: PER,
@@ -39,6 +41,10 @@ export const QuestionnaireListContainer: React.VFC = () => {
   });
   if (loading || !data) {
     return null;
+  }
+
+  const moveToEditPage = (id: number) => {
+    history.push(`/crud/${id}/edit`);
   }
 
   const onClickLoadMore = async () => {
@@ -54,7 +60,7 @@ export const QuestionnaireListContainer: React.VFC = () => {
 
   return (
     <Base>
-      <QuestionnaireList questionnaires={questionnaires} />
+      <QuestionnaireList questionnaires={questionnaires} onClickEdit={moveToEditPage} />
       {data.questionnaireConnection.pageInfo.hasNextPage && (
         <LoadMoreWrapper>
           <LoadMoreButton type="button" onClick={() => onClickLoadMore()} disabled={loading}>Load more</LoadMoreButton>

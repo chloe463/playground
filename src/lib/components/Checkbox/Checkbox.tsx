@@ -1,5 +1,6 @@
 import { useCheckboxGroupItem } from "@react-aria/checkbox";
 import { useFocusRing } from "@react-aria/focus";
+import { useFocusWithin } from "@react-aria/interactions";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { AriaCheckboxGroupItemProps } from "@react-types/checkbox";
 import React, { useContext, useMemo, useRef, useState } from "react";
@@ -20,8 +21,10 @@ export const Checkbox: React.VFC<CheckboxProps> = (props) => {
   const state = useContext(CheckboxGroupContext);
   const { inputProps } = useCheckboxGroupItem(props, state, ref);
   const { isFocusVisible, focusProps } = useFocusRing();
+  const { focusWithinProps } = useFocusWithin({
+    onBlurWithin: (e) => props.onBlur?.(e),
+  });
 
-  console.log(state);
   const isDisabled = state.isDisabled || props.isDisabled;
   const isSelected = state.isSelected(props.value);
 
@@ -44,7 +47,7 @@ export const Checkbox: React.VFC<CheckboxProps> = (props) => {
   }, [isIndeterminate, isSelected, isDisabled]);
 
   return (
-    <Label $disabled={isDisabled}>
+    <Label $disabled={isDisabled} {...focusWithinProps}>
       <CheckboxButton
         $selected={isSelected}
         $disabled={isDisabled}
@@ -75,7 +78,7 @@ export const Checkbox: React.VFC<CheckboxProps> = (props) => {
           <path
             d="M5 11L10.3846 17L19 7"
             stroke="white"
-            stroke-width="2"
+            strokeWidth="2"
             strokeDasharray={22}
             strokeDashoffset={isSelected ? 0 : 22}
             style={{

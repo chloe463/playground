@@ -17,7 +17,7 @@ const SelectedItemPill = forwardRef<HTMLSpanElement, { item: Item, removeItem: (
           duration: 0.3
         }}
       >
-        <SelectedItemPillBase onClick={() => removeItem()}>{item.name}</SelectedItemPillBase>
+        <SelectedItemPillBase className="selected-pill" onClick={() => removeItem()}>{item.name}</SelectedItemPillBase>
       </SelectedItemPillFadeInAnimator>
     </SelectedItemPillLayoutAnimator>
   );

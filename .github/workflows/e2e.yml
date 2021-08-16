@@ -1,0 +1,22 @@
+name: e2e
+
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      SKIP_PREFLIGHT_CHECK: true
+      TZ: Asia/Tokyo
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare package dependencies
+        run: |
+          yarn install
+          yarn codegen
+      - name: Prepare cypress
+        working-directory: ./e2e
+        run: yarn install
+      - name: Run e2e test
+        run: yarn cypress:ci

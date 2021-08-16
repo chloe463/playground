@@ -42,7 +42,7 @@
     "prestart": "yarn codegen:clean",
     "start": "concurrently \"craco start\" \"yarn codegen:watch\"",
     "prebuild": "yarn codegen",
-    "lint": "eslint . --ext .tsx --ext .ts",
+    "lint": "eslint ./src --ext .tsx --ext .ts",
     "build": "craco build",
     "test": "TZ=Asia/Tokyo craco test",
     "eject": "react-scripts eject",
@@ -51,7 +51,11 @@
     "codegen:clean": "./scripts/clean-types.sh",
     "codegen:watch": "yarn codegen --watch",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "serve": "craco start",
+    "cypress:open": "cd e2e && yarn cypress:open",
+    "cypress:run": "cd e2e && yarn cypress:run",
+    "cypress:ci": "start-server-and-test serve http-get://localhost:3000 cypress:run"
   },
   "eslintConfig": {
     "extends": [
@@ -103,6 +107,7 @@
     "@types/styled-components": "^5.1.9",
     "babel-plugin-styled-components": "^1.12.0",
     "concurrently": "^6.0.0",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "start-server-and-test": "^1.13.1"
   }
 }

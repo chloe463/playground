@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/e2e/node_modules
 /.pnp
 .pnp.js
 
@@ -24,3 +25,6 @@ yarn-error.log*
 
 # generated type definition files
 src/**/__generated__/*
+
+# cypress outputs
+e2e/cypress/videos/*

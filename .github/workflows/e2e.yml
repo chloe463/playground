@@ -15,4 +15,5 @@ jobs:
         run: |
           yarn install
           cd ./e2e && yarn install && cd ../
+          yarn codegen
           yarn cypress:ci

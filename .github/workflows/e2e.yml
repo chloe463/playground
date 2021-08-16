@@ -11,9 +11,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: e2e test
+      - name: Prepare package dependencies
         run: |
           yarn install
-          cd ./e2e && yarn install && cd ../
           yarn codegen
-          yarn cypress:ci
+      - name: Prepare cypress
+        working-directory: ./e2e
+        run: yarn install
+      - name: Run e2e test
+        run: yarn cypress:ci

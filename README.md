@@ -1,3 +1,4 @@
-# Framer motion experiments
+# Playground
 
-Some examples and custom animation functions/components and hooks.
+Do something interesting in this playground.
+

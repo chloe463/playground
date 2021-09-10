@@ -73,8 +73,8 @@ export const LayoutAnimation = () => {
     >
       <PageHeader title={"Layout animation example"} />
       <Buttons>
-        <Button type="button" id="add-button" onClick={addItem}>Add an item</Button>
-        <Button type="button" id="reset-button" onClick={resetAll}>reset all</Button>
+        <Button type="button" id="add-button" onClick={addItem} data-cy="add-button">Add an item</Button>
+        <Button type="button" id="reset-button" onClick={resetAll} data-cy="reset-button">reset all</Button>
       </Buttons>
       <AnimateSharedLayout type="crossfade">
         <PillsContainer items={items} selectItem={selectItem} />

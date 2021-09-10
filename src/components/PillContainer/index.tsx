@@ -54,7 +54,7 @@ export const PillsContainer = (props: Props) => {
                 delay: 0.4
               }}
             >
-              <Pill className="pill" onClick={() => selectItem(item)}>{item.name}</Pill>
+              <Pill className="pill" onClick={() => selectItem(item)} data-cy="pill">{item.name}</Pill>
             </PillFadeInAnimator>
           </PillPositionAnimator>
         ))}

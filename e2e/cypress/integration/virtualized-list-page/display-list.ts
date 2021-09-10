@@ -31,11 +31,9 @@ describe("Virtualized page tests", () => {
 
   it("should display a list of posts", () => {
     cy.visit("/virtualized-list");
-    cy.contains("Virtualized List example");
-    cy.contains("architecto");
-    cy.contains("facere repudiandae distinctio aut optio aut voluptas aut et esse et inventore voluptate placeat fuga ab est numquam aut rerum placeat repellendus est modi ea ut id accusantium dolor laborum minus asperiores et totam et et doloremque veritatis ut occaecati et suscipit maiores enim quibusdam deserunt sequi autem aut repudiandae unde voluptatum dicta facilis illum laboriosam voluptas distinctio sapiente aut corporis qui ut asperiores qui aut non voluptas possimus omnis dolores sunt consequatur maxime sit ea ducimus rem pariatur itaque dolores et enim similique et quasi et tempora dolorum ut et aspernatur et repellendus qui qui beatae eius velit corrupti");
-    cy.contains("architecto").click();
-    cy.contains("Debra Dibbert");
-    cy.contains("Mrs. Dana Mann");
+    cy.getByDataCy("link-to-post-detail").should("have.length", 10);
+    cy.getByDataCy("link-to-post-detail").first().click();
+    cy.wait(300);
+    cy.getByDataCy("post-detail-card-title").should("have.text", "1. architecto");
   });
 });

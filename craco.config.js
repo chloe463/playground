@@ -43,12 +43,16 @@ module.exports = {
           "displayName": false,
         }
       ],
-      [
-        "react-remove-properties",
-        {
-          properties: ["data-cy"]
-        }
-      ]
+      ...whenProd(() => {
+        return [
+          [
+            "react-remove-properties",
+            {
+              properties: ["data-cy"]
+            }
+          ]
+        ];
+      }, []),
     ],
     // loaderOptions: { /* Any babel-loader configuration options: https://github.com/babel/babel-loader. */ },
     loaderOptions: (babelLoaderOptions, { env, paths }) => { return babelLoaderOptions; }

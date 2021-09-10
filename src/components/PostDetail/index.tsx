@@ -69,10 +69,10 @@ export const PostDetail: React.VFC<Props> = (props) => {
         className="overlay"
       >
         <Link to={`/virtualized-list`} />
-        <S.Card ref={contentRef}>
+        <S.Card ref={contentRef} data-cy="post-detail-card">
           <S.Header>
             <S.AvatarImage src={AVATAR_URL} layoutId={`avatarImage-${post.id}`}/>
-            <S.PostTitle layoutId={`postTitle-${post.id}`}>
+            <S.PostTitle layoutId={`postTitle-${post.id}`} data-cy="post-detail-card-title">
               {post.id}. {post.title}
             </S.PostTitle>
           </S.Header>

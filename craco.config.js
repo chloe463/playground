@@ -42,6 +42,12 @@ module.exports = {
         {
           "displayName": false,
         }
+      ],
+      [
+        "react-remove-properties",
+        {
+          properties: ["data-cy"]
+        }
       ]
     ],
     // loaderOptions: { /* Any babel-loader configuration options: https://github.com/babel/babel-loader. */ },

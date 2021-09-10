@@ -24,7 +24,7 @@ type Props = {
 
 export const Post: React.VFC<Props> = ({ post }) => {
   return (
-    <Link to={`/virtualized-list/${post.id}`}>
+    <Link to={`/virtualized-list/${post.id}`} data-cy="link-to-post-detail">
       <DummyAvatar src={AVATAR_URL} layoutId={`avatarImage-${post.id}`} />
       <PostListItemContent>
         <ItemHeader>

@@ -9,7 +9,7 @@ import { Crud } from "./pages/Crud";
 import { LayoutAnimation } from "./pages/LayoutAnimation";
 import { VirtualizedList } from "./pages/VirtualizedList";
 
-const GRAPHQL_SERVER_URI = process.env.GRAPHQL_SERVER_URI || "http://localhost:4000";
+const GRAPHQL_SERVER_URI = process.env.REACT_APP_GRAPHQL_SERVER_URI || "http://localhost:4000";
 
 const inMemoryCache = new InMemoryCache({
   typePolicies: {

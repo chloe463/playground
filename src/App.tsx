@@ -3,7 +3,6 @@ import { relayStylePagination } from "@apollo/client/utilities";
 import { AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import { useLocation } from "react-router";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { createGlobalStyle } from "styled-components";
 import { Page, SideBar, SIDEBAR_WIDTH } from "./components/SideBar";
 import { Crud } from "./pages/Crud";
 import { LayoutAnimation } from "./pages/LayoutAnimation";
@@ -77,34 +76,9 @@ const AppRouter = () => {
   );
 };
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    overscroll-behavior-y: none;
-  }
-  h1,h2,h3,h4,h5,h6 {
-    margin: 0;
-    padding: 0;
-  }
-  p {
-    margin: 0;
-    padding: 0;
-  }
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-`;
-
 export default function App() {
   return (
     <ApolloProvider client={client}>
-      <GlobalStyle />
       <BrowserRouter>
         <div className="flex">
           <div className="sticky top-0 block w-72 h-screen">

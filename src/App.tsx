@@ -3,7 +3,7 @@ import { relayStylePagination } from "@apollo/client/utilities";
 import { AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import { useLocation } from "react-router";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import { Page, SideBar, SIDEBAR_WIDTH } from "./components/SideBar";
 import { Crud } from "./pages/Crud";
 import { LayoutAnimation } from "./pages/LayoutAnimation";
@@ -106,35 +106,17 @@ export default function App() {
     <ApolloProvider client={client}>
       <GlobalStyle />
       <BrowserRouter>
-        <PageLayout>
-          <LeftColumn>
+        <div className="flex">
+          <div className="sticky top-0 block w-72 h-screen">
             <SideBar pages={pages} />
-          </LeftColumn>
-          <RightColumn>
-            <div style={{ marginTop: "156px" }}>
+          </div>
+          <div className={`block flex-shrink shadow-elevation4`} style={{ width: `calc(100vw - ${SIDEBAR_WIDTH}px)` }}>
+            <div className="mt-32">
               <AppRouter />
             </div>
-          </RightColumn>
-        </PageLayout>
+          </div>
+        </div>
       </BrowserRouter>
     </ApolloProvider>
   );
 };
-
-const PageLayout = styled.div`
-  display: flex;
-`;
-
-const LeftColumn = styled.div`
-  position: sticky;
-  top: 0;
-  display: block;
-  width: ${SIDEBAR_WIDTH}px;
-  height: 100vh;
-`;
-
-const RightColumn = styled.div`
-  display: block;
-  width: calc(100vw - ${SIDEBAR_WIDTH}px);
-  box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%);
-`;

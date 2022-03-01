@@ -1,13 +1,13 @@
 module.exports = {
-  // content: [
-  //   "./src/**/*.{js,jsx,ts,tsx}",
-  // ],
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   theme: {
     extend: {
       width: {
         '160': '40rem',
       },
+      boxShadow: {
+        elevation4: "0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%)",
+      }
     },
     fontFamily: {
       heading: [

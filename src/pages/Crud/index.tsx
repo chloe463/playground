@@ -34,17 +34,17 @@ export const Crud: React.VFC<Props> = (props) => {
                 transition={transition}
               > 
                 <PageHeader title={"CRUD examples"}>
-                  <ButtonPosition>
+                  <div className="absolute top-0 right-6">
                     <RouterLink to="/crud/new">
                       <PrimaryButton type="button">
                         Create New
                       </PrimaryButton>
                     </RouterLink>
-                  </ButtonPosition>
+                  </div>
                 </PageHeader>
-                <Contents>
+                <div className="mt-9 mb-24">
                   <QuestionnaireListContainer />
-                </Contents>
+                </div>
               </motion.div>
             );
           }}>
@@ -63,9 +63,9 @@ export const Crud: React.VFC<Props> = (props) => {
                     Back to list
                   </Link>
                 </LinkWrapper>
-                <Contents>
+                <div className="mt-9 mb-24">
                   <NewQuestionnaireFormContainer />
-                </Contents>
+                </div>
               </motion.div>
             );
           }}>
@@ -84,9 +84,9 @@ export const Crud: React.VFC<Props> = (props) => {
                     Back to list
                   </Link>
                 </LinkWrapper>
-                <Contents>
+                <div className="mt-9 mb-24">
                   <NewQuestionEditFormContainer />
-                </Contents>
+                </div>
               </motion.div>
             );
           }}>
@@ -96,11 +96,6 @@ export const Crud: React.VFC<Props> = (props) => {
     </AppBase>
   );
 };
-
-const Contents = styled.div`
-  margin-top: 36px;
-  margin-bottom: 96px;
-`;
 
 const ButtonPosition = styled.div`
   position: absolute;

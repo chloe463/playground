@@ -1,30 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 
 export const Header: React.FC = () => {
   return (
-    <Base>
-      <Title>Framer motion experiments</Title>
-    </Base>
+    <header className="flex items-center w-80 h-64">
+      <h1 className="font-heading text-3xl font-bold">Framer motion experiments</h1>
+    </header>
   );
 };
-
-const Base = styled.header`
-  display: flex;
-  align-items: center;
-  width: 80%;
-  height: 64px;
-  max-width: 1280px;
-  min-width: 720px;
-  margin: 0 auto 0;
-`;
-
-const Title = styled.h1`
-  margin: 0;
-  padding: 0;
-  font-size: 36px;
-  line-height: 44px;
-  font-weight: 700;
-  font-family: Poppins;
-`;
-

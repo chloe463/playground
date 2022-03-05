@@ -69,14 +69,21 @@ export const PostDetail: React.VFC<Props> = (props) => {
         className="fixed bg-black-alpha300 top-0 right-0 bottom-0 left-0 grid place-items-center overlay"
       >
         <Link to={`/virtualized-list`} className="block fixed top-0 right-0 bottom-0 left-0" />
-        <motion.div className="block box-border w-[640px] py-10 px-6 bg-white-alpha800 rounded-lg z-10"  ref={contentRef} data-cy="post-detail-card">
+        <motion.div
+          initial={{ opacity: 0, transform: "scale(.9)" }}
+          animate={{ opacity: 1, transform: "scale(1)", transition: { delay: 0.1, duration: 0.2, ease: [0.3, 0.3, 0.3, 1] } }}
+          exit={{ opacity: 0, transform: "scale(.9)",  transition: { duration: 0.2 } }}
+          className="block box-border w-[640px] py-10 px-6 bg-white rounded-lg z-10"
+          ref={contentRef}
+          data-cy="post-detail-card"
+        >
           <div className="flex items-center">
-            <motion.img src={AVATAR_URL} className="rounded-full" layoutId={`avatarImage-${post.id}`}/>
-            <motion.h3 className="ml-4 text-heading1 text-black-alpha800" layoutId={`postTitle-${post.id}`} data-cy="post-detail-card-title">
+            <motion.img src={AVATAR_URL} className="rounded-full"/>
+            <motion.h3 className="ml-4 text-heading1 text-black-alpha800" data-cy="post-detail-card-title">
               {post.id}. {post.title}
             </motion.h3>
           </div>
-          <motion.div className="mt-8" layoutId={`postId-${post.id}`}>
+          <motion.div className="mt-8">
             <p>
               {post.body}
             </p>

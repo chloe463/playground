@@ -11,7 +11,7 @@ export const PillsContainer = (props: Props) => {
   const { items, selectItem } = props;
   return (
     <AnimatePresence initial={true}>
-      <div className="flex justify-center items-center flex-wrap mt-4 mb-0 mx-auto w-160">
+      <div className="flex justify-center items-center flex-wrap mt-4 mb-0 mx-auto w-full">
         {items.map((item) => (
           <motion.div
             key={item.key}

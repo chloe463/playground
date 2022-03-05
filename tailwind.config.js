@@ -125,6 +125,9 @@ module.exports = {
         "green-bright700": "#0fbd01",
       },
       fontSize: {
+        catch1: ["72px", "96px"],
+        catch2: ["56px", "72px"],
+        catch3: ["40px", "56px"],
         heading1: ["32px", "44px"],
         heading2: ["24px", "36px"],
         heading3: ["18px", "28px"],

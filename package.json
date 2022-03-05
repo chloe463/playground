@@ -106,6 +106,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/react-virtualized": "^9.21.11",
     "@types/styled-components": "^5.1.9",
+    "@types/tailwindcss": "^3.0.9",
     "autoprefixer": "^10.4.2",
     "babel-plugin-react-remove-properties": "^0.3.0",
     "babel-plugin-styled-components": "^1.12.0",

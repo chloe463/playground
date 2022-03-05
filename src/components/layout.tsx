@@ -9,7 +9,7 @@ export const appBaseStyle = `
 
 export const selectedItemsContainerStyle = `
   flex items-center my-[64px] p-[24px] w-full min-w-[720px] max-w-[1280px]
-  bg-gray-100 rounded shadow-elevation4
+  bg-gray-100 rounded elevation8
   leading-10
   overflow-hidden
   empty:h-24

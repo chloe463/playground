@@ -76,7 +76,7 @@ export const LayoutAnimation = () => {
           type="button"
           id="add-button"
           onClick={addItem}
-          className="appearance-none outline-none border-none bg-transparent text-base py-3 px-4 rounded-full cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.3,0.3,0.3,1)] hover:bg-gray-50 uppercase"
+          className="appearance-none outline-none border-none bg-transparent text-body2 py-3 px-4 rounded-full cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.3,0.3,0.3,1)] hover:bg-gray-50 uppercase"
           data-cy="add-button"
         >
           Add an item
@@ -85,7 +85,7 @@ export const LayoutAnimation = () => {
           type="button"
           id="reset-button"
           onClick={resetAll}
-          className="appearance-none outline-none border-none bg-transparent text-base py-3 px-4 rounded-full cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.3,0.3,0.3,1)] hover:bg-gray-50 uppercase"
+          className="appearance-none outline-none border-none bg-transparent text-body2 py-3 px-4 rounded-full cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.3,0.3,0.3,1)] hover:bg-gray-50 uppercase"
           data-cy="reset-button"
         >
           reset all

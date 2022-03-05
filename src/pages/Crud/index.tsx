@@ -61,7 +61,7 @@ export const Crud: React.VFC<Props> = (props) => {
                   <RouterLink
                     to={"/crud"}
                     className={`
-                      text-base text-black-alpha500 transition-all duration-200 ease-out
+                      text-body2 text-black-alpha500 transition-all duration-200 ease-out
                       hover:text-black-alpha700
                       active:text-black-alpha700
                       visited:text-black-alpha500
@@ -90,7 +90,7 @@ export const Crud: React.VFC<Props> = (props) => {
                   <RouterLink
                     to={"/crud"}
                     className={`
-                      text-base text-black-alpha500 transition-all duration-200 ease-out
+                      text-body2 text-black-alpha500 transition-all duration-200 ease-out
                       hover:text-black-alpha700
                       active:text-black-alpha700
                       visited:text-black-alpha500

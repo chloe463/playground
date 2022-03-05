@@ -123,7 +123,18 @@ module.exports = {
         "green-bright200": "#b2fa55",
         "green-bright400": "#81f52e",
         "green-bright700": "#0fbd01",
-      }
+      },
+      fontSize: {
+        heading1: ["32px", "44px"],
+        heading2: ["24px", "36px"],
+        heading3: ["18px", "28px"],
+        subheading: ["16px", "24px"],
+        leading: ["15px", "32px"],
+        body1: ["15px", "28px"],
+        body2: ["14px", "24px"],
+        caption: ["12px", "16px"],
+        button: ["14px", "16px"]
+      },
     },
     fontFamily: {
       heading: [

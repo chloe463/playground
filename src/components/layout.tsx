@@ -22,7 +22,7 @@ export const selectedItemPillLayoutAnimatorStyle = `
 export const selectedItemPillBaseStyle = `
   py-2 px-6 rounded-full
   bg-gray-700
-  text-lg text-white
+  text-button text-white
   cursor-pointer
 `;
 

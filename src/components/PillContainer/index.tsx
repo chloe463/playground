@@ -33,7 +33,7 @@ export const PillsContainer = (props: Props) => {
                 className="
                   pill
                   bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
-                  text-md
+                  text-button
                   text-white
                   py-2 px-6
                   rounded-full

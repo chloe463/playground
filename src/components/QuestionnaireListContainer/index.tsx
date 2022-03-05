@@ -65,7 +65,7 @@ export const QuestionnaireListContainer: React.VFC = () => {
             type="button"
             className={`
               relative inline-block py-2 px-6 appearance-none outline-none border-none bg-transparent
-              text-black-alpha500 text-base uppercase rounded-full
+              text-black-alpha500 text-body2 uppercase rounded-full
               cursor-pointer overflow-hidden
               transition-all duration-200 ease-in
               hover:text-black-alpha700 focus:text-black-alpha700 active:text-black

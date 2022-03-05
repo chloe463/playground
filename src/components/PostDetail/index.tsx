@@ -72,7 +72,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
         <motion.div className="block box-border w-[640px] py-10 px-6 bg-white-alpha800 rounded-lg z-10"  ref={contentRef} data-cy="post-detail-card">
           <div className="flex items-center">
             <motion.img src={AVATAR_URL} className="rounded-full" layoutId={`avatarImage-${post.id}`}/>
-            <motion.h3 className="ml-4 text-lg text-black-alpha800" layoutId={`postTitle-${post.id}`} data-cy="post-detail-card-title">
+            <motion.h3 className="ml-4 text-heading1 text-black-alpha800" layoutId={`postTitle-${post.id}`} data-cy="post-detail-card-title">
               {post.id}. {post.title}
             </motion.h3>
           </div>
@@ -88,11 +88,11 @@ export const PostDetail: React.VFC<Props> = (props) => {
                   <li key={comment?.id} className="list-none mt-4 first-of-type:mt-0">
                     <div className="flex items-center">
                       <img src={AVATAR_URL_36} className="w-9 h-9 rounded-full" alt={`${comment?.name}'s avatar'`} />
-                      <p className="ml-2 text-base text-black-alpha800">
+                      <p className="ml-2 text-body2 text-black-alpha800">
                         {comment?.name}
                       </p>
                     </div>
-                    <p className="mt-2 text-sm text-black-alpha500">
+                    <p className="mt-2 text-body2 text-black-alpha500">
                       {comment?.body}
                     </p>
                   </li>

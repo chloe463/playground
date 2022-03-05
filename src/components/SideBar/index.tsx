@@ -17,7 +17,7 @@ export const SideBar: React.VFC<Props> = (props) => {
     <nav className="block w-[280px] mt-6">
       <RouterLink to={"/"} className="flex items-center py-4 px-8 no-underline">
         <div className="block w-9 h-9 bg-black-alpha500 rounded" />
-        <h2 className="ml-4 text-xl text-black-alpha700 hover:text-black-alpha800">
+        <h2 className="ml-4 text-heading2 text-black-alpha700 hover:text-black-alpha800">
           My sandbox
         </h2>
       </RouterLink>
@@ -28,7 +28,7 @@ export const SideBar: React.VFC<Props> = (props) => {
               <RouterLink
                 to={page.url}
                 className={`
-                  flex items-center py-4 px-8 text-base text-black-alpha500 no-underline uppercase
+                  flex items-center py-4 px-8 text-sugheading text-black-alpha500 no-underline uppercase
                   transition-all duration-200 ease-out
                   hover:text-black-alpha700 hover:no-underline
                   active:text-black-alpha700 active:no-underline

@@ -30,12 +30,12 @@ export const Post: React.VFC<Props> = ({ post }) => {
       <motion.img src={AVATAR_URL} className="rounded-full" layoutId={`avatarImage-${post.id}`} />
       <div className="ml-4 w-[calc(100%-80px)]">
         <header>
-          <motion.h3 className="text-lg text-gray-800" layoutId={`postTitle-${post.id}`}>
+          <motion.h3 className="text-subheading text-gray-800" layoutId={`postTitle-${post.id}`}>
             {post.id}. {post.title}
           </motion.h3>
         </header>
         <motion.div className="mt-1" layoutId={`postId-${post.id}`}>
-          <p className="text-base text-gray-500 max-w-[1154px] min-w-[592px] overflow-x-hidden text-ellipsis whitespace-nowrap">
+          <p className="text-body2 text-gray-500 max-w-[1154px] min-w-[592px] overflow-x-hidden text-ellipsis whitespace-nowrap">
             {post.body}
           </p>
         </motion.div>

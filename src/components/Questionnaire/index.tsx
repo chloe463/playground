@@ -66,20 +66,20 @@ export const Questionnaire: React.VFC<Props> = ({ questionnaire, onClickEdit }) 
           {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
           <img src={DUMMY_COVER_IMAGE_URL} className="rounded" alt="cover-image" />
           <div className="ml-4">
-            <h3 className="text-lg text-black-alpha800 tracking-wide">
+            <h3 className="text-subheading text-black-alpha800 tracking-wide">
               {questionnaire.title}
             </h3>
             <div className="flex items-center">
               <span className="inline-block w-[14px] h-[14px] rounded-full" style={{ backgroundColor: INDICATOR_COLORS[questionnaire.state] }}/>
-              <p className="ml-2 text-sm text-black-alpha500">
+              <p className="ml-2 text-body2 text-black-alpha500">
                 {STATES[questionnaire.state]}
               </p>
-              <span className="ml-2 text-lg text-black-alpha500">/</span>
-              <p className="ml-2 text-sm text-black-alpha500">
+              <span className="ml-2 text-body1 text-black-alpha500">/</span>
+              <p className="ml-2 text-body2 text-black-alpha500">
                 {questionnaire.questions.length} questions
               </p>
-              <span className="ml-2 text-lg text-black-alpha500">/</span>
-              <p className="ml-2 text-sm text-black-alpha500">
+              <span className="ml-2 text-body1 text-black-alpha500">/</span>
+              <p className="ml-2 text-body2 text-black-alpha500">
                 {new Date(questionnaire.startAt).toISOString().substring(0, 19).replace("T", " ")} - {new Date(questionnaire.endAt).toISOString().substring(0, 19).replace("T", " ")}
               </p>
             </div>
@@ -91,10 +91,10 @@ export const Questionnaire: React.VFC<Props> = ({ questionnaire, onClickEdit }) 
               transform: isHovered ? "translateX(0)" : "translateX(16px)"
             }}
           >
-            <button className="appearance-none bg-transparent outline-none cursor-pointer text-base py-3 px-6 border-[1px] border-solid border-black-alpha200 rounded-full hover:bg-black-alpha50" onClick={onClickPencil}>
+            <button className="appearance-none bg-transparent outline-none cursor-pointer text-body2 py-3 px-6 border-[1px] border-solid border-black-alpha200 rounded-full hover:bg-black-alpha50" onClick={onClickPencil}>
               Edit
             </button>
-            <button className="appearance-none bg-transparent outline-none cursor-pointer text-base py-3 px-6 border-[1px] border-solid border-black-alpha200 rounded-full ml-2 hover:bg-black-alpha50" onClick={onClickAnswers}>
+            <button className="appearance-none bg-transparent outline-none cursor-pointer text-body2 py-3 px-6 border-[1px] border-solid border-black-alpha200 rounded-full ml-2 hover:bg-black-alpha50" onClick={onClickAnswers}>
               Answers
             </button>
           </div>

@@ -1,8 +1,6 @@
 import { gql } from "@apollo/client";
 import React from "react";
 import { useHistory } from "react-router";
-import styled from "styled-components";
-import { colors } from "../../lib/styles";
 import { QUESTIONNAIRE_FRAGMENT } from "../Questionnaire";
 import { QuestionnaireList } from "../QuestionnaireList";
 import { useQuestionnaireConnectionQuery } from "./__generated__/index.generated";
@@ -59,48 +57,26 @@ export const QuestionnaireListContainer: React.VFC = () => {
   const questionnaires = data.questionnaireConnection.edges.map((edge) => edge.node);
 
   return (
-    <Base>
+    <div>
       <QuestionnaireList questionnaires={questionnaires} onClickEdit={moveToEditPage} />
       {data.questionnaireConnection.pageInfo.hasNextPage && (
-        <LoadMoreWrapper>
-          <LoadMoreButton type="button" onClick={() => onClickLoadMore()} disabled={loading}>Load more</LoadMoreButton>
-        </LoadMoreWrapper>
+        <div className="flex justify-center mt-6">
+          <button
+            type="button"
+            className={`
+              relative inline-block py-2 px-6 appearance-none outline-none border-none bg-transparent
+              text-black-alpha500 text-base uppercase rounded-full
+              cursor-pointer overflow-hidden
+              transition-all duration-200 ease-in
+              hover:text-black-alpha700 focus:text-black-alpha700 active:text-black
+            `}
+            onClick={() => onClickLoadMore()}
+            disabled={loading}
+          >
+            Load more
+          </button>
+        </div>
       )}
-    </Base>
+    </div>
   );
 };
-
-const Base = styled.div``;
-
-const LoadMoreWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 24px;
-`;
-
-const LoadMoreButton = styled.button`
-  position: relative;
-  display: inline-block;
-  padding: 8px 24px;
-  appearance: none;
-  outline: none;
-  border: none;
-  background-color: transparent;
-
-  color: ${colors.blackAlpha700};
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 24px;
-  text-transform: uppercase;
-  border-radius: 9999vmax;
-  cursor: pointer;
-  transition: all 200ms cubic-bezier(0.3, 0.3, 0.3, 1);
-  overflow: hidden;
-
-  &:hover, &:focus {
-    color: ${colors.blackAlpha800};
-  }
-  &:active {
-    color: ${colors.blackAlpha800};
-  }
-`;

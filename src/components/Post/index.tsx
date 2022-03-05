@@ -1,9 +1,7 @@
 import { gql } from "@apollo/client";
 import { motion } from "framer-motion";
 import React from "react";
-import { Link as _Link } from "react-router-dom";
-import styled from "styled-components";
-import { colors } from "../../lib/styles";
+import { Link } from "react-router-dom";
 import { PostFragment } from "./__generated__/index.generated";
 
 const AVATAR_URL = "https://dummyimage.com/64x64/b3b3b3/ffffff";
@@ -24,72 +22,24 @@ type Props = {
 
 export const Post: React.VFC<Props> = ({ post }) => {
   return (
-    <Link to={`/virtualized-list/${post.id}`} data-cy="link-to-post-detail">
-      <DummyAvatar src={AVATAR_URL} layoutId={`avatarImage-${post.id}`} />
-      <PostListItemContent>
-        <ItemHeader>
-          <ItemTitle layoutId={`postTitle-${post.id}`}>
+    <Link
+      to={`/virtualized-list/${post.id}`}
+      className="flex items-center mb-2 py-4 px-6 transition duration-75 no-underline"
+      data-cy="link-to-post-detail"
+    >
+      <motion.img src={AVATAR_URL} className="rounded-full" layoutId={`avatarImage-${post.id}`} />
+      <div className="ml-4 w-[calc(100%-80px)]">
+        <header>
+          <motion.h3 className="text-lg text-gray-800" layoutId={`postTitle-${post.id}`}>
             {post.id}. {post.title}
-          </ItemTitle>
-        </ItemHeader>
-        <ItemBody layoutId={`postId-${post.id}`}>
-          <ItemText>
+          </motion.h3>
+        </header>
+        <motion.div className="mt-1" layoutId={`postId-${post.id}`}>
+          <p className="text-base text-gray-500 max-w-[1154px] min-w-[592px] overflow-x-hidden text-ellipsis whitespace-nowrap">
             {post.body}
-          </ItemText>
-        </ItemBody>
-      </PostListItemContent>
+          </p>
+        </motion.div>
+      </div>
     </Link>
   );
 }
-
-const Link = styled(_Link)`
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-  padding: 16px 24px;
-  border-radius: 4px;
-  transition: all 50ms ease-out;
-  text-decoration: none;
-
-  &:hover {
-    background-color: ${colors.blackAlpha50};
-    cursor: pointer;
-  }
-`;
-
-const DummyAvatar = styled(motion.img)`
-  border-radius: 50%;
-`;
-
-const PostListItemContent = styled.div`
-  margin-left: 16px;
-  width: calc(100% - 64px - 16px);
-`;
-
-const ItemHeader = styled.header``;
-
-const ItemTitle = styled(motion.h3)`
-  margin: 0;
-  padding: 0;
-  font-size: 22px;
-  line-height: 32px;
-  color: ${colors.blackAlpha800};
-`;
-
-const ItemBody = styled(motion.div)`
-  margin-top: 4px;
-`;
-
-const ItemText = styled.p`
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-  line-height: 18px;
-  color: ${colors.blackAlpha500};
-
-  max-width: calc(1280px - 64px - 16px - 48px);
-  min-width: calc(720px - 64px - 16px - 48px);
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;

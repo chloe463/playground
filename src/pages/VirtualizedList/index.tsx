@@ -1,8 +1,9 @@
+import { motion } from "framer-motion";
 import React, { useCallback, useMemo } from "react";
 import { RouteProps, useRouteMatch } from "react-router";
 import { AutoSizer, InfiniteLoader, List, ListRowRenderer, WindowScroller } from "react-virtualized";
 import 'react-virtualized/styles.css';
-import { AppBase, transition } from "../../components/layout";
+import { appBaseStyle, transition } from "../../components/layout";
 import { PageHeader } from "../../components/PageHeader";
 import { Post } from "../../components/Post";
 import { PostDetail } from "../../components/PostDetail";
@@ -44,7 +45,8 @@ export const VirtualizedList: React.FC<Props> = (props) => {
   }, [posts]);
 
   return (
-    <AppBase
+    <motion.div
+      className={appBaseStyle}
       initial={{ opacity: 1, y: 25 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
@@ -91,6 +93,6 @@ export const VirtualizedList: React.FC<Props> = (props) => {
           }}
         </InfiniteLoader>
       </div>
-    </AppBase>
+    </motion.div>
   );
 };

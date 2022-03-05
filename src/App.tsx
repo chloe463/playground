@@ -81,7 +81,7 @@ export default function App() {
     <ApolloProvider client={client}>
       <BrowserRouter>
         <div className="flex">
-          <div className="sticky top-0 block w-72 h-screen">
+          <div className="sticky top-0 block w-[280px] h-screen">
             <SideBar pages={pages} />
           </div>
           <div className={`block flex-shrink shadow-elevation4`} style={{ width: `calc(100vw - ${SIDEBAR_WIDTH}px)` }}>

@@ -1,7 +1,7 @@
 import faker from "faker";
-import { AnimateSharedLayout } from "framer-motion";
+import { AnimateSharedLayout, motion } from "framer-motion";
 import { useState } from "react";
-import { AppBase, transition } from "../../components/layout";
+import { appBaseStyle, transition } from "../../components/layout";
 import { PageHeader } from "../../components/PageHeader";
 import { PillsContainer } from "../../components/PillContainer";
 import { SelectedItems } from "../../components/SelectedItems";
@@ -63,7 +63,8 @@ export const LayoutAnimation = () => {
   };
 
   return (
-    <AppBase
+    <motion.div
+      className={appBaseStyle}
       initial={{ opacity: 1, y: 25 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
@@ -96,6 +97,6 @@ export const LayoutAnimation = () => {
         <SelectedItems items={selectedItems} removeItem={removeItem} />
       </AnimateSharedLayout>
       <SelectedItems2 items={selectedItems} removeItem={removeItem} />
-    </AppBase>
+    </motion.div>
   );
 }

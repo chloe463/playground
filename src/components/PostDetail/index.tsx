@@ -1,9 +1,9 @@
 import { gql } from "@apollo/client";
+import { motion } from "framer-motion";
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import { PostFragment } from "../Post/__generated__/index.generated";
-import * as S from "./styles";
 import { useGetCommentsQuery } from "./__generated__/index.generated";
 
 const AVATAR_URL = "https://dummyimage.com/88x88/b3b3b3/ffffff";
@@ -60,57 +60,57 @@ export const PostDetail: React.VFC<Props> = (props) => {
 
   return ReactDOM.createPortal(
     <>
-      <S.Overlay
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0, transition: { duration: 0.15 } }}
         transition={{ duration: 0.2, delay: 0.15 }}
         style={{ pointerEvents: "auto", overflow: "scroll" }}
-        className="overlay"
+        className="fixed bg-black-alpha300 top-0 right-0 bottom-0 left-0 grid place-items-center overlay"
       >
-        <Link to={`/virtualized-list`} />
-        <S.Card ref={contentRef} data-cy="post-detail-card">
-          <S.Header>
-            <S.AvatarImage src={AVATAR_URL} layoutId={`avatarImage-${post.id}`}/>
-            <S.PostTitle layoutId={`postTitle-${post.id}`} data-cy="post-detail-card-title">
+        <Link to={`/virtualized-list`} className="block fixed top-0 right-0 bottom-0 left-0" />
+        <motion.div className="block box-border w-[640px] py-10 px-6 bg-white-alpha800 rounded-lg z-10"  ref={contentRef} data-cy="post-detail-card">
+          <div className="flex items-center">
+            <motion.img src={AVATAR_URL} className="rounded-full" layoutId={`avatarImage-${post.id}`}/>
+            <motion.h3 className="ml-4 text-lg text-black-alpha800" layoutId={`postTitle-${post.id}`} data-cy="post-detail-card-title">
               {post.id}. {post.title}
-            </S.PostTitle>
-          </S.Header>
-          <S.PostBody layoutId={`postId-${post.id}`}>
-            <S.PostBodyText>
+            </motion.h3>
+          </div>
+          <motion.div className="mt-8" layoutId={`postId-${post.id}`}>
+            <p>
               {post.body}
-            </S.PostBodyText>
-          </S.PostBody>
+            </p>
+          </motion.div>
           {commentsQueryRes && (
-            <S.Comments>
+            <ul className="list-none mt-12 ml-16">
               {commentsQueryRes.comments.map((comment) => {
                 return (
-                  <S.Comment key={comment?.id}>
-                    <S.CommentUser>
-                      <S.CommentUserAvatar src={AVATAR_URL_36} />
-                      <S.CommentUserName>
+                  <li key={comment?.id} className="list-none mt-4 first-of-type:mt-0">
+                    <div className="flex items-center">
+                      <img src={AVATAR_URL_36} className="w-9 h-9 rounded-full" alt={`${comment?.name}'s avatar'`} />
+                      <p className="ml-2 text-base text-black-alpha800">
                         {comment?.name}
-                      </S.CommentUserName>
-                    </S.CommentUser>
-                    <S.CommentText>
+                      </p>
+                    </div>
+                    <p className="mt-2 text-sm text-black-alpha500">
                       {comment?.body}
-                    </S.CommentText>
-                  </S.Comment>
+                    </p>
+                  </li>
                 );
               })}
-            </S.Comments>
+            </ul>
           )}
           {loading && (
-            <S.Comments>
+            <ul className="list-none mt-12 ml-16">
               {Array.from({ length: 5 }, (_, i) => i).map((key) => {
                 return (
-                  <S.CommentDummy key={key} />
+                  <li key={key} className="list-none block h-6 w-[480px] bg-black-alpha100 rounded-sm mt-4 first-of-type:mt-0" />
                 );
               })}
-            </S.Comments>
+            </ul>
           )}
-        </S.Card>
-      </S.Overlay>
+        </motion.div>
+      </motion.div>
     </>,
     document.querySelector("body") as HTMLElement
   );

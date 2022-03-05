@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 type Props = {
 
@@ -7,8 +6,7 @@ type Props = {
 
 export const NewQuestionEditForm: React.VFC<Props> = (props) => {
   return (
-    <Base>NewQuestionEditForm works!</Base>
+    <div>NewQuestionEditForm works!</div>
   );
 }
 
-const Base = styled.div``;

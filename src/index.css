@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --side-bar-width: 280px;
+  --max-content-width: 1280px;
+  --min-content-width: 720px;
+  --content-margin-left: max(72px, ((100vw - min(max(720px, (100vw - 240px) * 0.8), 1200px)) / 2) - 240px);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

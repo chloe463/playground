@@ -30,7 +30,7 @@ export const Post: React.VFC<Props> = ({ post }) => {
       data-cy="link-to-post-detail"
     >
       <a className="flex items-center mb-2 py-4 px-6 transition duration-75 no-underline">
-        <motion.img src={AVATAR_URL} className="rounded-full"/>
+        <motion.img src={AVATAR_URL} className="rounded-full" width={64} height={64} />
         <div className="ml-4 w-[calc(100%-80px)]">
           <header>
             <motion.h3 className="text-subheading text-gray-800">

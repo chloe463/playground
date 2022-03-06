@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import React from "react";
-import { transition } from "../../components/layout";
+import { appBaseStyle, transition } from "../../components/layout";
 import { NewQuestionnaireFormContainer } from "../../components/NewQuestionnaireForm/NewQuestionnaireFormContainer";
 import { PageHeader } from "../../components/PageHeader";
 
@@ -10,6 +10,7 @@ type Props = {};
 const NewQuestionnaire: React.VFC<Props> = () => {
   return (
     <motion.div
+      className={appBaseStyle}
       initial={{ opacity: 0, x: 32 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -32 }}

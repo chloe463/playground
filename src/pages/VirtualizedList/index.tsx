@@ -1,15 +1,14 @@
+import { motion } from "framer-motion";
 import React, { useCallback, useMemo } from "react";
 import { RouteProps, useRouteMatch } from "react-router";
 import { AutoSizer, InfiniteLoader, List, ListRowRenderer, WindowScroller } from "react-virtualized";
 import 'react-virtualized/styles.css';
-import styled from "styled-components";
-import { AppBase, transition } from "../../components/layout";
+import { appBaseStyle, transition } from "../../components/layout";
 import { PageHeader } from "../../components/PageHeader";
 import { Post } from "../../components/Post";
 import { PostDetail } from "../../components/PostDetail";
 import { PostPlaceholder } from "../../components/PostPlaceholder";
 import { useVirtualizedList } from "../../hooks/VirtualizedList.hooks";
-import { colors } from "../../lib/styles";
 
 const INFINITE_LOAD_THRESHOLD = 3;
 const INFINITE_LOAD_MIN_BATCH_SIZE = 1;
@@ -38,22 +37,23 @@ export const VirtualizedList: React.FC<Props> = (props) => {
     const post = posts[index];
     return (
       <div key={key} style={style}>
-        <PostListItem >
+        <div className="hover:bg-gray-50 cursor-pointer">
           {post ? <Post post={post} /> : <PostPlaceholder />}
-        </PostListItem>
+        </div>
       </div>
     );
   }, [posts]);
 
   return (
-    <AppBase
+    <motion.div
+      className={appBaseStyle}
       initial={{ opacity: 1, y: 25 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
       transition={transition}
     >
       <PageHeader title={"Virtualized List example"} />
-      <Contents>
+      <div className="mt-9 mb-24">
         {postId && post && <PostDetail post={post} />}
         <InfiniteLoader
           isRowLoaded={isRowLoaded}
@@ -92,19 +92,7 @@ export const VirtualizedList: React.FC<Props> = (props) => {
             );
           }}
         </InfiniteLoader>
-      </Contents>
-    </AppBase>
+      </div>
+    </motion.div>
   );
 };
-
-const Contents = styled.div`
-  margin-top: 36px;
-  margin-bottom: 96px;
-`;
-
-const PostListItem = styled.div<{ $loading?: boolean }>`
-  &:hover {
-    background-color: ${({ $loading }) => $loading ? "#ffffff" : colors.blackAlpha50};
-    cursor: ${({ $loading }) => $loading ?  "default" : "pointer"};
-  }
-`;

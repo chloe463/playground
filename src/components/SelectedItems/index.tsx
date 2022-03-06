@@ -1,9 +1,9 @@
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import { pillVariants } from "../../constants";
 import { useLayoutAnimation } from "../../lib/hooks/useLayoutAnimation";
 import { Item } from "../../types";
-import { SelectedItemPillBase, SelectedItemPillFadeInAnimator, SelectedItemPillLayoutAnimator, SelectedItemsContainer } from "../layout";
+import { selectedItemPillBaseStyle, selectedItemPillLayoutAnimatorStyle, selectedItemsContainerStyle } from "../layout";
 
 type Props = {
   items: Item[];
@@ -18,8 +18,8 @@ const SelectedItemPill = ({ item, removeItem }: { item: Item, removeItem: () => 
     axis: "X",
   });
   return (
-    <SelectedItemPillLayoutAnimator ref={animationTargetRef}>
-      <SelectedItemPillFadeInAnimator
+    <span className={selectedItemPillLayoutAnimatorStyle} ref={animationTargetRef}>
+      <motion.span
         variants={pillVariants}
         initial="hidden"
         animate="visible"
@@ -28,9 +28,9 @@ const SelectedItemPill = ({ item, removeItem }: { item: Item, removeItem: () => 
           duration: 0.3
         }}
       >
-        <SelectedItemPillBase onClick={() => removeItem()}>{item.name}</SelectedItemPillBase>
-      </SelectedItemPillFadeInAnimator>
-    </SelectedItemPillLayoutAnimator>
+        <button className={selectedItemPillBaseStyle} onClick={() => removeItem()}>{item.name}</button>
+      </motion.span>
+    </span>
   );
 };
 
@@ -39,11 +39,11 @@ export const SelectedItems = (props: Props) => {
 
   return (
     <AnimatePresence initial={true}>
-      <SelectedItemsContainer>
+      <div className={selectedItemsContainerStyle}>
         {items.map((item) => (
           <SelectedItemPill key={item.key} item={item} removeItem={() => props.removeItem(item)} />
         ))}
-      </SelectedItemsContainer>
+      </div>
     </AnimatePresence>
   );
 };

@@ -16,7 +16,10 @@ module.exports = {
     },
     postcss: {
       mode: "extends" /* (default value) */ || "file",
-      plugins: [],
+      plugins: [
+        require("tailwindcss"),
+        require("autoprefixer"),
+      ],
       env: {
         autoprefixer: { /* Any autoprefixer options: https://github.com/postcss/autoprefixer#options */ },
         stage: 3, /* Any valid stages: https://cssdb.org/#staging-process. */

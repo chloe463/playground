@@ -1,14 +1,15 @@
+import { motion } from "framer-motion";
 import React, { createRef, forwardRef } from "react";
 import { pillVariants } from "../../constants";
 import { AnimationListContainer } from "../../lib/components/AnimationListContainer";
 import { Item } from "../../types";
-import { SelectedItemPillBase, SelectedItemPillFadeInAnimator, SelectedItemPillLayoutAnimator, SelectedItemsContainer } from "../layout";
+import { selectedItemPillBaseStyle, selectedItemPillLayoutAnimatorStyle, selectedItemsContainerStyle } from "../layout";
 
 const SelectedItemPill = forwardRef<HTMLSpanElement, { item: Item, removeItem: () => void }>((props, ref) => {
   const { item, removeItem } = props;
   return (
-    <SelectedItemPillLayoutAnimator ref={ref}>
-      <SelectedItemPillFadeInAnimator
+    <span className={selectedItemPillLayoutAnimatorStyle} ref={ref}>
+      <motion.span
         variants={pillVariants}
         initial="hidden"
         animate="visible"
@@ -17,9 +18,9 @@ const SelectedItemPill = forwardRef<HTMLSpanElement, { item: Item, removeItem: (
           duration: 0.3
         }}
       >
-        <SelectedItemPillBase className="selected-pill" onClick={() => removeItem()} data-cy="selected-pill">{item.name}</SelectedItemPillBase>
-      </SelectedItemPillFadeInAnimator>
-    </SelectedItemPillLayoutAnimator>
+        <span className={`selected-pill ${selectedItemPillBaseStyle}`} onClick={() => removeItem()} data-cy="selected-pill">{item.name}</span>
+      </motion.span>
+    </span>
   );
 });
 
@@ -32,7 +33,7 @@ export const SelectedItems2: React.FC<Props> = (props)=> {
   const { items, removeItem } = props;
 
   return (
-    <SelectedItemsContainer>
+    <div className={selectedItemsContainerStyle}>
       <AnimationListContainer animationParams={{
         duration: 400,
         delay: 100,
@@ -43,6 +44,6 @@ export const SelectedItems2: React.FC<Props> = (props)=> {
           <SelectedItemPill key={item.key} item={item} removeItem={() => removeItem(item)} ref={createRef()} />
         ))}
       </AnimationListContainer>
-    </SelectedItemsContainer>
+    </div>
   );
 };

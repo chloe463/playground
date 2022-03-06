@@ -1,69 +1,23 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { colors } from "../../lib/styles";
 
 export const PostPlaceholder: React.VFC = () => {
   return (
-    <Base>
-      <DummyAvatar />
-      <PostListItemContent>
-        <ItemHeader>
-          <ItemTitle />
-        </ItemHeader>
-        <ItemBody>
-          <ItemText />
-        </ItemBody>
-      </PostListItemContent>
+    <div className="relative flex items-center py-4 px-6">
+      <div className="block w-14 h-14 rounded-full bg-black-alpha100" />
+      <div className="ml-4">
+        <header>
+          <div className="w-[180px] h-[22px] m-0 p-0 bg-black-alpha100 rounded-full text-subheading"/>
+        </header>
+        <div className="mt-3">
+          <p className="block m-0 p-0 text-body2 w-[240px] h-[18px] bg-black-alpha100 rounded-full text-body2" />
+        </div>
+      </div>
       <ShimmerBg />
-    </Base>
+    </div>
   );
 }
 
-const Base = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 16px 24px;
-`;
-
-const DummyAvatar = styled.div`
-  display: block;
-  width: 64px;
-  height: 64px;
-  border-radius: 32px;
-  background-color: ${colors.blackAlpha100};
-`;
-
-const PostListItemContent = styled.div`
-  margin-left: 16px;
-`;
-
-const ItemHeader = styled.header``;
-
-const ItemTitle = styled.h3`
-  width: 180px;
-  height: 22px;
-  margin: 0;
-  padding: 0;
-  font-size: 22px;
-  background-color: ${colors.blackAlpha100};
-  border-radius: 16px;
-`;
-
-const ItemBody = styled.div`
-  margin-top: 12px;
-`;
-
-const ItemText = styled.p`
-  display: block;
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-  width: 240px;
-  height: 18px;
-  background-color: ${colors.blackAlpha100};
-  border-radius: 9px;
-`;
 
 const shimmerAnimation = keyframes`
   0% {

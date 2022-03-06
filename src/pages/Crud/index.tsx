@@ -2,14 +2,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import { RouteComponentProps } from "react-router";
 import { Link as RouterLink, Route, Switch } from "react-router-dom";
-import styled from "styled-components";
-import { AppBase, transition } from "../../components/layout";
+import { appBaseStyle, transition } from "../../components/layout";
 import { NewQuestionEditFormContainer } from "../../components/NewQuestionEditForm";
 import { NewQuestionnaireFormContainer } from "../../components/NewQuestionnaireForm/NewQuestionnaireFormContainer";
 import { PageHeader } from "../../components/PageHeader";
 import { QuestionnaireListContainer } from "../../components/QuestionnaireListContainer";
 import { PrimaryButton } from "../../lib/components/Button";
-import { colors } from "../../lib/styles";
 
 type Props = RouteComponentProps;
 
@@ -17,7 +15,8 @@ export const Crud: React.VFC<Props> = (props) => {
   const location = props.location;
 
   return (
-    <AppBase
+    <motion.div
+      className={appBaseStyle}
       initial={{ opacity: 1, y: 25 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
@@ -34,17 +33,17 @@ export const Crud: React.VFC<Props> = (props) => {
                 transition={transition}
               > 
                 <PageHeader title={"CRUD examples"}>
-                  <ButtonPosition>
+                  <div className="absolute top-0 right-6">
                     <RouterLink to="/crud/new">
                       <PrimaryButton type="button">
                         Create New
                       </PrimaryButton>
                     </RouterLink>
-                  </ButtonPosition>
+                  </div>
                 </PageHeader>
-                <Contents>
+                <div className="mt-9 mb-24">
                   <QuestionnaireListContainer />
-                </Contents>
+                </div>
               </motion.div>
             );
           }}>
@@ -58,14 +57,22 @@ export const Crud: React.VFC<Props> = (props) => {
                 transition={transition}
               >
                 <PageHeader title={"Create New Questionnaire"}></PageHeader>
-                <LinkWrapper>
-                  <Link to={"/crud"}>
+                <div className="mt-4 py-0 px-6">
+                  <RouterLink
+                    to={"/crud"}
+                    className={`
+                      text-body2 text-black-alpha500 transition-all duration-200 ease-out
+                      hover:text-black-alpha700
+                      active:text-black-alpha700
+                      visited:text-black-alpha500
+                    `}
+                  >
                     Back to list
-                  </Link>
-                </LinkWrapper>
-                <Contents>
+                  </RouterLink>
+                </div>
+                <div className="mt-9 mb-24">
                   <NewQuestionnaireFormContainer />
-                </Contents>
+                </div>
               </motion.div>
             );
           }}>
@@ -79,50 +86,28 @@ export const Crud: React.VFC<Props> = (props) => {
                 transition={transition}
               >
                 <PageHeader title={"Edit a questionnaire"}></PageHeader>
-                <LinkWrapper>
-                  <Link to={"/crud"}>
+                <div className="mt-4 py-0 px-6">
+                  <RouterLink
+                    to={"/crud"}
+                    className={`
+                      text-body2 text-black-alpha500 transition-all duration-200 ease-out
+                      hover:text-black-alpha700
+                      active:text-black-alpha700
+                      visited:text-black-alpha500
+                    `}
+                  >
                     Back to list
-                  </Link>
-                </LinkWrapper>
-                <Contents>
+                  </RouterLink>
+                </div>
+                <div className="mt-9 mb-24">
                   <NewQuestionEditFormContainer />
-                </Contents>
+                </div>
               </motion.div>
             );
           }}>
           </Route>
         </Switch>
       </AnimatePresence>
-    </AppBase>
+    </motion.div>
   );
 };
-
-const Contents = styled.div`
-  margin-top: 36px;
-  margin-bottom: 96px;
-`;
-
-const ButtonPosition = styled.div`
-  position: absolute;
-  top: 0;
-  right: 24px;
-`;
-
-const LinkWrapper = styled.div`
-  margin-top: 16px;
-  padding: 0 24px;
-`;
-
-const Link = styled(RouterLink)`
-  font-size: 16px;
-  line-height: 32px;
-  font-weight: 500;
-  color: ${colors.blackAlpha500};
-  transition: all 200ms ease-out;
-  &:hover, &:active {
-    color: ${colors.blackAlpha700};
-  }
-  &:visited {
-    color: ${colors.blackAlpha500};
-  }
-`;

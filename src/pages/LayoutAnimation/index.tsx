@@ -1,13 +1,11 @@
 import faker from "faker";
-import { AnimateSharedLayout } from "framer-motion";
+import { AnimateSharedLayout, motion } from "framer-motion";
 import { useState } from "react";
-import styled from "styled-components";
-import { AppBase, transition } from "../../components/layout";
+import { appBaseStyle, transition } from "../../components/layout";
 import { PageHeader } from "../../components/PageHeader";
 import { PillsContainer } from "../../components/PillContainer";
 import { SelectedItems } from "../../components/SelectedItems";
 import { SelectedItems2 } from "../../components/SelectedItems2";
-import { colors } from "../../lib/styles";
 import { Item } from "../../types";
 
 const initialItems: Item[] = Array.from({ length: 3 }, (_, i) => i).map((v) => {
@@ -65,53 +63,40 @@ export const LayoutAnimation = () => {
   };
 
   return (
-    <AppBase
+    <motion.div
+      className={appBaseStyle}
       initial={{ opacity: 1, y: 25 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
       transition={transition}
     >
       <PageHeader title={"Layout animation example"} />
-      <Buttons>
-        <Button type="button" id="add-button" onClick={addItem} data-cy="add-button">Add an item</Button>
-        <Button type="button" id="reset-button" onClick={resetAll} data-cy="reset-button">reset all</Button>
-      </Buttons>
+      <div className="flex items-center justify-center mt-8 mr-auto ml-auto w-full">
+        <button
+          type="button"
+          id="add-button"
+          onClick={addItem}
+          className="appearance-none outline-none border-none bg-transparent text-body2 py-3 px-4 rounded-full cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.3,0.3,0.3,1)] hover:bg-gray-50 uppercase"
+          data-cy="add-button"
+        >
+          Add an item
+        </button>
+        <button
+          type="button"
+          id="reset-button"
+          onClick={resetAll}
+          className="appearance-none outline-none border-none bg-transparent text-body2 py-3 px-4 rounded-full cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.3,0.3,0.3,1)] hover:bg-gray-50 uppercase"
+          data-cy="reset-button"
+        >
+          reset all
+        </button>
+
+      </div>
       <AnimateSharedLayout type="crossfade">
         <PillsContainer items={items} selectItem={selectItem} />
         <SelectedItems items={selectedItems} removeItem={removeItem} />
       </AnimateSharedLayout>
       <SelectedItems2 items={selectedItems} removeItem={removeItem} />
-    </AppBase>
+    </motion.div>
   );
 }
-
-const Buttons = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 32px auto;
-  width: 640px;
-`;
-
-const Button = styled.button`
-  appearance: none;
-  outline: none;
-  border: none;
-  background-color: transparent;
-  font-size: 14px;
-  line-height: 24px;
-  padding: 10px 18px;
-  border-radius: 9999vmax;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition-property: all;
-  transition-duration: 0.3s;
-  transition-timing-function: cubic-bezier(0.3, 0.3, 0.3, 1);
-  &:hover {
-    background-color: ${colors.blackAlpha50};
-  }
-  &:focus,
-  &:active {
-    background-color: ${colors.blackAlpha100};
-  }
-`;

@@ -12,7 +12,7 @@ import { PrimaryButton } from "../../lib/components/Button";
 
 type Props = RouteComponentProps;
 
-const Crud: React.VFC<Props> = (props) => {
+const Questionnaires: React.VFC<Props> = (props) => {
   const router = useRouter();
   const location = useLocation();
 
@@ -114,4 +114,4 @@ const Crud: React.VFC<Props> = (props) => {
   );
 };
 
-export default Crud;
+export default Questionnaires;

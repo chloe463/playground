@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
+import { useRouter } from "next/router";
 import React from "react";
-import { useHistory } from "react-router";
 import { QUESTIONNAIRE_FRAGMENT } from "../Questionnaire";
 import { QuestionnaireList } from "../QuestionnaireList";
 import { useQuestionnaireConnectionQuery } from "./__generated__/index.generated";
@@ -30,7 +30,7 @@ const GET_QUESTIONNAIRE_CONNECTION_QUERY = gql`
 const PER = 10;
 
 export const QuestionnaireListContainer: React.VFC = () => {
-  const history = useHistory();
+  const router = useRouter();
   const { data, loading, fetchMore } = useQuestionnaireConnectionQuery({
     variables: {
       first: PER,
@@ -42,7 +42,7 @@ export const QuestionnaireListContainer: React.VFC = () => {
   }
 
   const moveToEditPage = (id: number) => {
-    history.push(`/crud/${id}/edit`);
+    router.push(`/questionnaires/${id}/edit`);
   }
 
   const onClickLoadMore = async () => {

@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
+import { useRouter } from "next/router";
 import React from "react";
-import { useHistory } from "react-router";
 import { CreateQuestionnaireInput } from "../../__generated__/types";
 import { NewQuestionnaireForm } from "./index";
 import { useCreateQuestionnaireMutation } from "./__generated__/NewQuestionnaireFormContainer.generated";
@@ -26,7 +26,7 @@ type Props = {
 };
 
 export const NewQuestionnaireFormContainer: React.VFC<Props> = () => {
-  const history = useHistory();
+  const router = useRouter();
   const [mutate] = useCreateQuestionnaireMutation();
 
   const onSubmit = async (data: CreateQuestionnaireInput) => {
@@ -38,8 +38,8 @@ export const NewQuestionnaireFormContainer: React.VFC<Props> = () => {
         }
       });
       if (res?.createQuestionnaire?.questionnaire?.id) {
-        history.push({
-          pathname: `/crud/${res.createQuestionnaire.questionnaire.id}/edit`,
+        router.push({
+          pathname: `/questionnaires/${res.createQuestionnaire.questionnaire.id}/edit`,
         })
       }
     } catch (e) {

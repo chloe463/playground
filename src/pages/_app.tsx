@@ -4,7 +4,6 @@ import { AppProps } from "next/app";
 
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { relayStylePagination } from "@apollo/client/utilities";
-import { BrowserRouter } from "react-router-dom";
 
 import { Page, SideBar, SIDEBAR_WIDTH } from "../components/SideBar";
 import "../index.css";
@@ -58,22 +57,20 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <Head>
-          <title>Playground</title>
-          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        </Head>
-        <div className="flex">
-          <div className="sticky top-0 block w-[280px] h-screen">
-            <SideBar pages={pages} />
-          </div>
-          <div className={`block flex-shrink elevation4`} style={{ width: `calc(100vw - ${SIDEBAR_WIDTH}px)` }}>
-            <div className="mt-32">
-              <Component {...pageProps} />
-            </div>
+      <Head>
+        <title>Playground</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      </Head>
+      <div className="flex">
+        <div className="sticky top-0 block w-[280px] h-screen">
+          <SideBar pages={pages} />
+        </div>
+        <div className={`block flex-shrink elevation4`} style={{ width: `calc(100vw - ${SIDEBAR_WIDTH}px)` }}>
+          <div className="mt-32">
+            <Component {...pageProps} />
           </div>
         </div>
-      </BrowserRouter>
+      </div>
     </ApolloProvider>
   );
 };

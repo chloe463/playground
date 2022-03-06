@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 import React, { useCallback, useMemo } from "react";
-import { RouteProps, useRouteMatch } from "react-router";
 import { AutoSizer, InfiniteLoader, List, ListRowRenderer, WindowScroller } from "react-virtualized";
 import 'react-virtualized/styles.css';
 import { appBaseStyle, transition } from "../../components/layout";
@@ -15,12 +15,17 @@ const INFINITE_LOAD_MIN_BATCH_SIZE = 1;
 const ROW_HEIGHT = 96;
 const ROW_MARGIN = 8;
 
-type Props = {} & RouteProps;
+type Props = {};
 
 const VirtualizedList: React.FC<Props> = () => {
   const { posts, totalCount, fetchMorePosts } = useVirtualizedList();
-  const matches = useRouteMatch<{ id: string }>("/virtualized-list/:id");
-  const postId = matches ? parseInt(`${matches.params.id}`, 10) : null;
+  const router = useRouter();
+  const postId = useMemo(() => {
+    if (router.query.slug) {
+      return Number(router.query.slug[0]);
+    }
+    return null;
+  }, [router]);
 
   const post = useMemo(() => {
     if (posts) {

@@ -1,21 +1,15 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 import React from "react";
-import { RouteComponentProps, useLocation } from "react-router";
-import { Link as RouterLink, Route, Switch } from "react-router-dom";
 import { appBaseStyle, transition } from "../../components/layout";
-import { NewQuestionEditFormContainer } from "../../components/NewQuestionEditForm";
-import { NewQuestionnaireFormContainer } from "../../components/NewQuestionnaireForm/NewQuestionnaireFormContainer";
 import { PageHeader } from "../../components/PageHeader";
 import { QuestionnaireListContainer } from "../../components/QuestionnaireListContainer";
 import { PrimaryButton } from "../../lib/components/Button";
 
-type Props = RouteComponentProps;
+type Props = {};
 
 const Questionnaires: React.VFC<Props> = () => {
   const router = useRouter();
-  const location = useLocation();
-
   return (
     <motion.div
       className={appBaseStyle}
@@ -25,90 +19,23 @@ const Questionnaires: React.VFC<Props> = () => {
       transition={transition}
     >
       <AnimatePresence initial={false} exitBeforeEnter>
-        <Switch location={location} key={router.asPath}>
-          <Route path="/crud" exact={true} render={() => {
-            return (
-              <motion.div
-                initial={{ opacity: 0, x: 32 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -32 }}
-                transition={transition}
-              > 
-                <PageHeader title={"CRUD examples"}>
-                  <div className="absolute top-0 right-6">
-                    <RouterLink to="/crud/new">
-                      <PrimaryButton type="button">
-                        Create New
-                      </PrimaryButton>
-                    </RouterLink>
-                  </div>
-                </PageHeader>
-                <div className="mt-9 mb-24">
-                  <QuestionnaireListContainer />
-                </div>
-              </motion.div>
-            );
-          }}>
-          </Route>
-          <Route path="/crud/new" render={() => {
-            return (
-              <motion.div
-                initial={{ opacity: 0, x: 32 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -32 }}
-                transition={transition}
-              >
-                <PageHeader title={"Create New Questionnaire"}></PageHeader>
-                <div className="mt-4 py-0 px-6">
-                  <RouterLink
-                    to={"/crud"}
-                    className={`
-                      text-body2 text-black-alpha500 transition-all duration-200 ease-out
-                      hover:text-black-alpha700
-                      active:text-black-alpha700
-                      visited:text-black-alpha500
-                    `}
-                  >
-                    Back to list
-                  </RouterLink>
-                </div>
-                <div className="mt-9 mb-24">
-                  <NewQuestionnaireFormContainer />
-                </div>
-              </motion.div>
-            );
-          }}>
-          </Route>
-          <Route path="/crud/:id/edit" render={() => {
-            return (
-              <motion.div
-                initial={{ opacity: 0, x: 32 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -32 }}
-                transition={transition}
-              >
-                <PageHeader title={"Edit a questionnaire"}></PageHeader>
-                <div className="mt-4 py-0 px-6">
-                  <RouterLink
-                    to={"/crud"}
-                    className={`
-                      text-body2 text-black-alpha500 transition-all duration-200 ease-out
-                      hover:text-black-alpha700
-                      active:text-black-alpha700
-                      visited:text-black-alpha500
-                    `}
-                  >
-                    Back to list
-                  </RouterLink>
-                </div>
-                <div className="mt-9 mb-24">
-                  <NewQuestionEditFormContainer />
-                </div>
-              </motion.div>
-            );
-          }}>
-          </Route>
-        </Switch>
+        <motion.div
+          initial={{ opacity: 0, x: 32 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -32 }}
+          transition={transition}
+        > 
+          <PageHeader title={"CRUD examples"}>
+            <div className="absolute top-0 right-6">
+              <PrimaryButton type="button" onClick={() => router.push("/questionnaires/new")}>
+                Create New
+              </PrimaryButton>
+            </div>
+          </PageHeader>
+          <div className="mt-9 mb-24">
+            <QuestionnaireListContainer />
+          </div>
+        </motion.div>
       </AnimatePresence>
     </motion.div>
   );

@@ -44,7 +44,6 @@
     "lint": "eslint ./src --ext .tsx --ext .ts",
     "build": "next build",
     "test": "TZ=Asia/Tokyo next test",
-    "eject": "react-scripts eject",
     "download-schema:local": "apollo schema:download --endpoint http://localhost:4000/graphql schema.json",
     "codegen": "graphql-codegen --config codegen.yml",
     "codegen:clean": "./scripts/clean-types.sh",

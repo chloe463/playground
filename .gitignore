@@ -28,3 +28,6 @@ src/**/__generated__/*
 
 # cypress outputs
 e2e/cypress/videos/*
+
+# Next.js
+.next

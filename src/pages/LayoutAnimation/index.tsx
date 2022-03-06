@@ -15,7 +15,7 @@ const initialItems: Item[] = Array.from({ length: 3 }, (_, i) => i).map((v) => {
   };
 });
 
-export const LayoutAnimation = () => {
+const LayoutAnimation = () => {
   const [items, setItems] = useState<Item[]>(initialItems);
   const [selectedItems, setSelectedItems] = useState<Item[]>([]);
 
@@ -100,3 +100,5 @@ export const LayoutAnimation = () => {
     </motion.div>
   );
 }
+
+export default LayoutAnimation;

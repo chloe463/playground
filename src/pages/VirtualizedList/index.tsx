@@ -17,7 +17,7 @@ const ROW_MARGIN = 8;
 
 type Props = {} & RouteProps;
 
-export const VirtualizedList: React.FC<Props> = (props) => {
+const VirtualizedList: React.FC<Props> = (props) => {
   const { posts, totalCount, fetchMorePosts } = useVirtualizedList();
   const matches = useRouteMatch<{ id: string }>("/virtualized-list/:id");
   const postId = matches ? parseInt(`${matches.params.id}`, 10) : null;
@@ -96,3 +96,5 @@ export const VirtualizedList: React.FC<Props> = (props) => {
     </motion.div>
   );
 };
+
+export default VirtualizedList;

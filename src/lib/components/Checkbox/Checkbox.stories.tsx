@@ -2,6 +2,7 @@ import { colors } from "../../styles";
 import { Checkbox } from "./Checkbox";
 import { CheckboxGroup } from "./CheckboxGroup";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   title: "Checkbox",
 };
@@ -18,7 +19,7 @@ export const Normal = () => {
     <CheckboxGroup label={"Foo"}>
       {OPTIONS.map((option) => {
         return (
-          <Checkbox value={`${option.value}`} isDisabled={option.value === 4}>
+          <Checkbox key={option.label} value={`${option.value}`} isDisabled={option.value === 4}>
             {option.label}
           </Checkbox>
         );

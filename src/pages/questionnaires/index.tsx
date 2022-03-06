@@ -12,7 +12,7 @@ import { PrimaryButton } from "../../lib/components/Button";
 
 type Props = RouteComponentProps;
 
-const Questionnaires: React.VFC<Props> = (props) => {
+const Questionnaires: React.VFC<Props> = () => {
   const router = useRouter();
   const location = useLocation();
 

@@ -39,7 +39,7 @@ const INDICATOR_COLORS: string[] = [
 export const Questionnaire: React.VFC<Props> = ({ questionnaire, onClickEdit }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const onMouseOver = useCallback((e: React.MouseEvent) => {
+  const onMouseOver = useCallback((_e: React.MouseEvent) => {
     setIsHovered(true);
   }, []);
 
@@ -64,6 +64,7 @@ export const Questionnaire: React.VFC<Props> = ({ questionnaire, onClickEdit }) 
       <Link to={`/crud/${questionnaire.id}`} className="block no-underline text-black-alpha800 cursor-pointer hover:no-underline visited:text-black-alpha800">
         <div className="relative flex items-center py-3 px-6 hover:bg-black-alpha50">
           {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={DUMMY_COVER_IMAGE_URL} className="rounded" alt="cover-image" />
           <div className="ml-4">
             <h3 className="text-subheading text-black-alpha800 tracking-wide">

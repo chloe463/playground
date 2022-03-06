@@ -4,12 +4,13 @@ import { useRef, useState } from "react";
 import { Calendar } from "./Calendar";
 import { Datepicker } from "./index";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   title: "Datepicker",
 };
 
 export const Normal = () => {
-  const [value, setValue] = useState(new Date());
+  const [value] = useState(new Date());
   return (
     <Datepicker
       placeholder={"Date"}
@@ -20,7 +21,7 @@ export const Normal = () => {
 };
 
 export const OnlyCalendar = () => {
-  const [value, setValue] = useState(new Date());
+  const [value] = useState(new Date());
   const ref = useRef<HTMLDivElement>(null);
   return (
     <>

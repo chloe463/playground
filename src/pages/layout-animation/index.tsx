@@ -8,7 +8,7 @@ import { SelectedItems } from "../../components/SelectedItems";
 import { SelectedItems2 } from "../../components/SelectedItems2";
 import { Item } from "../../types";
 
-const initialItems: Item[] = Array.from({ length: 3 }, (_, i) => i).map((v) => {
+const initialItems: Item[] = Array.from({ length: 3 }, (_, i) => i).map(() => {
   return {
     key: faker.datatype.uuid(),
     name: faker.name.findName(),

@@ -31,7 +31,7 @@ const PER = 10;
 
 export const QuestionnaireListContainer: React.VFC = () => {
   const history = useHistory();
-  const { data, loading, error, fetchMore } = useQuestionnaireConnectionQuery({
+  const { data, loading, fetchMore } = useQuestionnaireConnectionQuery({
     variables: {
       first: PER,
       after: "0",

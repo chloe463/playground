@@ -23,6 +23,7 @@ const SelectedItemPill = forwardRef<HTMLSpanElement, { item: Item, removeItem: (
     </span>
   );
 });
+SelectedItemPill.displayName = "SelectedItemPill";
 
 type Props = {
   items: Item[];

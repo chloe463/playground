@@ -4,7 +4,7 @@ type Props = {
 
 };
 
-const Component: React.VFC<Props> = (props) => {
+const Component: React.VFC<Props> = () => {
   return (
     <div>New page Works!</div>
   );

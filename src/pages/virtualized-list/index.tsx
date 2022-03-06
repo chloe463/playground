@@ -17,7 +17,7 @@ const ROW_MARGIN = 8;
 
 type Props = {} & RouteProps;
 
-const VirtualizedList: React.FC<Props> = (props) => {
+const VirtualizedList: React.FC<Props> = () => {
   const { posts, totalCount, fetchMorePosts } = useVirtualizedList();
   const matches = useRouteMatch<{ id: string }>("/virtualized-list/:id");
   const postId = matches ? parseInt(`${matches.params.id}`, 10) : null;

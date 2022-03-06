@@ -41,7 +41,7 @@
     "prestart": "yarn codegen:clean",
     "dev": "concurrently \"next dev\" \"yarn codegen:watch\"",
     "prebuild": "yarn codegen",
-    "lint": "eslint ./src --ext .tsx --ext .ts",
+    "lint": "next lint",
     "build": "next build",
     "test": "TZ=Asia/Tokyo jest --config=jest.config.js",
     "download-schema:local": "apollo schema:download --endpoint http://localhost:4000/graphql schema.json",
@@ -50,26 +50,10 @@
     "codegen:watch": "yarn codegen --watch",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "serve": "next start",
+    "serve": "next dev",
     "cypress:open": "cd e2e && yarn cypress:open",
     "cypress:run": "cd e2e && yarn cypress:run",
     "cypress:ci": "start-server-and-test serve http-get://localhost:3000 cypress:run"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ],
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
   },
   "browserslist": {
     "production": [
@@ -105,11 +89,14 @@
     "@types/react-virtualized": "^9.21.11",
     "@types/styled-components": "^5.1.9",
     "@types/tailwindcss": "^3.0.9",
+    "@typescript-eslint/eslint-plugin": "^5.13.0",
     "autoprefixer": "^10.4.2",
     "babel-jest": "^27.5.1",
     "babel-plugin-react-remove-properties": "^0.3.0",
     "babel-plugin-styled-components": "^1.12.0",
     "concurrently": "^6.0.0",
+    "eslint": "^8.10.0",
+    "eslint-config-next": "^12.1.0",
     "jest": "^27.5.1",
     "postcss": "^8.4.7",
     "postcss-preset-env": "^7.4.1",

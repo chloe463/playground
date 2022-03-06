@@ -14,9 +14,9 @@ export const RadioContext = createContext<RadioGroupState>({
   isDisabled: false,
   isReadOnly: false,
   selectedValue: null,
-  setSelectedValue: (value: string) => {},
+  setSelectedValue: (_value: string) => {},
   lastFocusedValue: null,
-  setLastFocusedValue: (value: string) => {},
+  setLastFocusedValue: (_value: string) => {},
 });
 
 export const RadioGroup: React.VFC<RadioProps> = (props) => {

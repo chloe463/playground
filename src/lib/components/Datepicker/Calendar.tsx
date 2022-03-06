@@ -189,7 +189,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
   }, [innerValue]);
 
   useEffect(() => {
-    const listener = throttle((e: Event) => {
+    const listener = throttle((_e: Event) => {
       if (baseRef.current && calendarRef.current) {
         const { x, y, height } = baseRef.current?.getBoundingClientRect();
         const { height: calendarHeight } = calendarRef.current.getBoundingClientRect();

@@ -1,31 +1,11 @@
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import { relayStylePagination } from "@apollo/client/utilities";
+import { ApolloProvider } from "@apollo/client";
 import { AnimatePresence } from "framer-motion";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import React from "react";
 import { Page, SideBar, SIDEBAR_WIDTH } from "../components/SideBar";
+import { useApolloClient } from "../hooks/useAplloClient";
 import "../index.css";
-
-
-
-const GRAPHQL_SERVER_URI = process.env.NEXT_PUBLIC_GRAPHQL_SERVER_URI || "http://localhost:4000";
-
-const inMemoryCache = new InMemoryCache({
-  typePolicies: {
-    Query: {
-      fields: {
-        postConnection: relayStylePagination(["query"]),
-        questionnaireConnection: relayStylePagination(),
-      }
-    },
-  }
-})
-
-const client = new ApolloClient({
-  uri: `${GRAPHQL_SERVER_URI}/graphql`,
-  cache: inMemoryCache,
-});
 
 const routes = [
   {
@@ -52,12 +32,10 @@ const pages: Page[] = routes.map((route) => ({
 }));
 
 const App = ({ Component, pageProps, router }: AppProps) => {
-  if (typeof window === "undefined" || !client) {
-    return null;
-  }
+  const apolloClient = useApolloClient(pageProps);
 
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={apolloClient}>
       <Head>
         <title>Playground</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />

@@ -1,12 +1,40 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React from "react";
 import { appBaseStyle, transition } from "../../components/layout";
 import { PageHeader } from "../../components/PageHeader";
 import { QuestionnaireListContainer } from "../../components/QuestionnaireListContainer";
+import { QuestionnaireConnectionDocument, QuestionnaireConnectionQuery, QuestionnaireConnectionQueryVariables } from "../../components/QuestionnaireListContainer/__generated__/index.generated";
+import { addApolloStateToPageProps, initializeApollo } from "../../hooks/useAplloClient";
 import { PrimaryButton } from "../../lib/components/Button";
 
-type Props = {};
+type Props = {
+  questionnaires: QuestionnaireConnectionQuery | null;
+};
+
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
+  const client = initializeApollo();
+  try {
+    const { data: questionnaires } = await client.query<
+      QuestionnaireConnectionQuery,
+      QuestionnaireConnectionQueryVariables
+    >({ query: QuestionnaireConnectionDocument, variables: { first: 10, after: "0" } });
+
+    return addApolloStateToPageProps(client, {
+      props: {
+        questionnaires,
+      },
+    });
+  } catch(e) {
+    console.error(e);
+    return {
+      props: {
+        questionnaires: null,
+      },
+    }
+  }
+};
 
 const Questionnaires: React.VFC<Props> = () => {
   const router = useRouter();

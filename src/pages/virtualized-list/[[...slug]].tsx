@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import type { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useCallback, useMemo } from "react";
 import { AutoSizer, InfiniteLoader, List, ListRowRenderer, WindowScroller } from "react-virtualized";
@@ -8,14 +9,36 @@ import { PageHeader } from "../../components/PageHeader";
 import { Post } from "../../components/Post";
 import { PostDetail } from "../../components/PostDetail";
 import { PostPlaceholder } from "../../components/PostPlaceholder";
+import { addApolloStateToPageProps, initializeApollo } from "../../hooks/useAplloClient";
 import { useVirtualizedList } from "../../hooks/VirtualizedList.hooks";
+import { GetPostConnectionDocument, GetPostConnectionQuery, GetPostConnectionQueryVariables } from "../../hooks/__generated__/VirtualizedList.hooks.generated";
 
 const INFINITE_LOAD_THRESHOLD = 3;
 const INFINITE_LOAD_MIN_BATCH_SIZE = 1;
 const ROW_HEIGHT = 96;
 const ROW_MARGIN = 8;
 
-type Props = {};
+type Props = {
+  posts: GetPostConnectionQuery;
+};
+
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
+  const client = initializeApollo();
+
+  const { data: posts } = await client.query<
+    GetPostConnectionQuery,
+    GetPostConnectionQueryVariables
+  >({
+    query: GetPostConnectionDocument,
+    variables: {
+      first: 10,
+      after: "0",
+      query: "",
+    },
+  });
+
+  return addApolloStateToPageProps(client, { props: { posts } });
+};
 
 const VirtualizedList: React.FC<Props> = () => {
   const { posts, totalCount, fetchMorePosts } = useVirtualizedList();

@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { useRouter } from "next/router";
 import React from "react";
-import { RouteComponentProps } from "react-router";
+import { RouteComponentProps, useLocation } from "react-router";
 import { Link as RouterLink, Route, Switch } from "react-router-dom";
 import { appBaseStyle, transition } from "../../components/layout";
 import { NewQuestionEditFormContainer } from "../../components/NewQuestionEditForm";
@@ -11,8 +12,9 @@ import { PrimaryButton } from "../../lib/components/Button";
 
 type Props = RouteComponentProps;
 
-export const Crud: React.VFC<Props> = (props) => {
-  const location = props.location;
+const Questionnaires: React.VFC<Props> = () => {
+  const router = useRouter();
+  const location = useLocation();
 
   return (
     <motion.div
@@ -23,7 +25,7 @@ export const Crud: React.VFC<Props> = (props) => {
       transition={transition}
     >
       <AnimatePresence initial={false} exitBeforeEnter>
-        <Switch location={location} key={location.pathname}>
+        <Switch location={location} key={router.asPath}>
           <Route path="/crud" exact={true} render={() => {
             return (
               <motion.div
@@ -111,3 +113,5 @@ export const Crud: React.VFC<Props> = (props) => {
     </motion.div>
   );
 };
+
+export default Questionnaires;

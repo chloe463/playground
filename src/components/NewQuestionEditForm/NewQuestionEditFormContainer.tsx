@@ -5,7 +5,7 @@ type Props = {
 
 };
 
-export const NewQuestionEditFormContainer: React.VFC<Props> = (props) => {
+export const NewQuestionEditFormContainer: React.VFC<Props> = () => {
   return (
     <NewQuestionEditForm />
   );

@@ -1,7 +1,7 @@
 import { CyHttpMessages } from "cypress/types/net-stubbing";
 import isEqual from "lodash/isEqual";
 
-export const GRAPHQL_SERVER_URI = `${Cypress.env("REACT_APP_GRAPHQL_SERVER_URI")}/graphql`;
+export const GRAPHQL_SERVER_URI = `${Cypress.env("NEXT_PUBLIC_GRAPHQL_SERVER_URI")}/graphql`;
 
 // Utility to match GraphQL mutation based on the operation name
 const checkOperationName = (req: CyHttpMessages.IncomingHttpRequest, operationName: string) => {

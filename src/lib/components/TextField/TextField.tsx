@@ -26,6 +26,7 @@ export const TextField: React.VFC<TextFieldProps> = forwardRef((props, ref) => {
     </Base>
   );
 });
+TextField.displayName = "TextField";
 
 const Base = styled.div`
   position: relative;

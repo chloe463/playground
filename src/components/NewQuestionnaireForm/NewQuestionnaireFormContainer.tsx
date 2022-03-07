@@ -25,7 +25,7 @@ type Props = {
 
 };
 
-export const NewQuestionnaireFormContainer: React.VFC<Props> = (props) => {
+export const NewQuestionnaireFormContainer: React.VFC<Props> = () => {
   const history = useHistory();
   const [mutate] = useCreateQuestionnaireMutation();
 

@@ -94,6 +94,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
                 return (
                   <li key={comment?.id} className="list-none mt-4 first-of-type:mt-0">
                     <div className="flex items-center">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={AVATAR_URL_36} className="w-9 h-9 rounded-full" alt={`${comment?.name}'s avatar'`} />
                       <p className="ml-2 text-body2 text-black-alpha800">
                         {comment?.name}

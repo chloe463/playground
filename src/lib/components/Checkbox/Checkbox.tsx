@@ -86,7 +86,7 @@ export const Checkbox: React.VFC<CheckboxProps> = (props) => {
             }}
           />
           {isIndeterminate && (
-            <path d="M4 12H20" stroke="white" stroke-width="2"/>
+            <path d="M4 12H20" stroke="white" strokeWidth="2"/>
           )}
         </svg>
         <RippleRoot>

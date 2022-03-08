@@ -7,6 +7,12 @@ import { Page, SideBar, SIDEBAR_WIDTH } from "../components/SideBar";
 import { useApolloClient } from "../hooks/useAplloClient";
 import "../index.css";
 
+// console.log(process.env);
+if (process.env.NEXT_PUBLIC_API_MOCK) {
+  console.log("api mocked");
+  require("../mocks");
+}
+
 const routes = [
   {
     key: "home",

@@ -3,40 +3,19 @@ import { AnimatePresence } from "framer-motion";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import React from "react";
-import { Page, SideBar, SIDEBAR_WIDTH } from "../components/SideBar";
+import { SideBar, SIDEBAR_WIDTH } from "../components/SideBar";
 import { useApolloClient } from "../hooks/useAplloClient";
+import { getPathNameAndQueryFromAsPath } from "../common/getPathNameAndQueryFromAsPath";
 import "../index.css";
 
 if (process.env.NEXT_PUBLIC_API_MOCK) {
   require("../mocks");
 }
 
-const routes = [
-  {
-    key: "home",
-    path: "/",
-  },
-  {
-    key: "layoutAnimation",
-    path: "/layout-animation",
-  },
-  {
-    key: "virtualizedList",
-    path: ["/virtualized-list", "/virtualized-list/:id"],
-  },
-  {
-    key: "questionnaires",
-    path: ["/questionnaires", "/questionnaires/new"],
-  },
-];
-
-const pages: Page[] = routes.map((route) => ({
-  name: route.key,
-  url: Array.isArray(route.path) ? route.path[0] : route.path,
-}));
-
 const App = ({ Component, pageProps, router }: AppProps) => {
   const apolloClient = useApolloClient(pageProps);
+  const { asPath } = router;
+  const { pathname } = getPathNameAndQueryFromAsPath(asPath);
 
   return (
     <ApolloProvider client={apolloClient}>
@@ -46,7 +25,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
       </Head>
       <div className="flex">
         <div className="sticky top-0 block w-[280px] h-screen">
-          <SideBar pages={pages} />
+          <SideBar currentPathName={pathname} />
         </div>
         <div className={`block flex-shrink elevation4`} style={{ width: `calc(100vw - ${SIDEBAR_WIDTH}px)` }}>
           <AnimatePresence exitBeforeEnter initial={false}>

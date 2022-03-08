@@ -1,8 +1,9 @@
 import { gql } from "@apollo/client";
 import { motion } from "framer-motion";
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import Link from "next/link";
+import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
+import { useIsomorphicLayoutEffect } from "../../lib/hooks/useIsomarphicLayoutEffect";
 import { PostFragment } from "../Post/__generated__/index.generated";
 import { useGetCommentsQuery } from "./__generated__/index.generated";
 
@@ -37,7 +38,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
     },
   });
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!contentRef.current) {
       return;
     }
@@ -68,7 +69,9 @@ export const PostDetail: React.VFC<Props> = (props) => {
         style={{ pointerEvents: "auto", overflow: "scroll" }}
         className="fixed bg-black-alpha300 top-0 right-0 bottom-0 left-0 grid place-items-center overlay"
       >
-        <Link to={`/virtualized-list`} className="block fixed top-0 right-0 bottom-0 left-0" />
+        <Link href={`/virtualized-list`}>
+          <a className="block fixed top-0 right-0 bottom-0 left-0" />
+        </Link>
         <motion.div
           initial={{ opacity: 0, transform: "scale(.9)" }}
           animate={{ opacity: 1, transform: "scale(1)", transition: { delay: 0.1, duration: 0.2, ease: [0.3, 0.3, 0.3, 1] } }}

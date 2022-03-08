@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
+import type { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 import React, { useCallback, useMemo } from "react";
-import { RouteProps, useRouteMatch } from "react-router";
 import { AutoSizer, InfiniteLoader, List, ListRowRenderer, WindowScroller } from "react-virtualized";
 import 'react-virtualized/styles.css';
 import { appBaseStyle, transition } from "../../components/layout";
@@ -8,19 +9,46 @@ import { PageHeader } from "../../components/PageHeader";
 import { Post } from "../../components/Post";
 import { PostDetail } from "../../components/PostDetail";
 import { PostPlaceholder } from "../../components/PostPlaceholder";
+import { addApolloStateToPageProps, initializeApollo } from "../../hooks/useAplloClient";
 import { useVirtualizedList } from "../../hooks/VirtualizedList.hooks";
+import { GetPostConnectionDocument, GetPostConnectionQuery, GetPostConnectionQueryVariables } from "../../hooks/__generated__/VirtualizedList.hooks.generated";
 
 const INFINITE_LOAD_THRESHOLD = 3;
 const INFINITE_LOAD_MIN_BATCH_SIZE = 1;
 const ROW_HEIGHT = 96;
 const ROW_MARGIN = 8;
 
-type Props = {} & RouteProps;
+type Props = {
+  posts: GetPostConnectionQuery;
+};
+
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
+  const client = initializeApollo();
+
+  const { data: posts } = await client.query<
+    GetPostConnectionQuery,
+    GetPostConnectionQueryVariables
+  >({
+    query: GetPostConnectionDocument,
+    variables: {
+      first: 10,
+      after: "0",
+      query: "",
+    },
+  });
+
+  return addApolloStateToPageProps(client, { props: { posts } });
+};
 
 const VirtualizedList: React.FC<Props> = () => {
   const { posts, totalCount, fetchMorePosts } = useVirtualizedList();
-  const matches = useRouteMatch<{ id: string }>("/virtualized-list/:id");
-  const postId = matches ? parseInt(`${matches.params.id}`, 10) : null;
+  const router = useRouter();
+  const postId = useMemo(() => {
+    if (router.query.slug) {
+      return Number(router.query.slug[0]);
+    }
+    return null;
+  }, [router]);
 
   const post = useMemo(() => {
     if (posts) {

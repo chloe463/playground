@@ -27,9 +27,8 @@ export const Post: React.VFC<Props> = ({ post }) => {
         pathname: `/virtualized-list/${post.id}`,
       }}
       shallow={true}
-      data-cy="link-to-post-detail"
     >
-      <a className="flex items-center mb-2 py-4 px-6 transition duration-75 no-underline">
+      <a className="flex items-center mb-2 py-4 px-6 transition duration-75 no-underline" data-cy="link-to-post-detail">
         <motion.img src={AVATAR_URL} className="rounded-full" width={64} height={64} />
         <div className="ml-4 w-[calc(100%-80px)]">
           <header>

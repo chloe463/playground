@@ -6,9 +6,7 @@ import { AutoSizer, InfiniteLoader, List, ListRowRenderer, WindowScroller } from
 import 'react-virtualized/styles.css';
 import { appBaseStyle, transition } from "../../components/layout";
 import { PageHeader } from "../../components/PageHeader";
-import { Post } from "../../components/Post";
-import { PostDetail } from "../../components/PostDetail";
-import { PostPlaceholder } from "../../components/PostPlaceholder";
+import { Post, PostDetail, PostPlaceholder } from "../../components/Post";
 import { addApolloStateToPageProps, initializeApollo } from "../../hooks/useAplloClient";
 import { useVirtualizedList } from "../../hooks/VirtualizedList.hooks";
 import { GetPostConnectionDocument, GetPostConnectionQuery, GetPostConnectionQueryVariables } from "../../hooks/__generated__/VirtualizedList.hooks.generated";

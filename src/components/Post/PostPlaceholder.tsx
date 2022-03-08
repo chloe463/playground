@@ -10,7 +10,7 @@ export const PostPlaceholder: React.VFC = () => {
           <div className="w-[180px] h-[22px] m-0 p-0 bg-black-alpha100 rounded-full text-subheading"/>
         </header>
         <div className="mt-3">
-          <p className="block m-0 p-0 text-body2 w-[240px] h-[18px] bg-black-alpha100 rounded-full text-body2" />
+          <p className="block m-0 p-0 w-[240px] h-[18px] bg-black-alpha100 rounded-full text-body2" />
         </div>
       </div>
       <ShimmerBg />

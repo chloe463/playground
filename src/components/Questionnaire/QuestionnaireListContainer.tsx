@@ -2,8 +2,8 @@ import { gql } from "@apollo/client";
 import { useRouter } from "next/router";
 import React from "react";
 import { QUESTIONNAIRE_FRAGMENT } from "../Questionnaire";
-import { QuestionnaireList } from "../QuestionnaireList";
-import { useQuestionnaireConnectionQuery } from "./__generated__/index.generated";
+import { QuestionnaireList } from "./QuestionnaireList";
+import { useQuestionnaireConnectionQuery } from "./__generated__/QuestionnaireListContainer.generated";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const GET_QUESTIONNAIRE_CONNECTION_QUERY = gql`

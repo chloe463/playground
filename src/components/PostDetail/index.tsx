@@ -1,8 +1,9 @@
 import { gql } from "@apollo/client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
+import { useIsomorphicLayoutEffect } from "../../lib/hooks/useIsomarphicLayoutEffect";
 import { PostFragment } from "../Post/__generated__/index.generated";
 import { useGetCommentsQuery } from "./__generated__/index.generated";
 
@@ -37,7 +38,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
     },
   });
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!contentRef.current) {
       return;
     }

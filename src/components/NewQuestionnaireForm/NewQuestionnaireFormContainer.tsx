@@ -1,9 +1,11 @@
-import { gql } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import React from "react";
+import {
+  CreateQuestionnaireDocument
+} from "../../__generated__/graphqlOperationTypes";
 import { CreateQuestionnaireInput } from "../../__generated__/types";
 import { NewQuestionnaireForm } from "./index";
-import { useCreateQuestionnaireMutation } from "./__generated__/NewQuestionnaireFormContainer.generated";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const CREATE_NEW_QUESTIONNAIRE_MUTATION = gql`
@@ -27,7 +29,7 @@ type Props = {
 
 export const NewQuestionnaireFormContainer: React.VFC<Props> = () => {
   const router = useRouter();
-  const [mutate] = useCreateQuestionnaireMutation();
+  const [mutate] = useMutation(CreateQuestionnaireDocument);
 
   const onSubmit = async (data: CreateQuestionnaireInput) => {
     console.log(data);

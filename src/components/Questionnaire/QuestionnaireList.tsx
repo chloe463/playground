@@ -1,6 +1,6 @@
 import React from "react";
+import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
 import { Questionnaire } from "../Questionnaire";
-import { QuestionnaireFragment } from "./__generated__/Questionnaire.generated";
 
 type Props = {
   questionnaires: QuestionnaireFragment[];

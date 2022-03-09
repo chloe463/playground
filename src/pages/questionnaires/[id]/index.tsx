@@ -6,7 +6,7 @@ import React from "react";
 import { appBaseStyle, transition } from "../../../components/layout";
 import { PageHeader } from "../../../components/PageHeader";
 import { addApolloStateToPageProps, initializeApollo } from "../../../hooks/useAplloClient";
-import { GetQuestionnaireDocument, GetQuestionnaireQuery, GetQuestionnaireQueryVariables } from "./__generated__/index.generated";
+import { GetQuestionnaireDocument, GetQuestionnaireQuery } from "../../../__generated__/graphqlOperationTypes";
 
 type Props = {
   questionnaire: GetQuestionnaireQuery;
@@ -37,10 +37,7 @@ export const _GET_QUESTIONNAIRE = gql`
 export const getServerSideProps: GetServerSideProps<Props> = async ({ query }) => {
   const { id } = query;
   const client = initializeApollo();
-  const { data: questionnaire } = await client.query<
-    GetQuestionnaireQuery,
-    GetQuestionnaireQueryVariables
-  >({
+  const { data: questionnaire } = await client.query({
     query: GetQuestionnaireDocument,
     variables: {
       id: Number(id),

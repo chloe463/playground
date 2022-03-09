@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 import Link from "next/link";
 import React, { useCallback, useState } from "react";
 import { colors } from "../../lib/styles";
-import { QuestionnaireFragment } from "./__generated__/Questionnaire.generated";
+import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
 
 const DUMMY_COVER_IMAGE_URL = "https://dummyimage.com/128x64/b3b3b3/ffffff";
 

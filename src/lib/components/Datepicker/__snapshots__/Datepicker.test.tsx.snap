@@ -3,31 +3,31 @@
 exports[`Dropdown shoud opens options list on click 1`] = `
 <div>
   <div
-    class="Datepicker__Base-sc-1ng4bn6-0 fQPfhY"
+    class="sc-bkzZxe iIWQPe"
     tabindex="0"
   >
     <label
-      class="Datepicker__Label-sc-1ng4bn6-2 giasbl datepicker-label"
+      class="sc-dIUggk ODXsY datepicker-label"
     />
     <input
-      class="Datepicker__VisuallyHiddenInput-sc-1ng4bn6-1 ekKQeA"
+      class="sc-idOhPF sRzPA"
       type="hidden"
       value="2021-01-01"
     />
     <span
-      class="Datepicker__SelectedValue-sc-1ng4bn6-3 iFzGXf"
+      class="sc-hHftDr bKcKqc"
     >
       2021/01/01
     </span>
     <span
-      class="Datepicker__BottomBorder-sc-1ng4bn6-4 dxiumQ datepicker-bottom-border"
+      class="sc-dmlrTW imHFoD datepicker-bottom-border"
     />
   </div>
   <div
     id="calendar-entry-point"
   >
     <div
-      class="Popper__Overlay-at4g4p-0 imrtkZ"
+      class="sc-bdfBwQ iVirlS"
     >
       <span
         hidden=""
@@ -37,19 +37,19 @@ exports[`Dropdown shoud opens options list on click 1`] = `
       >
         <div
           aria-labelledby="date-picker"
-          class="Calendar__CalendarBase-pjnhod-0 keNbej"
+          class="sc-gsTCUz bJoTiW"
           role="dialog"
           style="position: fixed; transform: translate(0px, 0px);"
           tabindex="-1"
         >
           <header
-            class="Calendar__Header-pjnhod-1 kYSXKv"
+            class="sc-dlfnbm kVrWBQ"
           >
             <div
-              class="Calendar__HeaderLeft-pjnhod-2 dYGroi"
+              class="sc-hKgILt chiWrn"
             >
               <h2
-                class="Calendar__YearMonth-pjnhod-4 grIbyb"
+                class="sc-jSgupP lkerYl"
                 id="date-picker"
               >
                 January
@@ -58,42 +58,42 @@ exports[`Dropdown shoud opens options list on click 1`] = `
               </h2>
               <button
                 aria-label="Switch to year picker"
-                class="Calendar__IconButton-pjnhod-5 eODodE"
+                class="sc-gKsewC dbAoBs"
                 type="button"
               >
                 <span
-                  class="Calendar__TriangleDown-pjnhod-6 fdqOaC"
+                  class="sc-iBPRYJ iNPwGu"
                 />
               </button>
             </div>
             <div
-              class="Calendar__HeaderRight-pjnhod-3 gXxXbM"
+              class="sc-eCssSg lffWUo"
             >
               <button
                 aria-label="Show previous month"
-                class="Calendar__IconButton-pjnhod-5 eODodE"
+                class="sc-gKsewC dbAoBs"
                 type="button"
               >
                 <span
-                  class="Calendar__ChevronLeft-pjnhod-7 gpuYKo"
+                  class="sc-fubCfw jSOIpw"
                 />
               </button>
               <button
                 aria-label="Show next month"
-                class="Calendar__IconButton-pjnhod-5 eODodE"
+                class="sc-gKsewC dbAoBs"
                 type="button"
               >
                 <span
-                  class="Calendar__ChevronRight-pjnhod-8 jnIEny"
+                  class="sc-pFZIQ eepctN"
                 />
               </button>
             </div>
           </header>
           <div
-            class="Calendar__Body-pjnhod-9"
+            class="sc-jrAGrp"
           >
             <div
-              class="Calendar__WeekDays-pjnhod-10 dOCojm"
+              class="sc-kEjbxe grDMmH"
             >
               <span>
                 S
@@ -118,7 +118,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
               </span>
             </div>
             <div
-              class="Calendar__DaysGrid-pjnhod-11 krHhoA"
+              class="sc-iqHYGH ccGfrD"
             >
               <span />
               <span />
@@ -127,258 +127,258 @@ exports[`Dropdown shoud opens options list on click 1`] = `
               <span />
               <button
                 aria-label="2021-01-01"
-                class="Calendar__DateCell-pjnhod-12 fKmrXn"
+                class="sc-crrsfI cKPAwV"
                 type="button"
               >
                 1
               </button>
               <button
                 aria-label="2021-01-02"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 2
               </button>
               <button
                 aria-label="2021-01-03"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 3
               </button>
               <button
                 aria-label="2021-01-04"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 4
               </button>
               <button
                 aria-label="2021-01-05"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 5
               </button>
               <button
                 aria-label="2021-01-06"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 6
               </button>
               <button
                 aria-label="2021-01-07"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 7
               </button>
               <button
                 aria-label="2021-01-08"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 8
               </button>
               <button
                 aria-label="2021-01-09"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 9
               </button>
               <button
                 aria-label="2021-01-10"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 10
               </button>
               <button
                 aria-label="2021-01-11"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 11
               </button>
               <button
                 aria-label="2021-01-12"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 12
               </button>
               <button
                 aria-label="2021-01-13"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 13
               </button>
               <button
                 aria-label="2021-01-14"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 14
               </button>
               <button
                 aria-label="2021-01-15"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 15
               </button>
               <button
                 aria-label="2021-01-16"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 16
               </button>
               <button
                 aria-label="2021-01-17"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 17
               </button>
               <button
                 aria-label="2021-01-18"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 18
               </button>
               <button
                 aria-label="2021-01-19"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 19
               </button>
               <button
                 aria-label="2021-01-20"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 20
               </button>
               <button
                 aria-label="2021-01-21"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 21
               </button>
               <button
                 aria-label="2021-01-22"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 22
               </button>
               <button
                 aria-label="2021-01-23"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 23
               </button>
               <button
                 aria-label="2021-01-24"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 24
               </button>
               <button
                 aria-label="2021-01-25"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 25
               </button>
               <button
                 aria-label="2021-01-26"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 26
               </button>
               <button
                 aria-label="2021-01-27"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 27
               </button>
               <button
                 aria-label="2021-01-28"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 28
               </button>
               <button
                 aria-label="2021-01-29"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 29
               </button>
               <button
                 aria-label="2021-01-30"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 30
               </button>
               <button
                 aria-label="2021-01-31"
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 type="button"
               >
                 31
               </button>
               <button
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 disabled=""
                 type="button"
               >
                 1
               </button>
               <button
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 disabled=""
                 type="button"
               >
                 2
               </button>
               <button
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 disabled=""
                 type="button"
               >
                 3
               </button>
               <button
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 disabled=""
                 type="button"
               >
                 4
               </button>
               <button
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 disabled=""
                 type="button"
               >
                 5
               </button>
               <button
-                class="Calendar__DateCell-pjnhod-12 kCTwqI"
+                class="sc-crrsfI csimPa"
                 disabled=""
                 type="button"
               >
@@ -387,16 +387,16 @@ exports[`Dropdown shoud opens options list on click 1`] = `
             </div>
           </div>
           <footer
-            class="Calendar__Footer-pjnhod-15 eMBJvg"
+            class="sc-kstrdz dOREyJ"
           >
             <button
-              class="Calendar__BaseButton-pjnhod-16 Calendar__CancelButton-pjnhod-17 cklJXB"
+              class="sc-hBEYos sc-fodVxV JoxAl"
               type="button"
             >
               Cancel
             </button>
             <button
-              class="Calendar__BaseButton-pjnhod-16 Calendar__SubmitButton-pjnhod-18 cklJXB"
+              class="sc-hBEYos sc-fFubgz JoxAl"
               type="button"
             >
               OK

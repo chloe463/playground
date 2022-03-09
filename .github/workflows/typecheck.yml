@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Run linter
+      - name: Check types
         run: |
           yarn install
           yarn typecheck

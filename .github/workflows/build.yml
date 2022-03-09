@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Run linter
+      - name: Build app 
         run: |
           yarn install
           yarn build

@@ -1,0 +1,16 @@
+name: build
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SKIP_PREFLIGHT_CHECK: true
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build app 
+        run: |
+          yarn install
+          yarn build

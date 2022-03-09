@@ -4,15 +4,13 @@ documents: "src/**/!(*.d|*.generated).{ts,tsx,graphql}"
 generates:
   src/__generated__/types.ts:
     - typescript
-  src/:
-    preset: near-operation-file
+  src/__generated__/graphqlOperationTypes.ts:
+    preset: import-types
     presetConfig:
-      extension: .generated.tsx
-      baseTypesPath: __generated__/types.ts
-      folder: __generated__
+      typesPath: ./types
     plugins:
       - typescript-operations
-      - typescript-react-apollo
+      - typed-document-node
 hooks:
   afterAllFileWrite:
     - prettier --write

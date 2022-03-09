@@ -1,9 +1,9 @@
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import React from "react";
+import { QuestionnaireConnectionDocument } from "../../__generated__/graphqlOperationTypes";
 import { QUESTIONNAIRE_FRAGMENT } from "../Questionnaire";
 import { QuestionnaireList } from "./QuestionnaireList";
-import { useQuestionnaireConnectionQuery } from "./__generated__/QuestionnaireListContainer.generated";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const GET_QUESTIONNAIRE_CONNECTION_QUERY = gql`
@@ -31,12 +31,12 @@ const PER = 10;
 
 export const QuestionnaireListContainer: React.VFC = () => {
   const router = useRouter();
-  const { data, loading, fetchMore } = useQuestionnaireConnectionQuery({
+  const { data, loading, fetchMore } = useQuery(QuestionnaireConnectionDocument, {
     variables: {
       first: PER,
       after: "0",
     },
-  });
+  })
   if (loading || !data) {
     return null;
   }

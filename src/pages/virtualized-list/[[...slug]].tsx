@@ -9,7 +9,7 @@ import { PageHeader } from "../../components/PageHeader";
 import { Post, PostDetail, PostPlaceholder } from "../../components/Post";
 import { addApolloStateToPageProps, initializeApollo } from "../../hooks/useAplloClient";
 import { useVirtualizedList } from "../../hooks/VirtualizedList.hooks";
-import { GetPostConnectionDocument, GetPostConnectionQuery, GetPostConnectionQueryVariables } from "../../hooks/__generated__/VirtualizedList.hooks.generated";
+import { GetPostConnectionDocument, GetPostConnectionQuery } from "../../__generated__/graphqlOperationTypes";
 
 const INFINITE_LOAD_THRESHOLD = 3;
 const INFINITE_LOAD_MIN_BATCH_SIZE = 1;
@@ -23,10 +23,7 @@ type Props = {
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const client = initializeApollo();
 
-  const { data: posts } = await client.query<
-    GetPostConnectionQuery,
-    GetPostConnectionQueryVariables
-  >({
+  const { data: posts } = await client.query({
     query: GetPostConnectionDocument,
     variables: {
       first: 10,

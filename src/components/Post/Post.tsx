@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import React from "react";
-import { PostFragment } from "./__generated__/Post.generated";
+import { PostFragment } from "../../__generated__/graphqlOperationTypes";
 
 const AVATAR_URL = "https://dummyimage.com/64x64/b3b3b3/ffffff";
 

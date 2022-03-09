@@ -5,9 +5,9 @@ import React from "react";
 import { appBaseStyle, transition } from "../../components/layout";
 import { PageHeader } from "../../components/PageHeader";
 import { QuestionnaireListContainer } from "../../components/Questionnaire";
-import { QuestionnaireConnectionDocument, QuestionnaireConnectionQuery, QuestionnaireConnectionQueryVariables } from "../../components/Questionnaire/__generated__/QuestionnaireListContainer.generated";
 import { addApolloStateToPageProps, initializeApollo } from "../../hooks/useAplloClient";
 import { PrimaryButton } from "../../lib/components/Button";
+import { QuestionnaireConnectionDocument, QuestionnaireConnectionQuery } from "../../__generated__/graphqlOperationTypes";
 
 type Props = {
   questionnaires: QuestionnaireConnectionQuery | null;
@@ -16,10 +16,10 @@ type Props = {
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const client = initializeApollo();
   try {
-    const { data: questionnaires } = await client.query<
-      QuestionnaireConnectionQuery,
-      QuestionnaireConnectionQueryVariables
-    >({ query: QuestionnaireConnectionDocument, variables: { first: 10, after: "0" } });
+    const { data: questionnaires } = await client.query({
+      query: QuestionnaireConnectionDocument,
+      variables: { first: 10, after: "0" }
+    });
 
     return addApolloStateToPageProps(client, {
       props: {

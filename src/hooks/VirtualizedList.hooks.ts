@@ -1,12 +1,10 @@
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import { useMemo, useState } from "react";
 import { _POST_FRAGMENT } from "../components/Post";
-import { PostFragment as Post } from "../components/Post/__generated__/index.generated";
 import {
   GetPostConnectionDocument,
-  GetPostConnectionQueryVariables,
-  useGetPostConnectionQuery
-} from "./__generated__/VirtualizedList.hooks.generated";
+  GetPostConnectionQueryVariables, PostFragment as Post
+} from "../__generated__/graphqlOperationTypes";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const _GET_POST_CONNECTION_QUERY = gql`
@@ -47,7 +45,7 @@ export const useVirtualizedList = () => {
     after: FIRST_CURSOR,
     query: "",
   });
-  const { data, loading, refetch, fetchMore } = useGetPostConnectionQuery({
+  const { data, loading, refetch, fetchMore } = useQuery(GetPostConnectionDocument, {
     variables,
   });
 

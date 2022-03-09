@@ -1,11 +1,10 @@
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { useIsomorphicLayoutEffect } from "../../lib/hooks/useIsomarphicLayoutEffect";
-import { PostFragment } from "./__generated__/Post.generated";
-import { useGetCommentsQuery } from "./__generated__/PostDetail.generated";
+import { GetCommentsDocument, PostFragment } from "../../__generated__/graphqlOperationTypes";
 
 const AVATAR_URL = "https://dummyimage.com/88x88/b3b3b3/ffffff";
 const AVATAR_URL_36 = "https://dummyimage.com/36x36/b3b3b3/ffffff";
@@ -32,10 +31,8 @@ export const PostDetail: React.VFC<Props> = (props) => {
   const { post } = props;
   const contentRef = useRef<HTMLDivElement | null>(null);
 
-  const { data: commentsQueryRes, loading } = useGetCommentsQuery({
-    variables: {
-      postId: post.id,
-    },
+  const { data: commentsQueryRes, loading } = useQuery(GetCommentsDocument, {
+    variables: { postId: post.id }
   });
 
   useIsomorphicLayoutEffect(() => {

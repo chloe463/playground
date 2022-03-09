@@ -1,6 +1,6 @@
 import React from "react";
 import { Questionnaire } from "../Questionnaire";
-import { QuestionnaireFragment } from "../Questionnaire/__generated__/index.generated";
+import { QuestionnaireFragment } from "./__generated__/Questionnaire.generated";
 
 type Props = {
   questionnaires: QuestionnaireFragment[];

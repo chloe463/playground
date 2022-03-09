@@ -42,6 +42,7 @@
     "dev": "concurrently \"next dev\" \"yarn codegen:watch\"",
     "prebuild": "yarn codegen",
     "lint": "next lint",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
     "build": "next build",
     "test": "TZ=Asia/Tokyo jest --config=jest.config.js",
     "download-schema:local": "apollo schema:download --endpoint http://localhost:4000/graphql schema.json",

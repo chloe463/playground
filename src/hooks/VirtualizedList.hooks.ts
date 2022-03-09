@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import { useMemo, useState } from "react";
 import { _POST_FRAGMENT } from "../components/Post";
-import { PostFragment as Post } from "../components/Post/__generated__/index.generated";
+import { PostFragment as Post } from "../components/Post/__generated__/Post.generated";
 import {
   GetPostConnectionDocument,
   GetPostConnectionQueryVariables,

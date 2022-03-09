@@ -6,5 +6,8 @@ module.exports = {
   compiler: {
     // ssr and displayName are configured by default
     styledComponents: true,
+    reactRemoveProperties: {
+      properties: ['^data-cy$']
+    }
   },
 };

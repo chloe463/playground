@@ -78,7 +78,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
           data-cy="post-detail-card"
         >
           <div className="flex items-center">
-            <motion.img src={AVATAR_URL} className="rounded-full"/>
+            <motion.img src={AVATAR_URL} className="rounded-full" width="88" height="88" alt={`${post.title}' image`} />
             <motion.h3 className="ml-4 text-heading1 text-black-alpha800" data-cy="post-detail-card-title">
               {post.id}. {post.title}
             </motion.h3>
@@ -95,7 +95,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
                   <li key={comment?.id} className="list-none mt-4 first-of-type:mt-0">
                     <div className="flex items-center">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={AVATAR_URL_36} className="w-9 h-9 rounded-full" alt={`${comment?.name}'s avatar'`} />
+                      <img src={AVATAR_URL_36} className="w-9 h-9 rounded-full" width="36" height="36" alt={`${comment?.name}'s avatar'`} />
                       <p className="ml-2 text-body2 text-black-alpha800">
                         {comment?.name}
                       </p>

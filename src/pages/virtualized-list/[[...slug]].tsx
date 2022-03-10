@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React, { useCallback, useMemo } from "react";
 import { AutoSizer, InfiniteLoader, List, ListRowRenderer, WindowScroller } from "react-virtualized";
 import 'react-virtualized/styles.css';
+import { IS_SERVER } from "../../common/isServer";
 import { appBaseStyle, transition } from "../../components/layout";
 import { PageHeader } from "../../components/PageHeader";
 import { Post, PostDetail, PostPlaceholder } from "../../components/Post";
@@ -68,55 +69,57 @@ const VirtualizedList: React.FC<Props> = () => {
   }, [posts]);
 
   return (
-    <motion.div
-      className={appBaseStyle}
-      initial={{ opacity: 1, y: 25 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -50 }}
-      transition={transition}
-    >
-      <PageHeader title={"Virtualized List example"} />
-      <div className="mt-9 mb-24">
-        {postId && post && <PostDetail post={post} />}
-        <InfiniteLoader
-          isRowLoaded={isRowLoaded}
-          loadMoreRows={fetchMorePosts}
-          rowCount={totalCount}
-          threshold={INFINITE_LOAD_THRESHOLD}
-          minimumBatchSize={INFINITE_LOAD_MIN_BATCH_SIZE}
-        >
-          {({ onRowsRendered, registerChild }) => {
-            return (
-              <WindowScroller>
-                {({ height, isScrolling, scrollTop, onChildScroll }) => {
-                  return (
-                    <AutoSizer disableHeight={true} >
-                      {({ width }) => {
-                        return (
-                          <List
-                            autoHeight
-                            height={height}
-                            width={width}
-                            isScrolling={isScrolling}
-                            scrollTop={scrollTop}
-                            onScroll={onChildScroll}
-                            onRowsRendered={onRowsRendered}
-                            ref={registerChild}
-                            rowCount={totalCount}
-                            rowHeight={ROW_HEIGHT + ROW_MARGIN}
-                            rowRenderer={rowRenderer}
-                          />
-                        );
-                      }}
-                    </AutoSizer>
-                  );
-                }}
-              </WindowScroller>
-            );
-          }}
-        </InfiniteLoader>
-      </div>
-    </motion.div>
+    <>
+      <motion.div
+        className={appBaseStyle}
+        initial={{ opacity: 1, y: 25 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -50 }}
+        transition={transition}
+      >
+        <PageHeader title={"Virtualized List example"} />
+        <div className="mt-9 mb-24">
+          <InfiniteLoader
+            isRowLoaded={isRowLoaded}
+            loadMoreRows={fetchMorePosts}
+            rowCount={totalCount}
+            threshold={INFINITE_LOAD_THRESHOLD}
+            minimumBatchSize={INFINITE_LOAD_MIN_BATCH_SIZE}
+          >
+            {({ onRowsRendered, registerChild }) => {
+              return (
+                <WindowScroller>
+                  {({ height, isScrolling, scrollTop, onChildScroll }) => {
+                    return (
+                      <AutoSizer disableHeight={true} >
+                        {({ width }) => {
+                          return (
+                            <List
+                              autoHeight
+                              height={height}
+                              width={width}
+                              isScrolling={isScrolling}
+                              scrollTop={scrollTop}
+                              onScroll={onChildScroll}
+                              onRowsRendered={onRowsRendered}
+                              ref={registerChild}
+                              rowCount={totalCount}
+                              rowHeight={ROW_HEIGHT + ROW_MARGIN}
+                              rowRenderer={rowRenderer}
+                            />
+                          );
+                        }}
+                      </AutoSizer>
+                    );
+                  }}
+                </WindowScroller>
+              );
+            }}
+          </InfiniteLoader>
+        </div>
+      </motion.div>
+      {!IS_SERVER && postId && post && <PostDetail post={post} />}
+    </>
   );
 };
 

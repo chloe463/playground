@@ -14,10 +14,10 @@ type Props = {
 export const SIDEBAR_WIDTH = 280;
 
 const PAGES: Page[] = [
-  {
-    name: "home",
-    url: "/",
-  },
+  // {
+  //   name: "home",
+  //   url: "/",
+  // },
   {
     name: "layoutAnimation",
     url: "/layout-animation",
@@ -58,8 +58,8 @@ export const SideBar: React.VFC<Props> = (props) => {
                       visited:text-black-alpha500 visited:no-underline
                     `,
                     {
-                      "text-black-alpha800": props.currentPathName === page.url,
-                      "text-black-alpha500": props.currentPathName !== page.url
+                      "text-black-alpha800": props.currentPathName.startsWith(page.url),
+                      "text-black-alpha500": !props.currentPathName.startsWith(page.url)
                     },
                   )}
                 >
@@ -67,8 +67,8 @@ export const SideBar: React.VFC<Props> = (props) => {
                     classnames(
                       "block w-6 h-6 rounded mr-4 transition-all duration-200 ease-out",
                       {
-                        "bg-black-alpha500": props.currentPathName === page.url,
-                        "bg-black-alpha400": props.currentPathName !== page.url,
+                        "bg-black-alpha500": props.currentPathName.startsWith(page.url),
+                        "bg-black-alpha400": !props.currentPathName.startsWith(page.url)
                       }
                     )
                   } />

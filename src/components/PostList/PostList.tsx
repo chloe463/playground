@@ -1,7 +1,7 @@
-import React, { useCallback, } from "react";
+import React, { useCallback } from "react";
 import { AutoSizer, InfiniteLoader, List, ListRowRenderer, WindowScroller } from "react-virtualized";
 import 'react-virtualized/styles.css';
-import { Post, PostPlaceholder } from "../../components/Post";
+import { Post, PostPlaceholder } from ".";
 import { PostFragment } from "../../__generated__/graphqlOperationTypes";
 
 const INFINITE_LOAD_THRESHOLD = 3;

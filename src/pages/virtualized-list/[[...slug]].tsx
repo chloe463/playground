@@ -5,11 +5,11 @@ import React, { useEffect, useMemo, useRef } from "react";
 import { IS_SERVER } from "../../common/isServer";
 import { appBaseStyle, transition } from "../../components/layout";
 import { PageHeader } from "../../components/PageHeader";
-import { PostDetail } from "../../components/Post";
+import { PostDetail } from "../../components/PostList";
+import { PostList } from "../../components/PostList/PostList";
+import { usePostList } from "../../components/PostList/usePostList";
 import { addApolloStateToPageProps, initializeApollo } from "../../hooks/useAplloClient";
-import { useVirtualizedList } from "../../hooks/VirtualizedList.hooks";
 import { GetPostConnectionDocument, GetPostConnectionQuery } from "../../__generated__/graphqlOperationTypes";
-import { PostList } from "../../components/Post/PostList";
 
 type Props = {
   posts: GetPostConnectionQuery;
@@ -31,7 +31,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
 };
 
 const VirtualizedList: React.FC<Props> = () => {
-  const { posts, totalCount, fetchMorePosts } = useVirtualizedList();
+  const { posts, totalCount, fetchMorePosts } = usePostList();
   const scrollPosCache = useRef<number>(0);
   const router = useRouter();
   const postId = useMemo(() => {

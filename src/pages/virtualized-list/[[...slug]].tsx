@@ -50,9 +50,10 @@ const VirtualizedList: React.FC<Props> = () => {
 
   useEffect(() => {
     const listener = (path: string) => {
-      if (/\/virtualized-list\/[\d]+$/.test(path)) {
+      if (IS_SERVER) return;
+      if (/[\d]+$/.test(path)) {
         scrollPosCache.current = window.scrollY;
-      } else if (/\/virtualized-list$/.test(path)) {
+      } else {
         window.scrollTo(0, scrollPosCache.current);
       }
     };

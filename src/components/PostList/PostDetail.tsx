@@ -89,10 +89,10 @@ export const PostDetail: React.VFC<Props> = (props) => {
             </p>
           </motion.div>
           {commentsQueryRes && (
-            <ul className="list-none mt-12 ml-16">
+            <ul className="list-none mt-12 ml-16 space-y-4">
               {commentsQueryRes.comments.map((comment) => {
                 return (
-                  <li key={comment?.id} className="list-none mt-4 first-of-type:mt-0">
+                  <li key={comment?.id} className="list-none">
                     <div className="flex items-center">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={AVATAR_URL_36} className="w-9 h-9 rounded-full" width="36" height="36" alt={`${comment?.name}'s avatar'`} />
@@ -109,10 +109,10 @@ export const PostDetail: React.VFC<Props> = (props) => {
             </ul>
           )}
           {loading && (
-            <ul className="list-none mt-12 ml-16">
+            <ul className="list-none mt-12 ml-16 space-y-4">
               {Array.from({ length: 5 }, (_, i) => i).map((key) => {
                 return (
-                  <li key={key} className="list-none block h-6 w-[480px] bg-black-alpha100 rounded-sm mt-4 first-of-type:mt-0" />
+                  <li key={key} className="list-none block h-6 w-[480px] bg-black-alpha100 rounded-sm" />
                 );
               })}
             </ul>

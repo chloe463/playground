@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import type { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { IS_SERVER } from "../../common/isServer";
 import { appBaseStyle, transition } from "../../components/layout";
 import { PageHeader } from "../../components/PageHeader";
@@ -32,6 +32,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
 
 const VirtualizedList: React.FC<Props> = () => {
   const { posts, totalCount, fetchMorePosts } = useVirtualizedList();
+  const scrollPosCache = useRef<number>(0);
   const router = useRouter();
   const postId = useMemo(() => {
     if (router.query.slug) {
@@ -46,6 +47,20 @@ const VirtualizedList: React.FC<Props> = () => {
     }
     return null;
   }, [postId, posts]);
+
+  useEffect(() => {
+    const listener = (path: string) => {
+      if (/\/virtualized-list\/[\d]+$/.test(path)) {
+        scrollPosCache.current = window.scrollY;
+      } else if (/\/virtualized-list$/.test(path)) {
+        window.scrollTo(0, scrollPosCache.current);
+      }
+    };
+    router.events.on("routeChangeComplete", listener);
+    return () => {
+      router.events.off("routeChangeComplete", listener);
+    };
+  }, [router.events]);
 
   return (
     <>

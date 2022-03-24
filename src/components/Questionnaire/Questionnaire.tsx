@@ -3,6 +3,9 @@ import Link from "next/link";
 import React, { useCallback, useState } from "react";
 import { colors } from "../../lib/styles";
 import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
+import { Chart } from "./Chart";
+import { Pencil } from "./Pencil";
+import { Trash } from "./Trash";
 
 const DUMMY_COVER_IMAGE_URL = "https://dummyimage.com/128x64/b3b3b3/ffffff";
 
@@ -56,7 +59,13 @@ export const Questionnaire: React.VFC<Props> = ({ questionnaire, onClickEdit }) 
   const onClickAnswers = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
-    console.log("answers cliecked");
+    console.log("answers clicked");
+  }, []);
+
+  const onClickTrash = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    console.log("trash clicked");
   }, []);
 
   return (
@@ -80,25 +89,24 @@ export const Questionnaire: React.VFC<Props> = ({ questionnaire, onClickEdit }) 
                 <p className="ml-2 text-body2 text-black-alpha500">
                   {questionnaire.questions.length} questions
                 </p>
-                <span className="ml-2 text-body1 text-black-alpha500">/</span>
-                <p className="ml-2 text-body2 text-black-alpha500">
-                  {new Date(questionnaire.startAt).toISOString().substring(0, 19).replace("T", " ")} - {new Date(questionnaire.endAt).toISOString().substring(0, 19).replace("T", " ")}
-                </p>
               </div>
             </div>
             <div
-              className="absolute right-6 transition-transform duration-200"
+              className="absolute flex items-center right-6 transition-transform duration-200 space-x-4"
               style={{
                 opacity: isHovered ? 1 : 0,
                 transform: isHovered ? "translateX(0)" : "translateX(16px)"
               }}
             >
-              <button className="appearance-none bg-transparent outline-none cursor-pointer text-body2 py-3 px-6 border-[1px] border-solid border-black-alpha200 rounded-full hover:bg-black-alpha50" onClick={onClickPencil}>
-                Edit
-              </button>
-              <button className="appearance-none bg-transparent outline-none cursor-pointer text-body2 py-3 px-6 border-[1px] border-solid border-black-alpha200 rounded-full ml-2 hover:bg-black-alpha50" onClick={onClickAnswers}>
-                Answers
-              </button>
+              <span onClick={onClickPencil}>
+                <Pencil className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8" />
+              </span>
+              <span onClick={onClickAnswers}>
+                <Chart  className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8" />
+              </span>
+              <span onClick={onClickTrash}>
+                <Trash  className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8" />
+              </span>
             </div>
           </div>
         </a>

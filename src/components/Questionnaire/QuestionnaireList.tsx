@@ -10,11 +10,11 @@ type Props = {
 export const QuestionnaireList: React.VFC<Props> = ({ questionnaires, onClickEdit }) => {
   return (
     <div>
-      <div>
+      <ul>
         {questionnaires.map((questionnaire) => {
           return (<Questionnaire key={questionnaire.id} questionnaire={questionnaire} onClickEdit={onClickEdit} />);
         })}
-      </div>
+      </ul>
     </div>
   );
 };

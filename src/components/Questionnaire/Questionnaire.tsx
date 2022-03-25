@@ -100,9 +100,11 @@ export const Questionnaire: React.VFC<Props> = ({ questionnaire, onClickEdit }) 
             transform: isHovered ? "translateX(0)" : "translateX(16px)"
           }}
         >
-          <button onClick={onClickPencil} aria-label={`Edit a questionnaire ${questionnaire.id}`}>
-            <Pencil className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8 transition-colors duration-200 ease-in" />
-          </button>
+          <Link href={{ pathname: `/questionnaires/${questionnaire.id}/edit` }}>
+            <a aria-label={`Edit a questionnaire ${questionnaire.id}`}>
+              <Pencil className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8 transition-colors duration-200 ease-in" />
+            </a>
+          </Link>
           <button onClick={onClickAnswers} aria-label={`See result of questionnaire ${questionnaire.id}`}>
             <Chart  className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8 transition-colors duration-200 ease-in" />
           </button>

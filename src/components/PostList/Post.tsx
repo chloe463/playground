@@ -11,12 +11,12 @@ type Props = {
 
 export const Post: React.VFC<Props> = ({ post }) => {
   return (
-    <div className="flex items-center mb-2 py-4 px-6 transition duration-75 hover:bg-black-alpha50" data-cy="link-to-post-detail">
+    <div className="flex items-center mb-2 py-4 px-6 transition duration-75 hover:bg-black-alpha50">
       <motion.img src={AVATAR_URL} className="rounded-full" width={64} height={64} />
       <div className="ml-4 w-[calc(100%-80px)]">
         <header>
           <Link href={{ pathname: `/virtualized-list/${post.id}` }} shallow>
-            <a className="hover:underline">
+            <a className="hover:underline" data-cy="link-to-post-detail" >
               <h3 className="inline text-subheading text-gray-800">
                 {post.id}. {post.title}
               </h3>

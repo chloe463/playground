@@ -6,7 +6,7 @@ type Props = {
   questionnaires: QuestionnaireFragment[];
 };
 
-export const QuestionnaireList: React.VFC<Props> = ({ questionnaires, onClickEdit }) => {
+export const QuestionnaireList: React.VFC<Props> = ({ questionnaires }) => {
   return (
     <div>
       <ul>

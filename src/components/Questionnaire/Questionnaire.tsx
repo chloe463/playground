@@ -38,7 +38,7 @@ const INDICATOR_COLORS: string[] = [
   colors.blackAlpha500,
 ];
 
-export const Questionnaire: React.VFC<Props> = ({ questionnaire, onClickEdit }) => {
+export const Questionnaire: React.VFC<Props> = ({ questionnaire }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const onMouseOver = useCallback((_e: React.MouseEvent) => {

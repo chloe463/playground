@@ -1,0 +1,16 @@
+name: typecheck
+
+on: [pull_request]
+
+jobs:
+  typecheck:
+    runs-on: ubuntu-latest
+    env:
+      SKIP_PREFLIGHT_CHECK: true
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check types
+        run: |
+          yarn install
+          yarn typecheck

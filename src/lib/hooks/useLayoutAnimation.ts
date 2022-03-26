@@ -1,5 +1,6 @@
-import { useCallback, useLayoutEffect, useRef } from "react";
+import { useCallback, useRef } from "react";
 import { AnimationParams, Delta } from "../types";
+import { useIsomorphicLayoutEffect } from "./useIsomarphicLayoutEffect";
 
 type useLayoutAnimationParams = AnimationParams;
 
@@ -31,7 +32,7 @@ export const useLayoutAnimation = (params: useLayoutAnimationParams) => {
     [duration, timingFunction]
   );
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (animationTargetRef.current && prevPosition.current) {
       const x = axis !== "Y" ? animationTargetRef.current.getBoundingClientRect().left - prevPosition.current.left : 0;
       const y = axis !== "X" ? animationTargetRef.current.getBoundingClientRect().top - prevPosition.current.top : 0;

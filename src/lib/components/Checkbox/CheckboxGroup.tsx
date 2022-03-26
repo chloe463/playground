@@ -13,11 +13,11 @@ export const CheckboxGroupContext = createContext<CheckboxGroupState>({
   value: [],
   isDisabled: false,
   isReadOnly: false,
-  isSelected: (value: string) => false,
-  setValue: (value: string[]) => {},
-  addValue: (value: string) => {},
-  removeValue: (value: string) => {},
-  toggleValue: (value: string) => {},
+  isSelected: (_value: string) => false,
+  setValue: (_value: string[]) => {},
+  addValue: (_value: string) => {},
+  removeValue: (_value: string) => {},
+  toggleValue: (_value: string) => {},
 });
 
 export const CheckboxGroup: React.VFC<CheckboxProps> = (props) => {

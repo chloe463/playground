@@ -1,5 +1,4 @@
-import { History } from "history";
-import { useHistory, useLocation } from "react-router";
+import { NextRouter, useRouter } from "next/router";
 
 type CrudPageHistoryState = {
   id: number;
@@ -10,26 +9,34 @@ type CrudPageHistoryState = {
 // };
 
 type CrudPage = {
-  history: History<CrudPageHistoryState>;
+  router: NextRouter;
   stateBetweenPages: CrudPageHistoryState;
   moveToQuestionEditPage: (id: number) => void;
 };
 
 export const useCrudPage = (): CrudPage => {
-  const history = useHistory<CrudPageHistoryState>();
-  const { state } = useLocation<CrudPageHistoryState>();
+  const router = useRouter();
+  const { query } = router;
+  const state = JSON.parse(query.state as string) as CrudPageHistoryState;
 
   const moveToQuestionEditPage = (id: number) => {
-    history.push({
-      pathname: `/crud/${id}/edit`,
-      state: {
-        id,
-      }
-    })
+    const path = `/questionnaires/${id}/edit`;
+    const searchParams = router.asPath.split("?")[1];
+    const asPath = searchParams ? `${path}?${searchParams}` : path;
+    router.push(
+      {
+        pathname: path,
+        query: {
+          id,
+          state: JSON.stringify({id}),
+        }
+      },
+      asPath
+    );
   }
 
   return {
-    history,
+    router,
     stateBetweenPages: state,
     moveToQuestionEditPage,
   }

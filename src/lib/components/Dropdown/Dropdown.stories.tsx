@@ -1,6 +1,8 @@
 import { action } from "@storybook/addon-actions";
 import { useState } from "react";
 import { Dropdown } from "./index";
+
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   title: "Dropdown",
 };
@@ -14,7 +16,7 @@ const options = [
 ];
 
 export const Normal = () => {
-  const [value, setValue] = useState("");
+  const [value] = useState("");
   return (
     <Dropdown
       placeholder={"Dropdown"}
@@ -27,7 +29,7 @@ export const Normal = () => {
 };
 
 export const WithEntryPoint = () => {
-  const [value, setValue] = useState("");
+  const [value] = useState("");
   return (
     <>
       <Dropdown

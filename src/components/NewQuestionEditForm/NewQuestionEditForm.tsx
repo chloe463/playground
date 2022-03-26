@@ -1,14 +1,12 @@
 import React from "react";
-import styled from "styled-components";
 
 type Props = {
 
 };
 
-export const NewQuestionEditForm: React.VFC<Props> = (props) => {
+export const NewQuestionEditForm: React.VFC<Props> = () => {
   return (
-    <Base>NewQuestionEditForm works!</Base>
+    <div className="ml-6">New questionnaire edit page works!</div>
   );
 }
 
-const Base = styled.div``;

@@ -1,7 +1,8 @@
 // Supecial thahks to
 // https://itnext.io/animating-list-reordering-with-react-hooks-aca5e7eeafba
 
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useIsomorphicLayoutEffect } from "../hooks/useIsomarphicLayoutEffect";
 import { usePrevious } from "../hooks/usePrevious";
 import { AnimationParams, Delta } from "../types";
 
@@ -59,12 +60,12 @@ export const AnimationListContainer: React.FC<AnimationListContainerProps> = (pr
   const [prevBoudingBox, setPrevBoundingBox] = useState<BoundingBox>({});
   const prevChildren = usePrevious(children);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const newBoundingBox = calculateBoundingBoxes(children);
     setBoundingBox(newBoundingBox);
   }, [children]);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const prevBoudingBox = calculateBoundingBoxes(prevChildren);
     setPrevBoundingBox(prevBoudingBox);
   }, [prevChildren]);

@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
-find . -type f ! -path  '*node_modules*' ! -path '*.git*' | while read FILE
+find . -type d ! -path  '*node_modules*' ! -path '*.git*' | while read DIR
 do
-  if [[ $FILE =~ "__generated__" ]]
+  if [[ $DIR =~ "__generated__" ]]
   then
-    rm ${FILE}
-    echo "Removed ${FILE}"
+    rm -rf ${DIR}
+    echo "Removed ${DIR}"
   fi
 done

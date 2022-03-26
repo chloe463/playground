@@ -1,10 +1,10 @@
 import { useFocusManager } from "@react-aria/focus";
 import React, {
   useEffect,
-  useLayoutEffect,
   useRef
 } from "react";
 import styled, { css } from "styled-components";
+import { useIsomorphicLayoutEffect } from "../../hooks/useIsomarphicLayoutEffect";
 import { colors } from "../../styles";
 
 type OptionsProps<T = string> = {
@@ -28,7 +28,7 @@ export const Options: React.VFC<OptionsProps> = ({
   const listRef = useRef<HTMLUListElement>(null);
   const focusManager = useFocusManager();
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (baseRef.current && listRef.current) {
       const selectedItemEl = Array.from(listRef.current.children).find((el) => el.getAttribute("aria-selected") === "true");
       if (selectedItemEl) {

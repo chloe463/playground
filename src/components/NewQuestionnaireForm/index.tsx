@@ -2,8 +2,7 @@ import { DevTool } from "@hookform/devtools";
 import dayjs from "dayjs";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import styled from "styled-components";
-import { PrimaryButton as _PrimaryButton } from "../../lib/components/Button";
+import { PrimaryButton } from "../../lib/components/Button";
 import { Datepicker } from "../../lib/components/Datepicker";
 import { TextArea } from "../../lib/components/TextArea";
 import { TextField } from "../../lib/components/TextField";
@@ -26,12 +25,12 @@ export const NewQuestionnaireForm: React.VFC<Props> = ({ onSubmit }) => {
   const { isDirty, isValid } = formState;
 
   return (
-    <Base>
+    <div className="py-0 px-6">
       {process.env.NODE_ENV !== "production" && (
         <DevTool control={control} placement="top-right" />
       )}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Field>
+        <div className="w-[720px]">
           <Controller
             name="title"
             control={control}
@@ -51,8 +50,8 @@ export const NewQuestionnaireForm: React.VFC<Props> = ({ onSubmit }) => {
               );
             }}
           />
-        </Field>
-        <Field>
+        </div>
+        <div className="w-[720px] mt-8">
           <Controller
             name="description"
             control={control}
@@ -70,8 +69,8 @@ export const NewQuestionnaireForm: React.VFC<Props> = ({ onSubmit }) => {
               );
             }}
           />
-        </Field>
-        <Field>
+        </div>
+        <div className="w-[720px] mt-8">
           <Controller
             name="startAt"
             control={control}
@@ -90,8 +89,8 @@ export const NewQuestionnaireForm: React.VFC<Props> = ({ onSubmit }) => {
               );
             }}
           />
-        </Field>
-        <Field>
+        </div>
+        <div className="w-[720px] mt-8">
           <Controller
             name="endAt"
             control={control}
@@ -111,26 +110,11 @@ export const NewQuestionnaireForm: React.VFC<Props> = ({ onSubmit }) => {
               );
             }}
           />
-        </Field>
-        <div style={{ marginTop: 48, display: "flex", justifyContent: "center" }}>
-          <PrimaryButton type="submit" disabled={!isValid || !isDirty}>Submit</PrimaryButton>
+        </div>
+        <div className="flex justify-center mt-12">
+          <PrimaryButton type="submit" style={{ width: "136px" }} disabled={!isValid || !isDirty}>Submit</PrimaryButton>
         </div>
       </form>
-    </Base>
+    </div>
   );
 };
-
-const Base = styled.div`
-  padding: 0 24px;
-`;
-
-const Field = styled.div`
-  width: 720px;
-  & + & {
-    margin-top: 32px;
-  }
-`;
-
-const PrimaryButton = styled(_PrimaryButton)`
-  width: 136px;
-`;

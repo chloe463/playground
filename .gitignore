@@ -24,7 +24,10 @@ yarn-debug.log*
 yarn-error.log*
 
 # generated type definition files
-src/**/__generated__/*
+# src/**/__generated__/*
 
 # cypress outputs
 e2e/cypress/videos/*
+
+# Next.js
+.next

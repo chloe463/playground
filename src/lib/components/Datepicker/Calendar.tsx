@@ -1,8 +1,9 @@
 import { useDialog } from "@react-aria/dialog";
 import dayjs from "dayjs";
 import { motion, Variants } from "framer-motion";
-import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
+import { useIsomorphicLayoutEffect } from "../../hooks/useIsomarphicLayoutEffect";
 import { colors } from "../../styles";
 
 const throttle = (fn: (...args: any[]) => void, interval: number) => {
@@ -98,7 +99,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
     "aria-labelledby": id,
   }, calendarRef);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (baseRef.current && calendarRef.current) {
       const { x, y, height } = baseRef.current.getBoundingClientRect();
       const { height: calendarHeight } = calendarRef.current.getBoundingClientRect();
@@ -113,7 +114,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
     }
   }, [baseRef, calendarRef]);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (picking === "YEAR_MONTH" && yearGridRef.current) {
       const selectedYearDOM = Array.from(yearGridRef.current.children).find((v) => (v as HTMLButtonElement).dataset["selected"] === "true");
       if (selectedYearDOM) {
@@ -189,7 +190,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
   }, [innerValue]);
 
   useEffect(() => {
-    const listener = throttle((e: Event) => {
+    const listener = throttle((_e: Event) => {
       if (baseRef.current && calendarRef.current) {
         const { x, y, height } = baseRef.current?.getBoundingClientRect();
         const { height: calendarHeight } = calendarRef.current.getBoundingClientRect();

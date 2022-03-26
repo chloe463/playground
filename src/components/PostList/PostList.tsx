@@ -25,9 +25,7 @@ export const PostList: React.VFC<Props> = (props) => {
     const post = posts[index];
     return (
       <div key={key} style={style}>
-        <div className="hover:bg-gray-50 cursor-pointer">
-          {post ? <Post post={post} /> : <PostPlaceholder />}
-        </div>
+        {post ? <Post post={post} /> : <PostPlaceholder />}
       </div>
     );
   }, [posts]);

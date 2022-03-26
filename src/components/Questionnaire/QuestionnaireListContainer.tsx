@@ -1,5 +1,4 @@
 import { gql, useQuery } from "@apollo/client";
-import { useRouter } from "next/router";
 import React from "react";
 import { QuestionnaireConnectionDocument } from "../../__generated__/graphqlOperationTypes";
 import { QUESTIONNAIRE_FRAGMENT } from "../Questionnaire";
@@ -30,7 +29,6 @@ const GET_QUESTIONNAIRE_CONNECTION_QUERY = gql`
 const PER = 10;
 
 export const QuestionnaireListContainer: React.VFC = () => {
-  const router = useRouter();
   const { data, loading, fetchMore } = useQuery(QuestionnaireConnectionDocument, {
     variables: {
       first: PER,
@@ -39,10 +37,6 @@ export const QuestionnaireListContainer: React.VFC = () => {
   })
   if (loading || !data) {
     return null;
-  }
-
-  const moveToEditPage = (id: number) => {
-    router.push(`/questionnaires/${id}/edit`);
   }
 
   const onClickLoadMore = async () => {
@@ -58,7 +52,7 @@ export const QuestionnaireListContainer: React.VFC = () => {
 
   return (
     <div>
-      <QuestionnaireList questionnaires={questionnaires} onClickEdit={moveToEditPage} />
+      <QuestionnaireList questionnaires={questionnaires} />
       {data.questionnaireConnection.pageInfo.hasNextPage && (
         <div className="flex justify-center mt-6">
           <button

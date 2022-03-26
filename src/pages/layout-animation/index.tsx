@@ -1,4 +1,4 @@
-import faker from "faker";
+import { faker } from "@faker-js/faker";
 import { AnimateSharedLayout, motion } from "framer-motion";
 import { useState } from "react";
 import { appBaseStyle, transition } from "../../components/layout";

@@ -25,7 +25,6 @@ export const QUESTIONNAIRE_FRAGMENT = gql`
 
 type Props = {
   questionnaire: QuestionnaireFragment;
-  onClickEdit: (id: number) => void;
 };
 
 const STATES: string[] = [
@@ -49,12 +48,6 @@ export const Questionnaire: React.VFC<Props> = ({ questionnaire, onClickEdit }) 
   const onMouseOut = useCallback(() => {
     setIsHovered(false);
   }, []);
-
-  const onClickPencil = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    e.preventDefault();
-    onClickEdit(questionnaire.id);
-  }, [onClickEdit, questionnaire.id]);
 
   const onClickAnswers = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();

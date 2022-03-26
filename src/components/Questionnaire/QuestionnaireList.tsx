@@ -4,7 +4,6 @@ import { Questionnaire } from "../Questionnaire";
 
 type Props = {
   questionnaires: QuestionnaireFragment[];
-  onClickEdit: (id: number) => void;
 };
 
 export const QuestionnaireList: React.VFC<Props> = ({ questionnaires, onClickEdit }) => {
@@ -12,7 +11,7 @@ export const QuestionnaireList: React.VFC<Props> = ({ questionnaires, onClickEdi
     <div>
       <ul>
         {questionnaires.map((questionnaire) => {
-          return (<Questionnaire key={questionnaire.id} questionnaire={questionnaire} onClickEdit={onClickEdit} />);
+          return (<Questionnaire key={questionnaire.id} questionnaire={questionnaire} />);
         })}
       </ul>
     </div>

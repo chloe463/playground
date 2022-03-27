@@ -1,4 +1,3 @@
-import { colors } from "../../styles";
 import { Radio } from "./Radio";
 import { RadioGroup } from "./RadioGroup";
 
@@ -35,12 +34,12 @@ export const Normal = () => {
 export const WithSomeStyle = () => {
   return (
     <RadioGroup label={"Foo"} name={"bar"}>
-      <div style={{ marginTop: "16px" }}>
+      <div className="mt-4">
         {OPTIONS.map((option) => {
           return (
-            <div key={option.value} style={{ marginTop: "8px" }}>
+            <div key={option.value} className="mt-2" >
               <Radio value={`${option.value}`}>
-                <span style={{ fontSize: "14px", lineHeight: "24px", color: colors.blackAlpha800 }}>
+                <span className="text-body2 text-black-alpha800">
                   {option.label}
                 </span>
               </Radio> 

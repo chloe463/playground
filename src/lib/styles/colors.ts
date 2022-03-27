@@ -111,4 +111,4 @@ export const colors = {
   greenBright200: "#b2fa55",
   greenBright400: "#81f52e",
   greenBright700: "#0fbd01",
-};
+} as const;

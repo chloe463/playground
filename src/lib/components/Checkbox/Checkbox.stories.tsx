@@ -1,4 +1,3 @@
-import { colors } from "../../styles";
 import { Checkbox } from "./Checkbox";
 import { CheckboxGroup } from "./CheckboxGroup";
 
@@ -31,12 +30,12 @@ export const Normal = () => {
 export const WithSomeStyle = () => {
   return (
     <CheckboxGroup label={"Foo"}>
-      <div style={{ marginTop: "16px" }}>
+      <div className="mt-4">
         {OPTIONS.map((option) => {
           return (
-            <div key={option.value} style={{ marginTop: "8px" }}>
+            <div key={option.value} className="mt-2">
               <Checkbox value={`${option.value}`} isDisabled={option.value === 4}>
-                <span style={{ fontSize: "14px", lineHeight: "24px", color: colors.blackAlpha800 }}>
+                <span className="text-body2 text-black-alpha800">
                   {option.label}
                 </span>
               </Checkbox> 
@@ -50,17 +49,17 @@ export const WithSomeStyle = () => {
 
 export const Variants = () => {
   return (
-    <CheckboxGroup label={"Foo"}>
-      <div style={{ marginTop: "16px" }}>
+    <CheckboxGroup label={"Foo"} value={["2"]}>
+      <div className="mt-4 space-y-2">
         {OPTIONS.map((option) => {
           return (
-            <div key={option.value} style={{ marginTop: "8px" }}>
+            <div key={option.value}>
               <Checkbox
                 value={`${option.value}`}
                 isIndeterminate={option.state === "indeterminate"}
                 isDisabled={option.state === "disabled"}
               >
-                <span style={{ fontSize: "14px", lineHeight: "24px", color: colors.blackAlpha800 }}>
+                <span className="text-body2 text-black-alpha800">
                   {option.label}
                 </span>
               </Checkbox> 

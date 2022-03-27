@@ -3416,18 +3416,6 @@
   resolved "https://registry.yarnpkg.com/@open-draft/until/-/until-1.0.3.tgz#db9cc719191a62e7d9200f6e7bab21c5b848adca"
   integrity sha512-Aq58f5HiWdyDlFffbbSjAlv596h/cOnt2DO1w3DOC7OJ5EHs0hd/nycJfiu9RJbT6Yk6F1knnRRXNSpxoIVZ9Q==
 
-"@pmmmwh/react-refresh-webpack-plugin@^0.4.3":
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.3.tgz#1eec460596d200c0236bf195b078a5d1df89b766"
-  integrity sha512-br5Qwvh8D2OQqSXpd1g/xqXKnK0r+Jz6qVKBbWmpUcrbGOxUrf39V5oZ1876084CGn18uMdR5uvPqBv9UqtBjQ==
-  dependencies:
-    ansi-html "^0.0.7"
-    error-stack-parser "^2.0.6"
-    html-entities "^1.2.1"
-    native-url "^0.2.6"
-    schema-utils "^2.6.5"
-    source-map "^0.7.3"
-
 "@pmmmwh/react-refresh-webpack-plugin@^0.5.1":
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.5.4.tgz#df0d0d855fc527db48aac93c218a0bf4ada41f99"
@@ -4495,19 +4483,6 @@
   dependencies:
     core-js "^3.8.2"
 
-"@storybook/preset-create-react-app@^3.1.7":
-  version "3.1.7"
-  resolved "https://registry.yarnpkg.com/@storybook/preset-create-react-app/-/preset-create-react-app-3.1.7.tgz#e48df77768bdcc4863e3918c11965c45e4110ac8"
-  integrity sha512-SR+HGSWCrhHA5sszuIHJYdh2tWNi/zu858WB5RM74OBW4ogo8Bv4/7td4p53eWbdm0zBDbnKcrBmwRrAYqwL9Q==
-  dependencies:
-    "@pmmmwh/react-refresh-webpack-plugin" "^0.4.3"
-    "@types/babel__core" "^7.1.7"
-    "@types/webpack" "^4.41.13"
-    babel-plugin-react-docgen "^4.1.0"
-    pnp-webpack-plugin "^1.6.4"
-    react-docgen-typescript-plugin "^0.6.2"
-    semver "^7.3.2"
-
 "@storybook/preview-web@6.4.19":
   version "6.4.19"
   resolved "https://registry.yarnpkg.com/@storybook/preview-web/-/preview-web-6.4.19.tgz#bdfab7b2f760caf72140229dd64fd57617ad000b"
@@ -4758,17 +4733,6 @@
   version "7.1.18"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.18.tgz#1a29abcc411a9c05e2094c98f9a1b7da6cdf49f8"
   integrity sha512-S7unDjm/C7z2A2R9NzfKCK1I+BAALDtxEmsJBwlB3EzNfb929ykjL++1CK9LO++EIp2fQrC8O+BwjKvz6UeDyQ==
-  dependencies:
-    "@babel/parser" "^7.1.0"
-    "@babel/types" "^7.0.0"
-    "@types/babel__generator" "*"
-    "@types/babel__template" "*"
-    "@types/babel__traverse" "*"
-
-"@types/babel__core@^7.1.7":
-  version "7.1.12"
-  resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.12.tgz#4d8e9e51eb265552a7e4f1ff2219ab6133bdfb2d"
-  integrity sha512-wMTHiiTiBAAPebqaPiPDLFA4LYPKr6Ph0Xq/6rq1Ur3v66HXyG+clfR9CNETkD7MQS8ZHvpQOtA53DLws5WAEQ==
   dependencies:
     "@babel/parser" "^7.1.0"
     "@babel/types" "^7.0.0"
@@ -5168,7 +5132,7 @@
     "@types/source-list-map" "*"
     source-map "^0.7.3"
 
-"@types/webpack@^4.41.13", "@types/webpack@^4.41.26":
+"@types/webpack@^4.41.26":
   version "4.41.29"
   resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.41.29.tgz#2e66c1de8223c440366469415c50a47d97625773"
   integrity sha512-6pLaORaVNZxiB3FSHbyBiWM7QdazAWda1zvAq4SbZObZqHSDbWLi62iFdblVea6SK9eyBIVp5yHhKt/yNQdR7Q==
@@ -5649,11 +5613,6 @@ ansi-html-community@0.0.8, ansi-html-community@^0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/ansi-html-community/-/ansi-html-community-0.0.8.tgz#69fbc4d6ccbe383f9736934ae34c3f8290f1bf41"
   integrity sha512-1APHAyr3+PCamwNw3bXCPp4HFLONZt/yIH0sZp0/469KWNTEy+qN5jQ3GVX6DMZ1UXAi34yVwtTeaG/HpBuuzw==
-
-ansi-html@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/ansi-html/-/ansi-html-0.0.7.tgz#813584021962a9e9e6fd039f940d12f56ca7859e"
-  integrity sha1-gTWEAhliqenm/QOflA0S9WynhZ4=
 
 ansi-regex@^2.0.0:
   version "2.1.1"
@@ -6459,7 +6418,7 @@ babel-plugin-polyfill-regenerator@^0.2.0:
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.2.0"
 
-babel-plugin-react-docgen@^4.1.0, babel-plugin-react-docgen@^4.2.1:
+babel-plugin-react-docgen@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-react-docgen/-/babel-plugin-react-docgen-4.2.1.tgz#7cc8e2f94e8dc057a06e953162f0810e4e72257b"
   integrity sha512-UQ0NmGHj/HAqi5Bew8WvNfCk8wSsmdgNd8ZdMjBCICtyCJCq9LiqgqvjCYe570/Wg7AQArSq1VQ60Dd/CHN7mQ==
@@ -10624,11 +10583,6 @@ html-encoding-sniffer@^2.0.1:
   dependencies:
     whatwg-encoding "^1.0.5"
 
-html-entities@^1.2.1:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.4.0.tgz#cfbd1b01d2afaf9adca1b10ae7dffab98c71d2dc"
-  integrity sha512-8nxjcBcd8wovbeKx7h3wTji4e6+rhaVuPNpMqwWgnHh+N9ToqsCs6XztWRBPQ+UtzsoMAdKZtUENoVzU/EMtZA==
-
 html-entities@^2.1.0:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-2.3.2.tgz#760b404685cb1d794e4f4b744332e3b00dcfe488"
@@ -13277,13 +13231,6 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-native-url@^0.2.6:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/native-url/-/native-url-0.2.6.tgz#ca1258f5ace169c716ff44eccbddb674e10399ae"
-  integrity sha512-k4bDC87WtgrdD362gZz6zoiXQrl40kYlBmpfmSjwRO1VU0V5ccwJTlxuE72F6m3V0vc1xOf6n3UCP9QyerRqmA==
-  dependencies:
-    querystring "^0.2.0"
-
 natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
@@ -14192,7 +14139,7 @@ pkg-dir@^5.0.0:
   dependencies:
     find-up "^5.0.0"
 
-pnp-webpack-plugin@1.6.4, pnp-webpack-plugin@^1.6.4:
+pnp-webpack-plugin@1.6.4:
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/pnp-webpack-plugin/-/pnp-webpack-plugin-1.6.4.tgz#c9711ac4dc48a685dabafc86f8b6dd9f8df84149"
   integrity sha512-7Wjy+9E3WwLOEL30D+m8TSTF7qJJUJLONBnwQp0518siuMxUQUbgZwssaFX+QKlZkjHZcw/IpZCt/H0srrntSg==
@@ -14934,22 +14881,6 @@ react-colorful@^5.1.2:
   version "5.5.1"
   resolved "https://registry.yarnpkg.com/react-colorful/-/react-colorful-5.5.1.tgz#29d9c4e496f2ca784dd2bb5053a3a4340cfaf784"
   integrity sha512-M1TJH2X3RXEt12sWkpa6hLc/bbYS0H6F4rIqjQZ+RxNBstpY67d9TrFXtqdZwhpmBXcCwEi7stKqFue3ZRkiOg==
-
-react-docgen-typescript-plugin@^0.6.2:
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/react-docgen-typescript-plugin/-/react-docgen-typescript-plugin-0.6.3.tgz#664b22601df083597ecb1e60bd21beca60125fdf"
-  integrity sha512-av1S/fmWBNFGgNa4qtkidFjjOz23eEi6EdCtwSWo9WNhGzUMyMygbD/DosMWoeFlZpk9R3MXPkRE7PDH6j5GMQ==
-  dependencies:
-    debug "^4.1.1"
-    endent "^2.0.1"
-    micromatch "^4.0.2"
-    react-docgen-typescript "^1.20.5"
-    tslib "^2.0.0"
-
-react-docgen-typescript@^1.20.5:
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/react-docgen-typescript/-/react-docgen-typescript-1.22.0.tgz#00232c8e8e47f4437cac133b879b3e9437284bee"
-  integrity sha512-MPLbF8vzRwAG3GcjdL+OHQlhgtWsLTXs+7uJiHfEeT3Ur7IsZaNYqRTLQ9sj2nB6M6jylcPCeCmH7qbszJmecg==
 
 react-docgen-typescript@^2.0.0:
   version "2.2.2"

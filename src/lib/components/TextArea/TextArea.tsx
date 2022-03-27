@@ -84,7 +84,7 @@ const StyledTextArea = styled.textarea`
     width: 100%;
     height: 2px;
     background-color: ${colors.brand};
-    transform: scaleX(1) translateY(-2px);
+    transform: scaleX(1) translateY(-6px);
   }
 `;
 

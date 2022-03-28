@@ -1,4 +1,5 @@
 export const colors = {
+  lightBrand: "#bb71da",
   brand: "#66327c",
   blackAlpha50: "rgba(0, 0, 0, 0.03)",
   blackAlpha100: "rgba(0, 0, 0, 0.06)",

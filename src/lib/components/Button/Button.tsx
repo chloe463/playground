@@ -50,7 +50,7 @@ export const BaseButton = styled.button`
 `;
 
 export const PrimaryButton = styled(BaseButton)`
-  background-color: ${colors.brand};
+  background: linear-gradient(to right bottom, ${colors.lightBrand}, ${colors.brand});
   color: ${colors.white};
 
   &:hover {
@@ -67,7 +67,7 @@ export const PrimaryButton = styled(BaseButton)`
   }
 
   &:disabled {
-    background-color: ${colors.blackAlpha200};
+    background: ${colors.blackAlpha200};
     color: ${colors.blackAlpha500};
     box-shadow: none;
     cursor: default;

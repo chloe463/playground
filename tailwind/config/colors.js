@@ -1,4 +1,5 @@
 module.exports = {
+  "light-brand": "#bb71da",
   "brand": "#66327c",
   "black-alpha50": "rgba(0, 0, 0, 0.03)",
   "black-alpha100": "rgba(0, 0, 0, 0.06)",

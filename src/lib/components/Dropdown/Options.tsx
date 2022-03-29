@@ -136,7 +136,7 @@ export const Options: React.VFC<OptionsProps> = ({
 
 const OptionList = styled.ul`
   z-index: 1;
-  box-shadow: ${getElevation(4)};
+  box-shadow: ${getElevation(8)};
   padding: 8px 0;
   display: block;
   border-radius: 4px;

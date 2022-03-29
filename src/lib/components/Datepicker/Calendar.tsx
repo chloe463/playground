@@ -404,7 +404,7 @@ const CalendarBase = styled.div`
   width: 256px;
   border-radius: 4px;
   background-color: ${colors.white};
-  box-shadow: ${getElevation(4)};
+  box-shadow: ${getElevation(24)};
   &:focus {
     outline: none;
   }

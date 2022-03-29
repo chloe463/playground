@@ -19,7 +19,7 @@ export const BaseButton = styled.button`
   border-radius: 9999vmax;
   cursor: pointer;
   transition: all 200ms cubic-bezier(0.3, 0.3, 0.3, 1);
-  box-shadow: ${getElevation(4)};
+  box-shadow: ${getElevation(2)};
   overflow: hidden;
 
   &:after {
@@ -39,40 +39,21 @@ export const BaseButton = styled.button`
   }
 
   &:active {
+    box-shadow: ${getElevation(8)};
     &:after {
       background-color: ${colors.blackAlpha100};
     }
   }
 
   &:disabled {
-    background-color: ${colors.blackAlpha200};
-  }
-`;
-
-export const PrimaryButton = styled(BaseButton)`
-  background: linear-gradient(to right bottom, ${colors.lightBrand}, ${colors.brand});
-  color: ${colors.white};
-
-  &:hover {
-    box-shadow: ${getElevation(8)};
-    &:after {
-      background-color: ${colors.whiteAlpha50};
-    }
-  }
-
-  &:active {
-    &:after {
-      background-color: ${colors.whiteAlpha100};
-    }
-  }
-
-  &:disabled {
-    background: ${colors.blackAlpha200};
-    color: ${colors.blackAlpha500};
     box-shadow: none;
+    background-color: ${colors.blackAlpha200};
     cursor: default;
-    &:after {
-      background-color: transparent;
+    &:hover {
+      box-shadow: none;
+      &:after {
+        background-color: transparent;
+      }
     }
   }
 `;

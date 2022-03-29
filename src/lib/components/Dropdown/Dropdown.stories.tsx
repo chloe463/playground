@@ -4,7 +4,7 @@ import { Dropdown } from "./index";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  title: "Dropdown",
+  title: "lib/Dropdown",
 };
 
 const options = [

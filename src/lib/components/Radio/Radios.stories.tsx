@@ -3,7 +3,7 @@ import { RadioGroup } from "./RadioGroup";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  title: "Radio",
+  title: "lib/Radio",
 };
 
 const OPTIONS = [
@@ -21,7 +21,7 @@ export const Normal = () => {
             key={option.value}
             value={`${option.value}`}
           >
-            <span>
+            <span className="text-body2 text-black-alaph800">
               {option.label}
             </span>
           </Radio> 

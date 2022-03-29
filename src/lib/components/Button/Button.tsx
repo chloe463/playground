@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../styles";
+import { getElevation } from "../elevation";
 
 export const BaseButton = styled.button`
   position: relative;
@@ -18,7 +19,7 @@ export const BaseButton = styled.button`
   border-radius: 9999vmax;
   cursor: pointer;
   transition: all 200ms cubic-bezier(0.3, 0.3, 0.3, 1);
-  box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%);
+  box-shadow: ${getElevation(2)};
   overflow: hidden;
 
   &:after {
@@ -31,47 +32,28 @@ export const BaseButton = styled.button`
   }
 
   &:hover {
-    box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%);
+    box-shadow: ${getElevation(8)};
     &:after {
       background-color: ${colors.blackAlpha50};
     }
   }
 
   &:active {
+    box-shadow: ${getElevation(8)};
     &:after {
       background-color: ${colors.blackAlpha100};
     }
   }
 
   &:disabled {
-    background-color: ${colors.blackAlpha200};
-  }
-`;
-
-export const PrimaryButton = styled(BaseButton)`
-  background-color: ${colors.brand};
-  color: ${colors.white};
-
-  &:hover {
-    box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%);
-    &:after {
-      background-color: ${colors.whiteAlpha50};
-    }
-  }
-
-  &:active {
-    &:after {
-      background-color: ${colors.whiteAlpha100};
-    }
-  }
-
-  &:disabled {
-    background-color: ${colors.blackAlpha200};
-    color: ${colors.blackAlpha500};
     box-shadow: none;
+    background-color: ${colors.blackAlpha200};
     cursor: default;
-    &:after {
-      background-color: transparent;
+    &:hover {
+      box-shadow: none;
+      &:after {
+        background-color: transparent;
+      }
     }
   }
 `;

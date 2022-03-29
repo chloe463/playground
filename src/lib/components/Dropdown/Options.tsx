@@ -6,6 +6,7 @@ import React, {
 import styled, { css } from "styled-components";
 import { useIsomorphicLayoutEffect } from "../../hooks/useIsomarphicLayoutEffect";
 import { colors } from "../../styles";
+import { getElevation } from "../elevation";
 
 type OptionsProps<T = string> = {
   baseRef: React.MutableRefObject<HTMLDivElement | null>;
@@ -135,7 +136,7 @@ export const Options: React.VFC<OptionsProps> = ({
 
 const OptionList = styled.ul`
   z-index: 1;
-  box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+  box-shadow: ${getElevation(8)};
   padding: 8px 0;
   display: block;
   border-radius: 4px;

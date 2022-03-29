@@ -3,7 +3,7 @@
 exports[`Dropdown shoud opens options list on click 1`] = `
 <div>
   <div
-    class="sc-hKgILt ghwaBz"
+    class="sc-hKgILt bdphQw"
     tabindex="0"
   >
     <label
@@ -12,7 +12,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
       placeholder
     </label>
     <p
-      class="sc-jSgupP emmsEv dropdown-selected-value"
+      class="sc-jSgupP khwpFf dropdown-selected-value"
     />
     <span
       class="sc-gKsewC hTHtqV dropdown-bottom-border"
@@ -28,7 +28,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
         hidden=""
       />
       <ul
-        class="sc-gsTCUz ieLYSO"
+        class="sc-gsTCUz jkPwYl"
         style="position: fixed; width: 0px; transform: translate(0px, 0px);"
       >
         <li

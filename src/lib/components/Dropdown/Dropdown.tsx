@@ -121,7 +121,6 @@ const DropdownBase = styled.div<{ $focus: boolean, $disabled?: boolean }>`
     height: 6px;
     background-color: ${colors.blackAlpha500};
     clip-path: polygon(0 0, 100% 0%, 50% 100%);
-    /* transition: all 100ms ease-out; */
   }
 
   ${({ $focus }) => $focus && css`

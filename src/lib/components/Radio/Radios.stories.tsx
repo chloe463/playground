@@ -3,7 +3,7 @@ import { RadioGroup } from "./RadioGroup";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  title: "Radio",
+  title: "lib/Radio",
 };
 
 const OPTIONS = [

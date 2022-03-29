@@ -4,7 +4,7 @@ import { TextArea } from "./index";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  title: "TextArea",
+  title: "lib/TextArea",
 };
 
 export const Normal = () => {

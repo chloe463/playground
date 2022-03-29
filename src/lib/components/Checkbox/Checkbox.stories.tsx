@@ -3,7 +3,7 @@ import { CheckboxGroup } from "./CheckboxGroup";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  title: "Checkbox",
+  title: "lib/Checkbox",
 };
 
 const OPTIONS = [

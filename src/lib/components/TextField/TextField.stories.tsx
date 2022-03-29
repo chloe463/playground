@@ -4,7 +4,7 @@ import { TextField } from "./index";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  title: "TextField",
+  title: "lib/TextField",
 };
 
 export const Normal = () => {

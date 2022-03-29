@@ -21,7 +21,7 @@ export const Normal = () => {
             key={option.value}
             value={`${option.value}`}
           >
-            <span>
+            <span className="text-body2 text-black-alaph800">
               {option.label}
             </span>
           </Radio> 

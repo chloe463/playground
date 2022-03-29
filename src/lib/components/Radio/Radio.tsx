@@ -89,7 +89,6 @@ const Label = styled.label<{ $disabled?: boolean }>`
   display: inline-flex;
   align-items: center;
   cursor: ${({ $disabled }) => $disabled ? "default" : "pointer"};
-  color: ${colors.blackAlpha400};
 `;
 
 const RadioButton = styled.span<{

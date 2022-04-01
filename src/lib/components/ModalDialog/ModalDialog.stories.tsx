@@ -26,7 +26,7 @@ export const _Default = () => {
             isDismissable
           >
             <div className="mt-4 mx-10">
-              Contents goes here.
+              Content goes here.
             </div>
             <div className="flex justify-end mt-8 mb-5 px-8">
               <button onClick={() => state.close()}>

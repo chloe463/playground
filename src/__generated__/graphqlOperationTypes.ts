@@ -92,6 +92,19 @@ export type QuestionnaireConnectionQuery = { __typename?: "Query" } & {
     };
 };
 
+export type DeleteQuestionnaireMutationVariables = Types.Exact<{
+  id: Types.Scalars["Int"];
+}>;
+
+export type DeleteQuestionnaireMutation = { __typename?: "Mutation" } & {
+  deleteQuestionnaire?: Types.Maybe<
+    { __typename?: "DeleteQuestionnairePayload" } & Pick<
+      Types.DeleteQuestionnairePayload,
+      "id" | "result"
+    >
+  >;
+};
+
 export type GetQuestionnaireQueryVariables = Types.Exact<{
   id: Types.Scalars["Int"];
 }>;
@@ -552,6 +565,55 @@ export const QuestionnaireConnectionDocument = ({
 } as unknown) as DocumentNode<
   QuestionnaireConnectionQuery,
   QuestionnaireConnectionQueryVariables
+>;
+export const DeleteQuestionnaireDocument = ({
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "DeleteQuestionnaire" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteQuestionnaire" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "result" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown) as DocumentNode<
+  DeleteQuestionnaireMutation,
+  DeleteQuestionnaireMutationVariables
 >;
 export const GetQuestionnaireDocument = ({
   kind: "Document",

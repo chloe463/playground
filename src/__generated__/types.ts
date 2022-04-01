@@ -57,6 +57,7 @@ export type DeleteQuestionnaireInput = {
 
 export type DeleteQuestionnairePayload = {
   __typename?: "DeleteQuestionnairePayload";
+  id?: Maybe<Scalars["Int"]>;
   result?: Maybe<Scalars["Boolean"]>;
 };
 

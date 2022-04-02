@@ -17,6 +17,11 @@ export type Scalars = {
   DateTime: any;
 };
 
+export type CancelToDeleteQuestionnairePayload = {
+  __typename?: "CancelToDeleteQuestionnairePayload";
+  questionnaire?: Maybe<Questionnaire>;
+};
+
 export type Comment = {
   __typename?: "Comment";
   id: Scalars["Int"];
@@ -65,6 +70,7 @@ export type Mutation = {
   __typename?: "Mutation";
   createQuestionnaire?: Maybe<CreateQuestionnairePayload>;
   deleteQuestionnaire?: Maybe<DeleteQuestionnairePayload>;
+  cancelToDeleteQuestionnaire?: Maybe<CancelToDeleteQuestionnairePayload>;
   updateQuestionnaire?: Maybe<UpdateQuestionnairePayload>;
 };
 
@@ -73,6 +79,10 @@ export type MutationCreateQuestionnaireArgs = {
 };
 
 export type MutationDeleteQuestionnaireArgs = {
+  id: Scalars["Int"];
+};
+
+export type MutationCancelToDeleteQuestionnaireArgs = {
   id: Scalars["Int"];
 };
 

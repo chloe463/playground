@@ -105,6 +105,22 @@ export type DeleteQuestionnaireMutation = { __typename?: "Mutation" } & {
   >;
 };
 
+export type CancelToDeleteQuestionnaireMutationVariables = Types.Exact<{
+  id: Types.Scalars["Int"];
+}>;
+
+export type CancelToDeleteQuestionnaireMutation = {
+  __typename?: "Mutation";
+} & {
+  cancelToDeleteQuestionnaire?: Types.Maybe<
+    { __typename?: "CancelToDeleteQuestionnairePayload" } & {
+      questionnaire?: Types.Maybe<
+        { __typename?: "Questionnaire" } & QuestionnaireFragment
+      >;
+    }
+  >;
+};
+
 export type GetQuestionnaireQueryVariables = Types.Exact<{
   id: Types.Scalars["Int"];
 }>;
@@ -614,6 +630,67 @@ export const DeleteQuestionnaireDocument = ({
 } as unknown) as DocumentNode<
   DeleteQuestionnaireMutation,
   DeleteQuestionnaireMutationVariables
+>;
+export const CancelToDeleteQuestionnaireDocument = ({
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "CancelToDeleteQuestionnaire" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cancelToDeleteQuestionnaire" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "questionnaire" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "Questionnaire" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...QuestionnaireFragmentDoc.definitions,
+  ],
+} as unknown) as DocumentNode<
+  CancelToDeleteQuestionnaireMutation,
+  CancelToDeleteQuestionnaireMutationVariables
 >;
 export const GetQuestionnaireDocument = ({
   kind: "Document",

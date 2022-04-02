@@ -1,10 +1,11 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useCallback, useMemo } from "react";
 import {
+  CancelToDeleteQuestionnaireDocument,
   DeleteQuestionnaireDocument,
   QuestionnaireConnectionDocument,
   QuestionnaireConnectionQuery,
-  QuestionnaireFragment,
+  QuestionnaireFragment
 } from "../../__generated__/graphqlOperationTypes";
 import { PageInfo } from "../../__generated__/types";
 
@@ -18,6 +19,7 @@ export type Questionnaire = {
   pageInfo: PageInfo | undefined;
   loadMore: () => void;
   deleteQuestionnaire: (id: number) => Promise<void>;
+  cancelToDeleteQuestionnaire: (id: number) => Promise<void>;
 };
 
 export const QUESTIONNAIRE_FRAGMENT = gql`
@@ -65,6 +67,17 @@ const _DELETE_QUESTIONNAIRE_MUTATION = gql`
   }
 `;
 
+const _CANCEL_TO_DELETE_QUESTIONNAIRE_MUTATION = gql`
+  mutation CancelToDeleteQuestionnaire($id: Int!) {
+    cancelToDeleteQuestionnaire(id: $id) {
+      questionnaire {
+        ...Questionnaire
+      }
+    }
+  }
+  ${QUESTIONNAIRE_FRAGMENT}
+`;
+
 const PER = 10;
 
 export const useQuestionnaire = (): Questionnaire => {
@@ -103,6 +116,36 @@ export const useQuestionnaire = (): Questionnaire => {
     }
   });
 
+  const [cancelToDeleteQuestionnaireMutation] = useMutation(CancelToDeleteQuestionnaireDocument, {
+    update: (cache, result) => {
+      const questionnaire = result?.data?.cancelToDeleteQuestionnaire?.questionnaire;
+      if (!questionnaire) return;
+      const existing = cache.readQuery({ query: QuestionnaireConnectionDocument });
+      const newEdges: QuestionnaireConnectionQuery["questionnaireConnection"]["edges"] = [
+        ...existing?.questionnaireConnection.edges || [],
+        {
+          __typename: "QuestionnaireEdge" as const,
+          cursor: questionnaire.id.toString(),
+          node: questionnaire,
+        },
+      ].sort((a, b) => {
+        if (a.node.id > b.node.id) return 1;
+        if (a.node.id < b.node.id) return -1;
+        return 0;
+      });
+      cache.modify({
+        fields: {
+          questionnaireConnection(existing: QuestionnaireConnectionQuery["questionnaireConnection"]) {
+            return {
+              ...existing,
+              edges: newEdges,
+            };
+          }
+        },
+      })
+    },
+  });
+
   const questionnaires = useMemo(() => {
     return data?.questionnaireConnection.edges.map((edge) => edge.node) || [];
   }, [data]);
@@ -130,11 +173,18 @@ export const useQuestionnaire = (): Questionnaire => {
     }
   }, [deleteQuestionnaireMutation]);
 
+  const cancelToDeleteQuestionnaire = useCallback(async (id: number) => {
+    await cancelToDeleteQuestionnaireMutation({
+      variables: { id }
+    });
+  }, [cancelToDeleteQuestionnaireMutation]);
+
   return {
     loading,
     questionnaires,
     pageInfo: data?.questionnaireConnection.pageInfo,
     loadMore,
     deleteQuestionnaire,
+    cancelToDeleteQuestionnaire,
   };
 };

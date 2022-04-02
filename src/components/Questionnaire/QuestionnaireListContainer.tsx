@@ -10,7 +10,7 @@ import { useQuestionnaire } from "./useQuestionnaire";
 
 export const QuestionnaireListContainer: React.VFC = () => {
 
-  const { loading, questionnaires, pageInfo, loadMore, deleteQuestionnaire } = useQuestionnaire();
+  const { loading, questionnaires, pageInfo, loadMore, deleteQuestionnaire, cancelToDeleteQuestionnaire } = useQuestionnaire();
   const modalState = useOverlayTriggerState({});
   const [questionnaireToDelete, setQuestionnaireToDelete] = useState<QuestionnaireFragment | null>(null);
   const [snackbarIsVisible, setSnackbarIsVisible] = useState(false);
@@ -41,6 +41,13 @@ export const QuestionnaireListContainer: React.VFC = () => {
       // TODO: Show error snackbar
     }
   };
+
+  const onClickUndo = async () => {
+    const id = questionnaireToDelete?.id;
+    if (!id) return;
+    setSnackbarIsVisible(false);
+    await cancelToDeleteQuestionnaire(id);
+  }
 
   return (
     <div>
@@ -74,10 +81,9 @@ export const QuestionnaireListContainer: React.VFC = () => {
       >
         <div className="flex items-center">
           Questionnaire is successfully deleted.
-          {/* TODO: Implement 'undo' button to cancel to delete questionnaire. */}
-          {/* <button className="ml-6 font-bold text-red-bright400 hover:text-red-bright700">
+          <button className="ml-6 font-bold text-red-bright400 hover:text-red-bright700" onClick={onClickUndo}>
             Undo
-          </button> */}
+          </button>
         </div>
       </Snackbar>
     </div>

@@ -1,7 +1,8 @@
 import { useOverlayTriggerState } from "@react-stately/overlays";
 import React, { useState } from "react";
+import { Snackbar } from "../../lib";
 import {
-  QuestionnaireFragment,
+  QuestionnaireFragment
 } from "../../__generated__/graphqlOperationTypes";
 import { DeleteConfirmationModal } from "./DeleteConfirmationModal";
 import { QuestionnaireList } from "./QuestionnaireList";
@@ -12,6 +13,7 @@ export const QuestionnaireListContainer: React.VFC = () => {
   const { loading, questionnaires, pageInfo, loadMore, deleteQuestionnaire } = useQuestionnaire();
   const modalState = useOverlayTriggerState({});
   const [questionnaireToDelete, setQuestionnaireToDelete] = useState<QuestionnaireFragment | null>(null);
+  const [snackbarIsVisible, setSnackbarIsVisible] = useState(false);
 
   if (loading || !questionnaires) {
     return null;
@@ -32,10 +34,11 @@ export const QuestionnaireListContainer: React.VFC = () => {
     modalState.close();
     try {
       await deleteQuestionnaire(id);
-      // TODO: Show snackbar
+      // TODO: Show success snackbar
+      setSnackbarIsVisible(true);
     } catch(e) {
       console.error(e);
-      // TODO: Show snackbar
+      // TODO: Show error snackbar
     }
   };
 
@@ -63,7 +66,20 @@ export const QuestionnaireListContainer: React.VFC = () => {
       {questionnaireToDelete && modalState.isOpen && (
         <DeleteConfirmationModal questionnaire={questionnaireToDelete} onClose={modalState.close} submit={onClickSubmitDeletion} />
       )}
+      <Snackbar
+        visible={snackbarIsVisible}
+        duration={5000}
+        position="bottom-left"
+        onHide={() => setSnackbarIsVisible(false)}
+      >
+        <div className="flex items-center">
+          Questionnaire is successfully deleted.
+          {/* TODO: Implement 'undo' button to cancel to delete questionnaire. */}
+          {/* <button className="ml-6 font-bold text-red-bright400 hover:text-red-bright700">
+            Undo
+          </button> */}
+        </div>
+      </Snackbar>
     </div>
   );
 };
-

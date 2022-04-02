@@ -75,6 +75,11 @@ export const useCancelToQuestionnaire = (): CancelToDeleteQuestionnaire => {
         },
       });
 
+      // NOTE: `cache.modify` can also update the cache, however in the following situation the cache is not be updated properly.
+      // 1. Delete a questionnaire by clicking the delete button.
+      // 2. Cancel to delete the questionnaire by clicking undo button on the snackbar.
+      // 3. Move to other page.
+      // 4. Back to /questionnaires page, then the cache is broken. There are some duplicated questionnaires in the cache.
       // cache.modify({
       //   fields: {
       //     questionnaireConnection(r: Reference, { readField }) {
@@ -91,9 +96,15 @@ export const useCancelToQuestionnaire = (): CancelToDeleteQuestionnaire => {
       //         if (a.node.id < b.node.id) return -1;
       //         return 0;
       //       });
+      //       const pageInfo = readField("pageInfo", r) as PageInfo;
       //       console.log({edges, newEdges});
       //       return {
       //         ...r,
+      //         pageInfo: {
+      //           ...pageInfo,
+      //           startCursor: newEdges[0].cursor,
+      //           endCursor: newEdges[newEdges.length - 1].cursor,
+      //         },
       //         edges: newEdges,
       //       };
       //     }

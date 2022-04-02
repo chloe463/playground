@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import { pillVariants } from "../../constants";
-import { useLayoutAnimation } from "../../lib/hooks/useLayoutAnimation";
+import { useLayoutAnimation } from "../../lib";
 import { Item } from "../../types";
 import { selectedItemPillBaseStyle, selectedItemPillLayoutAnimatorStyle, selectedItemsContainerStyle } from "../layout";
 

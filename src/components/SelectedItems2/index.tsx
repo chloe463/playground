@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import React, { createRef, forwardRef } from "react";
 import { pillVariants } from "../../constants";
-import { AnimationListContainer } from "../../lib/components/AnimationListContainer";
+import { AnimationListContainer } from "../../lib";
 import { Item } from "../../types";
 import { selectedItemPillBaseStyle, selectedItemPillLayoutAnimatorStyle, selectedItemsContainerStyle } from "../layout";
 

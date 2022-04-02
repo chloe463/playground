@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
-import { useIsomorphicLayoutEffect } from "../../lib/hooks/useIsomarphicLayoutEffect";
+import { useIsomorphicLayoutEffect } from "../../lib";
 import { GetCommentsDocument, PostFragment } from "../../__generated__/graphqlOperationTypes";
 
 const AVATAR_URL = "https://dummyimage.com/88x88/b3b3b3/ffffff";

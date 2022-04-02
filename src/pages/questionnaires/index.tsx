@@ -6,7 +6,7 @@ import { appBaseStyle, transition } from "../../components/layout";
 import { PageHeader } from "../../components/PageHeader";
 import { QuestionnaireListContainer } from "../../components/Questionnaire";
 import { addApolloStateToPageProps, initializeApollo } from "../../hooks/useAplloClient";
-import { PrimaryButton } from "../../lib/components/Button";
+import { PrimaryButton } from "../../lib";
 import { QuestionnaireConnectionDocument, QuestionnaireConnectionQuery } from "../../__generated__/graphqlOperationTypes";
 
 type Props = {

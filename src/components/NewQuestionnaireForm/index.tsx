@@ -2,10 +2,7 @@ import { DevTool } from "@hookform/devtools";
 import dayjs from "dayjs";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { PrimaryButton } from "../../lib/components/Button";
-import { Datepicker } from "../../lib/components/Datepicker";
-import { TextArea } from "../../lib/components/TextArea";
-import { TextField } from "../../lib/components/TextField";
+import { Datepicker, PrimaryButton, TextArea, TextField } from "../../lib";
 import { CreateQuestionnaireInput } from "../../__generated__/types";
 
 type Props = {

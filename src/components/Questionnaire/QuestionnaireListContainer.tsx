@@ -1,59 +1,48 @@
-import { gql, useQuery } from "@apollo/client";
-import React from "react";
-import { QuestionnaireConnectionDocument } from "../../__generated__/graphqlOperationTypes";
-import { QUESTIONNAIRE_FRAGMENT } from "../Questionnaire";
+import { useOverlayTriggerState } from "@react-stately/overlays";
+import React, { useState } from "react";
+import {
+  QuestionnaireFragment,
+} from "../../__generated__/graphqlOperationTypes";
+import { DeleteConfirmationModal } from "./DeleteConfirmationModal";
 import { QuestionnaireList } from "./QuestionnaireList";
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const GET_QUESTIONNAIRE_CONNECTION_QUERY = gql`
-  query QuestionnaireConnection($first: Int, $after: String) {
-    questionnaireConnection(first: $first, after: $after) {
-      totalCount
-      pageInfo {
-        hasNextPage
-        hasPreviousPage
-        startCursor
-        endCursor
-      }
-      edges {
-        cursor
-        node {
-          ...Questionnaire
-        }
-      }
-    }
-  }
-  ${QUESTIONNAIRE_FRAGMENT}
-`;
-
-const PER = 10;
+import { useQuestionnaire } from "./useQuestionnaire";
 
 export const QuestionnaireListContainer: React.VFC = () => {
-  const { data, loading, fetchMore } = useQuery(QuestionnaireConnectionDocument, {
-    variables: {
-      first: PER,
-      after: "0",
-    },
-  })
-  if (loading || !data) {
+
+  const { loading, questionnaires, pageInfo, loadMore, deleteQuestionnaire } = useQuestionnaire();
+  const modalState = useOverlayTriggerState({});
+  const [questionnaireToDelete, setQuestionnaireToDelete] = useState<QuestionnaireFragment | null>(null);
+
+  if (loading || !questionnaires) {
     return null;
   }
 
-  const onClickLoadMore = async () => {
-    await fetchMore({
-      variables: {
-        first: PER,
-        after: data.questionnaireConnection.pageInfo.endCursor,
-      },
-    })
+  const onClickLoadMore = () => {
+    loadMore();
   };
 
-  const questionnaires = data.questionnaireConnection.edges.map((edge) => edge.node);
+  const onClickDelete = (id: number) => {
+    const q = questionnaires.find((questionnaire) => questionnaire.id === id);
+    if (!q) return;
+    setQuestionnaireToDelete(q);
+    modalState.open();
+  };
+
+  const onClickSubmitDeletion = async (id: number) => {
+    modalState.close();
+    try {
+      await deleteQuestionnaire(id);
+      // TODO: Show snackbar
+    } catch(e) {
+      console.error(e);
+      // TODO: Show snackbar
+    }
+  };
 
   return (
     <div>
-      <QuestionnaireList questionnaires={questionnaires} />
-      {data.questionnaireConnection.pageInfo.hasNextPage && (
+      <QuestionnaireList questionnaires={questionnaires} onClickDelete={onClickDelete} />
+      {pageInfo?.hasNextPage && (
         <div className="flex justify-center mt-6">
           <button
             type="button"
@@ -71,6 +60,10 @@ export const QuestionnaireListContainer: React.VFC = () => {
           </button>
         </div>
       )}
+      {questionnaireToDelete && modalState.isOpen && (
+        <DeleteConfirmationModal questionnaire={questionnaireToDelete} onClose={modalState.close} submit={onClickSubmitDeletion} />
+      )}
     </div>
   );
 };
+

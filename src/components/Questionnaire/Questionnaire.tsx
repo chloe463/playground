@@ -25,6 +25,7 @@ export const QUESTIONNAIRE_FRAGMENT = gql`
 
 type Props = {
   questionnaire: QuestionnaireFragment;
+  onClickDelete: (id: number) => void;
 };
 
 const STATES: string[] = [
@@ -38,7 +39,8 @@ const INDICATOR_COLORS: string[] = [
   colors.blackAlpha500,
 ];
 
-export const Questionnaire: React.VFC<Props> = ({ questionnaire }) => {
+export const Questionnaire: React.VFC<Props> = (props) => {
+  const { questionnaire, onClickDelete } = props;
   const [isHovered, setIsHovered] = useState(false);
 
   const onMouseOver = useCallback((_e: React.MouseEvent) => {
@@ -53,12 +55,6 @@ export const Questionnaire: React.VFC<Props> = ({ questionnaire }) => {
     e.stopPropagation();
     e.preventDefault();
     console.log("answers clicked");
-  }, []);
-
-  const onClickTrash = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    e.preventDefault();
-    console.log("trash clicked");
   }, []);
 
   return (
@@ -101,7 +97,7 @@ export const Questionnaire: React.VFC<Props> = ({ questionnaire }) => {
           <button onClick={onClickAnswers} aria-label={`See result of questionnaire ${questionnaire.id}`}>
             <Chart  className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8 transition-colors duration-200 ease-in" />
           </button>
-          <button onClick={onClickTrash} aria-label={`Delete a questionnaire ${questionnaire.id}`}>
+          <button onClick={() => onClickDelete(questionnaire.id)} aria-label={`Delete a questionnaire ${questionnaire.id}`}>
             <Trash  className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8 transition-colors duration-200 ease-in" />
           </button>
         </div>

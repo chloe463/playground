@@ -28,17 +28,6 @@ export const QUESTIONNAIRE_FRAGMENT = gql`
   }
 `;
 
-const _CANCEL_TO_DELETE_QUESTIONNAIRE_MUTATION = gql`
-  mutation CancelToDeleteQuestionnaire($id: Int!) {
-    cancelToDeleteQuestionnaire(id: $id) {
-      questionnaire {
-        ...Questionnaire
-      }
-    }
-  }
-  ${QUESTIONNAIRE_FRAGMENT}
-`;
-
 export const useQuestionnaire = (): Questionnaire => {
   const { loading, questionnaires, pageInfo, loadMore } = useQuestionnaireConnection();
   const { deleteQuestionnaire } = useDeleteQuestionnaire();

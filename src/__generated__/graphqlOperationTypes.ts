@@ -70,6 +70,35 @@ export type QuestionnaireFragment = { __typename?: "Questionnaire" } & Pick<
     >;
   };
 
+export type CancelToDeleteQuestionnaireMutationVariables = Types.Exact<{
+  id: Types.Scalars["Int"];
+}>;
+
+export type CancelToDeleteQuestionnaireMutation = {
+  __typename?: "Mutation";
+} & {
+  cancelToDeleteQuestionnaire?: Types.Maybe<
+    { __typename?: "CancelToDeleteQuestionnairePayload" } & {
+      questionnaire?: Types.Maybe<
+        { __typename?: "Questionnaire" } & QuestionnaireFragment
+      >;
+    }
+  >;
+};
+
+export type DeleteQuestionnaireMutationVariables = Types.Exact<{
+  id: Types.Scalars["Int"];
+}>;
+
+export type DeleteQuestionnaireMutation = { __typename?: "Mutation" } & {
+  deleteQuestionnaire?: Types.Maybe<
+    { __typename?: "DeleteQuestionnairePayload" } & Pick<
+      Types.DeleteQuestionnairePayload,
+      "id" | "result"
+    >
+  >;
+};
+
 export type QuestionnaireConnectionQueryVariables = Types.Exact<{
   first?: Types.Maybe<Types.Scalars["Int"]>;
   after?: Types.Maybe<Types.Scalars["String"]>;
@@ -90,35 +119,6 @@ export type QuestionnaireConnectionQuery = { __typename?: "Query" } & {
         > & { node: { __typename?: "Questionnaire" } & QuestionnaireFragment }
       >;
     };
-};
-
-export type DeleteQuestionnaireMutationVariables = Types.Exact<{
-  id: Types.Scalars["Int"];
-}>;
-
-export type DeleteQuestionnaireMutation = { __typename?: "Mutation" } & {
-  deleteQuestionnaire?: Types.Maybe<
-    { __typename?: "DeleteQuestionnairePayload" } & Pick<
-      Types.DeleteQuestionnairePayload,
-      "id" | "result"
-    >
-  >;
-};
-
-export type CancelToDeleteQuestionnaireMutationVariables = Types.Exact<{
-  id: Types.Scalars["Int"];
-}>;
-
-export type CancelToDeleteQuestionnaireMutation = {
-  __typename?: "Mutation";
-} & {
-  cancelToDeleteQuestionnaire?: Types.Maybe<
-    { __typename?: "CancelToDeleteQuestionnairePayload" } & {
-      questionnaire?: Types.Maybe<
-        { __typename?: "Questionnaire" } & QuestionnaireFragment
-      >;
-    }
-  >;
 };
 
 export type GetQuestionnaireQueryVariables = Types.Exact<{
@@ -466,6 +466,116 @@ export const GetPostConnectionDocument = ({
   GetPostConnectionQuery,
   GetPostConnectionQueryVariables
 >;
+export const CancelToDeleteQuestionnaireDocument = ({
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "CancelToDeleteQuestionnaire" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cancelToDeleteQuestionnaire" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "questionnaire" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "Questionnaire" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...QuestionnaireFragmentDoc.definitions,
+  ],
+} as unknown) as DocumentNode<
+  CancelToDeleteQuestionnaireMutation,
+  CancelToDeleteQuestionnaireMutationVariables
+>;
+export const DeleteQuestionnaireDocument = ({
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "DeleteQuestionnaire" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteQuestionnaire" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "result" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown) as DocumentNode<
+  DeleteQuestionnaireMutation,
+  DeleteQuestionnaireMutationVariables
+>;
 export const QuestionnaireConnectionDocument = ({
   kind: "Document",
   definitions: [
@@ -581,116 +691,6 @@ export const QuestionnaireConnectionDocument = ({
 } as unknown) as DocumentNode<
   QuestionnaireConnectionQuery,
   QuestionnaireConnectionQueryVariables
->;
-export const DeleteQuestionnaireDocument = ({
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "DeleteQuestionnaire" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "deleteQuestionnaire" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "id" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "result" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown) as DocumentNode<
-  DeleteQuestionnaireMutation,
-  DeleteQuestionnaireMutationVariables
->;
-export const CancelToDeleteQuestionnaireDocument = ({
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "CancelToDeleteQuestionnaire" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "cancelToDeleteQuestionnaire" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "id" },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "questionnaire" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "FragmentSpread",
-                        name: { kind: "Name", value: "Questionnaire" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    ...QuestionnaireFragmentDoc.definitions,
-  ],
-} as unknown) as DocumentNode<
-  CancelToDeleteQuestionnaireMutation,
-  CancelToDeleteQuestionnaireMutationVariables
 >;
 export const GetQuestionnaireDocument = ({
   kind: "Document",

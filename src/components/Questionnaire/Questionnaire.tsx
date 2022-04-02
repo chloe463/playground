@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import Link from "next/link";
 import React, { useCallback, useState } from "react";
-import { colors } from "../../lib/styles";
+import { colors } from "../../lib";
 import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
 import { Chart } from "./Chart";
 import { Pencil } from "./Pencil";

@@ -79,9 +79,9 @@ export const QuestionnaireListContainer: React.VFC = () => {
         position="bottom-left"
         onHide={() => setSnackbarIsVisible(false)}
       >
-        <div className="flex items-center">
+        <div className="flex items-center" data-cy="complete-snackbar">
           Questionnaire is successfully deleted.
-          <button className="ml-6 font-bold text-red-bright400 hover:text-red-bright700" onClick={onClickUndo}>
+          <button className="ml-6 font-bold text-red-bright400 hover:text-red-bright700" onClick={onClickUndo} data-cy="undo-button">
             Undo
           </button>
         </div>

@@ -32,7 +32,7 @@ export const DeleteConfirmationModal: React.VFC<Props> = (props) => {
           <BaseButton onClick={() => props.onClose()}>
             Cancel
           </BaseButton>
-          <PrimaryButton onClick={() => props.submit(props.questionnaire.id)}>
+          <PrimaryButton onClick={() => props.submit(props.questionnaire.id)} data-cy="submit-deletion">
             OK
           </PrimaryButton>
         </div>

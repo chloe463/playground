@@ -58,7 +58,7 @@ export const Questionnaire: React.VFC<Props> = (props) => {
   }, []);
 
   return (
-    <li onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
+    <li onMouseOver={onMouseOver} onMouseOut={onMouseOut} data-cy="questionnaire">
       <div className="relative flex items-center py-3 px-6 hover:bg-black-alpha50">
         {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -97,7 +97,7 @@ export const Questionnaire: React.VFC<Props> = (props) => {
           <button onClick={onClickAnswers} aria-label={`See result of questionnaire ${questionnaire.id}`}>
             <Chart  className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8 transition-colors duration-200 ease-in" />
           </button>
-          <button onClick={() => onClickDelete(questionnaire.id)} aria-label={`Delete a questionnaire ${questionnaire.id}`}>
+          <button onClick={() => onClickDelete(questionnaire.id)} aria-label={`Delete a questionnaire ${questionnaire.id}`} data-cy={`delete-button-${questionnaire.id}`}>
             <Trash  className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8 transition-colors duration-200 ease-in" />
           </button>
         </div>

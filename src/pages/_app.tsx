@@ -4,13 +4,14 @@ import { AnimatePresence } from "framer-motion";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import React from "react";
+import { getPathNameAndQueryFromAsPath } from "../common/getPathNameAndQueryFromAsPath";
 import { SideBar, SIDEBAR_WIDTH } from "../components/SideBar";
 import { useApolloClient } from "../hooks/useAplloClient";
-import { getPathNameAndQueryFromAsPath } from "../common/getPathNameAndQueryFromAsPath";
 import "../index.css";
 
 if (process.env.NEXT_PUBLIC_API_MOCK) {
-  require("../mocks");
+  const mockWorker = () => import("../mocks");
+  mockWorker();
 }
 
 const App = ({ Component, pageProps, router }: AppProps) => {

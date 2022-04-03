@@ -5,6 +5,7 @@ import {
   QuestionnaireFragment
 } from "../../__generated__/graphqlOperationTypes";
 import { DeleteConfirmationModal } from "./DeleteConfirmationModal";
+import { LoadMore } from "./LoadMore";
 import { QuestionnaireList } from "./QuestionnaireList";
 import { useQuestionnaireList } from "./useQuestionnaireList";
 
@@ -52,24 +53,8 @@ export const QuestionnaireListContainer: React.VFC = () => {
   return (
     <div>
       <QuestionnaireList questionnaires={questionnaires} onClickDelete={onClickDelete} />
-      {pageInfo?.hasNextPage && (
-        <div className="flex justify-center mt-6">
-          <button
-            type="button"
-            className={`
-              relative inline-block py-2 px-6 appearance-none outline-none border-none bg-transparent
-              text-black-alpha500 text-body2 uppercase rounded-full
-              cursor-pointer overflow-hidden
-              transition-all duration-200 ease-in
-              hover:text-black-alpha700 focus:text-black-alpha700 active:text-black
-            `}
-            onClick={() => onClickLoadMore()}
-            disabled={loading}
-          >
-            Load more
-          </button>
-        </div>
-      )}
+      <div className="mt-6" />
+      <LoadMore pageInfo={pageInfo} loading={loading} onClickLoadMore={onClickLoadMore} />
       {questionnaireToDelete && modalState.isOpen && (
         <DeleteConfirmationModal questionnaire={questionnaireToDelete} onClose={modalState.close} submit={onClickSubmitDeletion} />
       )}

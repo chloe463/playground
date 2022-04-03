@@ -2,6 +2,7 @@ import { graphql } from "msw";
 
 export const getPostConnectionMock = 
   graphql.query("GetPostConnection", (req, res, ctx) => {
+    console.log({ req });
     if (req.body?.variables.after === '0') {
       return res(
         ctx.data({

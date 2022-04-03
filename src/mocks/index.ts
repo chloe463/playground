@@ -4,5 +4,6 @@ if (IS_SERVER) {
   server.listen();
 } else {
   const { worker } = require("./browser");
+  worker.printHandlers();
   worker.start();
 }

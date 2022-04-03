@@ -106,5 +106,8 @@
   },
   "resolutions": {
     "postcss": "^8"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

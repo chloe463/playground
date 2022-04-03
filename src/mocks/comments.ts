@@ -1,7 +1,7 @@
 import { graphql } from "msw";
 
 export const getCommentsMock =
-  graphql.query("", (req, res, ctx) => {
+  graphql.query("GetComments", (req, res, ctx) => {
     return res(
       ctx.data({
         "comments": [

@@ -1,17 +1,22 @@
 import React from "react";
 import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
-import { Questionnaire } from "../Questionnaire";
+import { QuestionnaireListItem } from "./QuestionnaireListItem";
 
 type Props = {
   questionnaires: QuestionnaireFragment[];
+  onClickDelete: (id: number) => void;
 };
 
-export const QuestionnaireList: React.VFC<Props> = ({ questionnaires }) => {
+export const QuestionnaireList: React.VFC<Props> = ({ questionnaires, onClickDelete }) => {
   return (
     <div>
       <ul>
         {questionnaires.map((questionnaire) => {
-          return (<Questionnaire key={questionnaire.id} questionnaire={questionnaire} />);
+          return (
+            <li key={questionnaire.id} data-cy="questionnaire-list-item">
+              <QuestionnaireListItem key={questionnaire.id} questionnaire={questionnaire} onClickDelete={onClickDelete} />
+            </li>
+          );
         })}
       </ul>
     </div>

@@ -2,6 +2,7 @@ import { action } from "@storybook/addon-actions";
 import { ComponentMeta } from "@storybook/react";
 import { ComponentProps } from "react";
 import { BaseButton } from "./Button";
+import { ClearButton } from "./ClearButton";
 import { DangerButton } from "./DangerButton";
 import { PrimaryButton } from "./PrimaryButton";
 
@@ -41,5 +42,8 @@ export const Button = (args: Args) => (
     <DangerButton disabled={args.disabled} onClick={action("onClick - DangerButton")}>
       {args.label}
     </DangerButton>
+    <ClearButton disabled={args.disabled} onClick={action("onClick - ClearButton")}>
+      {args.label}
+    </ClearButton>
   </div>
 );

@@ -48,6 +48,7 @@ export const BaseButton = styled.button`
   &:disabled {
     box-shadow: none;
     background-color: ${colors.blackAlpha200};
+    color: ${colors.blackAlpha500};
     cursor: default;
     &:hover {
       box-shadow: none;

@@ -29,7 +29,7 @@ export const ModalDialog: React.VFC<Props> = (props) => {
 
   // Prevent scrolling while the modal is open, and hide content
   // outside the modal from screen readers.
-  usePreventScroll();
+  usePreventScroll({ isDisabled: !isOpen });
   const { modalProps } = useModal();
 
   // Get props for the dialog and its title

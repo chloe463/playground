@@ -6,11 +6,11 @@ import {
 } from "../../__generated__/graphqlOperationTypes";
 import { DeleteConfirmationModal } from "./DeleteConfirmationModal";
 import { QuestionnaireList } from "./QuestionnaireList";
-import { useQuestionnaire } from "./useQuestionnaire";
+import { useQuestionnaireList } from "./useQuestionnaireList";
 
 export const QuestionnaireListContainer: React.VFC = () => {
 
-  const { loading, questionnaires, pageInfo, loadMore, deleteQuestionnaire, cancelToDeleteQuestionnaire } = useQuestionnaire();
+  const { loading, questionnaires, pageInfo, loadMore, deleteQuestionnaire, cancelToDeleteQuestionnaire } = useQuestionnaireList();
   const modalState = useOverlayTriggerState({});
   const [questionnaireToDelete, setQuestionnaireToDelete] = useState<QuestionnaireFragment | null>(null);
   const [snackbarIsVisible, setSnackbarIsVisible] = useState(false);

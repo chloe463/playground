@@ -5,7 +5,7 @@ import { useCancelToQuestionnaire } from "./useCancelToDeleteQuestionnaire";
 import { useDeleteQuestionnaire } from "./useDeleteQuestionnaire";
 import { useQuestionnaireConnection } from "./useQuestionnaireConnection";
 
-export type Questionnaire = {
+export type QuestionnaireList = {
   loading: boolean;
   questionnaires: QuestionnaireFragment[];
   pageInfo: PageInfo | undefined;
@@ -28,7 +28,7 @@ export const QUESTIONNAIRE_FRAGMENT = gql`
   }
 `;
 
-export const useQuestionnaire = (): Questionnaire => {
+export const useQuestionnaireList = (): QuestionnaireList => {
   const { loading, questionnaires, pageInfo, loadMore } = useQuestionnaireConnection();
   const { deleteQuestionnaire } = useDeleteQuestionnaire();
   const { cancelToDeleteQuestionnaire } = useCancelToQuestionnaire();

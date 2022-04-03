@@ -3,11 +3,11 @@
 exports[`Dropdown shoud opens options list on click 1`] = `
 <div>
   <div
-    class="sc-bkzZxe iIWQPe"
+    class="sc-bkzZxe hLEBWi"
     tabindex="0"
   >
     <label
-      class="sc-dIUggk ODXsY datepicker-label"
+      class="sc-dIUggk eZFMIc datepicker-label"
     />
     <input
       class="sc-idOhPF sRzPA"
@@ -20,7 +20,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
       2021/01/01
     </span>
     <span
-      class="sc-dmlrTW imHFoD datepicker-bottom-border"
+      class="sc-dmlrTW gXrcYT datepicker-bottom-border"
     />
   </div>
   <div

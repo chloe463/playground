@@ -3,11 +3,11 @@
 exports[`Dropdown shoud opens options list on click 1`] = `
 <div>
   <div
-    class="sc-hKgILt bdphQw"
+    class="sc-hKgILt dLyjEM"
     tabindex="0"
   >
     <label
-      class="sc-eCssSg jMHCfh dropdown-placeholder"
+      class="sc-eCssSg jKrBTN dropdown-placeholder"
     >
       placeholder
     </label>
@@ -15,7 +15,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
       class="sc-jSgupP khwpFf dropdown-selected-value"
     />
     <span
-      class="sc-gKsewC hTHtqV dropdown-bottom-border"
+      class="sc-gKsewC jZuRQx dropdown-bottom-border"
     />
   </div>
   <div
@@ -33,7 +33,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
       >
         <li
           aria-selected="false"
-          class="sc-dlfnbm bKLfJy"
+          class="sc-dlfnbm eQvwTQ"
           data-selected="false"
           tabindex="0"
         >
@@ -41,7 +41,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
         </li>
         <li
           aria-selected="false"
-          class="sc-dlfnbm bKLfJy"
+          class="sc-dlfnbm eQvwTQ"
           data-selected="false"
           tabindex="0"
         >
@@ -49,7 +49,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
         </li>
         <li
           aria-selected="false"
-          class="sc-dlfnbm bKLfJy"
+          class="sc-dlfnbm eQvwTQ"
           data-selected="false"
           tabindex="0"
         >

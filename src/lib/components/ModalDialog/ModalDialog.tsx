@@ -20,7 +20,7 @@ type Props = {
 & AriaDialogProps;
 
 export const ModalDialog: React.VFC<Props> = (props) => {
-  const { title, children } = props;
+  const { isOpen, title, children } = props;
 
   // Handle interacting outside the dialog and pressing
   // the Escape key to close the modal.
@@ -34,6 +34,8 @@ export const ModalDialog: React.VFC<Props> = (props) => {
 
   // Get props for the dialog and its title
   const { dialogProps, titleProps } = useDialog(props, ref);
+
+  if (!isOpen) return null;
 
   return (
     <Overlay {...underlayProps}>

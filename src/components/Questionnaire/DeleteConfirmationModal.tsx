@@ -5,17 +5,19 @@ import { ModalDialog } from "../../lib/components/ModalDialog";
 import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
 
 type Props = {
-  questionnaire: QuestionnaireFragment;
+  isOpen: boolean;
+  questionnaire: QuestionnaireFragment | null;
   onClose: () => void;
   submit: (id: number) => void;
 };
 
 export const DeleteConfirmationModal: React.VFC<Props> = (props) => {
+  if (!props.questionnaire) return null;
   return (
     <OverlayContainer>
       <ModalDialog
         title={"Are you sure to delete this questionnaire?"}
-        isOpen
+        isOpen={props.isOpen}
         onClose={props.onClose}
         isDismissable
       >

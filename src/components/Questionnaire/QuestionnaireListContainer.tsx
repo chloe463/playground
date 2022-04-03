@@ -55,9 +55,7 @@ export const QuestionnaireListContainer: React.VFC = () => {
       <QuestionnaireList questionnaires={questionnaires} onClickDelete={onClickDelete} />
       <div className="mt-6" />
       <LoadMore pageInfo={pageInfo} loading={loading} onClickLoadMore={onClickLoadMore} />
-      {questionnaireToDelete && modalState.isOpen && (
-        <DeleteConfirmationModal questionnaire={questionnaireToDelete} onClose={modalState.close} submit={onClickSubmitDeletion} />
-      )}
+      <DeleteConfirmationModal isOpen={modalState.isOpen} questionnaire={questionnaireToDelete} onClose={modalState.close} submit={onClickSubmitDeletion} />
       <Snackbar
         visible={snackbarIsVisible}
         duration={5000}

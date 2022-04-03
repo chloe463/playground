@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 import Link from "next/link";
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { colors } from "../../lib";
 import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
 import { Chart } from "./Chart";
@@ -41,15 +41,6 @@ const INDICATOR_COLORS: string[] = [
 
 export const Questionnaire: React.VFC<Props> = (props) => {
   const { questionnaire, onClickDelete } = props;
-  const [isHovered, setIsHovered] = useState(false);
-
-  const onMouseOver = useCallback((_e: React.MouseEvent) => {
-    setIsHovered(true);
-  }, []);
-
-  const onMouseOut = useCallback(() => {
-    setIsHovered(false);
-  }, []);
 
   const onClickAnswers = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
@@ -58,7 +49,7 @@ export const Questionnaire: React.VFC<Props> = (props) => {
   }, []);
 
   return (
-    <li onMouseOver={onMouseOver} onMouseOut={onMouseOut} data-cy="questionnaire">
+    <li className="group" data-cy="questionnaire">
       <div className="relative flex items-center py-3 px-6 hover:bg-black-alpha50">
         {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -83,11 +74,7 @@ export const Questionnaire: React.VFC<Props> = (props) => {
           </div>
         </div>
         <div
-          className="absolute flex items-center right-6 transition-transform duration-200 space-x-4"
-          style={{
-            opacity: isHovered ? 1 : 0,
-            transform: isHovered ? "translateX(0)" : "translateX(16px)"
-          }}
+          className="absolute flex items-center right-6 transition-transform duration-200 space-x-4 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
         >
           <Link href={{ pathname: `/questionnaires/${questionnaire.id}/edit` }}>
             <a aria-label={`Edit a questionnaire ${questionnaire.id}`}>

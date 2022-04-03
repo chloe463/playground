@@ -1,6 +1,6 @@
 import React from "react";
 import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
-import { Questionnaire } from "../Questionnaire";
+import { QuestionnaireListItem } from "./QuestionnaireListItem";
 
 type Props = {
   questionnaires: QuestionnaireFragment[];
@@ -12,7 +12,7 @@ export const QuestionnaireList: React.VFC<Props> = ({ questionnaires, onClickDel
     <div>
       <ul>
         {questionnaires.map((questionnaire) => {
-          return (<Questionnaire key={questionnaire.id} questionnaire={questionnaire} onClickDelete={onClickDelete} />);
+          return (<QuestionnaireListItem key={questionnaire.id} questionnaire={questionnaire} onClickDelete={onClickDelete} />);
         })}
       </ul>
     </div>

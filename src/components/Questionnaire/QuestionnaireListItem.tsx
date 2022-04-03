@@ -39,7 +39,7 @@ const INDICATOR_COLORS: string[] = [
   colors.blackAlpha500,
 ];
 
-export const Questionnaire: React.VFC<Props> = (props) => {
+export const QuestionnaireListItem: React.VFC<Props> = (props) => {
   const { questionnaire, onClickDelete } = props;
 
   const onClickAnswers = useCallback((e: React.MouseEvent) => {

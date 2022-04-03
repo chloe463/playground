@@ -31,7 +31,7 @@ function createApolloClient() {
         },
       },
     }),
-  })
+  });
 }
 
 export function initializeApollo(initialState: NormalizedCacheObject | null = null) {
@@ -48,8 +48,7 @@ export function initializeApollo(initialState: NormalizedCacheObject | null = nu
       // combine arrays using object equality (like in sets)
       arrayMerge: (destinationArray, sourceArray) => [
         ...sourceArray,
-        ...destinationArray.filter((d) => sourceArray.every((s) => !isEqual(d, s))
-        ),
+        ...destinationArray.filter((d) => sourceArray.every((s) => !isEqual(d, s))),
       ],
     });
 
@@ -70,7 +69,10 @@ type PageProps<T> = {
   props: T;
 };
 
-export function addApolloStateToPageProps<T>(client: ApolloClient<NormalizedCacheObject>, pageProps: PageProps<T>): PageProps<T> {
+export function addApolloStateToPageProps<T>(
+  client: ApolloClient<NormalizedCacheObject>,
+  pageProps: PageProps<T>
+): PageProps<T> {
   if (pageProps?.props) {
     (pageProps.props as any)[APOLLO_STATE_PROP_NAME] = client.cache.extract();
   }

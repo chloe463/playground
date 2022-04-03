@@ -9,7 +9,10 @@ import { PostDetail } from "../../components/PostList";
 import { PostList } from "../../components/PostList/PostList";
 import { usePostList } from "../../components/PostList/usePostList";
 import { addApolloStateToPageProps, initializeApollo } from "../../hooks/useAplloClient";
-import { GetPostConnectionDocument, GetPostConnectionQuery } from "../../__generated__/graphqlOperationTypes";
+import {
+  GetPostConnectionDocument,
+  GetPostConnectionQuery,
+} from "../../__generated__/graphqlOperationTypes";
 
 type Props = {
   posts: GetPostConnectionQuery;
@@ -74,11 +77,7 @@ const VirtualizedList: React.FC<Props> = () => {
       >
         <PageHeader title={"Virtualized List example"} />
         <div className="mt-9 mb-24">
-          <PostList
-            totalCount={totalCount}
-            posts={posts}
-            fetchMorePosts={fetchMorePosts}
-          />
+          <PostList totalCount={totalCount} posts={posts} fetchMorePosts={fetchMorePosts} />
         </div>
       </motion.div>
       {!IS_SERVER && postId && post && <PostDetail post={post} />}

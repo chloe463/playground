@@ -25,7 +25,7 @@ export const Snackbar: React.VFC<SnackbarProps> = (props) => {
   }, [props]);
 
   const position = useMemo<MotionStyle>(() => {
-    switch(props.position) {
+    switch (props.position) {
       case "top-center": {
         return { top: 24, left: "50%", transform: "translateX(-50%)" };
       }
@@ -52,11 +52,7 @@ export const Snackbar: React.VFC<SnackbarProps> = (props) => {
 
   return (
     <AnimatePresence>
-      {props.visible && (
-        <SnackbarContent position={position}>
-          {props.children}
-        </SnackbarContent>
-      )}
+      {props.visible && <SnackbarContent position={position}>{props.children}</SnackbarContent>}
     </AnimatePresence>
   );
-}
+};

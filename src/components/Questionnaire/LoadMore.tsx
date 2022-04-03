@@ -32,4 +32,4 @@ export const LoadMore: React.VFC<Props> = (props) => {
       </button>
     </div>
   );
-}
+};

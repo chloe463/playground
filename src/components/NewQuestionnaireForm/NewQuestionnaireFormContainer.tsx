@@ -1,9 +1,7 @@
 import { gql, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import React from "react";
-import {
-  CreateQuestionnaireDocument
-} from "../../__generated__/graphqlOperationTypes";
+import { CreateQuestionnaireDocument } from "../../__generated__/graphqlOperationTypes";
 import { CreateQuestionnaireInput } from "../../__generated__/types";
 import { NewQuestionnaireForm } from "./index";
 
@@ -23,9 +21,7 @@ const CREATE_NEW_QUESTIONNAIRE_MUTATION = gql`
   }
 `;
 
-type Props = {
-
-};
+type Props = {};
 
 export const NewQuestionnaireFormContainer: React.VFC<Props> = () => {
   const router = useRouter();
@@ -37,12 +33,12 @@ export const NewQuestionnaireFormContainer: React.VFC<Props> = () => {
       const { data: res } = await mutate({
         variables: {
           questionnaire: data,
-        }
+        },
       });
       if (res?.createQuestionnaire?.questionnaire?.id) {
         router.push({
           pathname: `/questionnaires/${res.createQuestionnaire.questionnaire.id}/edit`,
-        })
+        });
       }
     } catch (e) {
       console.error("An error occurred");
@@ -50,7 +46,5 @@ export const NewQuestionnaireFormContainer: React.VFC<Props> = () => {
     }
   };
 
-  return (
-    <NewQuestionnaireForm onSubmit={onSubmit} />
-  );
-}
+  return <NewQuestionnaireForm onSubmit={onSubmit} />;
+};

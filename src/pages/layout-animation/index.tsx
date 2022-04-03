@@ -40,11 +40,7 @@ const LayoutAnimation = () => {
 
     const pos = faker.datatype.number() % items.length;
     setItems((current) => {
-      return [
-        ...current.slice(0, pos),
-        ...newItems,
-        ...current.slice(pos, current.length)
-      ];
+      return [...current.slice(0, pos), ...newItems, ...current.slice(pos, current.length)];
     });
   };
 
@@ -90,7 +86,6 @@ const LayoutAnimation = () => {
         >
           reset all
         </button>
-
       </div>
       <AnimateSharedLayout type="crossfade">
         <PillsContainer items={items} selectItem={selectItem} />
@@ -99,6 +94,6 @@ const LayoutAnimation = () => {
       <SelectedItems2 items={selectedItems} removeItem={removeItem} />
     </motion.div>
   );
-}
+};
 
 export default LayoutAnimation;

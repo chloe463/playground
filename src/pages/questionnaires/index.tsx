@@ -7,7 +7,10 @@ import { PageHeader } from "../../components/PageHeader";
 import { QuestionnaireListContainer } from "../../components/Questionnaire";
 import { addApolloStateToPageProps, initializeApollo } from "../../hooks/useAplloClient";
 import { PrimaryButton } from "../../lib";
-import { QuestionnaireConnectionDocument, QuestionnaireConnectionQuery } from "../../__generated__/graphqlOperationTypes";
+import {
+  QuestionnaireConnectionDocument,
+  QuestionnaireConnectionQuery,
+} from "../../__generated__/graphqlOperationTypes";
 
 type Props = {
   questionnaires: QuestionnaireConnectionQuery | null;
@@ -18,7 +21,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
   try {
     const { data: questionnaires } = await client.query({
       query: QuestionnaireConnectionDocument,
-      variables: { first: 10, after: "0" }
+      variables: { first: 10, after: "0" },
     });
 
     return addApolloStateToPageProps(client, {
@@ -26,13 +29,13 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
         questionnaires,
       },
     });
-  } catch(e) {
+  } catch (e) {
     console.error(e);
     return {
       props: {
         questionnaires: null,
       },
-    }
+    };
   }
 };
 
@@ -52,7 +55,7 @@ const Questionnaires: React.VFC<Props> = () => {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -32 }}
           transition={transition}
-        > 
+        >
           <PageHeader title={"CRUD examples"}>
             <div className="absolute top-0 right-6">
               <PrimaryButton type="button" onClick={() => router.push("/questionnaires/new")}>

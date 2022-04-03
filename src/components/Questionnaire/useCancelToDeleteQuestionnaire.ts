@@ -2,7 +2,7 @@ import { gql, useMutation } from "@apollo/client";
 import { useCallback } from "react";
 import {
   CancelToDeleteQuestionnaireDocument,
-  QuestionnaireConnectionDocument
+  QuestionnaireConnectionDocument,
 } from "../../__generated__/graphqlOperationTypes";
 
 export type CancelToDeleteQuestionnaire = {
@@ -51,7 +51,7 @@ export const useCancelToQuestionnaire = (): CancelToDeleteQuestionnaire => {
           __typename: "QuestionnaireEdge" as const,
           cursor: questionnaire.id.toString(),
           node: questionnaire,
-        }
+        },
       ].sort((a, b) => {
         if (a.node.id > b.node.id) return 1;
         if (a.node.id < b.node.id) return -1;
@@ -113,11 +113,14 @@ export const useCancelToQuestionnaire = (): CancelToDeleteQuestionnaire => {
     },
   });
 
-  const cancelToDeleteQuestionnaire = useCallback(async (id: number) => {
-    await cancelToDeleteQuestionnaireMutation({
-      variables: { id }
-    });
-  }, [cancelToDeleteQuestionnaireMutation]);
+  const cancelToDeleteQuestionnaire = useCallback(
+    async (id: number) => {
+      await cancelToDeleteQuestionnaireMutation({
+        variables: { id },
+      });
+    },
+    [cancelToDeleteQuestionnaireMutation]
+  );
 
   return {
     cancelToDeleteQuestionnaire,

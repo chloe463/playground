@@ -7,8 +7,8 @@ export const deleteQuestionnaireMock = graphql.mutation("DeleteQuestionnaire", (
       deleteQuestionnaire: {
         id: req.variables.id,
         result: true,
-        __typename: "DeleteQuestionnairePayload"
-      }
+        __typename: "DeleteQuestionnairePayload",
+      },
     })
   );
 });

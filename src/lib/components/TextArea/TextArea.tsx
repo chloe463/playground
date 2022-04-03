@@ -8,18 +8,16 @@ type TextAreaProps = {} & AriaTextFieldOptions;
 export const TextArea: React.VFC<TextAreaProps> = (props) => {
   const ref = useRef<HTMLTextAreaElement>(null);
   const { inputProps, labelProps } = useTextField(props, ref) as {
-    inputProps: React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-    labelProps: React.LabelHTMLAttributes<HTMLLabelElement>,
+    inputProps: React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+    labelProps: React.LabelHTMLAttributes<HTMLLabelElement>;
   };
 
   return (
     <Base>
-      <StyledTextArea
-        {...inputProps}
-        placeholder="&nbsp;"
-        ref={ref}
-      />
-      <Label {...labelProps} className="placeholder-label">{props.label}</Label>
+      <StyledTextArea {...inputProps} placeholder="&nbsp;" ref={ref} />
+      <Label {...labelProps} className="placeholder-label">
+        {props.label}
+      </Label>
       <BottomBorder />
     </Base>
   );
@@ -64,11 +62,11 @@ const StyledTextArea = styled.textarea`
   }
 
   &:not(:placeholder-shown) + .placeholder-label {
-    transform: translateY(-12px) scale(.75);
+    transform: translateY(-12px) scale(0.75);
   }
 
   &:focus + .placeholder-label {
-    transform: translateY(-12px) scale(.75);
+    transform: translateY(-12px) scale(0.75);
     color: ${colors.brand};
   }
 
@@ -104,6 +102,6 @@ const Label = styled.label`
 const BottomBorder = styled.span.attrs({ className: "bottom-border" })`
   opacity: 0;
   transform-origin: 50% 50%;
-  transform: scaleX(.5) translateY(-2px);
+  transform: scaleX(0.5) translateY(-2px);
   transition: all 180ms cubic-bezier(0.3, 0.3, 0.3, 1);
 `;

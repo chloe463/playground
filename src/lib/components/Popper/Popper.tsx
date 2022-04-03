@@ -18,20 +18,25 @@ export const Popper: React.VFC<PopperProps> = ({
   shouldCloseOnKeyupEscape,
   scrollLock,
   entryPointId,
-  children
+  children,
 }) => {
   const overlayRef = useRef<HTMLDivElement | null>(null);
-  const { overlayProps } = useOverlay({
-    isOpen: true,
-    onClose,
-    isDismissable: true,
-    shouldCloseOnBlur: shouldCloseClickOverlay,
-    isKeyboardDismissDisabled: shouldCloseOnKeyupEscape,
-  }, overlayRef);
+  const { overlayProps } = useOverlay(
+    {
+      isOpen: true,
+      onClose,
+      isDismissable: true,
+      shouldCloseOnBlur: shouldCloseClickOverlay,
+      isKeyboardDismissDisabled: shouldCloseOnKeyupEscape,
+    },
+    overlayRef
+  );
   usePreventScroll({ isDisabled: !scrollLock });
 
-  const entryPoint = entryPointId ? document.getElementById(entryPointId) : document.querySelector("body");
-  
+  const entryPoint = entryPointId
+    ? document.getElementById(entryPointId)
+    : document.querySelector("body");
+
   if (!entryPoint) {
     throw new Error(`Entry point dom is not found!! entryPointId: ${entryPointId}`);
   }
@@ -42,7 +47,7 @@ export const Popper: React.VFC<PopperProps> = ({
     </Overlay>,
     entryPoint as Element
   );
-}
+};
 
 const Overlay = styled.div`
   position: fixed;

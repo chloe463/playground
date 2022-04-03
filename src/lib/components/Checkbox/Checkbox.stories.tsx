@@ -35,10 +35,8 @@ export const WithSomeStyle = () => {
           return (
             <div key={option.value} className="mt-2">
               <Checkbox value={`${option.value}`} isDisabled={option.value === 4}>
-                <span className="text-body2 text-black-alpha800">
-                  {option.label}
-                </span>
-              </Checkbox> 
+                <span className="text-body2 text-black-alpha800">{option.label}</span>
+              </Checkbox>
             </div>
           );
         })}
@@ -59,10 +57,8 @@ export const Variants = () => {
                 isIndeterminate={option.state === "indeterminate"}
                 isDisabled={option.state === "disabled"}
               >
-                <span className="text-body2 text-black-alpha800">
-                  {option.label}
-                </span>
-              </Checkbox> 
+                <span className="text-body2 text-black-alpha800">{option.label}</span>
+              </Checkbox>
             </div>
           );
         })}

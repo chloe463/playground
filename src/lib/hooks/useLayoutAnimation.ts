@@ -5,7 +5,7 @@ import { useIsomorphicLayoutEffect } from "./useIsomarphicLayoutEffect";
 type useLayoutAnimationParams = AnimationParams;
 
 export const useLayoutAnimation = (params: useLayoutAnimationParams) => {
-  const { duration, timingFunction, axis } = params
+  const { duration, timingFunction, axis } = params;
   const animationTargetRef = useRef<HTMLSpanElement | null>(null);
   const prevPosition = useRef<DOMRect | null>(null);
 
@@ -23,7 +23,8 @@ export const useLayoutAnimation = (params: useLayoutAnimationParams) => {
               animationTargetRef.current.style.transform = `translate(0, 0)`;
               animationTargetRef.current.style.transformOrigin = `50%, 50%, 0`;
               animationTargetRef.current.style.transitionDuration = `${duration}ms`;
-              animationTargetRef.current.style.transitionTimingFunction = timingFunction || `cubic-bezier(.3, .3, .3, 1)`;
+              animationTargetRef.current.style.transitionTimingFunction =
+                timingFunction || `cubic-bezier(.3, .3, .3, 1)`;
             }
           });
         }
@@ -34,8 +35,14 @@ export const useLayoutAnimation = (params: useLayoutAnimationParams) => {
 
   useIsomorphicLayoutEffect(() => {
     if (animationTargetRef.current && prevPosition.current) {
-      const x = axis !== "Y" ? animationTargetRef.current.getBoundingClientRect().left - prevPosition.current.left : 0;
-      const y = axis !== "X" ? animationTargetRef.current.getBoundingClientRect().top - prevPosition.current.top : 0;
+      const x =
+        axis !== "Y"
+          ? animationTargetRef.current.getBoundingClientRect().left - prevPosition.current.left
+          : 0;
+      const y =
+        axis !== "X"
+          ? animationTargetRef.current.getBoundingClientRect().top - prevPosition.current.top
+          : 0;
       translate({ x, y });
     }
     if (animationTargetRef.current) {
@@ -44,4 +51,4 @@ export const useLayoutAnimation = (params: useLayoutAnimationParams) => {
   });
 
   return animationTargetRef;
-}
+};

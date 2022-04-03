@@ -9,7 +9,7 @@ export type SnackbarContentProps = {
   children: React.ReactNode;
 };
 
-export const SnackbarContent: React.VFC<SnackbarContentProps > = (props) => {
+export const SnackbarContent: React.VFC<SnackbarContentProps> = (props) => {
   const { position } = props;
   return createPortal(
     <motion.div
@@ -38,13 +38,11 @@ export const SnackbarContent: React.VFC<SnackbarContentProps > = (props) => {
         },
       }}
     >
-      <Content>
-        {props.children}
-      </Content>
+      <Content>{props.children}</Content>
     </motion.div>,
     document.body
   );
-}
+};
 
 const Content = styled.div`
   background-color: #323232;

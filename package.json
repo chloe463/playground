@@ -42,6 +42,8 @@
     "dev": "concurrently \"next dev\" \"yarn codegen:watch\"",
     "prebuild": "yarn codegen",
     "lint": "next lint",
+    "lint-fix": "next lint --fix && prettier --write \"{src,tailwind,.storybook}/**/*.{js,jsx,ts,tsx}\"",
+    "prettier-fix": "prettier --write \"{src,tailwind,.storybook}/**/*.{js,jsx,ts,tsx}\"",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "build": "next build",
     "test": "TZ=Asia/Tokyo jest --config=jest.config.js",

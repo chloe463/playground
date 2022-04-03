@@ -17,14 +17,9 @@ export const Normal = () => {
     <RadioGroup label={"Foo"} name={"bar"}>
       {OPTIONS.map((option) => {
         return (
-          <Radio
-            key={option.value}
-            value={`${option.value}`}
-          >
-            <span className="text-body2 text-black-alaph800">
-              {option.label}
-            </span>
-          </Radio> 
+          <Radio key={option.value} value={`${option.value}`}>
+            <span className="text-body2 text-black-alaph800">{option.label}</span>
+          </Radio>
         );
       })}
     </RadioGroup>
@@ -37,12 +32,10 @@ export const WithSomeStyle = () => {
       <div className="mt-4">
         {OPTIONS.map((option) => {
           return (
-            <div key={option.value} className="mt-2" >
+            <div key={option.value} className="mt-2">
               <Radio value={`${option.value}`}>
-                <span className="text-body2 text-black-alpha800">
-                  {option.label}
-                </span>
-              </Radio> 
+                <span className="text-body2 text-black-alpha800">{option.label}</span>
+              </Radio>
             </div>
           );
         })}

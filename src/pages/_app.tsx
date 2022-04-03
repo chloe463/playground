@@ -30,7 +30,10 @@ const App = ({ Component, pageProps, router }: AppProps) => {
           <div className="sticky top-0 block w-[280px] h-screen">
             <SideBar currentPathName={pathname} />
           </div>
-          <div className={`block flex-shrink elevation4`} style={{ width: `calc(100vw - ${SIDEBAR_WIDTH}px)` }}>
+          <div
+            className={`block flex-shrink elevation4`}
+            style={{ width: `calc(100vw - ${SIDEBAR_WIDTH}px)` }}
+          >
             <AnimatePresence exitBeforeEnter initial={false}>
               {/* NOTE: The "key" props is needed for exiting animation */}
               <main className="mt-32" key={router.pathname}>

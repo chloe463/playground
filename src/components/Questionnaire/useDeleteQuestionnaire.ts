@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import {
   DeleteQuestionnaireDocument,
   QuestionnaireConnectionDocument,
-  QuestionnaireConnectionQuery
+  QuestionnaireConnectionQuery,
 } from "../../__generated__/graphqlOperationTypes";
 
 export type DeleteQuestionnaire = {
@@ -35,32 +35,39 @@ export const useDeleteQuestionnaire = (): DeleteQuestionnaire => {
         return;
       }
       const d = cache.readQuery({ query: QuestionnaireConnectionDocument });
-      const filtered = d?.questionnaireConnection.edges.filter((edge) => edge.node.id !== result.data?.deleteQuestionnaire?.id);
+      const filtered = d?.questionnaireConnection.edges.filter(
+        (edge) => edge.node.id !== result.data?.deleteQuestionnaire?.id
+      );
       cache.modify({
         fields: {
-          questionnaireConnection(existing: QuestionnaireConnectionQuery["questionnaireConnection"]) {
+          questionnaireConnection(
+            existing: QuestionnaireConnectionQuery["questionnaireConnection"]
+          ) {
             return {
               ...existing,
               edges: filtered,
             };
-          }
-        }
+          },
+        },
       });
-    }
+    },
   });
 
-  const deleteQuestionnaire = useCallback(async (id: number) => {
-    const { data, errors } = await deleteQuestionnaireMutation({
-      variables: { id }
-    });
+  const deleteQuestionnaire = useCallback(
+    async (id: number) => {
+      const { data, errors } = await deleteQuestionnaireMutation({
+        variables: { id },
+      });
 
-    if (errors) {
-      throw new Error("Failed to delete questionnaire for unknown reason");
-    }
-    if (!data?.deleteQuestionnaire?.result) {
-      throw new Error("Failed to delete questionnaire");
-    }
-  }, [deleteQuestionnaireMutation]);
+      if (errors) {
+        throw new Error("Failed to delete questionnaire for unknown reason");
+      }
+      if (!data?.deleteQuestionnaire?.result) {
+        throw new Error("Failed to delete questionnaire");
+      }
+    },
+    [deleteQuestionnaireMutation]
+  );
 
   return {
     deleteQuestionnaire,

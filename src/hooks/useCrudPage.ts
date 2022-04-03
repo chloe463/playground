@@ -28,16 +28,16 @@ export const useCrudPage = (): CrudPage => {
         pathname: path,
         query: {
           id,
-          state: JSON.stringify({id}),
-        }
+          state: JSON.stringify({ id }),
+        },
       },
       asPath
     );
-  }
+  };
 
   return {
     router,
     stateBetweenPages: state,
     moveToQuestionEditPage,
-  }
+  };
 };

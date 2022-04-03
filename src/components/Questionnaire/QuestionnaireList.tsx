@@ -12,7 +12,11 @@ export const QuestionnaireList: React.VFC<Props> = ({ questionnaires, onClickDel
     <div>
       <ul>
         {questionnaires.map((questionnaire) => {
-          return (<QuestionnaireListItem key={questionnaire.id} questionnaire={questionnaire} onClickDelete={onClickDelete} />);
+          return (
+            <li key={questionnaire.id} data-cy="questionnaire-list-item">
+              <QuestionnaireListItem key={questionnaire.id} questionnaire={questionnaire} onClickDelete={onClickDelete} />
+            </li>
+          );
         })}
       </ul>
     </div>

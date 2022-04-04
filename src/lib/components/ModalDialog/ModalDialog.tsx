@@ -1,23 +1,18 @@
 // ref: https://react-spectrum.adobe.com/react-aria/useDialog.html
 import { useDialog } from "@react-aria/dialog";
 import { FocusScope } from "@react-aria/focus";
-import {
-  OverlayProps, useModal, useOverlay,
-  usePreventScroll
-} from "@react-aria/overlays";
+import { OverlayProps, useModal, useOverlay, usePreventScroll } from "@react-aria/overlays";
 import { AriaDialogProps } from "@react-types/dialog";
 import React, { useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import { colors } from "../../styles";
 import { getElevation } from "../elevation";
 
-
 type Props = {
   title: string;
   children: React.ReactNode;
-}
-& OverlayProps
-& AriaDialogProps;
+} & OverlayProps &
+  AriaDialogProps;
 
 export const ModalDialog: React.VFC<Props> = (props) => {
   const { isOpen, title, children } = props;
@@ -40,12 +35,7 @@ export const ModalDialog: React.VFC<Props> = (props) => {
   return (
     <Overlay {...underlayProps}>
       <FocusScope contain autoFocus restoreFocus>
-        <Content
-          {...overlayProps}
-          {...dialogProps}
-          {...modalProps}
-          ref={ref}
-        >
+        <Content {...overlayProps} {...dialogProps} {...modalProps} ref={ref}>
           <h3
             {...titleProps}
             style={{ margin: "40px 40px 0 40px" }}
@@ -58,7 +48,7 @@ export const ModalDialog: React.VFC<Props> = (props) => {
       </FocusScope>
     </Overlay>
   );
-}
+};
 
 const bgFadeIn = keyframes`
   from {
@@ -79,7 +69,7 @@ const Overlay = styled.div`
   bottom: 0;
   display: grid;
   place-items: center;
-  background-color: #CCCCCCA3;
+  background-color: #cccccca3;
 
   animation: ${bgFadeIn};
   animation-duration: 250ms;

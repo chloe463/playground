@@ -9,20 +9,18 @@ type TextFieldProps = {} & AriaTextFieldOptions;
 export const TextField: React.VFC<TextFieldProps> = forwardRef((props, ref) => {
   const localRef = useRef<HTMLInputElement>(null);
   const { inputProps, labelProps } = useTextField(props, localRef) as {
-    inputProps: React.InputHTMLAttributes<HTMLInputElement>,
-    labelProps: React.LabelHTMLAttributes<HTMLLabelElement>,
+    inputProps: React.InputHTMLAttributes<HTMLInputElement>;
+    labelProps: React.LabelHTMLAttributes<HTMLLabelElement>;
   };
-  const mergedRef = mergeRefs([ref, localRef])
+  const mergedRef = mergeRefs([ref, localRef]);
 
   return (
     <Base>
-      <TextInput
-        {...inputProps}
-        placeholder="&nbsp;"
-        ref={mergedRef}
-      />
-      <Label {...labelProps} className="placeholder-label">{props.label}</Label>
-      <BottomBorder className="bottom-border"/>
+      <TextInput {...inputProps} placeholder="&nbsp;" ref={mergedRef} />
+      <Label {...labelProps} className="placeholder-label">
+        {props.label}
+      </Label>
+      <BottomBorder className="bottom-border" />
     </Base>
   );
 });
@@ -67,11 +65,11 @@ const TextInput = styled.input`
   }
 
   &:not(:placeholder-shown) + label.placeholder-label {
-    transform: translateY(-12px) scale(.75);
+    transform: translateY(-12px) scale(0.75);
   }
 
   &:focus + label.placeholder-label {
-    transform: translateY(-12px) scale(.75);
+    transform: translateY(-12px) scale(0.75);
     color: ${colors.brand};
   }
 
@@ -107,6 +105,6 @@ const Label = styled.label`
 const BottomBorder = styled.span`
   opacity: 0;
   transform-origin: 50% 50%;
-  transform: scaleX(.5);
+  transform: scaleX(0.5);
   transition: all 180ms cubic-bezier(0.3, 0.3, 0.3, 1);
 `;

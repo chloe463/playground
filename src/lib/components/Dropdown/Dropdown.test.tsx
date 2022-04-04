@@ -1,30 +1,26 @@
 import { fireEvent, render } from "@testing-library/react";
 import { Dropdown } from "./index";
 
-const OPTIONS = [
-  "Option1",
-  "Option2",
-  "Option3",
-];
+const OPTIONS = ["Option1", "Option2", "Option3"];
 
 describe("Dropdown", () => {
-  it ("should render without crash", () => {
-    const { container } = render(<Dropdown options={OPTIONS} itemToString={v => v} value={""} />);
+  it("should render without crash", () => {
+    const { container } = render(<Dropdown options={OPTIONS} itemToString={(v) => v} value={""} />);
     const input = container.querySelector("div");
     expect(input).toBeTruthy();
   });
 
-  it ("shoud opens options list on click", () => {
+  it("shoud opens options list on click", () => {
     const { container } = render(
       <>
         <Dropdown
           placeholder={"placeholder"}
           options={OPTIONS}
-          itemToString={v => v}
+          itemToString={(v) => v}
           value={""}
           optionsEntryPoingId="options-entry-point"
         />
-        <div id="options-entry-point"/>
+        <div id="options-entry-point" />
       </>
     );
 

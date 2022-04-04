@@ -12,13 +12,13 @@ export const ElevationSamples = () => {
     <div className="flex flex-col space-y-8">
       {Array.from({ length: 41 }).map((_, i) => {
         return (
-          <Card key={i} elevation={i} >
+          <Card key={i} elevation={i}>
             Elevation {i}
           </Card>
         );
       })}
     </div>
-  )
+  );
 };
 
 const Card = styled.div<{ elevation: number }>`

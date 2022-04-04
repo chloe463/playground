@@ -11,13 +11,7 @@ export default {
 
 export const Normal = () => {
   const [value] = useState(new Date());
-  return (
-    <Datepicker
-      placeholder={"Date"}
-      value={value}
-      onChange={action("onChange")}
-    />
-  );
+  return <Datepicker placeholder={"Date"} value={value} onChange={action("onChange")} />;
 };
 
 export const OnlyCalendar = () => {
@@ -39,4 +33,4 @@ export const OnlyCalendar = () => {
       />
     </>
   );
-}
+};

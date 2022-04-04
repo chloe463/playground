@@ -2,14 +2,14 @@ import { fireEvent, render } from "@testing-library/react";
 import { Datepicker } from "./index";
 
 describe("Dropdown", () => {
-  it ("should render without crash", () => {
+  it("should render without crash", () => {
     const onChange = jest.fn();
     const { container } = render(<Datepicker value={new Date(2021, 0, 1)} onChange={onChange} />);
     const input = container.querySelector("div");
     expect(input).toBeTruthy();
   });
 
-  it ("shoud opens options list on click", () => {
+  it("shoud opens options list on click", () => {
     const onChange = jest.fn();
     const { container } = render(
       <>
@@ -18,7 +18,7 @@ describe("Dropdown", () => {
           onChange={onChange}
           calendarEntryPoint="calendar-entry-point"
         />
-        <div id="calendar-entry-point"/>
+        <div id="calendar-entry-point" />
       </>
     );
 

@@ -25,10 +25,7 @@ export type GetCommentsQueryVariables = Types.Exact<{
 export type GetCommentsQuery = { __typename?: "Query" } & {
   comments: Array<
     Types.Maybe<
-      { __typename?: "Comment" } & Pick<
-        Types.Comment,
-        "id" | "postId" | "name" | "email" | "body"
-      >
+      { __typename?: "Comment" } & Pick<Types.Comment, "id" | "postId" | "name" | "email" | "body">
     >
   >;
 };
@@ -65,9 +62,7 @@ export type QuestionnaireFragment = { __typename?: "Questionnaire" } & Pick<
   Types.Questionnaire,
   "id" | "title" | "description" | "state" | "startAt" | "endAt"
 > & {
-    questions: Array<
-      Types.Maybe<{ __typename?: "Question" } & Pick<Types.Question, "id">>
-    >;
+    questions: Array<Types.Maybe<{ __typename?: "Question" } & Pick<Types.Question, "id">>>;
   };
 
 export type CancelToDeleteQuestionnaireMutationVariables = Types.Exact<{
@@ -79,9 +74,7 @@ export type CancelToDeleteQuestionnaireMutation = {
 } & {
   cancelToDeleteQuestionnaire?: Types.Maybe<
     { __typename?: "CancelToDeleteQuestionnairePayload" } & {
-      questionnaire?: Types.Maybe<
-        { __typename?: "Questionnaire" } & QuestionnaireFragment
-      >;
+      questionnaire?: Types.Maybe<{ __typename?: "Questionnaire" } & QuestionnaireFragment>;
     }
   >;
 };
@@ -113,10 +106,9 @@ export type QuestionnaireConnectionQuery = { __typename?: "Query" } & {
         "hasNextPage" | "hasPreviousPage" | "startCursor" | "endCursor"
       >;
       edges: Array<
-        { __typename?: "QuestionnaireEdge" } & Pick<
-          Types.QuestionnaireEdge,
-          "cursor"
-        > & { node: { __typename?: "Questionnaire" } & QuestionnaireFragment }
+        { __typename?: "QuestionnaireEdge" } & Pick<Types.QuestionnaireEdge, "cursor"> & {
+            node: { __typename?: "Questionnaire" } & QuestionnaireFragment;
+          }
       >;
     };
 };
@@ -133,17 +125,9 @@ export type GetQuestionnaireQuery = { __typename?: "Query" } & {
     > & {
         questions: Array<
           Types.Maybe<
-            { __typename?: "Question" } & Pick<
-              Types.Question,
-              "id" | "type" | "text"
-            > & {
+            { __typename?: "Question" } & Pick<Types.Question, "id" | "type" | "text"> & {
                 options: Array<
-                  Types.Maybe<
-                    { __typename?: "Option" } & Pick<
-                      Types.Option,
-                      "id" | "text"
-                    >
-                  >
+                  Types.Maybe<{ __typename?: "Option" } & Pick<Types.Option, "id" | "text">>
                 >;
               }
           >
@@ -152,7 +136,7 @@ export type GetQuestionnaireQuery = { __typename?: "Query" } & {
   >;
 };
 
-export const PostFragmentDoc = ({
+export const PostFragmentDoc = {
   kind: "Document",
   definitions: [
     {
@@ -173,8 +157,8 @@ export const PostFragmentDoc = ({
       },
     },
   ],
-} as unknown) as DocumentNode<PostFragment, unknown>;
-export const QuestionnaireFragmentDoc = ({
+} as unknown as DocumentNode<PostFragment, unknown>;
+export const QuestionnaireFragmentDoc = {
   kind: "Document",
   definitions: [
     {
@@ -198,17 +182,15 @@ export const QuestionnaireFragmentDoc = ({
             name: { kind: "Name", value: "questions" },
             selectionSet: {
               kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-              ],
+              selections: [{ kind: "Field", name: { kind: "Name", value: "id" } }],
             },
           },
         ],
       },
     },
   ],
-} as unknown) as DocumentNode<QuestionnaireFragment, unknown>;
-export const CreateQuestionnaireDocument = ({
+} as unknown as DocumentNode<QuestionnaireFragment, unknown>;
+export const CreateQuestionnaireDocument = {
   kind: "Document",
   definitions: [
     {
@@ -278,11 +260,8 @@ export const CreateQuestionnaireDocument = ({
       },
     },
   ],
-} as unknown) as DocumentNode<
-  CreateQuestionnaireMutation,
-  CreateQuestionnaireMutationVariables
->;
-export const GetCommentsDocument = ({
+} as unknown as DocumentNode<CreateQuestionnaireMutation, CreateQuestionnaireMutationVariables>;
+export const GetCommentsDocument = {
   kind: "Document",
   definitions: [
     {
@@ -333,8 +312,8 @@ export const GetCommentsDocument = ({
       },
     },
   ],
-} as unknown) as DocumentNode<GetCommentsQuery, GetCommentsQueryVariables>;
-export const GetPostConnectionDocument = ({
+} as unknown as DocumentNode<GetCommentsQuery, GetCommentsQueryVariables>;
+export const GetPostConnectionDocument = {
   kind: "Document",
   definitions: [
     {
@@ -462,11 +441,8 @@ export const GetPostConnectionDocument = ({
     },
     ...PostFragmentDoc.definitions,
   ],
-} as unknown) as DocumentNode<
-  GetPostConnectionQuery,
-  GetPostConnectionQueryVariables
->;
-export const CancelToDeleteQuestionnaireDocument = ({
+} as unknown as DocumentNode<GetPostConnectionQuery, GetPostConnectionQueryVariables>;
+export const CancelToDeleteQuestionnaireDocument = {
   kind: "Document",
   definitions: [
     {
@@ -523,11 +499,11 @@ export const CancelToDeleteQuestionnaireDocument = ({
     },
     ...QuestionnaireFragmentDoc.definitions,
   ],
-} as unknown) as DocumentNode<
+} as unknown as DocumentNode<
   CancelToDeleteQuestionnaireMutation,
   CancelToDeleteQuestionnaireMutationVariables
 >;
-export const DeleteQuestionnaireDocument = ({
+export const DeleteQuestionnaireDocument = {
   kind: "Document",
   definitions: [
     {
@@ -572,11 +548,8 @@ export const DeleteQuestionnaireDocument = ({
       },
     },
   ],
-} as unknown) as DocumentNode<
-  DeleteQuestionnaireMutation,
-  DeleteQuestionnaireMutationVariables
->;
-export const QuestionnaireConnectionDocument = ({
+} as unknown as DocumentNode<DeleteQuestionnaireMutation, DeleteQuestionnaireMutationVariables>;
+export const QuestionnaireConnectionDocument = {
   kind: "Document",
   definitions: [
     {
@@ -688,11 +661,8 @@ export const QuestionnaireConnectionDocument = ({
     },
     ...QuestionnaireFragmentDoc.definitions,
   ],
-} as unknown) as DocumentNode<
-  QuestionnaireConnectionQuery,
-  QuestionnaireConnectionQueryVariables
->;
-export const GetQuestionnaireDocument = ({
+} as unknown as DocumentNode<QuestionnaireConnectionQuery, QuestionnaireConnectionQueryVariables>;
+export const GetQuestionnaireDocument = {
   kind: "Document",
   definitions: [
     {
@@ -770,7 +740,4 @@ export const GetQuestionnaireDocument = ({
       },
     },
   ],
-} as unknown) as DocumentNode<
-  GetQuestionnaireQuery,
-  GetQuestionnaireQueryVariables
->;
+} as unknown as DocumentNode<GetQuestionnaireQuery, GetQuestionnaireQueryVariables>;

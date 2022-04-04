@@ -17,7 +17,7 @@ export const PillsContainer = (props: Props) => {
             key={item.key}
             layout="position"
             transition={{
-              duration: 0.3
+              duration: 0.3,
             }}
             className="p-1.5"
           >
@@ -26,7 +26,7 @@ export const PillsContainer = (props: Props) => {
               initial="hidden"
               animate="visible"
               transition={{
-                delay: 0.4
+                delay: 0.4,
               }}
             >
               <div

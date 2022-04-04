@@ -1,6 +1,9 @@
 import { gql, useQuery } from "@apollo/client";
 import { useCallback, useMemo } from "react";
-import { QuestionnaireConnectionDocument, QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
+import {
+  QuestionnaireConnectionDocument,
+  QuestionnaireFragment,
+} from "../../__generated__/graphqlOperationTypes";
 import { PageInfo } from "../../__generated__/types";
 
 export type QuestionnaireConnection = {
@@ -67,7 +70,7 @@ export const useQuestionnaireConnection = (): QuestionnaireConnection => {
         first: PER,
         after: data.questionnaireConnection.pageInfo.endCursor,
       },
-    })
+    });
   }, [data, fetchMore]);
 
   return {

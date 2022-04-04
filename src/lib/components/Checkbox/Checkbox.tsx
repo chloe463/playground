@@ -82,12 +82,10 @@ export const Checkbox: React.VFC<CheckboxProps> = (props) => {
             strokeDasharray={22}
             strokeDashoffset={isSelected ? 0 : 22}
             style={{
-              transition: "all 200ms linear"
+              transition: "all 200ms linear",
             }}
           />
-          {isIndeterminate && (
-            <path d="M4 12H20" stroke="white" strokeWidth="2"/>
-          )}
+          {isIndeterminate && <path d="M4 12H20" stroke="white" strokeWidth="2" />}
         </svg>
         <RippleRoot>
           {!isDisabled && <MouseOverRing />}
@@ -103,18 +101,18 @@ export const Checkbox: React.VFC<CheckboxProps> = (props) => {
 const Label = styled.label<{ $disabled?: boolean }>`
   display: inline-flex;
   align-items: center;
-  cursor: ${({ $disabled }) => $disabled ? "default" : "pointer"};
-  color: ${({ $disabled }) => $disabled ? colors.blackAlpha400 : colors.blackAlpha800};
+  cursor: ${({ $disabled }) => ($disabled ? "default" : "pointer")};
+  color: ${({ $disabled }) => ($disabled ? colors.blackAlpha400 : colors.blackAlpha800)};
 `;
 
 const CheckboxButton = styled.span<{
-  $selected: boolean,
-  $disabled?: boolean,
+  $selected: boolean;
+  $disabled?: boolean;
 }>`
   position: relative;
   display: inline-grid;
   place-items: center;
-  cursor: ${({ $disabled }) => $disabled ? "normal" : "pointer"};
+  cursor: ${({ $disabled }) => ($disabled ? "normal" : "pointer")};
 
   .inner-circle {
     transition-property: all;
@@ -123,17 +121,20 @@ const CheckboxButton = styled.span<{
     transform-origin: 50% 50%;
   }
 
-  ${({ $selected }) => $selected ? css`
-    .inner-circle {
-      transform: scale(1);
-      fill-opacity: 1;
-    }
-  ` : css`
-    .inner-circle {
-      transform: scale(0);
-      fill-opacity: 0;
-    }
-  `}
+  ${({ $selected }) =>
+    $selected
+      ? css`
+          .inner-circle {
+            transform: scale(1);
+            fill-opacity: 1;
+          }
+        `
+      : css`
+          .inner-circle {
+            transform: scale(0);
+            fill-opacity: 0;
+          }
+        `}
 `;
 
 const RippleRoot = styled.span`

@@ -17,15 +17,13 @@ export const NewQuestionnaireForm: React.VFC<Props> = ({ onSubmit }) => {
       description: "",
       startAt: new Date(),
       endAt: new Date(),
-    }
+    },
   });
   const { isDirty, isValid } = formState;
 
   return (
     <div className="py-0 px-6">
-      {process.env.NODE_ENV !== "production" && (
-        <DevTool control={control} placement="top-right" />
-      )}
+      {process.env.NODE_ENV !== "production" && <DevTool control={control} placement="top-right" />}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="w-[720px]">
           <Controller
@@ -100,7 +98,11 @@ export const NewQuestionnaireForm: React.VFC<Props> = ({ onSubmit }) => {
                   name="startAt"
                   placeholder={"Date"}
                   value={value}
-                  min={startAt ? dayjs(startAt).subtract(1, "day").toDate() : dayjs().subtract(1, "day").toDate()}
+                  min={
+                    startAt
+                      ? dayjs(startAt).subtract(1, "day").toDate()
+                      : dayjs().subtract(1, "day").toDate()
+                  }
                   onChange={onChange}
                   onBlur={onBlur}
                 />
@@ -109,7 +111,9 @@ export const NewQuestionnaireForm: React.VFC<Props> = ({ onSubmit }) => {
           />
         </div>
         <div className="flex justify-center mt-12">
-          <PrimaryButton type="submit" style={{ width: "136px" }} disabled={!isValid || !isDirty}>Submit</PrimaryButton>
+          <PrimaryButton type="submit" style={{ width: "136px" }} disabled={!isValid || !isDirty}>
+            Submit
+          </PrimaryButton>
         </div>
       </form>
     </div>

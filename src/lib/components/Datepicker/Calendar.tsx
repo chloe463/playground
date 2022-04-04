@@ -10,7 +10,7 @@ import { getElevation } from "../elevation";
 const throttle = (fn: (...args: any[]) => void, interval: number) => {
   let lastTime = Date.now() - interval;
   return () => {
-    if ((lastTime + interval) < Date.now()) {
+    if (lastTime + interval < Date.now()) {
       lastTime = Date.now();
       fn();
     }
@@ -29,7 +29,7 @@ const MONTHS = [
   "September",
   "October",
   "November",
-  "December"
+  "December",
 ];
 
 const WEEK_DAYS = ["S", "M", "T", "W", "T", "F", "S"];
@@ -53,7 +53,7 @@ const variants: Variants = {
       duration: 0.2,
       ease: [0.3, 0.3, 0.3, 1],
     },
-  }
+  },
 };
 
 export type DateString = `${number}/${number}/${number}`;
@@ -77,9 +77,9 @@ const isInRange = (min: dayjs.Dayjs, max: dayjs.Dayjs, value: dayjs.Dayjs): bool
     return false;
   }
   return true;
-}
+};
 
-export const Calendar: React.VFC<CalendarProp > = ({
+export const Calendar: React.VFC<CalendarProp> = ({
   innerValue,
   name,
   baseRef,
@@ -94,11 +94,14 @@ export const Calendar: React.VFC<CalendarProp > = ({
   const [displayingDate, setDisplayingDate] = useState(innerValue || new Date());
   const [picking, setPicking] = useState<PickingTarget>("DATE");
 
-  const id = useMemo(() => name ? `${name}-date-picker` : "date-picker", [name]);
-  const { dialogProps, titleProps } = useDialog({
-    role: "dialog",
-    "aria-labelledby": id,
-  }, calendarRef);
+  const id = useMemo(() => (name ? `${name}-date-picker` : "date-picker"), [name]);
+  const { dialogProps, titleProps } = useDialog(
+    {
+      role: "dialog",
+      "aria-labelledby": id,
+    },
+    calendarRef
+  );
 
   useIsomorphicLayoutEffect(() => {
     if (baseRef.current && calendarRef.current) {
@@ -117,7 +120,9 @@ export const Calendar: React.VFC<CalendarProp > = ({
 
   useIsomorphicLayoutEffect(() => {
     if (picking === "YEAR_MONTH" && yearGridRef.current) {
-      const selectedYearDOM = Array.from(yearGridRef.current.children).find((v) => (v as HTMLButtonElement).dataset["selected"] === "true");
+      const selectedYearDOM = Array.from(yearGridRef.current.children).find(
+        (v) => (v as HTMLButtonElement).dataset["selected"] === "true"
+      );
       if (selectedYearDOM) {
         selectedYearDOM.scrollIntoView({ block: "center" });
       }
@@ -133,36 +138,40 @@ export const Calendar: React.VFC<CalendarProp > = ({
       switch (e.key) {
         case "ArrowUp": {
           onSelectDate?.((current) => {
-            const next = picking === "DATE" ?
-              dayjs(current || new Date()).subtract(7, "days") :
-              dayjs(current || new Date()).subtract(4, "years");
+            const next =
+              picking === "DATE"
+                ? dayjs(current || new Date()).subtract(7, "days")
+                : dayjs(current || new Date()).subtract(4, "years");
             return isInRange(min, max, next) ? next.toDate() : current;
           });
           break;
         }
         case "ArrowDown": {
           onSelectDate?.((current) => {
-            const next = picking === "DATE" ?
-              dayjs(current || new Date()).add(7, "days") :
-              dayjs(current || new Date()).add(4, "years");
+            const next =
+              picking === "DATE"
+                ? dayjs(current || new Date()).add(7, "days")
+                : dayjs(current || new Date()).add(4, "years");
             return isInRange(min, max, next) ? next.toDate() : current;
           });
           break;
         }
         case "ArrowRight": {
           onSelectDate?.((current) => {
-            const next = picking === "DATE" ?
-              dayjs(current || new Date()).add(1, "day") :
-              dayjs(current || new Date()).add(1, "years");
+            const next =
+              picking === "DATE"
+                ? dayjs(current || new Date()).add(1, "day")
+                : dayjs(current || new Date()).add(1, "years");
             return isInRange(min, max, next) ? next.toDate() : current;
           });
           break;
         }
         case "ArrowLeft": {
           onSelectDate?.((current) => {
-            const next = picking === "DATE" ?
-              dayjs(current || new Date()).subtract(1, "day") :
-              dayjs(current || new Date()).subtract(1, "years");
+            const next =
+              picking === "DATE"
+                ? dayjs(current || new Date()).subtract(1, "day")
+                : dayjs(current || new Date()).subtract(1, "years");
             return isInRange(min, max, next) ? next.toDate() : current;
           });
           break;
@@ -213,7 +222,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
   }, [baseRef]);
 
   const emptyCells = useMemo(() => {
-    const firstDay = dayjs(displayingDate).set("date", 1).get('day');
+    const firstDay = dayjs(displayingDate).set("date", 1).get("day");
     return Array.from({ length: firstDay }, (_, i) => i);
   }, [displayingDate]);
 
@@ -234,7 +243,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
   }, [innerValue, displayingDate, min, max]);
 
   const years = useMemo(() => {
-    const thisYear = new Date().getFullYear(); 
+    const thisYear = new Date().getFullYear();
     const selectedYear = innerValue ? innerValue.getFullYear() : 0;
     const minYear = min.year();
     const maxYear = max.year();
@@ -244,12 +253,16 @@ export const Calendar: React.VFC<CalendarProp > = ({
         thisYear: thisYear === year,
         selected: selectedYear === year,
         disabled: year < minYear || maxYear < year,
-      }
+      };
     });
   }, [innerValue, min, max]);
 
   const nextMonthDates = useMemo(() => {
-    const lastDay = dayjs(displayingDate).set("date", 1).add(1, "month").subtract(1, "day").get("day");
+    const lastDay = dayjs(displayingDate)
+      .set("date", 1)
+      .add(1, "month")
+      .subtract(1, "day")
+      .get("day");
     return Array.from({ length: 6 - lastDay }, (_, i) => i + 1);
   }, [displayingDate]);
 
@@ -275,15 +288,10 @@ export const Calendar: React.VFC<CalendarProp > = ({
     setDisplayingDate(next);
     setPicking("DATE");
     onSelectDate?.(next);
-  }
+  };
 
   return (
-    <motion.div
-      variants={variants}
-      initial={"initial"}
-      animate={"animate"}
-      exit={"exit"}
-    >
+    <motion.div variants={variants} initial={"initial"} animate={"animate"} exit={"exit"}>
       <CalendarBase ref={calendarRef} tabIndex={0} {...dialogProps}>
         <Header>
           <HeaderLeft>
@@ -292,8 +300,12 @@ export const Calendar: React.VFC<CalendarProp > = ({
             </YearMonth>
             <IconButton
               type="button"
-              aria-label={picking === "DATE" ? "Switch to year picker" : "Switch to month date picker"}
-              onClick={() => setPicking((current) => current === "YEAR_MONTH" ? "DATE" : "YEAR_MONTH")}
+              aria-label={
+                picking === "DATE" ? "Switch to year picker" : "Switch to month date picker"
+              }
+              onClick={() =>
+                setPicking((current) => (current === "YEAR_MONTH" ? "DATE" : "YEAR_MONTH"))
+              }
             >
               <TriangleDown />
             </IconButton>
@@ -322,18 +334,12 @@ export const Calendar: React.VFC<CalendarProp > = ({
             <>
               <WeekDays>
                 {WEEK_DAYS.map((day, idx) => {
-                  return (
-                    <span key={`${day}--${idx}`}>
-                      {day}
-                    </span>
-                  );
+                  return <span key={`${day}--${idx}`}>{day}</span>;
                 })}
               </WeekDays>
               <DaysGrid>
                 {emptyCells.map((i) => {
-                  return (
-                    <span key={i} />
-                  );
+                  return <span key={i} />;
                 })}
                 {days.map(({ date, fullDate, isToday, selected, disabled }) => {
                   return (
@@ -345,7 +351,7 @@ export const Calendar: React.VFC<CalendarProp > = ({
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        onClickDateCell(date)
+                        onClickDateCell(date);
                       }}
                       disabled={disabled}
                       aria-label={fullDate}
@@ -391,8 +397,12 @@ export const Calendar: React.VFC<CalendarProp > = ({
           )}
         </Body>
         <Footer>
-          <CancelButton type="button" onClick={onClickCancel}>Cancel</CancelButton>
-          <SubmitButton type="button" onClick={onClickOk}>OK</SubmitButton>
+          <CancelButton type="button" onClick={onClickCancel}>
+            Cancel
+          </CancelButton>
+          <SubmitButton type="button" onClick={onClickOk}>
+            OK
+          </SubmitButton>
         </Footer>
       </CalendarBase>
     </motion.div>
@@ -524,21 +534,21 @@ const DaysGrid = styled.div`
   text-align: center;
 `;
 
-const DateCell = styled.button<{ $today: boolean, $selected: boolean }>`
+const DateCell = styled.button<{ $today: boolean; $selected: boolean }>`
   appearance: none;
   outline: none;
   border: none;
-  background-color: ${({ $selected }) => $selected ? colors.brand : "transparent" };
+  background-color: ${({ $selected }) => ($selected ? colors.brand : "transparent")};
   display: block;
   margin: 2px;
   padding: 0;
   width: 28px;
   height: 28px;
-  border: ${({ $today }) => $today ? `1px solid ${colors.brand}` : `none`};
+  border: ${({ $today }) => ($today ? `1px solid ${colors.brand}` : `none`)};
   border-radius: 50%;
   font-size: 14px;
   font-weight: 600;
-  color: ${({ $selected }) => $selected ? colors.whiteAlpha800 : colors.blackAlpha500};
+  color: ${({ $selected }) => ($selected ? colors.whiteAlpha800 : colors.blackAlpha500)};
   line-height: 14px;
   cursor: pointer;
 
@@ -547,8 +557,8 @@ const DateCell = styled.button<{ $today: boolean, $selected: boolean }>`
   }
 
   &:focus {
-    background-color: ${({ $selected }) => $selected ? colors.brand : colors.blackAlpha100 };
-    color: ${({ $selected }) => $selected ? colors.whiteAlpha800 : colors.blackAlpha700 };
+    background-color: ${({ $selected }) => ($selected ? colors.brand : colors.blackAlpha100)};
+    color: ${({ $selected }) => ($selected ? colors.whiteAlpha800 : colors.blackAlpha700)};
   }
 
   &:disabled {
@@ -570,21 +580,21 @@ const YearGrid = styled.div`
   text-align: center;
 `;
 
-const YearCell = styled.button<{ $thisYear: boolean, $selected: boolean }>`
+const YearCell = styled.button<{ $thisYear: boolean; $selected: boolean }>`
   appearance: none;
   outline: none;
   border: none;
-  background-color: ${({ $selected }) => $selected ? colors.brand : "transparent" };
+  background-color: ${({ $selected }) => ($selected ? colors.brand : "transparent")};
   display: block;
   margin: 2px;
   padding: 0;
   width: 52px;
   height: 28px;
-  border: ${({ $thisYear}) => $thisYear ? `1px solid ${colors.brand}` : `none`};
+  border: ${({ $thisYear }) => ($thisYear ? `1px solid ${colors.brand}` : `none`)};
   border-radius: 9999vmax;
   font-size: 14px;
   font-weight: 600;
-  color: ${({ $selected }) => $selected ? colors.whiteAlpha800 : colors.blackAlpha500};
+  color: ${({ $selected }) => ($selected ? colors.whiteAlpha800 : colors.blackAlpha500)};
   line-height: 14px;
   cursor: pointer;
 
@@ -593,8 +603,8 @@ const YearCell = styled.button<{ $thisYear: boolean, $selected: boolean }>`
   }
 
   &:focus {
-    background-color: ${({ $selected }) => $selected ? colors.brand : colors.blackAlpha100 };
-    color: ${({ $selected }) => $selected ? colors.whiteAlpha800 : colors.blackAlpha700 };
+    background-color: ${({ $selected }) => ($selected ? colors.brand : colors.blackAlpha100)};
+    color: ${({ $selected }) => ($selected ? colors.whiteAlpha800 : colors.blackAlpha700)};
   }
 
   &:disabled {

@@ -1,6 +1,12 @@
 import React, { useCallback } from "react";
-import { AutoSizer, InfiniteLoader, List, ListRowRenderer, WindowScroller } from "react-virtualized";
-import 'react-virtualized/styles.css';
+import {
+  AutoSizer,
+  InfiniteLoader,
+  List,
+  ListRowRenderer,
+  WindowScroller,
+} from "react-virtualized";
+import "react-virtualized/styles.css";
 import { Post, PostPlaceholder } from ".";
 import { PostFragment } from "../../__generated__/graphqlOperationTypes";
 
@@ -13,22 +19,28 @@ type Props = {
   totalCount: number;
   posts: PostFragment[];
   fetchMorePosts: () => Promise<void>;
-}
+};
 
 export const PostList: React.VFC<Props> = (props) => {
   const { totalCount, posts } = props;
-  const isRowLoaded = useCallback(({ index }: { index: number }) => {
-    return Boolean(posts[index]);
-  }, [posts]);
+  const isRowLoaded = useCallback(
+    ({ index }: { index: number }) => {
+      return Boolean(posts[index]);
+    },
+    [posts]
+  );
 
-  const rowRenderer: ListRowRenderer = useCallback(({ key, index, style }) => {
-    const post = posts[index];
-    return (
-      <div key={key} style={style}>
-        {post ? <Post post={post} /> : <PostPlaceholder />}
-      </div>
-    );
-  }, [posts]);
+  const rowRenderer: ListRowRenderer = useCallback(
+    ({ key, index, style }) => {
+      const post = posts[index];
+      return (
+        <div key={key} style={style}>
+          {post ? <Post post={post} /> : <PostPlaceholder />}
+        </div>
+      );
+    },
+    [posts]
+  );
 
   return (
     <InfiniteLoader
@@ -43,7 +55,7 @@ export const PostList: React.VFC<Props> = (props) => {
           <WindowScroller>
             {({ height, isScrolling, scrollTop, onChildScroll }) => {
               return (
-                <AutoSizer disableHeight={true} >
+                <AutoSizer disableHeight={true}>
                   {({ width }) => {
                     return (
                       <List
@@ -69,4 +81,4 @@ export const PostList: React.VFC<Props> = (props) => {
       }}
     </InfiniteLoader>
   );
-}
+};

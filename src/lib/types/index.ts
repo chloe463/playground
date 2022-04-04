@@ -7,6 +7,6 @@ export type AnimationParams = {
 
 export type AnimationListContainerProps = {
   readonly animationParams: AnimationParams;
-}
+};
 
-export type Delta = { x: number, y : number };
+export type Delta = { x: number; y: number };

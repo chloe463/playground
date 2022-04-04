@@ -6,7 +6,10 @@ import React from "react";
 import { appBaseStyle, transition } from "../../../components/layout";
 import { PageHeader } from "../../../components/PageHeader";
 import { addApolloStateToPageProps, initializeApollo } from "../../../hooks/useAplloClient";
-import { GetQuestionnaireDocument, GetQuestionnaireQuery } from "../../../__generated__/graphqlOperationTypes";
+import {
+  GetQuestionnaireDocument,
+  GetQuestionnaireQuery,
+} from "../../../__generated__/graphqlOperationTypes";
 
 type Props = {
   questionnaire: GetQuestionnaireQuery;
@@ -45,8 +48,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ query }) =
   });
   return addApolloStateToPageProps(client, {
     props: {
-      questionnaire
-    }
+      questionnaire,
+    },
   });
 };
 
@@ -61,7 +64,8 @@ const QuestionnaireIndex: React.VFC<Props> = (props) => (
     <PageHeader title={"Questionnaire"}></PageHeader>
     <div className="mt-4 py-0 px-6">
       <Link href={"/questionnaires"}>
-        <a className={`
+        <a
+          className={`
               text-body2 text-black-alpha500 transition-all duration-200 ease-out
               hover:text-black-alpha700
               active:text-black-alpha700
@@ -75,13 +79,11 @@ const QuestionnaireIndex: React.VFC<Props> = (props) => (
     <div className="mt-9 mb-24">
       <div className="ml-6">
         <code>
-          <pre className="p-8 bg-black-alpha50 rounded">
-            {JSON.stringify(props, null, 2)}
-          </pre>
+          <pre className="p-8 bg-black-alpha50 rounded">{JSON.stringify(props, null, 2)}</pre>
         </code>
       </div>
     </div>
   </motion.div>
-)
+);
 
 export default QuestionnaireIndex;

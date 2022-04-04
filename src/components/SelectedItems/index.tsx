@@ -3,14 +3,18 @@ import React from "react";
 import { pillVariants } from "../../constants";
 import { useLayoutAnimation } from "../../lib";
 import { Item } from "../../types";
-import { selectedItemPillBaseStyle, selectedItemPillLayoutAnimatorStyle, selectedItemsContainerStyle } from "../layout";
+import {
+  selectedItemPillBaseStyle,
+  selectedItemPillLayoutAnimatorStyle,
+  selectedItemsContainerStyle,
+} from "../layout";
 
 type Props = {
   items: Item[];
   removeItem: (item: Item) => void;
 };
 
-const SelectedItemPill = ({ item, removeItem }: { item: Item, removeItem: () => void }) => {
+const SelectedItemPill = ({ item, removeItem }: { item: Item; removeItem: () => void }) => {
   const animationTargetRef = useLayoutAnimation({
     duration: 400,
     delay: 50,
@@ -25,10 +29,12 @@ const SelectedItemPill = ({ item, removeItem }: { item: Item, removeItem: () => 
         animate="visible"
         transition={{
           delay: 0.3,
-          duration: 0.3
+          duration: 0.3,
         }}
       >
-        <button className={selectedItemPillBaseStyle} onClick={() => removeItem()}>{item.name}</button>
+        <button className={selectedItemPillBaseStyle} onClick={() => removeItem()}>
+          {item.name}
+        </button>
       </motion.span>
     </span>
   );

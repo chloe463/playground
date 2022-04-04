@@ -10,5 +10,5 @@ module.exports = {
   body1: ["15px", "28px"],
   body2: ["14px", "24px"],
   caption: ["12px", "16px"],
-  button: ["14px", "16px"]
+  button: ["14px", "16px"],
 };

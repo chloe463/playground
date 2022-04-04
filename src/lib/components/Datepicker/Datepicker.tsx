@@ -42,13 +42,19 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
   const [defaultValue, setDefaultValue] = useState(value);
   const [innerValue, setInnerValue] = useState<Date | null>(value);
 
-  const min = useMemo(() => typeof _min === "string" ? dayjs(_min) : _min ? dayjs(_min) : dayjs(DEFAULT_MIN), [_min]);
-  const max = useMemo(() => typeof _max === "string" ? dayjs(_max) : _max ? dayjs(_max) : dayjs(DEFAULT_MAX), [_max]);
+  const min = useMemo(
+    () => (typeof _min === "string" ? dayjs(_min) : _min ? dayjs(_min) : dayjs(DEFAULT_MIN)),
+    [_min]
+  );
+  const max = useMemo(
+    () => (typeof _max === "string" ? dayjs(_max) : _max ? dayjs(_max) : dayjs(DEFAULT_MAX)),
+    [_max]
+  );
 
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
       if (e.key === "Enter" && e.target === baseRef.current) {
-        setIsOpen(v => !v);
+        setIsOpen((v) => !v);
       }
     };
     window.addEventListener("keyup", listener);
@@ -80,7 +86,7 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
         $focus={isOpen}
         $disabled={disabled}
         tabIndex={disabled ? -1 : 0}
-        onClick={() => !disabled && setIsOpen(v => !v)}
+        onClick={() => !disabled && setIsOpen((v) => !v)}
         aria-disabled={disabled}
       >
         <Label
@@ -132,7 +138,7 @@ export const Datepicker: React.VFC<DatepickerProps> = ({
   );
 };
 
-const Base = styled.div<{ $focus: boolean, $disabled?: boolean }>`
+const Base = styled.div<{ $focus: boolean; $disabled?: boolean }>`
   position: relative;
   display: block;
   width: 100%;
@@ -149,40 +155,46 @@ const Base = styled.div<{ $focus: boolean, $disabled?: boolean }>`
     background-color: ${colors.blackAlpha100};
   }
 
-  ${({ $disabled }) => !$disabled && css`
-    &:focus {
-      outline: none;
+  ${({ $disabled }) =>
+    !$disabled &&
+    css`
+      &:focus {
+        outline: none;
+        background-color: ${colors.blackAlpha100};
+
+        & > .datepicker-label {
+          color: ${colors.brand};
+        }
+        & > .datepicker-bottom-border {
+          opacity: 1;
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          display: block;
+          width: 100%;
+          height: 2px;
+          background-color: ${colors.brand};
+          transform: scaleX(1) translateY(-2px);
+        }
+      }
+    `}
+
+  ${({ $focus }) =>
+    $focus &&
+    css`
       background-color: ${colors.blackAlpha100};
-
-      & > .datepicker-label {
-        color: ${colors.brand};
-      }
-      & > .datepicker-bottom-border {
-        opacity: 1;
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        display: block;
-        width: 100%;
-        height: 2px;
+      &:after {
         background-color: ${colors.brand};
-        transform: scaleX(1) translateY(-2px);
+        transform: rotate(180deg);
       }
-    }
-  `}
+    `}
 
-  ${({ $focus }) => $focus && css`
-    background-color: ${colors.blackAlpha100};
-    &:after {
-      background-color: ${colors.brand};
-      transform: rotate(180deg);
-    }
-  `}
-
-  ${({ $disabled }) => $disabled && css`
-    background-color: ${colors.blackAlpha100};
-    cursor: initial;
-  `}
+  ${({ $disabled }) =>
+    $disabled &&
+    css`
+      background-color: ${colors.blackAlpha100};
+      cursor: initial;
+    `}
 `;
 
 const VisuallyHiddenInput = styled.input`
@@ -212,21 +224,25 @@ const Label = styled.label<PlaceholderProps>`
   transform-origin: 0 0;
   pointer-events: none;
 
-  ${({ $focus }) => $focus && css`
-    transform: translateY(-12px) scale(.75);
-    color: ${colors.brand};
-  `}
+  ${({ $focus }) =>
+    $focus &&
+    css`
+      transform: translateY(-12px) scale(0.75);
+      color: ${colors.brand};
+    `}
 
-  ${({ $hasValue }) => $hasValue && css`
-    transform: translateY(-12px) scale(.75);
-  `}
+  ${({ $hasValue }) =>
+    $hasValue &&
+    css`
+      transform: translateY(-12px) scale(0.75);
+    `}
 `;
 
 const SelectedValue = styled.span<{ $disabled?: boolean }>`
   position: absolute;
   top: 20px;
   left: 16px;
-  color: ${({ $disabled }) => $disabled ? colors.blackAlpha500 : colors.blackAlpha800};
+  color: ${({ $disabled }) => ($disabled ? colors.blackAlpha500 : colors.blackAlpha800)};
   font-size: 16px;
   font-weight: 500;
   line-height: 28px;
@@ -236,19 +252,20 @@ const SelectedValue = styled.span<{ $disabled?: boolean }>`
 const BottomBorder = styled.span<{ $focus: boolean }>`
   opacity: 0;
   transform-origin: 50% 50%;
-  transform: scaleX(.5) translateY(-2px);
+  transform: scaleX(0.5) translateY(-2px);
   transition: all 180ms cubic-bezier(0.3, 0.3, 0.3, 1);
 
-  ${({ $focus }) => $focus && css`
-    opacity: 1;
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: ${colors.brand};
-    transform: scaleX(1) translateY(-2px);
-  `}
+  ${({ $focus }) =>
+    $focus &&
+    css`
+      opacity: 1;
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: ${colors.brand};
+      transform: scaleX(1) translateY(-2px);
+    `}
 `;
-

@@ -1,8 +1,5 @@
 import { useFocusManager } from "@react-aria/focus";
-import React, {
-  useEffect,
-  useRef
-} from "react";
+import React, { useEffect, useRef } from "react";
 import styled, { css } from "styled-components";
 import { useIsomorphicLayoutEffect } from "../../hooks/useIsomarphicLayoutEffect";
 import { colors } from "../../styles";
@@ -12,7 +9,7 @@ type OptionsProps<T = string> = {
   baseRef: React.MutableRefObject<HTMLDivElement | null>;
   options: T[];
   selectedItem: T;
-  itemToString:(v: T) => string;
+  itemToString: (v: T) => string;
   onChange: (v: T) => void;
 };
 
@@ -31,7 +28,9 @@ export const Options: React.VFC<OptionsProps> = ({
 
   useIsomorphicLayoutEffect(() => {
     if (baseRef.current && listRef.current) {
-      const selectedItemEl = Array.from(listRef.current.children).find((el) => el.getAttribute("aria-selected") === "true");
+      const selectedItemEl = Array.from(listRef.current.children).find(
+        (el) => el.getAttribute("aria-selected") === "true"
+      );
       if (selectedItemEl) {
         selectedItemEl.scrollIntoView({ block: "center" });
         (selectedItemEl as HTMLElement).focus();
@@ -45,7 +44,9 @@ export const Options: React.VFC<OptionsProps> = ({
       let transitionOrigin = "0 0";
       if (selectedItemEl) {
         const { y: selectedItemElY } = selectedItemEl.getBoundingClientRect();
-        listRef.current.style.transform = `translate(${x}px, ${y + height - 44 - selectedItemElY}px)`;
+        listRef.current.style.transform = `translate(${x}px, ${
+          y + height - 44 - selectedItemElY
+        }px)`;
         transitionOrigin = `0 ${selectedItemElY}px`;
       } else {
         listRef.current.style.transform = `translate(${x}px, ${y + height}px)`;
@@ -61,7 +62,7 @@ export const Options: React.VFC<OptionsProps> = ({
               listRef.current.style.opacity = "1";
               listRef.current.style.transform = `${transform} scale(1)`;
               listRef.current.style.transitionDuration = "250ms";
-              listRef.current.style.transitionTimingFunction= "cubic-bezier(0.3, 0.3, 0.3, 1)";
+              listRef.current.style.transitionTimingFunction = "cubic-bezier(0.3, 0.3, 0.3, 1)";
             }
           });
         }
@@ -77,10 +78,12 @@ export const Options: React.VFC<OptionsProps> = ({
       e.stopPropagation();
       e.preventDefault();
       const activeElement = document.activeElement;
-      const selectedItemIndex = Array.from(listRef.current.children).findIndex((el) => el === activeElement);
-      switch(e.key) {
+      const selectedItemIndex = Array.from(listRef.current.children).findIndex(
+        (el) => el === activeElement
+      );
+      switch (e.key) {
         case "ArrowDown": {
-          focusManager.focusNext({ wrap: true});
+          focusManager.focusNext({ wrap: true });
           break;
         }
         case "ArrowUp": {
@@ -100,7 +103,7 @@ export const Options: React.VFC<OptionsProps> = ({
           break;
         }
       }
-    }
+    };
     window.addEventListener("keydown", listener);
     return () => window.removeEventListener("keydown", listener);
   }, [options, listRef, onChange, focusManager]);
@@ -132,7 +135,7 @@ export const Options: React.VFC<OptionsProps> = ({
       })}
     </OptionList>
   );
-}
+};
 
 const OptionList = styled.ul`
   z-index: 1;
@@ -145,7 +148,7 @@ const OptionList = styled.ul`
   overflow-y: auto;
 `;
 
-const OptionItem = styled.li<{ $selected: boolean}>`
+const OptionItem = styled.li<{ $selected: boolean }>`
   position: relative;
   display: block;
   box-sizing: border-box;
@@ -162,7 +165,8 @@ const OptionItem = styled.li<{ $selected: boolean}>`
     background-color: ${colors.blackAlpha50};
   }
 
-  &:before, &:after {
+  &:before,
+  &:after {
     content: " ";
     position: absolute;
     top: 0;
@@ -178,9 +182,11 @@ const OptionItem = styled.li<{ $selected: boolean}>`
     }
   }
 
-  ${({ $selected }) => $selected && css`
-    &:before {
-      background-color: ${colors.blackAlpha100};
-    }
-  `}
+  ${({ $selected }) =>
+    $selected &&
+    css`
+      &:before {
+        background-color: ${colors.blackAlpha100};
+      }
+    `}
 `;

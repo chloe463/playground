@@ -2,7 +2,8 @@ import { gql, useQuery } from "@apollo/client";
 import { useMemo, useState } from "react";
 import {
   GetPostConnectionDocument,
-  GetPostConnectionQueryVariables, PostFragment as Post
+  GetPostConnectionQueryVariables,
+  PostFragment as Post,
 } from "../../__generated__/graphqlOperationTypes";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -44,7 +45,7 @@ const EMPTY_POSTS: Post[] = [];
 type State = {
   posts: Post[];
   lastCursor: string;
-}
+};
 
 const lastElement = <T>(a: T[]): T => a.slice(-1)[0];
 
@@ -70,35 +71,38 @@ export const usePostList = () => {
     return { posts, lastCursor };
   }, [data]);
 
-  const { fetchMorePosts, refetchPosts } = useMemo(() => ({
-    fetchMorePosts: async () => {
-      await fetchMore({
-        query: GetPostConnectionDocument,
-        variables: {
-          ...variables,
+  const { fetchMorePosts, refetchPosts } = useMemo(
+    () => ({
+      fetchMorePosts: async () => {
+        await fetchMore({
+          query: GetPostConnectionDocument,
+          variables: {
+            ...variables,
+            after: lastCursor,
+          },
+        });
+        setVariables((prev) => ({
+          ...prev,
           after: lastCursor,
-        },
-      });
-      setVariables((prev) => ({
-        ...prev,
-        after: lastCursor,
-      }));
-    },
-    refetchPosts: async (query: string) => {
-      await refetch({
-        ...variables,
-        first: DEFAULT_FETCH_SIZE,
-        after: FIRST_CURSOR,
-        query,
-      });
-      setVariables((prev) => ({
-        ...prev,
-        first: DEFAULT_FETCH_SIZE,
-        after: FIRST_CURSOR,
-        query,
-      }));
-    },
-  }), [fetchMore, lastCursor, refetch, variables]);
+        }));
+      },
+      refetchPosts: async (query: string) => {
+        await refetch({
+          ...variables,
+          first: DEFAULT_FETCH_SIZE,
+          after: FIRST_CURSOR,
+          query,
+        });
+        setVariables((prev) => ({
+          ...prev,
+          first: DEFAULT_FETCH_SIZE,
+          after: FIRST_CURSOR,
+          query,
+        }));
+      },
+    }),
+    [fetchMore, lastCursor, refetch, variables]
+  );
 
   return {
     data,

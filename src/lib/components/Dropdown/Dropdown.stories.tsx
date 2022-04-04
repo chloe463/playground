@@ -7,13 +7,7 @@ export default {
   title: "lib/Dropdown",
 };
 
-const options = [
-  "Option1",
-  "Option2",
-  "Option3",
-  "Option4",
-  "Option5",
-];
+const options = ["Option1", "Option2", "Option3", "Option4", "Option5"];
 
 export const Normal = () => {
   const [value] = useState("");

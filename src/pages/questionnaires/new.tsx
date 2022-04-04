@@ -18,8 +18,9 @@ const NewQuestionnaire: React.VFC<Props> = () => {
     >
       <PageHeader title={"Create New Questionnaire"}></PageHeader>
       <div className="mt-4 py-0 px-6">
-        <Link href={"/questionnaires"} >
-          <a className={`
+        <Link href={"/questionnaires"}>
+          <a
+            className={`
               text-body2 text-black-alpha500 transition-all duration-200 ease-out
               hover:text-black-alpha700
               active:text-black-alpha700
@@ -35,6 +36,6 @@ const NewQuestionnaire: React.VFC<Props> = () => {
       </div>
     </motion.div>
   );
-}
+};
 
 export default NewQuestionnaire;

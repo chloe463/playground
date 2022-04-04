@@ -1,19 +1,25 @@
 import { useOverlayTriggerState } from "@react-stately/overlays";
 import React, { useState } from "react";
 import { Snackbar } from "../../lib";
-import {
-  QuestionnaireFragment
-} from "../../__generated__/graphqlOperationTypes";
+import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
 import { DeleteConfirmationModal } from "./DeleteConfirmationModal";
 import { LoadMore } from "./LoadMore";
 import { QuestionnaireList } from "./QuestionnaireList";
 import { useQuestionnaireList } from "./useQuestionnaireList";
 
 export const QuestionnaireListContainer: React.VFC = () => {
-
-  const { loading, questionnaires, pageInfo, loadMore, deleteQuestionnaire, cancelToDeleteQuestionnaire } = useQuestionnaireList();
+  const {
+    loading,
+    questionnaires,
+    pageInfo,
+    loadMore,
+    deleteQuestionnaire,
+    cancelToDeleteQuestionnaire,
+  } = useQuestionnaireList();
   const modalState = useOverlayTriggerState({});
-  const [questionnaireToDelete, setQuestionnaireToDelete] = useState<QuestionnaireFragment | null>(null);
+  const [questionnaireToDelete, setQuestionnaireToDelete] = useState<QuestionnaireFragment | null>(
+    null
+  );
   const [snackbarIsVisible, setSnackbarIsVisible] = useState(false);
 
   if (loading || !questionnaires) {
@@ -37,7 +43,7 @@ export const QuestionnaireListContainer: React.VFC = () => {
       await deleteQuestionnaire(id);
       // TODO: Show success snackbar
       setSnackbarIsVisible(true);
-    } catch(e) {
+    } catch (e) {
       console.error(e);
       // TODO: Show error snackbar
     }
@@ -48,14 +54,19 @@ export const QuestionnaireListContainer: React.VFC = () => {
     if (!id) return;
     setSnackbarIsVisible(false);
     await cancelToDeleteQuestionnaire(id);
-  }
+  };
 
   return (
     <div>
       <QuestionnaireList questionnaires={questionnaires} onClickDelete={onClickDelete} />
       <div className="mt-6" />
       <LoadMore pageInfo={pageInfo} loading={loading} onClickLoadMore={onClickLoadMore} />
-      <DeleteConfirmationModal isOpen={modalState.isOpen} questionnaire={questionnaireToDelete} onClose={modalState.close} submit={onClickSubmitDeletion} />
+      <DeleteConfirmationModal
+        isOpen={modalState.isOpen}
+        questionnaire={questionnaireToDelete}
+        onClose={modalState.close}
+        submit={onClickSubmitDeletion}
+      />
       <Snackbar
         visible={snackbarIsVisible}
         duration={5000}
@@ -64,7 +75,11 @@ export const QuestionnaireListContainer: React.VFC = () => {
       >
         <div className="flex items-center" data-cy="complete-snackbar">
           Questionnaire is successfully deleted.
-          <button className="ml-6 font-bold text-red-bright400 hover:text-red-bright700" onClick={onClickUndo} data-cy="undo-button">
+          <button
+            className="ml-6 font-bold text-red-bright400 hover:text-red-bright700"
+            onClick={onClickUndo}
+            data-cy="undo-button"
+          >
             Undo
           </button>
         </div>

@@ -88,17 +88,17 @@ export const Radio: React.VFC<RadioProps> = (props) => {
 const Label = styled.label<{ $disabled?: boolean }>`
   display: inline-flex;
   align-items: center;
-  cursor: ${({ $disabled }) => $disabled ? "default" : "pointer"};
+  cursor: ${({ $disabled }) => ($disabled ? "default" : "pointer")};
 `;
 
 const RadioButton = styled.span<{
-  $selected: boolean,
-  $disabled?: boolean,
+  $selected: boolean;
+  $disabled?: boolean;
 }>`
   position: relative;
   display: inline-grid;
   place-items: center;
-  cursor: ${({ $disabled }) => $disabled ? "normal" : "pointer"};
+  cursor: ${({ $disabled }) => ($disabled ? "normal" : "pointer")};
 
   .inner-circle {
     transition-property: all;
@@ -107,17 +107,20 @@ const RadioButton = styled.span<{
     transform-origin: 50% 50%;
   }
 
-  ${({ $selected }) => $selected ? css`
-    .inner-circle {
-      transform: scale(1);
-      fill-opacity: 1;
-    }
-  ` : css`
-    .inner-circle {
-      transform: scale(0);
-      fill-opacity: 0;
-    }
-  `}
+  ${({ $selected }) =>
+    $selected
+      ? css`
+          .inner-circle {
+            transform: scale(1);
+            fill-opacity: 1;
+          }
+        `
+      : css`
+          .inner-circle {
+            transform: scale(0);
+            fill-opacity: 0;
+          }
+        `}
 `;
 
 const RippleRoot = styled.span`

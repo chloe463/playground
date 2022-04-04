@@ -28,9 +28,7 @@ type Props = {
   onClickDelete: (id: number) => void;
 };
 
-const STATES: string[] = [
-  "Draft", "Published", "Hidden", "Expired"
-];
+const STATES: string[] = ["Draft", "Published", "Hidden", "Expired"];
 
 const INDICATOR_COLORS: string[] = [
   colors.blackAlpha200,
@@ -52,7 +50,13 @@ export const QuestionnaireListItem: React.VFC<Props> = (props) => {
     <div className="relative flex items-center py-3 px-6 hover:bg-black-alpha50 group">
       {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={DUMMY_COVER_IMAGE_URL} className="rounded" width={128} height={64} alt="cover-image" />
+      <img
+        src={DUMMY_COVER_IMAGE_URL}
+        className="rounded"
+        width={128}
+        height={64}
+        alt="cover-image"
+      />
       <div className="ml-4">
         <Link href={`/questionnaires/${questionnaire.id}`}>
           <a>
@@ -62,29 +66,35 @@ export const QuestionnaireListItem: React.VFC<Props> = (props) => {
           </a>
         </Link>
         <div className="flex items-center">
-          <span className="inline-block w-[14px] h-[14px] rounded-full" style={{ backgroundColor: INDICATOR_COLORS[questionnaire.state] }}/>
-          <p className="ml-2 text-body2 text-black-alpha500">
-            {STATES[questionnaire.state]}
-          </p>
+          <span
+            className="inline-block w-[14px] h-[14px] rounded-full"
+            style={{ backgroundColor: INDICATOR_COLORS[questionnaire.state] }}
+          />
+          <p className="ml-2 text-body2 text-black-alpha500">{STATES[questionnaire.state]}</p>
           <span className="ml-2 text-body1 text-black-alpha500">/</span>
           <p className="ml-2 text-body2 text-black-alpha500">
             {questionnaire.questions.length} questions
           </p>
         </div>
       </div>
-      <div
-        className="absolute flex items-center right-6 transition-transform duration-200 space-x-4 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
-      >
+      <div className="absolute flex items-center right-6 transition-transform duration-200 space-x-4 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0">
         <Link href={{ pathname: `/questionnaires/${questionnaire.id}/edit` }}>
           <a aria-label={`Edit a questionnaire ${questionnaire.id}`}>
             <Pencil className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8 transition-colors duration-200 ease-in" />
           </a>
         </Link>
-        <button onClick={onClickAnswers} aria-label={`See result of questionnaire ${questionnaire.id}`}>
-          <Chart  className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8 transition-colors duration-200 ease-in" />
+        <button
+          onClick={onClickAnswers}
+          aria-label={`See result of questionnaire ${questionnaire.id}`}
+        >
+          <Chart className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8 transition-colors duration-200 ease-in" />
         </button>
-        <button onClick={() => onClickDelete(questionnaire.id)} aria-label={`Delete a questionnaire ${questionnaire.id}`} data-cy={`delete-button-${questionnaire.id}`}>
-          <Trash  className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8 transition-colors duration-200 ease-in" />
+        <button
+          onClick={() => onClickDelete(questionnaire.id)}
+          aria-label={`Delete a questionnaire ${questionnaire.id}`}
+          data-cy={`delete-button-${questionnaire.id}`}
+        >
+          <Trash className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8 transition-colors duration-200 ease-in" />
         </button>
       </div>
     </div>

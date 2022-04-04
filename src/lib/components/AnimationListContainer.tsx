@@ -12,11 +12,7 @@ const isReaceNode = (c: React.ReactNode): c is _ReactNode => {
   if (c === undefined || c === null) {
     return false;
   }
-  if (
-    typeof c === "number" ||
-    typeof c === "string" ||
-    typeof c === "boolean"
-  ) {
+  if (typeof c === "number" || typeof c === "string" || typeof c === "boolean") {
     return false;
   }
   // if (JSON.stringify(c) === "{}") {
@@ -52,7 +48,7 @@ const calculateBoundingBoxes = (children: React.ReactNode) => {
 
 type AnimationListContainerProps = {
   readonly animationParams: AnimationParams;
-}
+};
 
 export const AnimationListContainer: React.FC<AnimationListContainerProps> = (props) => {
   const { animationParams: params, children } = props;
@@ -81,7 +77,7 @@ export const AnimationListContainer: React.FC<AnimationListContainerProps> = (pr
       const delta: Delta = {
         x: params.axis !== "Y" ? (start?.left || 0) - (last?.left || 0) : 0,
         y: params.axis !== "X" ? (start?.top || 0) - (last?.top || 0) : 0,
-      }
+      };
 
       if (delta.x || delta.y) {
         window.requestAnimationFrame(() => {
@@ -93,7 +89,8 @@ export const AnimationListContainer: React.FC<AnimationListContainerProps> = (pr
             dom.style.transformOrigin = `50%, 50%, 0`;
             dom.style.transitionProperty = "transform";
             dom.style.transitionDuration = `${params.duration}ms`;
-            dom.style.transitionTimingFunction = params.timingFunction || `cubic-bezier(0.3, 0.3, 0.3, 1)`;
+            dom.style.transitionTimingFunction =
+              params.timingFunction || `cubic-bezier(0.3, 0.3, 0.3, 1)`;
             dom.style.transitionDelay = `${params.delay}ms`;
           });
         });

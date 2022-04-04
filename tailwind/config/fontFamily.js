@@ -12,7 +12,7 @@ module.exports = {
     "メイリオ",
     "Meiryo",
     '"ＭＳ Ｐゴシック"',
-    "sans-serif"
+    "sans-serif",
   ],
   body: [
     "Lato",
@@ -22,7 +22,7 @@ module.exports = {
     '"ヒラギノ角ゴシック Pro"',
     '"Hiragino Kaku Gothic Pro"',
     "メイリオ",
-    "Meiryo", 
+    "Meiryo",
     "Osaka",
     '"ＭＳ Ｐゴシック"',
     '"MS PGothic"',

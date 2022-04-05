@@ -61,17 +61,13 @@ export type GetPostConnectionQuery = { __typename?: "Query" } & {
 export type QuestionnaireFragment = { __typename?: "Questionnaire" } & Pick<
   Types.Questionnaire,
   "id" | "title" | "description" | "state" | "startAt" | "endAt"
-> & {
-    questions: Array<Types.Maybe<{ __typename?: "Question" } & Pick<Types.Question, "id">>>;
-  };
+> & { questions: Array<Types.Maybe<{ __typename?: "Question" } & Pick<Types.Question, "id">>> };
 
 export type CancelToDeleteQuestionnaireMutationVariables = Types.Exact<{
   id: Types.Scalars["Int"];
 }>;
 
-export type CancelToDeleteQuestionnaireMutation = {
-  __typename?: "Mutation";
-} & {
+export type CancelToDeleteQuestionnaireMutation = { __typename?: "Mutation" } & {
   cancelToDeleteQuestionnaire?: Types.Maybe<
     { __typename?: "CancelToDeleteQuestionnairePayload" } & {
       questionnaire?: Types.Maybe<{ __typename?: "Questionnaire" } & QuestionnaireFragment>;
@@ -98,9 +94,10 @@ export type QuestionnaireConnectionQueryVariables = Types.Exact<{
 }>;
 
 export type QuestionnaireConnectionQuery = { __typename?: "Query" } & {
-  questionnaireConnection: {
-    __typename?: "QueryQuestionnaireConnection_Connection";
-  } & Pick<Types.QueryQuestionnaireConnection_Connection, "totalCount"> & {
+  questionnaireConnection: { __typename?: "QueryQuestionnaireConnection_Connection" } & Pick<
+    Types.QueryQuestionnaireConnection_Connection,
+    "totalCount"
+  > & {
       pageInfo: { __typename?: "PageInfo" } & Pick<
         Types.PageInfo,
         "hasNextPage" | "hasPreviousPage" | "startCursor" | "endCursor"
@@ -142,10 +139,7 @@ export const PostFragmentDoc = {
     {
       kind: "FragmentDefinition",
       name: { kind: "Name", value: "Post" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Post" },
-      },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Post" } },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
@@ -164,10 +158,7 @@ export const QuestionnaireFragmentDoc = {
     {
       kind: "FragmentDefinition",
       name: { kind: "Name", value: "Questionnaire" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Questionnaire" },
-      },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Questionnaire" } },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
@@ -200,16 +191,10 @@ export const CreateQuestionnaireDocument = {
       variableDefinitions: [
         {
           kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "questionnaire" },
-          },
+          variable: { kind: "Variable", name: { kind: "Name", value: "questionnaire" } },
           type: {
             kind: "NonNullType",
-            type: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "CreateQuestionnaireInput" },
-            },
+            type: { kind: "NamedType", name: { kind: "Name", value: "CreateQuestionnaireInput" } },
           },
         },
       ],
@@ -223,10 +208,7 @@ export const CreateQuestionnaireDocument = {
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "questionnaire" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "questionnaire" },
-                },
+                value: { kind: "Variable", name: { kind: "Name", value: "questionnaire" } },
               },
             ],
             selectionSet: {
@@ -240,15 +222,9 @@ export const CreateQuestionnaireDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "title" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "description" },
-                      },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
                       { kind: "Field", name: { kind: "Name", value: "state" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "startAt" },
-                      },
+                      { kind: "Field", name: { kind: "Name", value: "startAt" } },
                       { kind: "Field", name: { kind: "Name", value: "endAt" } },
                     ],
                   },
@@ -271,10 +247,7 @@ export const GetCommentsDocument = {
       variableDefinitions: [
         {
           kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "postId" },
-          },
+          variable: { kind: "Variable", name: { kind: "Name", value: "postId" } },
           type: {
             kind: "NonNullType",
             type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
@@ -291,10 +264,7 @@ export const GetCommentsDocument = {
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "postId" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "postId" },
-                },
+                value: { kind: "Variable", name: { kind: "Name", value: "postId" } },
               },
             ],
             selectionSet: {
@@ -323,26 +293,17 @@ export const GetPostConnectionDocument = {
       variableDefinitions: [
         {
           kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "first" },
-          },
+          variable: { kind: "Variable", name: { kind: "Name", value: "first" } },
           type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
         },
         {
           kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "after" },
-          },
+          variable: { kind: "Variable", name: { kind: "Name", value: "after" } },
           type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
         },
         {
           kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "query" },
-          },
+          variable: { kind: "Variable", name: { kind: "Name", value: "query" } },
           type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
         },
       ],
@@ -356,26 +317,17 @@ export const GetPostConnectionDocument = {
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "first" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "first" },
-                },
+                value: { kind: "Variable", name: { kind: "Name", value: "first" } },
               },
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "after" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "after" },
-                },
+                value: { kind: "Variable", name: { kind: "Name", value: "after" } },
               },
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "query" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "query" },
-                },
+                value: { kind: "Variable", name: { kind: "Name", value: "query" } },
               },
             ],
             selectionSet: {
@@ -387,22 +339,10 @@ export const GetPostConnectionDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "hasNextPage" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "hasPreviousPage" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "startCursor" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "endCursor" },
-                      },
+                      { kind: "Field", name: { kind: "Name", value: "hasNextPage" } },
+                      { kind: "Field", name: { kind: "Name", value: "hasPreviousPage" } },
+                      { kind: "Field", name: { kind: "Name", value: "startCursor" } },
+                      { kind: "Field", name: { kind: "Name", value: "endCursor" } },
                     ],
                   },
                 },
@@ -419,17 +359,11 @@ export const GetPostConnectionDocument = {
                         selectionSet: {
                           kind: "SelectionSet",
                           selections: [
-                            {
-                              kind: "FragmentSpread",
-                              name: { kind: "Name", value: "Post" },
-                            },
+                            { kind: "FragmentSpread", name: { kind: "Name", value: "Post" } },
                           ],
                         },
                       },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "cursor" },
-                      },
+                      { kind: "Field", name: { kind: "Name", value: "cursor" } },
                     ],
                   },
                 },
@@ -469,10 +403,7 @@ export const CancelToDeleteQuestionnaireDocument = {
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "id" },
-                },
+                value: { kind: "Variable", name: { kind: "Name", value: "id" } },
               },
             ],
             selectionSet: {
@@ -484,10 +415,7 @@ export const CancelToDeleteQuestionnaireDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      {
-                        kind: "FragmentSpread",
-                        name: { kind: "Name", value: "Questionnaire" },
-                      },
+                      { kind: "FragmentSpread", name: { kind: "Name", value: "Questionnaire" } },
                     ],
                   },
                 },
@@ -530,10 +458,7 @@ export const DeleteQuestionnaireDocument = {
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "id" },
-                },
+                value: { kind: "Variable", name: { kind: "Name", value: "id" } },
               },
             ],
             selectionSet: {
@@ -559,18 +484,12 @@ export const QuestionnaireConnectionDocument = {
       variableDefinitions: [
         {
           kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "first" },
-          },
+          variable: { kind: "Variable", name: { kind: "Name", value: "first" } },
           type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
         },
         {
           kind: "VariableDefinition",
-          variable: {
-            kind: "Variable",
-            name: { kind: "Name", value: "after" },
-          },
+          variable: { kind: "Variable", name: { kind: "Name", value: "after" } },
           type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
         },
       ],
@@ -584,18 +503,12 @@ export const QuestionnaireConnectionDocument = {
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "first" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "first" },
-                },
+                value: { kind: "Variable", name: { kind: "Name", value: "first" } },
               },
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "after" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "after" },
-                },
+                value: { kind: "Variable", name: { kind: "Name", value: "after" } },
               },
             ],
             selectionSet: {
@@ -608,22 +521,10 @@ export const QuestionnaireConnectionDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "hasNextPage" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "hasPreviousPage" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "startCursor" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "endCursor" },
-                      },
+                      { kind: "Field", name: { kind: "Name", value: "hasNextPage" } },
+                      { kind: "Field", name: { kind: "Name", value: "hasPreviousPage" } },
+                      { kind: "Field", name: { kind: "Name", value: "startCursor" } },
+                      { kind: "Field", name: { kind: "Name", value: "endCursor" } },
                     ],
                   },
                 },
@@ -633,10 +534,7 @@ export const QuestionnaireConnectionDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "cursor" },
-                      },
+                      { kind: "Field", name: { kind: "Name", value: "cursor" } },
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "node" },
@@ -689,10 +587,7 @@ export const GetQuestionnaireDocument = {
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "id" },
-                value: {
-                  kind: "Variable",
-                  name: { kind: "Name", value: "id" },
-                },
+                value: { kind: "Variable", name: { kind: "Name", value: "id" } },
               },
             ],
             selectionSet: {
@@ -719,14 +614,8 @@ export const GetQuestionnaireDocument = {
                         selectionSet: {
                           kind: "SelectionSet",
                           selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "text" },
-                            },
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "text" } },
                           ],
                         },
                       },

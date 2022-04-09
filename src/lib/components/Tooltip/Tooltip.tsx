@@ -3,8 +3,9 @@ import { mergeProps } from "@react-aria/utils";
 import { TooltipTriggerState, useTooltipTriggerState } from "@react-stately/tooltip";
 import { AriaTooltipProps, TooltipTriggerProps } from "@react-types/tooltip";
 import { motion } from "framer-motion";
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
+import { useIsomorphicLayoutEffect } from "../../hooks/useIsomarphicLayoutEffect";
 import { colors } from "../../styles/colors";
 
 type Placement = `${"top" | "right" | "bottom" | "left"}-${"start" | "center" | "end"}`;
@@ -16,13 +17,13 @@ type Props = TooltipTriggerProps & {
 };
 
 export const Tooltip: React.VFC<Props> = (props) => {
-  const { content, placement, children, ...rest } = props;
+  const { content, placement = "top-center", children, ...rest } = props;
   const state = useTooltipTriggerState(rest);
   const ref = useRef<HTMLElement | null>(null);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const { width, height } = ref.current?.getBoundingClientRect() || { width: 0, height: 0 };
     setWidth(width);
     setHeight(height);
@@ -66,79 +67,79 @@ const TooltipBody: React.VFC<TooltipBodyProps> = ({
   const { tooltipProps } = useTooltip(rest, state);
   const ref = useRef<HTMLSpanElement | null>(null);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (ref.current) {
       const { width, height } = ref.current.getBoundingClientRect();
       switch (placement) {
         case "top-start": {
-          const x = -anchorSize.width;
+          const x = 0;
           const y = -height;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
         }
         case "top-center": {
-          const x = -((anchorSize.width + width) / 2);
+          const x = anchorSize.width / 2;
           const y = -height;
-          ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
+          ref.current.style.transform = `translate3D(${x}px, ${y}px, 0) translateX(-50%)`;
           break;
         }
         case "top-end": {
-          const x = -(anchorSize.width - width);
+          const x = anchorSize.width - width;
           const y = -height;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
         }
         case "right-start": {
-          const x = 0;
+          const x = anchorSize.width;
           const y = -height;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
         }
         case "right-center": {
-          const x = 0;
-          const y = 0;
-          ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
+          const x = anchorSize.width;
+          const y = anchorSize.height / 2;
+          ref.current.style.transform = `translate3D(${x}px, ${y}px, 0) translateY(-50%)`;
           break;
         }
         case "right-end": {
-          const x = 0;
+          const x = anchorSize.width;
           const y = anchorSize.height;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
         }
         case "bottom-end": {
-          const x = -(anchorSize.width - width);
+          const x = anchorSize.width - width;
           const y = anchorSize.height;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
         }
         case "bottom-center": {
-          const x = -((anchorSize.width + width) / 2);
+          const x = anchorSize.width / 2;
           const y = anchorSize.height;
-          ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
+          ref.current.style.transform = `translate3D(${x}px, ${y}px, 0) translateX(-50%)`;
           break;
         }
         case "bottom-start": {
-          const x = -anchorSize.width;
+          const x = 0;
           const y = anchorSize.height;
-          ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
-          break;
-        }
-        case "left-start": {
-          const x = -(anchorSize.width + width);
-          const y = -height;
-          ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
-          break;
-        }
-        case "left-center": {
-          const x = -(anchorSize.width + width);
-          const y = 0;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
         }
         case "left-end": {
-          const x = -(anchorSize.width + width);
+          const x = -width;
           const y = anchorSize.height;
+          ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
+          break;
+        }
+        case "left-center": {
+          const x = -width;
+          const y = anchorSize.height / 2;
+          ref.current.style.transform = `translate3D(${x}px, ${y}px, 0) translateY(-50%)`;
+          break;
+        }
+        case "left-start": {
+          const x = -width;
+          const y = -height;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
         }
@@ -150,6 +151,7 @@ const TooltipBody: React.VFC<TooltipBodyProps> = ({
 
   return (
     <motion.span
+      style={{ position: "absolute", top: 0, left: 0 }}
       initial={{
         opacity: 0,
         transformOrigin: "center center",
@@ -180,6 +182,8 @@ const TooltipBody: React.VFC<TooltipBodyProps> = ({
 
 const Content = styled.span`
   position: absolute;
+  top: 0;
+  left: 0;
   background-color: ${colors.blackAlpha500};
   color: white;
   min-height: 24px;

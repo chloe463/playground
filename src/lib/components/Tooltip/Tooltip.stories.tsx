@@ -26,8 +26,8 @@ _Default.args = {
   delay: 50,
   placement: "top-center",
   offset: {
-    x: 12,
-    y: 12,
+    x: 4,
+    y: 4,
   },
 } as TooltipStoryArgs;
 _Default.argTypes = {

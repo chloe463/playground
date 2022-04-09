@@ -10,7 +10,12 @@ type TooltipStoryArgs = Partial<ComponentProps<typeof Tooltip>>;
 export const _Default = (args: TooltipStoryArgs) => {
   return (
     <div className="grid place-items-center h-screen w-screen">
-      <Tooltip delay={args.delay} placement={args.placement} content={<span>Hello!</span>}>
+      <Tooltip
+        delay={args.delay}
+        placement={args.placement}
+        offset={args.offset}
+        content={<span>Hello!</span>}
+      >
         <span>I have a tooltip!</span>
       </Tooltip>
     </div>
@@ -20,6 +25,10 @@ export const _Default = (args: TooltipStoryArgs) => {
 _Default.args = {
   delay: 50,
   placement: "top-center",
+  offset: {
+    x: 12,
+    y: 12,
+  },
 } as TooltipStoryArgs;
 _Default.argTypes = {
   delay: {

@@ -9,15 +9,20 @@ import { useIsomorphicLayoutEffect } from "../../hooks/useIsomarphicLayoutEffect
 import { colors } from "../../styles/colors";
 
 type Placement = `${"top" | "right" | "bottom" | "left"}-${"start" | "center" | "end"}`;
+type Offset = {
+  x: number;
+  y: number;
+};
 
 type Props = TooltipTriggerProps & {
   content: React.ReactElement;
   placement?: Placement;
+  offset?: Offset;
   children: React.ReactElement;
 };
 
 export const Tooltip: React.VFC<Props> = (props) => {
-  const { content, placement = "top-center", children, ...rest } = props;
+  const { content, placement = "top-center", offset = { x: 0, y: 0 }, children, ...rest } = props;
   const state = useTooltipTriggerState(rest);
   const ref = useRef<HTMLElement | null>(null);
   const [width, setWidth] = useState(0);
@@ -43,6 +48,7 @@ export const Tooltip: React.VFC<Props> = (props) => {
           content={content}
           anchorSize={{ width, height }}
           placement={placement}
+          offset={offset}
           {...tooltipProps}
         />
       )}
@@ -54,6 +60,7 @@ type TooltipBodyProps = AriaTooltipProps & {
   state?: TooltipTriggerState | undefined;
   content: React.ReactElement;
   placement?: Placement;
+  offset?: Offset;
   anchorSize: { width: number; height: number };
 };
 
@@ -61,6 +68,7 @@ const TooltipBody: React.VFC<TooltipBodyProps> = ({
   state,
   content,
   placement = "top-center",
+  offset = { x: 0, y: 0 },
   anchorSize,
   ...rest
 }) => {
@@ -72,80 +80,80 @@ const TooltipBody: React.VFC<TooltipBodyProps> = ({
       const { width, height } = ref.current.getBoundingClientRect();
       switch (placement) {
         case "top-start": {
-          const x = 0;
-          const y = -height;
+          const x = 0 - offset.x;
+          const y = -height - offset.y;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
         }
         case "top-center": {
           const x = anchorSize.width / 2;
-          const y = -height;
+          const y = -height - offset.y;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0) translateX(-50%)`;
           break;
         }
         case "top-end": {
-          const x = anchorSize.width - width;
-          const y = -height;
+          const x = anchorSize.width - width + offset.x;
+          const y = -height - offset.y;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
         }
         case "right-start": {
-          const x = anchorSize.width;
-          const y = -height;
+          const x = anchorSize.width + offset.x;
+          const y = -height - offset.y;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
         }
         case "right-center": {
-          const x = anchorSize.width;
+          const x = anchorSize.width + offset.x;
           const y = anchorSize.height / 2;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0) translateY(-50%)`;
           break;
         }
         case "right-end": {
-          const x = anchorSize.width;
-          const y = anchorSize.height;
+          const x = anchorSize.width + offset.x;
+          const y = anchorSize.height + offset.y;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
         }
         case "bottom-end": {
-          const x = anchorSize.width - width;
-          const y = anchorSize.height;
+          const x = anchorSize.width - width + offset.x;
+          const y = anchorSize.height + offset.y;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
         }
         case "bottom-center": {
           const x = anchorSize.width / 2;
-          const y = anchorSize.height;
+          const y = anchorSize.height + offset.y;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0) translateX(-50%)`;
           break;
         }
         case "bottom-start": {
-          const x = 0;
-          const y = anchorSize.height;
+          const x = 0 - offset.x;
+          const y = anchorSize.height + offset.y;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
         }
         case "left-end": {
-          const x = -width;
-          const y = anchorSize.height;
+          const x = -width - offset.x;
+          const y = anchorSize.height + offset.y;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
         }
         case "left-center": {
-          const x = -width;
+          const x = -width - offset.x;
           const y = anchorSize.height / 2;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0) translateY(-50%)`;
           break;
         }
         case "left-start": {
-          const x = -width;
-          const y = -height;
+          const x = -width - offset.x;
+          const y = -height - offset.y;
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
         }
       }
     }
-  }, [anchorSize, placement]);
+  }, [anchorSize, placement, offset]);
 
   if (!content) return null;
 

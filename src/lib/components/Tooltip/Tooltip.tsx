@@ -2,7 +2,9 @@ import { useTooltip, useTooltipTrigger } from "@react-aria/tooltip";
 import { mergeProps } from "@react-aria/utils";
 import { TooltipTriggerState, useTooltipTriggerState } from "@react-stately/tooltip";
 import { AriaTooltipProps, TooltipTriggerProps } from "@react-types/tooltip";
+import { motion } from "framer-motion";
 import React, { useLayoutEffect, useRef, useState } from "react";
+import styled from "styled-components";
 import { colors } from "../../styles/colors";
 
 type Placement = `${"top" | "right" | "bottom" | "left"}-${"start" | "center" | "end"}`;
@@ -21,7 +23,6 @@ export const Tooltip: React.VFC<Props> = (props) => {
   const [height, setHeight] = useState(0);
 
   useLayoutEffect(() => {
-    console.log(ref.current);
     const { width, height } = ref.current?.getBoundingClientRect() || { width: 0, height: 0 };
     setWidth(width);
     setHeight(height);
@@ -148,19 +149,40 @@ const TooltipBody: React.VFC<TooltipBodyProps> = ({
   if (!content) return null;
 
   return (
-    <span
-      style={{
-        position: "absolute",
-        backgroundColor: colors.blackAlpha500,
-        color: "white",
-        minHeight: "24px",
-        padding: "0 8px",
-        borderRadius: "4px",
+    <motion.span
+      initial={{
+        opacity: 0,
+        transformOrigin: "center center",
       }}
-      ref={ref}
-      {...mergeProps(rest, tooltipProps)}
+      animate={{
+        opacity: 1,
+        transformOrigin: "center center",
+        transition: {
+          duration: 0.1,
+          ease: [0.3, 0, 0.3, 1],
+        },
+      }}
+      exit={{
+        opacity: 0,
+        transformOrigin: "center center",
+        transition: {
+          duration: 0.05,
+          ease: [0.3, 0, 0.3, 1],
+        },
+      }}
     >
-      {React.cloneElement(content)}
-    </span>
+      <Content {...mergeProps(rest, tooltipProps)} ref={ref}>
+        {React.cloneElement(content)}
+      </Content>
+    </motion.span>
   );
 };
+
+const Content = styled.span`
+  position: absolute;
+  background-color: ${colors.blackAlpha500};
+  color: white;
+  min-height: 24px;
+  padding: 0 8px;
+  border-radius: 4px;
+`;

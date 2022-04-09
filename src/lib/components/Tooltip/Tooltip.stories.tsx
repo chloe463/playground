@@ -5,7 +5,9 @@ export default {
   title: "lib/Tooltip",
 };
 
-type TooltipStoryArgs = Partial<ComponentProps<typeof Tooltip>>;
+type TooltipStoryArgs = Partial<ComponentProps<typeof Tooltip>> & {
+  text: string;
+};
 
 export const _Default = (args: TooltipStoryArgs) => {
   return (
@@ -14,7 +16,7 @@ export const _Default = (args: TooltipStoryArgs) => {
         delay={args.delay}
         placement={args.placement}
         offset={args.offset}
-        content={<span>Hello!</span>}
+        content={<span>{args.text}</span>}
       >
         <span>I have a tooltip!</span>
       </Tooltip>
@@ -29,6 +31,7 @@ _Default.args = {
     x: 4,
     y: 4,
   },
+  text: "Hello!",
 } as TooltipStoryArgs;
 _Default.argTypes = {
   delay: {
@@ -52,5 +55,8 @@ _Default.argTypes = {
       "left-center",
       "left-start",
     ],
+  },
+  text: {
+    control: "text",
   },
 };

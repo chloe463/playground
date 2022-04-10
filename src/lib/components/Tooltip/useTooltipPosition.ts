@@ -27,7 +27,7 @@ export const useTooltipPosition = (options: UseTooltipPositionOptions) => {
           break;
         }
         case "top-end": {
-          const x = anchorSizeAndPosition.x + anchorSizeAndPosition.width - width + (offset.x || 0);
+          const x = anchorSizeAndPosition.x + anchorSizeAndPosition.width - width;
           const y = anchorSizeAndPosition.y - height - (offset.y || 0);
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
@@ -51,7 +51,7 @@ export const useTooltipPosition = (options: UseTooltipPositionOptions) => {
           break;
         }
         case "bottom-end": {
-          const x = anchorSizeAndPosition.x + anchorSizeAndPosition.width - width + (offset.x || 0);
+          const x = anchorSizeAndPosition.x + anchorSizeAndPosition.width - width;
           const y = anchorSizeAndPosition.y + anchorSizeAndPosition.height + (offset.y || 0);
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;
@@ -63,7 +63,7 @@ export const useTooltipPosition = (options: UseTooltipPositionOptions) => {
           break;
         }
         case "bottom-start": {
-          const x = anchorSizeAndPosition.x - (offset.x || 0);
+          const x = anchorSizeAndPosition.x;
           const y = anchorSizeAndPosition.y + anchorSizeAndPosition.height + (offset.y || 0);
           ref.current.style.transform = `translate3D(${x}px, ${y}px, 0)`;
           break;

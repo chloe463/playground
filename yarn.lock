@@ -3706,17 +3706,7 @@
     "@react-types/shared" "^3.6.0"
     clsx "^1.1.1"
 
-"@react-aria/visually-hidden@^3.2.2":
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/@react-aria/visually-hidden/-/visually-hidden-3.2.2.tgz#45e70b0b9fdd91de94b1fe18faa26cd818fb9c89"
-  integrity sha512-d9LsTmss15DPctOHlUiECiFOkO5IjF+VDo0cS6PI7Ocnx83m5cPeqgliRSS6snsP9dtV1Ep+xa/XD3MQ8auToQ==
-  dependencies:
-    "@babel/runtime" "^7.6.2"
-    "@react-aria/interactions" "^3.4.0"
-    "@react-aria/utils" "^3.8.0"
-    clsx "^1.1.1"
-
-"@react-aria/visually-hidden@^3.2.7":
+"@react-aria/visually-hidden@3.2.7", "@react-aria/visually-hidden@^3.2.7":
   version "3.2.7"
   resolved "https://registry.yarnpkg.com/@react-aria/visually-hidden/-/visually-hidden-3.2.7.tgz#1b88892e10648c5fe6634be325baa66430c3e53f"
   integrity sha512-rvE0N91nBa7DxcH6KyapjttWQJFhRqeFBfGA9oCeGgTYLsn5CBvnKMLQEm2Z7ZlUcl08Xh2nB2KxKrRQ4ldYlw==

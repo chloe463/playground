@@ -3671,6 +3671,19 @@
     "@react-types/shared" "^3.6.0"
     "@react-types/switch" "^3.1.1"
 
+"@react-aria/tooltip@^3.1.7":
+  version "3.1.7"
+  resolved "https://registry.yarnpkg.com/@react-aria/tooltip/-/tooltip-3.1.7.tgz#dcc462714478880c4ea71ce4f742697c1a2c85ee"
+  integrity sha512-gcDITwWoHqzMTWFil+ql3fJJ06zXcEYGWgueaJpxa3Us6+d/wwEYr4ylVyWGzwnuPhblMVofOpowr+3+bTFkew==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/focus" "^3.5.4"
+    "@react-aria/interactions" "^3.8.3"
+    "@react-aria/utils" "^3.11.3"
+    "@react-stately/tooltip" "^3.0.8"
+    "@react-types/shared" "^3.11.2"
+    "@react-types/tooltip" "^3.1.5"
+
 "@react-aria/utils@^3.11.3":
   version "3.11.3"
   resolved "https://registry.yarnpkg.com/@react-aria/utils/-/utils-3.11.3.tgz#fd870e1c4b994967883d5d5dae6b14b4e6da2d16"
@@ -3750,6 +3763,16 @@
     "@react-stately/utils" "^3.2.1"
     "@react-types/checkbox" "^3.2.1"
     "@react-types/shared" "^3.6.0"
+
+"@react-stately/tooltip@^3.0.8":
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/@react-stately/tooltip/-/tooltip-3.0.8.tgz#629a2fda80802979b5c97e16848c1f4006561110"
+  integrity sha512-udq97gIXNtFY9F/Fnca0PFA8zylDqRNitmIKiTjIive1lMuDH9b2xWqKLi4b6WOFpDlAX6UQTj4TjGdnAyaIbw==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-stately/overlays" "^3.1.6"
+    "@react-stately/utils" "^3.4.1"
+    "@react-types/tooltip" "^3.1.5"
 
 "@react-stately/utils@^3.2.1":
   version "3.2.1"
@@ -3832,6 +3855,14 @@
   integrity sha512-S+U+Uc0WDgMK8X28j5WUtmkCL25iTQ+oGfCRFf4/GJtiwfO9lVLCgH/NWxpoVuNsPGvt36rlDnyS82Ge9H1/qA==
   dependencies:
     "@react-types/shared" "^3.2.1"
+
+"@react-types/tooltip@^3.1.5":
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/@react-types/tooltip/-/tooltip-3.1.5.tgz#f0fd2c15bca9012c66fa28f1357fe715f1ed8f2e"
+  integrity sha512-bDFl4drdlAcm5D0WAK66YN7Dx97Nfgs3mBdprOASGWQmiPMDobCiUcycA7p/h9Akzua1SR5OQyYdbU0qJBO54A==
+  dependencies:
+    "@react-types/overlays" "^3.5.4"
+    "@react-types/shared" "^3.11.2"
 
 "@rushstack/eslint-patch@1.0.8":
   version "1.0.8"

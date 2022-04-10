@@ -10,3 +10,4 @@ export * from "./Radio";
 export * from "./Snackbar";
 export * from "./TextArea";
 export * from "./TextField";
+export * from "./Tooltip";

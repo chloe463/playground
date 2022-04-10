@@ -34,7 +34,7 @@ const PAGES: Page[] = [
 
 export const SideBar: React.VFC<Props> = (props) => {
   return (
-    <nav className="block w-[280px] mt-6">
+    <nav className="block mt-6 w-[280px]">
       <Link href="/">
         <a className="flex items-center py-4 px-8 no-underline">
           <div className="block w-9 h-9 bg-black-alpha500 rounded" />
@@ -51,11 +51,11 @@ export const SideBar: React.VFC<Props> = (props) => {
                 <a
                   className={classnames(
                     `
-                      flex items-center py-4 px-8 text-sugheading no-underline uppercase
-                      transition-all duration-200 ease-out
-                      hover:text-black-alpha700 hover:no-underline
-                      active:text-black-alpha700 active:no-underline
-                      visited:text-black-alpha500 visited:no-underline
+                      flex items-center py-4 px-8 visited:text-black-alpha500 hover:text-black-alpha700 active:text-black-alpha700
+                      no-underline visited:no-underline hover:no-underline
+                      active:no-underline uppercase
+                      transition-all duration-200
+                      ease-out text-sugheading
                     `,
                     {
                       "text-black-alpha800": props.currentPathName.startsWith(page.url),
@@ -65,7 +65,7 @@ export const SideBar: React.VFC<Props> = (props) => {
                 >
                   <div
                     className={classnames(
-                      "block w-6 h-6 rounded mr-4 transition-all duration-200 ease-out",
+                      "block mr-4 w-6 h-6 rounded transition-all duration-200 ease-out",
                       {
                         "bg-black-alpha500": props.currentPathName.startsWith(page.url),
                         "bg-black-alpha400": !props.currentPathName.startsWith(page.url),

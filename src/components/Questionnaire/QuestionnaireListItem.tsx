@@ -47,7 +47,7 @@ export const QuestionnaireListItem: React.VFC<Props> = (props) => {
   }, []);
 
   return (
-    <div className="relative flex items-center py-3 px-6 hover:bg-black-alpha50 group">
+    <div className="group flex relative items-center py-3 px-6 hover:bg-black-alpha50">
       {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -60,7 +60,7 @@ export const QuestionnaireListItem: React.VFC<Props> = (props) => {
       <div className="ml-4">
         <Link href={`/questionnaires/${questionnaire.id}`}>
           <a>
-            <h3 className="text-subheading text-black-alpha800 tracking-wide font-semibold hover:text-black-alpha700 hover:underline">
+            <h3 className="text-subheading font-semibold tracking-wide text-black-alpha800 hover:text-black-alpha700 hover:underline">
               {questionnaire.title}
             </h3>
           </a>
@@ -77,24 +77,24 @@ export const QuestionnaireListItem: React.VFC<Props> = (props) => {
           </p>
         </div>
       </div>
-      <div className="absolute flex items-center right-6 transition-transform duration-200 space-x-4 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0">
+      <div className="flex absolute right-6 items-center space-x-4 opacity-0 group-hover:opacity-100 transition-transform duration-200 translate-x-4 group-hover:translate-x-0">
         <Link href={{ pathname: `/questionnaires/${questionnaire.id}/edit` }}>
           <a aria-label={`Edit a questionnaire ${questionnaire.id}`}>
-            <Pencil className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8 transition-colors duration-200 ease-in" />
+            <Pencil className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
           </a>
         </Link>
         <button
           onClick={onClickAnswers}
           aria-label={`See result of questionnaire ${questionnaire.id}`}
         >
-          <Chart className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8 transition-colors duration-200 ease-in" />
+          <Chart className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
         </button>
         <button
           onClick={() => onClickDelete(questionnaire.id)}
           aria-label={`Delete a questionnaire ${questionnaire.id}`}
           data-cy={`delete-button-${questionnaire.id}`}
         >
-          <Trash className="block text-black-alpha400 hover:text-black-alpha500 w-8 h-8 transition-colors duration-200 ease-in" />
+          <Trash className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
         </button>
       </div>
     </div>

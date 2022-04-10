@@ -3,14 +3,14 @@ import styled, { keyframes } from "styled-components";
 
 export const PostPlaceholder: React.VFC = () => {
   return (
-    <div className="relative flex items-center py-4 px-6">
-      <div className="block w-14 h-14 rounded-full bg-black-alpha100" />
+    <div className="flex relative items-center py-4 px-6">
+      <div className="block w-14 h-14 bg-black-alpha100 rounded-full" />
       <div className="ml-4">
         <header>
-          <div className="w-[180px] h-[22px] m-0 p-0 bg-black-alpha100 rounded-full text-subheading" />
+          <div className="p-0 m-0 w-[180px] h-[22px] text-subheading bg-black-alpha100 rounded-full" />
         </header>
         <div className="mt-3">
-          <p className="block m-0 p-0 w-[240px] h-[18px] bg-black-alpha100 rounded-full text-body2" />
+          <p className="block p-0 m-0 w-[240px] h-[18px] text-body2 bg-black-alpha100 rounded-full" />
         </div>
       </div>
       <ShimmerBg />

@@ -11,7 +11,7 @@ type TooltipStoryArgs = Partial<ComponentProps<typeof Tooltip>> & {
 
 export const _Default = (args: TooltipStoryArgs) => {
   return (
-    <div className="grid place-items-center h-screen w-screen">
+    <div className="grid place-items-center w-screen h-screen">
       <Tooltip
         delay={args.delay}
         placement={args.placement}

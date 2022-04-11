@@ -4,6 +4,7 @@ import { TooltipTriggerState } from "@react-stately/tooltip";
 import { AriaTooltipProps } from "@react-types/tooltip";
 import { motion } from "framer-motion";
 import React, { useRef } from "react";
+import ReactDOM from "react-dom";
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
 import { Offset, Placement } from "./types";
@@ -14,7 +15,7 @@ export type TooltipBodyProps = AriaTooltipProps & {
   content: React.ReactElement;
   placement?: Placement;
   offset?: Offset;
-  anchorSize: { width: number; height: number };
+  anchorSizeAndPosition: { x: number; y: number; width: number; height: number };
 };
 
 export const TooltipBody: React.VFC<TooltipBodyProps> = ({
@@ -22,7 +23,7 @@ export const TooltipBody: React.VFC<TooltipBodyProps> = ({
   content,
   placement = "top-center",
   offset = { x: 0, y: 0 },
-  anchorSize,
+  anchorSizeAndPosition,
   ...rest
 }) => {
   const { tooltipProps } = useTooltip(rest, state);
@@ -32,14 +33,13 @@ export const TooltipBody: React.VFC<TooltipBodyProps> = ({
     ref,
     placement,
     offset,
-    anchorSize,
+    anchorSizeAndPosition,
   });
 
   if (!content) return null;
 
-  return (
+  return ReactDOM.createPortal(
     <motion.span
-      style={{ position: "absolute", top: 0, left: 0 }}
       initial={{
         opacity: 0,
         transformOrigin: "center center",
@@ -64,7 +64,8 @@ export const TooltipBody: React.VFC<TooltipBodyProps> = ({
       <Content {...mergeProps(rest, tooltipProps)} ref={ref}>
         {React.cloneElement(content)}
       </Content>
-    </motion.span>
+    </motion.span>,
+    document.body
   );
 };
 

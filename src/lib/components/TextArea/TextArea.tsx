@@ -15,7 +15,8 @@ export const TextArea: React.VFC<TextAreaProps> = (props) => {
   return (
     <Base>
       <StyledTextArea {...inputProps} placeholder="&nbsp;" ref={ref} />
-      <Label {...labelProps} className="placeholder-label">
+      {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
+      <Label {...labelProps} className="placeholder">
         {props.label}
       </Label>
       <BottomBorder />
@@ -57,15 +58,15 @@ const StyledTextArea = styled.textarea`
     background-color: ${colors.blackAlpha100};
   }
 
-  &:placeholder-shown + .placeholder-label {
+  &:placeholder-shown + .placeholder {
     display: block;
   }
 
-  &:not(:placeholder-shown) + .placeholder-label {
+  &:not(:placeholder-shown) + .placeholder {
     transform: translateY(-12px) scale(0.75);
   }
 
-  &:focus + .placeholder-label {
+  &:focus + .placeholder {
     transform: translateY(-12px) scale(0.75);
     color: ${colors.brand};
   }

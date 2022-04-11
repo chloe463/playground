@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import { FocusScope } from "@react-aria/focus";
 import dayjs from "dayjs";
 import { AnimatePresence } from "framer-motion";

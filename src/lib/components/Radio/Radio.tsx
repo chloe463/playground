@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import { useFocusRing } from "@react-aria/focus";
 import { useFocusWithin } from "@react-aria/interactions";
 import { useRadio } from "@react-aria/radio";

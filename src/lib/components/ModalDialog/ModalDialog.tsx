@@ -39,7 +39,7 @@ export const ModalDialog: React.VFC<Props> = (props) => {
           <h3
             {...titleProps}
             style={{ margin: "40px 40px 0 40px" }}
-            className="text-heading2 text-black-alpha800 font-bold"
+            className="text-heading2 font-bold text-black-alpha800"
           >
             {title}
           </h3>

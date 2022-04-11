@@ -67,12 +67,12 @@ const LayoutAnimation = () => {
       transition={transition}
     >
       <PageHeader title={"Layout animation example"} />
-      <div className="flex items-center justify-center mt-8 mr-auto ml-auto w-full">
+      <div className="flex justify-center items-center mx-auto mt-8 w-full">
         <button
           type="button"
           id="add-button"
           onClick={addItem}
-          className="appearance-none outline-none border-none bg-transparent text-body2 py-3 px-4 rounded-full cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.3,0.3,0.3,1)] hover:bg-gray-50 uppercase"
+          className="py-3 px-4 text-body2 uppercase bg-transparent hover:bg-gray-50 rounded-full border-none outline-none transition-all duration-300 ease-[cubic-bezier(0.3,0.3,0.3,1)] appearance-none cursor-pointer"
           data-cy="add-button"
         >
           Add an item
@@ -81,7 +81,7 @@ const LayoutAnimation = () => {
           type="button"
           id="reset-button"
           onClick={resetAll}
-          className="appearance-none outline-none border-none bg-transparent text-body2 py-3 px-4 rounded-full cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.3,0.3,0.3,1)] hover:bg-gray-50 uppercase"
+          className="py-3 px-4 text-body2 uppercase bg-transparent hover:bg-gray-50 rounded-full border-none outline-none transition-all duration-300 ease-[cubic-bezier(0.3,0.3,0.3,1)] appearance-none cursor-pointer"
           data-cy="reset-button"
         >
           reset all

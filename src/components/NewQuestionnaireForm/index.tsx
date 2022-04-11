@@ -46,7 +46,7 @@ export const NewQuestionnaireForm: React.VFC<Props> = ({ onSubmit }) => {
             }}
           />
         </div>
-        <div className="w-[720px] mt-8">
+        <div className="mt-8 w-[720px]">
           <Controller
             name="description"
             control={control}
@@ -65,7 +65,7 @@ export const NewQuestionnaireForm: React.VFC<Props> = ({ onSubmit }) => {
             }}
           />
         </div>
-        <div className="w-[720px] mt-8">
+        <div className="mt-8 w-[720px]">
           <Controller
             name="startAt"
             control={control}
@@ -85,7 +85,7 @@ export const NewQuestionnaireForm: React.VFC<Props> = ({ onSubmit }) => {
             }}
           />
         </div>
-        <div className="w-[720px] mt-8">
+        <div className="mt-8 w-[720px]">
           <Controller
             name="endAt"
             control={control}

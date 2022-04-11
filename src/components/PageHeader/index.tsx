@@ -6,8 +6,8 @@ type PageHeaderProps = {
 
 export const PageHeader: React.FC<PageHeaderProps> = ({ title, children }) => {
   return (
-    <header className="relative pr-6 pl-6">
-      <h2 className="text-heading1 font-bold font-heading">{title}</h2>
+    <header className="relative px-6">
+      <h2 className="font-heading text-heading1 font-bold">{title}</h2>
       {children}
     </header>
   );

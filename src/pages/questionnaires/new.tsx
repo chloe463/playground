@@ -17,7 +17,7 @@ const NewQuestionnaire: React.VFC<Props> = () => {
       transition={transition}
     >
       <PageHeader title={"Create New Questionnaire"}></PageHeader>
-      <div className="mt-4 py-0 px-6">
+      <div className="py-0 px-6 mt-4">
         <Link href={"/questionnaires"}>
           <a
             className={`

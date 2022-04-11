@@ -63,10 +63,10 @@ export const PostDetail: React.VFC<Props> = (props) => {
         exit={{ opacity: 0, transition: { duration: 0.15 } }}
         transition={{ duration: 0.2, delay: 0.15 }}
         style={{ pointerEvents: "auto", overflow: "scroll" }}
-        className="fixed bg-black-alpha300 top-0 right-0 bottom-0 left-0 grid place-items-center overlay"
+        className="grid fixed inset-0 place-items-center bg-black-alpha300"
       >
         <Link href={`/virtualized-list`}>
-          <a className="block fixed top-0 right-0 bottom-0 left-0" />
+          <a className="block fixed inset-0" />
         </Link>
         <motion.div
           initial={{ opacity: 0, transform: "scale(.9)" }}
@@ -80,7 +80,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
             transform: "scale(.9)",
             transition: { duration: 0.2 },
           }}
-          className="block box-border w-[640px] py-10 px-6 bg-white rounded-lg z-10"
+          className="box-border block z-10 py-10 px-6 w-[640px] bg-white rounded-lg"
           ref={contentRef}
           data-cy="post-detail-card"
         >
@@ -103,7 +103,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
             <p>{post.body}</p>
           </motion.div>
           {commentsQueryRes && (
-            <ul className="list-none mt-12 ml-16 space-y-4">
+            <ul className="mt-12 ml-16 space-y-4 list-none">
               {commentsQueryRes.comments.map((comment) => {
                 return (
                   <li key={comment?.id} className="list-none">
@@ -125,12 +125,12 @@ export const PostDetail: React.VFC<Props> = (props) => {
             </ul>
           )}
           {loading && (
-            <ul className="list-none mt-12 ml-16 space-y-4">
+            <ul className="mt-12 ml-16 space-y-4 list-none">
               {Array.from({ length: 5 }, (_, i) => i).map((key) => {
                 return (
                   <li
                     key={key}
-                    className="list-none block h-6 w-[480px] bg-black-alpha100 rounded-sm"
+                    className="block w-[480px] h-6 list-none bg-black-alpha100 rounded-sm"
                   />
                 );
               })}

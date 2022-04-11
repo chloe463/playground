@@ -41,7 +41,7 @@ const EditQuestionnaire: React.VFC<Props> = (props) => {
       transition={transition}
     >
       <PageHeader title={"Edit a questionnaire"}></PageHeader>
-      <div className="mt-4 py-0 px-6">
+      <div className="py-0 px-6 mt-4">
         <Link href={"/questionnaires"}>
           <a
             className={`

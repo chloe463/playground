@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import { FocusScope } from "@react-aria/focus";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled, { css } from "styled-components";

@@ -27,7 +27,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         </Head>
         <div className="flex">
-          <div className="sticky top-0 block w-[280px] h-screen">
+          <div className="block sticky top-0 w-[280px] h-screen">
             <SideBar currentPathName={pathname} />
           </div>
           <div

@@ -17,9 +17,11 @@ export const TextField: React.VFC<TextFieldProps> = forwardRef((props, ref) => {
   return (
     <Base>
       <TextInput {...inputProps} placeholder="&nbsp;" ref={mergedRef} />
-      <Label {...labelProps} className="placeholder-label">
+      {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
+      <Label {...labelProps} className="placeholder">
         {props.label}
       </Label>
+      {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
       <BottomBorder className="bottom-border" />
     </Base>
   );
@@ -60,15 +62,15 @@ const TextInput = styled.input`
     background-color: ${colors.blackAlpha100};
   }
 
-  &:placeholder-shown + label.placeholder-label {
+  &:placeholder-shown + label.placeholder {
     display: block;
   }
 
-  &:not(:placeholder-shown) + label.placeholder-label {
+  &:not(:placeholder-shown) + label.placeholder {
     transform: translateY(-12px) scale(0.75);
   }
 
-  &:focus + label.placeholder-label {
+  &:focus + label.placeholder {
     transform: translateY(-12px) scale(0.75);
     color: ${colors.brand};
   }

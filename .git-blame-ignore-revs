@@ -3,3 +3,5 @@
 a0cf040fc740eac17133b9efabad6cf37b90e0cb
 # Fix tailwindcss lint errors
 9b5e1f33f0ce09e58de98d5a52def1d29f87e974
+# Fix tailwindcss lint warnings
+620ed4e8655ab831a4045a691f264a6aa1d519dd

@@ -63,7 +63,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
         exit={{ opacity: 0, transition: { duration: 0.15 } }}
         transition={{ duration: 0.2, delay: 0.15 }}
         style={{ pointerEvents: "auto", overflow: "scroll" }}
-        className="grid fixed inset-0 place-items-center bg-black-alpha300 overlay"
+        className="grid fixed inset-0 place-items-center bg-black-alpha300"
       >
         <Link href={`/virtualized-list`}>
           <a className="block fixed inset-0" />

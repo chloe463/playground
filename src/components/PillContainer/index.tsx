@@ -30,6 +30,7 @@ export const PillsContainer = (props: Props) => {
               }}
             >
               <div
+                // eslint-disable-next-line tailwindcss/no-custom-classname
                 className="
                   py-2
                   px-6 text-button text-white bg-gradient-to-r

@@ -51,11 +51,11 @@ export const SideBar: React.VFC<Props> = (props) => {
                 <a
                   className={classnames(
                     `
-                      flex items-center py-4 px-8 visited:text-black-alpha500 hover:text-black-alpha700 active:text-black-alpha700
-                      no-underline visited:no-underline hover:no-underline
-                      active:no-underline uppercase
-                      transition-all duration-200
-                      ease-out text-sugheading
+                      flex items-center py-4 px-8 text-subheading visited:text-black-alpha500 hover:text-black-alpha700
+                      active:text-black-alpha700 no-underline visited:no-underline
+                      hover:no-underline active:no-underline
+                      uppercase transition-all
+                      duration-200 ease-out
                     `,
                     {
                       "text-black-alpha800": props.currentPathName.startsWith(page.url),

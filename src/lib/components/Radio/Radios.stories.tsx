@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import { Radio } from "./Radio";
 import { RadioGroup } from "./RadioGroup";
 

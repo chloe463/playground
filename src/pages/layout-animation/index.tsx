@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { AnimateSharedLayout, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { appBaseStyle, transition } from "../../components/layout";
 import { PageHeader } from "../../components/PageHeader";

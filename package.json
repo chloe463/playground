@@ -93,7 +93,7 @@
     "@storybook/node-logger": "6.4.22",
     "@storybook/react": "6.4.22",
     "@types/lodash-es": "^4.17.6",
-    "@types/react-virtualized": "9.21.20",
+    "@types/react-virtualized": "9.21.21",
     "@types/styled-components": "^5.1.9",
     "@types/tailwindcss": "3.0.10",
     "@typescript-eslint/eslint-plugin": "^5.13.0",

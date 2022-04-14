@@ -105,7 +105,7 @@
     "eslint-plugin-tailwindcss": "^3.5.0",
     "jest": "^27.5.1",
     "msw": "0.39.2",
-    "postcss": "^8.4.7",
+    "postcss": "8.4.12",
     "postcss-preset-env": "^7.4.1",
     "prettier": "^2.6.2",
     "sb": "6.4.22",
@@ -113,7 +113,7 @@
     "tailwindcss": "3.0.24"
   },
   "resolutions": {
-    "postcss": "^8"
+    "postcss": "8.4.12"
   },
   "msw": {
     "workerDirectory": "public"

@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import Link from "next/link";
 import React, { useCallback } from "react";
-import { colors } from "../../lib";
+import { colors, Tooltip } from "../../lib";
 import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
 import { Chart } from "./Chart";
 import { Pencil } from "./Pencil";
@@ -78,24 +78,32 @@ export const QuestionnaireListItem: React.VFC<Props> = (props) => {
         </div>
       </div>
       <div className="flex absolute right-6 items-center space-x-4 opacity-0 group-hover:opacity-100 transition-transform duration-200 translate-x-4 group-hover:translate-x-0">
-        <Link href={{ pathname: `/questionnaires/${questionnaire.id}/edit` }}>
-          <a aria-label={`Edit a questionnaire ${questionnaire.id}`}>
-            <Pencil className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
-          </a>
-        </Link>
-        <button
-          onClick={onClickAnswers}
-          aria-label={`See result of questionnaire ${questionnaire.id}`}
-        >
-          <Chart className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
-        </button>
-        <button
-          onClick={() => onClickDelete(questionnaire.id)}
-          aria-label={`Delete a questionnaire ${questionnaire.id}`}
-          data-cy={`delete-button-${questionnaire.id}`}
-        >
-          <Trash className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
-        </button>
+        <Tooltip delay={50} offset={{ y: 8 }} content={<span>Edit</span>}>
+          <div>
+            <Link href={{ pathname: `/questionnaires/${questionnaire.id}/edit` }}>
+              <a aria-label={`Edit a questionnaire ${questionnaire.id}`}>
+                <Pencil className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
+              </a>
+            </Link>
+          </div>
+        </Tooltip>
+        <Tooltip delay={50} offset={{ y: 8 }} content={<span className="whitespace-nowrap">See result</span>}>
+          <button
+            onClick={onClickAnswers}
+            aria-label={`See result of questionnaire ${questionnaire.id}`}
+          >
+            <Chart className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
+          </button>
+        </Tooltip>
+        <Tooltip delay={50} offset={{ y: 8 }} content={<span>Delete</span>}>
+          <button
+            onClick={() => onClickDelete(questionnaire.id)}
+            aria-label={`Delete a questionnaire ${questionnaire.id}`}
+            data-cy={`delete-button-${questionnaire.id}`}
+          >
+            <Trash className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
+          </button>
+        </Tooltip>
       </div>
     </div>
   );

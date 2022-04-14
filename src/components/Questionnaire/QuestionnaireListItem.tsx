@@ -87,7 +87,7 @@ export const QuestionnaireListItem: React.VFC<Props> = (props) => {
             </Link>
           </div>
         </Tooltip>
-        <Tooltip delay={50} offset={{ y: 8 }} content={<span>See result</span>}>
+        <Tooltip delay={50} offset={{ y: 8 }} content={<span className="whitespace-nowrap">See result</span>}>
           <button
             onClick={onClickAnswers}
             aria-label={`See result of questionnaire ${questionnaire.id}`}

@@ -40,6 +40,7 @@ export const TooltipBody: React.VFC<TooltipBodyProps> = ({
 
   return ReactDOM.createPortal(
     <motion.span
+      style={{position: "fixed", top: 0, left: 0 }}
       initial={{
         opacity: 0,
         transformOrigin: "center center",

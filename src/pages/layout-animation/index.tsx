@@ -87,10 +87,8 @@ const LayoutAnimation = () => {
           reset all
         </button>
       </div>
-      <AnimateSharedLayout type="crossfade">
-        <PillsContainer items={items} selectItem={selectItem} />
-        <SelectedItems items={selectedItems} removeItem={removeItem} />
-      </AnimateSharedLayout>
+      <PillsContainer items={items} selectItem={selectItem} />
+      <SelectedItems items={selectedItems} removeItem={removeItem} />
       <SelectedItems2 items={selectedItems} removeItem={removeItem} />
     </motion.div>
   );

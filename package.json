@@ -106,7 +106,7 @@
     "jest": "27.5.1",
     "msw": "0.39.2",
     "postcss": "8.4.12",
-    "postcss-preset-env": "7.4.1",
+    "postcss-preset-env": "7.4.3",
     "prettier": "2.6.2",
     "sb": "6.4.22",
     "start-server-and-test": "1.13.1",

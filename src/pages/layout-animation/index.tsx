@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { AnimateSharedLayout, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { appBaseStyle, transition } from "../../components/layout";
 import { PageHeader } from "../../components/PageHeader";
@@ -87,10 +87,8 @@ const LayoutAnimation = () => {
           reset all
         </button>
       </div>
-      <AnimateSharedLayout type="crossfade">
-        <PillsContainer items={items} selectItem={selectItem} />
-        <SelectedItems items={selectedItems} removeItem={removeItem} />
-      </AnimateSharedLayout>
+      <PillsContainer items={items} selectItem={selectItem} />
+      <SelectedItems items={selectedItems} removeItem={removeItem} />
       <SelectedItems2 items={selectedItems} removeItem={removeItem} />
     </motion.div>
   );

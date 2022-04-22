@@ -32,3 +32,6 @@ e2e/cypress/videos/*
 
 # Next.js
 .next
+
+.yarn/
+!.yarn/releases/*

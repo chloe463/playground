@@ -16,5 +16,6 @@ jobs:
           cache: 'yarn'
       - name: Build app
         run: |
+          yarn set version 3.0.0
           yarn install
           yarn build

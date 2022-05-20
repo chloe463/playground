@@ -98,7 +98,7 @@
     "@types/tailwindcss": "3.0.10",
     "@typescript-eslint/eslint-plugin": "5.13.0",
     "autoprefixer": "10.4.4",
-    "concurrently": "6.0.0",
+    "concurrently": "6.5.1",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.5",
     "eslint-plugin-storybook": "0.5.11",

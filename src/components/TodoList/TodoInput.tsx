@@ -6,6 +6,7 @@ type SubmitValue = {
 };
 
 type Props = {
+  loading: boolean;
   onSubmit: (value: SubmitValue) => void;
 };
 
@@ -21,7 +22,9 @@ export const TodoInput: React.VFC<Props> = (props) => {
   return (
     <form onSubmit={onSubmit}>
       <TextField label={"Task"} name="task" value={task} onChange={(v) => setTask(v)} />
-      <PrimaryButton type="submit">Submit</PrimaryButton>
+      <PrimaryButton type="submit" disabled={props.loading}>
+        Submit
+      </PrimaryButton>
     </form>
   );
 };

@@ -1,11 +1,17 @@
 import { ApolloError, gql, useQuery } from "@apollo/client";
 import { GetTodoConnectionQueryDocument } from "../../__generated__/graphqlOperationTypes";
 import { Todo } from "../../__generated__/types";
+import { useCreateTodo } from "./useCreateTodo";
+
+type CreateTodo = ReturnType<typeof useCreateTodo>;
 
 type Todos = {
   loading: boolean;
   error: ApolloError | undefined;
   todos: Todo[];
+  creating: boolean;
+  createError: CreateTodo["error"];
+  createTodo: CreateTodo["createTodo"];
 };
 
 const TODO_FRAGMENT = gql`
@@ -47,6 +53,7 @@ export const useTodos = (): Todos => {
       after: "0",
     },
   });
+  const { loading: creating, error: createError, createTodo } = useCreateTodo();
 
   const todos: Todo[] =
     data?.todoConnection.edges.map((edge) => ({
@@ -57,5 +64,8 @@ export const useTodos = (): Todos => {
     loading,
     error,
     todos,
+    creating,
+    createError,
+    createTodo,
   };
 };

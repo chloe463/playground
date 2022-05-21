@@ -8,17 +8,17 @@ type Props = {};
 type SubmitHandler = React.ComponentProps<typeof TodoInput>["onSubmit"];
 
 export const TodoListContainerWithHooks: React.VFC<Props> = (_props) => {
-  const { todos } = useTodos();
+  const { loading, todos, creating, createTodo } = useTodos();
   const onSubmit: SubmitHandler = useCallback(
     async (e) => {
-      console.log({ e });
+      await createTodo(e.task);
     },
-    []
+    [createTodo]
   );
 
   return (
     <div>
-      <TodoInput onSubmit={onSubmit} />
+      <TodoInput loading={loading || creating} onSubmit={onSubmit} />
       <TodoList todos={todos} />
     </div>
   );

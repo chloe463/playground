@@ -25,7 +25,7 @@ export const TodoInput: React.VFC<Props> = (props) => {
   };
 
   return (
-    <form className="flex justify-between items-center p-2" onSubmit={onSubmit}>
+    <form className="flex justify-between items-center px-6" onSubmit={onSubmit}>
       <div className="w-[80%]">
         <TextField label={"Task"} name="task" value={task} onChange={(v) => setTask(v)} />
       </div>

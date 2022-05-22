@@ -38,7 +38,7 @@ export const TodoListItem: React.FC<Props> = (props) => {
   }, [props]);
 
   return (
-    <div className="group flex justify-between items-center p-2 hover:bg-black-alpha50">
+    <div className="group flex justify-between items-center py-2 px-6 hover:bg-black-alpha50">
       {isEditing ? (
         <form className="flex justify-between items-center w-full" onSubmit={onSubmit}>
           <input

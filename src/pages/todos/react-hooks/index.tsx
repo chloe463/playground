@@ -1,14 +1,10 @@
 import React from "react";
 import { TodoListContainerWithHooks } from "../../../components/TodoList";
 
-type Props = {
-
-};
+type Props = {};
 
 const WithReactHooksPage: React.VFC<Props> = (props) => {
-  return (
-    <TodoListContainerWithHooks />
-  );
-}
+  return <TodoListContainerWithHooks />;
+};
 
 export default WithReactHooksPage;

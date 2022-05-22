@@ -13,7 +13,7 @@ export const TodoList: React.VFC<Props> = (props) => {
       {props.todos.map((todo) => {
         return (
           <li key={todo.id}>
-            <TodoListItem todo={todo} onClickSave={props.onSave} />
+            <TodoListItem todo={todo} onEdit={props.onSave} />
           </li>
         );
       })}

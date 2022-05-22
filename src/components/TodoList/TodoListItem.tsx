@@ -3,7 +3,7 @@ import { Todo, UpdateTodoInput } from "../../__generated__/types";
 
 type Props = {
   todo: Todo;
-  onClickSave: (todo: UpdateTodoInput) => Promise<void>;
+  onEdit: (todo: UpdateTodoInput) => Promise<void>;
 };
 
 export const TodoListItem: React.FC<Props> = (props) => {
@@ -13,7 +13,7 @@ export const TodoListItem: React.FC<Props> = (props) => {
   const onSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
     (e) => {
       e.preventDefault();
-      props.onClickSave({
+      props.onEdit({
         id: props.todo.id,
         task: editingTask,
       });
@@ -21,6 +21,14 @@ export const TodoListItem: React.FC<Props> = (props) => {
     },
     [editingTask, props]
   );
+
+  const onCheck = useCallback(() => {
+    props.onEdit({
+      id: props.todo.id,
+      task: props.todo.task,
+      finishedAt: new Date(),
+    });
+  }, [props]);
 
   return (
     <div>
@@ -41,7 +49,10 @@ export const TodoListItem: React.FC<Props> = (props) => {
         </form>
       ) : (
         <>
-          <p>{props.todo.task}</p>
+          <label>
+            <input type="checkbox" checked={Boolean(props.todo.finishedAt)} onChange={onCheck} />
+            <p>{props.todo.task}</p>
+          </label>
           <div>
             <button onClick={() => setIsEditing((v) => !v)}>[edit]</button>
             <button>[delete]</button>

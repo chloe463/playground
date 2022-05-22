@@ -2,8 +2,10 @@ import { ApolloError, gql, useQuery } from "@apollo/client";
 import { GetTodoConnectionQueryDocument } from "../../__generated__/graphqlOperationTypes";
 import { Todo } from "../../__generated__/types";
 import { useCreateTodo } from "./useCreateTodo";
+import { useUpdateTodo } from "./useUpdateTodo";
 
 type CreateTodo = ReturnType<typeof useCreateTodo>;
+type UpdateTodo = ReturnType<typeof useUpdateTodo>;
 
 type Todos = {
   loading: boolean;
@@ -12,6 +14,9 @@ type Todos = {
   creating: boolean;
   createError: CreateTodo["error"];
   createTodo: CreateTodo["createTodo"];
+  updating: boolean;
+  updateError: UpdateTodo["error"];
+  updateTodo: UpdateTodo["updateTodo"];
 };
 
 const TODO_FRAGMENT = gql`
@@ -54,6 +59,7 @@ export const useTodos = (): Todos => {
     },
   });
   const { loading: creating, error: createError, createTodo } = useCreateTodo();
+  const { loading: updating, error: updateError, updateTodo } = useUpdateTodo();
 
   const todos: Todo[] =
     data?.todoConnection.edges.map((edge) => ({
@@ -67,5 +73,8 @@ export const useTodos = (): Todos => {
     creating,
     createError,
     createTodo,
+    updating,
+    updateError,
+    updateTodo,
   };
 };

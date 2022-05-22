@@ -153,7 +153,7 @@ export type GetTodoConnectionQueryQuery = { __typename?: "Query" } & {
 
 export type UpdatedTodoFragmentFragment = { __typename?: "Todo" } & Pick<
   Types.Todo,
-  "id" | "task" | "finishedAt" | "createdAt" | "updatedAt"
+  "id" | "task" | "finishedAt" | "updatedAt"
 >;
 
 export type UpdateTodoMutationVariables = Types.Exact<{
@@ -292,7 +292,6 @@ export const UpdatedTodoFragmentFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "task" } },
           { kind: "Field", name: { kind: "Name", value: "finishedAt" } },
-          { kind: "Field", name: { kind: "Name", value: "createdAt" } },
           { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
         ],
       },

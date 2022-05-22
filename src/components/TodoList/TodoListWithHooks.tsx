@@ -35,6 +35,7 @@ export const TodoListContainerWithHooks: React.VFC<Props> = (_props) => {
   return (
     <div>
       <TodoInput loading={loading || creating} onSubmit={onSubmit} />
+      <div className="block h-6" />
       <TodoList todos={todos} onSave={onSubmitUpdate} onDelete={onDelete} />
     </div>
   );

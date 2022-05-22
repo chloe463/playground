@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import React, { useCallback, useState } from "react";
 import { Todo, UpdateTodoInput } from "../../__generated__/types";
 
@@ -47,22 +48,46 @@ export const TodoListItem: React.FC<Props> = (props) => {
             onChange={(e) => setEditingTask(e.currentTarget.value)}
             autoFocus
           />
-          <div className="flex items-center space-x-2">
-            <button type="button" onClick={() => setIsEditing(false)}>
+          <div className="flex items-center ml-4 space-x-2">
+            <button
+              type="button"
+              className="text-black-alpha500 hover:text-black-alpha700"
+              onClick={() => setIsEditing(false)}
+            >
               [cancel]
             </button>
-            <button type="submit">[save]</button>
+            <button type="submit" className="text-black-alpha500 hover:text-black-alpha700">
+              [save]
+            </button>
           </div>
         </form>
       ) : (
         <>
-          <label className="flex items-center">
+          <label className="flex items-center cursor-pointer">
             <input type="checkbox" checked={Boolean(props.todo.finishedAt)} onChange={onCheck} />
-            <span className="ml-2 text-body1">{props.todo.task}</span>
+            <span
+              className={classnames(`ml-2 text-body1 text-black-alpha800`, {
+                "line-through": Boolean(props.todo.finishedAt),
+              })}
+            >
+              {props.todo.task}
+            </span>
           </label>
-          <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100">
-            <button onClick={() => setIsEditing((v) => !v)}>[edit]</button>
-            <button onClick={onClickDelete}>[delete]</button>
+          <div className="flex items-center ml-4 space-x-2 opacity-0 group-hover:opacity-100">
+            <button
+              type="button"
+              className="text-black-alpha500 hover:text-black-alpha700"
+              onClick={() => setIsEditing((v) => !v)}
+            >
+              [edit]
+            </button>
+            <button
+              type="button"
+              className="text-black-alpha500 hover:text-black-alpha700"
+              onClick={onClickDelete}
+            >
+              [delete]
+            </button>
           </div>
         </>
       )}

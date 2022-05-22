@@ -24,10 +24,11 @@ export const TodoListItem: React.FC<Props> = (props) => {
   );
 
   const onCheck = useCallback(() => {
+    const newFinishedAt = props.todo.finishedAt ? null : new Date();
     props.onEdit({
       id: props.todo.id,
       task: props.todo.task,
-      finishedAt: new Date(),
+      finishedAt: newFinishedAt,
     });
   }, [props]);
 

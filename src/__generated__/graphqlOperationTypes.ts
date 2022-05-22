@@ -127,6 +127,16 @@ export type CreateTodoMutation = { __typename?: "Mutation" } & {
   >;
 };
 
+export type DeleteTodoMutationVariables = Types.Exact<{
+  id: Types.Scalars["Int"];
+}>;
+
+export type DeleteTodoMutation = { __typename?: "Mutation" } & {
+  deleteTodo?: Types.Maybe<
+    { __typename?: "DeleteTodoPayload" } & Pick<Types.DeleteTodoPayload, "id" | "result">
+  >;
+};
+
 export type TodoFragmentFragment = { __typename?: "Todo" } & Pick<
   Types.Todo,
   "id" | "task" | "finishedAt" | "createdAt" | "updatedAt"
@@ -732,6 +742,49 @@ export const CreateTodoDocument = {
     ...CreatedTodoFragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<CreateTodoMutation, CreateTodoMutationVariables>;
+export const DeleteTodoDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "DeleteTodo" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteTodo" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: { kind: "Variable", name: { kind: "Name", value: "id" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "result" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<DeleteTodoMutation, DeleteTodoMutationVariables>;
 export const GetTodoConnectionQueryDocument = {
   kind: "Document",
   definitions: [

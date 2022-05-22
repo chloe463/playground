@@ -4,6 +4,7 @@ import { Todo, UpdateTodoInput } from "../../__generated__/types";
 type Props = {
   todo: Todo;
   onEdit: (todo: UpdateTodoInput) => Promise<void>;
+  onDelete: (id: Todo["id"]) => Promise<void>;
 };
 
 export const TodoListItem: React.FC<Props> = (props) => {
@@ -28,6 +29,10 @@ export const TodoListItem: React.FC<Props> = (props) => {
       task: props.todo.task,
       finishedAt: new Date(),
     });
+  }, [props]);
+
+  const onClickDelete = useCallback(() => {
+    props.onDelete(props.todo.id);
   }, [props]);
 
   return (
@@ -55,7 +60,7 @@ export const TodoListItem: React.FC<Props> = (props) => {
           </label>
           <div>
             <button onClick={() => setIsEditing((v) => !v)}>[edit]</button>
-            <button>[delete]</button>
+            <button onClick={onClickDelete}>[delete]</button>
           </div>
         </>
       )}

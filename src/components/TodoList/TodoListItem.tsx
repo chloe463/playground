@@ -68,6 +68,7 @@ export const TodoListItem: React.FC<Props> = (props) => {
             <span
               className={classnames(`ml-2 text-body1 text-black-alpha800`, {
                 "line-through": Boolean(props.todo.finishedAt),
+                "text-black-alpha500": Boolean(props.todo.finishedAt),
               })}
             >
               {props.todo.task}

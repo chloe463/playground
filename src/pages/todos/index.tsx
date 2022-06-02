@@ -7,8 +7,8 @@ type Props = {};
 
 const PAGES = [
   {
-    url: "/react-hooks",
-    label: "React hooks",
+    url: "/apollo-inmemory-cache",
+    label: "Apollo InMemory Cache",
   },
 ];
 

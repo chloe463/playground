@@ -26,7 +26,7 @@ export const TodoInput: React.VFC<Props> = (props) => {
 
   return (
     <form className="flex justify-between items-center px-6" onSubmit={onSubmit}>
-      <div className="w-[80%]">
+      <div className="w-[90%]">
         <TextField label={"Task"} name="task" value={task} onChange={(v) => setTask(v)} />
       </div>
       <PrimaryButton type="submit" disabled={props.loading || !canSubmit}>

@@ -5,7 +5,7 @@ import { TodoListItem } from "./TodoListItem";
 type Props = {
   todos: Todo[];
   onSave: (todo: UpdateTodoInput) => Promise<void>;
-  onDelete: (id: Todo["id"]) => Promise<void>;
+  onDelete: (todoToDelete: Todo) => void;
 };
 
 export const TodoList: React.VFC<Props> = (props) => {

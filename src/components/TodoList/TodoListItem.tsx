@@ -5,7 +5,7 @@ import { Todo, UpdateTodoInput } from "../../__generated__/types";
 type Props = {
   todo: Todo;
   onEdit: (todo: UpdateTodoInput) => Promise<void>;
-  onDelete: (id: Todo["id"]) => Promise<void>;
+  onDelete: (todoToDelete: Todo) => void;
 };
 
 export const TodoListItem: React.FC<Props> = (props) => {
@@ -34,7 +34,7 @@ export const TodoListItem: React.FC<Props> = (props) => {
   }, [props]);
 
   const onClickDelete = useCallback(() => {
-    props.onDelete(props.todo.id);
+    props.onDelete(props.todo);
   }, [props]);
 
   return (

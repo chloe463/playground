@@ -52,6 +52,15 @@ export type CreateQuestionnairePayload = {
   questionnaire?: Maybe<Questionnaire>;
 };
 
+export type CreateTodoInput = {
+  task: Scalars["String"];
+};
+
+export type CreateTodoPayload = {
+  __typename?: "CreateTodoPayload";
+  todo?: Maybe<Todo>;
+};
+
 export type DeleteQuestionnaireInput = {
   id: Scalars["Int"];
 };
@@ -62,16 +71,33 @@ export type DeleteQuestionnairePayload = {
   result?: Maybe<Scalars["Boolean"]>;
 };
 
+export type DeleteTodoPayload = {
+  __typename?: "DeleteTodoPayload";
+  id?: Maybe<Scalars["Int"]>;
+  result?: Maybe<Scalars["Boolean"]>;
+};
+
 export type Mutation = {
   __typename?: "Mutation";
   createQuestionnaire?: Maybe<CreateQuestionnairePayload>;
+  createTodo?: Maybe<CreateTodoPayload>;
+  deleteTodo?: Maybe<DeleteTodoPayload>;
   deleteQuestionnaire?: Maybe<DeleteQuestionnairePayload>;
   cancelToDeleteQuestionnaire?: Maybe<CancelToDeleteQuestionnairePayload>;
   updateQuestionnaire?: Maybe<UpdateQuestionnairePayload>;
+  updateTodo?: Maybe<UpdateTodoPayload>;
 };
 
 export type MutationCreateQuestionnaireArgs = {
   questionnaire?: Maybe<CreateQuestionnaireInput>;
+};
+
+export type MutationCreateTodoArgs = {
+  todo?: Maybe<CreateTodoInput>;
+};
+
+export type MutationDeleteTodoArgs = {
+  id: Scalars["Int"];
 };
 
 export type MutationDeleteQuestionnaireArgs = {
@@ -84,6 +110,10 @@ export type MutationCancelToDeleteQuestionnaireArgs = {
 
 export type MutationUpdateQuestionnaireArgs = {
   questionnaire: UpdateQuestionnaireInput;
+};
+
+export type MutationUpdateTodoArgs = {
+  todo?: Maybe<UpdateTodoInput>;
 };
 
 export type Option = {
@@ -129,6 +159,7 @@ export type Query = {
   questionnaire?: Maybe<Questionnaire>;
   questionnaireConnection: QueryQuestionnaireConnection_Connection;
   questionnaires?: Maybe<Array<Maybe<Questionnaire>>>;
+  todoConnection: QueryTodoConnection_Connection;
 };
 
 export type QueryCommentsArgs = {
@@ -159,6 +190,13 @@ export type QueryQuestionnaireConnectionArgs = {
   before?: Maybe<Scalars["String"]>;
 };
 
+export type QueryTodoConnectionArgs = {
+  first?: Maybe<Scalars["Int"]>;
+  after?: Maybe<Scalars["String"]>;
+  last?: Maybe<Scalars["Int"]>;
+  before?: Maybe<Scalars["String"]>;
+};
+
 export type QueryPostConnection_Connection = {
   __typename?: "QueryPostConnection_Connection";
   /** https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types */
@@ -172,6 +210,15 @@ export type QueryQuestionnaireConnection_Connection = {
   __typename?: "QueryQuestionnaireConnection_Connection";
   /** https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types */
   edges: Array<QuestionnaireEdge>;
+  /** https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo */
+  pageInfo: PageInfo;
+  totalCount: Scalars["Int"];
+};
+
+export type QueryTodoConnection_Connection = {
+  __typename?: "QueryTodoConnection_Connection";
+  /** https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types */
+  edges: Array<TodoEdge>;
   /** https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo */
   pageInfo: PageInfo;
   totalCount: Scalars["Int"];
@@ -204,6 +251,23 @@ export type QuestionnaireEdge = {
   node: Questionnaire;
 };
 
+export type Todo = {
+  __typename?: "Todo";
+  id: Scalars["Int"];
+  task: Scalars["String"];
+  finishedAt?: Maybe<Scalars["DateTime"]>;
+  createdAt: Scalars["DateTime"];
+  updatedAt: Scalars["DateTime"];
+};
+
+export type TodoEdge = {
+  __typename?: "TodoEdge";
+  /** https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor */
+  cursor: Scalars["String"];
+  /** https://facebook.github.io/relay/graphql/connections.htm#sec-Node */
+  node: Todo;
+};
+
 export type UpdateOptionInput = {
   id?: Maybe<Scalars["Int"]>;
   text?: Maybe<Scalars["String"]>;
@@ -230,4 +294,15 @@ export type UpdateQuestionnaireInput = {
 export type UpdateQuestionnairePayload = {
   __typename?: "UpdateQuestionnairePayload";
   questionnaire?: Maybe<Questionnaire>;
+};
+
+export type UpdateTodoInput = {
+  id: Scalars["Int"];
+  task: Scalars["String"];
+  finishedAt?: Maybe<Scalars["DateTime"]>;
+};
+
+export type UpdateTodoPayload = {
+  __typename?: "UpdateTodoPayload";
+  todo?: Maybe<Todo>;
 };

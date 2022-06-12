@@ -1,35 +1,21 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { PrimaryButton, TextField } from "../../lib";
 
-type SubmitValue = {
-  task: string;
-};
-
 type Props = {
+  task: string;
   loading: boolean;
-  onSubmit: (value: SubmitValue) => void;
+  canSubmit: boolean;
+  onChangeInput: (value: string) => void;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
 };
 
 export const TodoInput: React.VFC<Props> = (props) => {
-  const [task, setTask] = useState("");
-
-  const canSubmit = useMemo(() => {
-    return task.length > 0;
-  }, [task]);
-
-  const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-    if (!task) return;
-    props.onSubmit({ task });
-    setTask("");
-  };
-
   return (
-    <form className="flex justify-between items-center px-6" onSubmit={onSubmit}>
+    <form className="flex justify-between items-center px-6" onSubmit={props.onSubmit}>
       <div className="w-[90%]">
-        <TextField label={"Task"} name="task" value={task} onChange={(v) => setTask(v)} />
+        <TextField label={"Task"} name="task" value={props.task} onChange={props.onChangeInput} />
       </div>
-      <PrimaryButton type="submit" disabled={props.loading || !canSubmit}>
+      <PrimaryButton type="submit" disabled={props.loading || !props.canSubmit}>
         Submit
       </PrimaryButton>
     </form>

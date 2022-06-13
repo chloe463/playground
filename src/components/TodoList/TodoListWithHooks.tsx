@@ -19,7 +19,13 @@ export const TodoListContainerWithHooks: React.VFC = () => {
   const onSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
     async (e) => {
       e.preventDefault();
-      await createTodo(newTask);
+      try {
+        await createTodo(newTask);
+        newTaskVar("");
+      } catch (e) {
+        // TODO: Show error toast.
+        console.error(e);
+      }
     },
     [createTodo, newTask]
   );

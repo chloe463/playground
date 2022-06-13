@@ -1,6 +1,6 @@
 import { ApolloError, gql, useQuery } from "@apollo/client";
-import { GetTodoConnectionQueryDocument } from "../../__generated__/graphqlOperationTypes";
-import { Todo } from "../../__generated__/types";
+import { GetTodoConnectionQueryDocument } from "../../../__generated__/graphqlOperationTypes";
+import { Todo } from "../../../__generated__/types";
 import { useCreateTodo } from "./useCreateTodo";
 import { useDeleteTodo } from "./useDeleteTodo";
 import { useUpdateTodo } from "./useUpdateTodo";

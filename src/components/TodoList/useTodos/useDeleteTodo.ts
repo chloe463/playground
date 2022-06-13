@@ -3,8 +3,8 @@ import { useCallback } from "react";
 import {
   DeleteTodoDocument,
   GetTodoConnectionQueryQuery,
-} from "../../__generated__/graphqlOperationTypes";
-import { Todo } from "../../__generated__/types";
+} from "../../../__generated__/graphqlOperationTypes";
+import { Todo } from "../../../__generated__/types";
 
 type CreateTodo = {
   loading: boolean;

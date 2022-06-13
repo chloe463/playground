@@ -3,8 +3,8 @@ import { useCallback } from "react";
 import {
   UpdateTodoDocument,
   UpdateTodoMutationVariables,
-} from "../../__generated__/graphqlOperationTypes";
-import { UpdateTodoInput } from "../../__generated__/types";
+} from "../../../__generated__/graphqlOperationTypes";
+import { UpdateTodoInput } from "../../../__generated__/types";
 
 type CreateTodo = {
   loading: boolean;

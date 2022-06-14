@@ -1,3 +1,4 @@
+export type TodoId = number & { __todoIdBrand: any };
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
@@ -11,6 +12,8 @@ export type Scalars = {
   Float: number;
   Date: any;
   DateTime: any;
+  /** Todo id */
+  TodoId: TodoId;
 };
 
 export type CancelToDeleteQuestionnairePayload = {
@@ -253,7 +256,7 @@ export type QuestionnaireEdge = {
 
 export type Todo = {
   __typename?: "Todo";
-  id: Scalars["Int"];
+  id: Scalars["TodoId"];
   task: Scalars["String"];
   finishedAt?: Maybe<Scalars["DateTime"]>;
   createdAt: Scalars["DateTime"];
@@ -297,7 +300,7 @@ export type UpdateQuestionnairePayload = {
 };
 
 export type UpdateTodoInput = {
-  id: Scalars["Int"];
+  id: Scalars["TodoId"];
   task: Scalars["String"];
   finishedAt?: Maybe<Scalars["DateTime"]>;
 };

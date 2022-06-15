@@ -3713,14 +3713,14 @@
     "@react-stately/utils" "^3.4.1"
     "@react-types/overlays" "^3.5.4"
 
-"@react-stately/radio@3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@react-stately/radio/-/radio-3.3.1.tgz#8a2dbaf3b462644348d16cc1957983f7e3c676a2"
-  integrity sha512-52/5aXlehjCH8s2yodOjhzgkjAaYRHuyRNHfzagd5OXtVbImaJr9Ma7qRbVa/d14tAV8GrPF0vJ2lDVWflGyIQ==
+"@react-stately/radio@3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@react-stately/radio/-/radio-3.4.1.tgz#21c470856e410c99487bbb5a50e5df4eab1202a8"
+  integrity sha512-tWwvdm/GAsuUJkPv6aislPaek/ZV/BkMSeZO4QqdkWhIJeU8vkJHg5RrlWe5l1mhBS58y5iAkDoRb1XR8asZlw==
   dependencies:
     "@babel/runtime" "^7.6.2"
-    "@react-stately/utils" "^3.2.1"
-    "@react-types/radio" "^3.1.1"
+    "@react-stately/utils" "^3.5.0"
+    "@react-types/radio" "^3.2.1"
 
 "@react-stately/radio@^3.3.5":
   version "3.3.5"
@@ -3775,6 +3775,13 @@
   dependencies:
     "@babel/runtime" "^7.6.2"
 
+"@react-stately/utils@^3.5.0":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@react-stately/utils/-/utils-3.5.0.tgz#e76231cfc93042814dcc5d96436e50c807c1d905"
+  integrity sha512-WzzwlQtJrf7egaN+lt02/f/wkFKbcscsbinmXs9pL7QyYm+BCQ9xXj01w0juzt93piZgB/kfIYJqInEdpudh1A==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+
 "@react-types/button@^3.4.4":
   version "3.4.4"
   resolved "https://registry.yarnpkg.com/@react-types/button/-/button-3.4.4.tgz#5d6e6487ddebb038cb37291165a681db75a6c45a"
@@ -3825,13 +3832,6 @@
   dependencies:
     "@react-types/shared" "^3.11.2"
 
-"@react-types/radio@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@react-types/radio/-/radio-3.1.1.tgz#5b1b11ff3043ac902e8970e49260f2664da80e5e"
-  integrity sha512-neInMjlbZyyGYYyeDJk9BcEejLczvsBiyk/swSUHmQ99eNIjK3ptUHTNdXM1xBBc3zI1SvBxOQr+uGeeEszvxw==
-  dependencies:
-    "@react-types/shared" "^3.2.1"
-
 "@react-types/radio@^3.1.5":
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/@react-types/radio/-/radio-3.1.5.tgz#76be5f01da7baa19e875eaf045b53c88fd3d59af"
@@ -3839,10 +3839,22 @@
   dependencies:
     "@react-types/shared" "^3.11.2"
 
+"@react-types/radio@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@react-types/radio/-/radio-3.2.1.tgz#130e6138d274fc1a7dfb62f351ceac86a9a686b9"
+  integrity sha512-xuHEHj9rLaZvra7GsEm5Wx9FiKn0IUC02aX+KNot+RCBjfIljlF89g728TnCiF0RxIIsezvbGL9ydtGy0/sJUg==
+  dependencies:
+    "@react-types/shared" "^3.13.1"
+
 "@react-types/shared@^3.11.2":
   version "3.11.2"
   resolved "https://registry.yarnpkg.com/@react-types/shared/-/shared-3.11.2.tgz#b269c0cf6223664ac42d980b7add1b67b51b87d4"
   integrity sha512-MIjjjkFi/DTzMVmeFJJrpc51eS/PLNzLZEv6o/QJPhQ9uOMElYqA790qAcG75u3tR0XGU2Vv9RyeOC7+ppw8/Q==
+
+"@react-types/shared@^3.13.1":
+  version "3.13.1"
+  resolved "https://registry.yarnpkg.com/@react-types/shared/-/shared-3.13.1.tgz#eda5e3744971606f753baf7879136bf8e3f707ab"
+  integrity sha512-EHQqILDJeDvnloy5VV9lnnEjpCMwH1ghptCfa/lz9Ht9nwco3qGCvUABkWyND7yU1Adt3A/1oJxhpRUu3eTlyg==
 
 "@react-types/shared@^3.2.1", "@react-types/shared@^3.4.0", "@react-types/shared@^3.6.0":
   version "3.6.0"

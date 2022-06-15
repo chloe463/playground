@@ -76,7 +76,7 @@ export type DeleteQuestionnairePayload = {
 
 export type DeleteTodoPayload = {
   __typename?: "DeleteTodoPayload";
-  id?: Maybe<Scalars["Int"]>;
+  id?: Maybe<Scalars["TodoId"]>;
   result?: Maybe<Scalars["Boolean"]>;
 };
 
@@ -100,7 +100,7 @@ export type MutationCreateTodoArgs = {
 };
 
 export type MutationDeleteTodoArgs = {
-  id: Scalars["Int"];
+  id: Scalars["TodoId"];
 };
 
 export type MutationDeleteQuestionnaireArgs = {
@@ -116,7 +116,7 @@ export type MutationUpdateQuestionnaireArgs = {
 };
 
 export type MutationUpdateTodoArgs = {
-  todo?: Maybe<UpdateTodoInput>;
+  todo: UpdateTodoInput;
 };
 
 export type Option = {

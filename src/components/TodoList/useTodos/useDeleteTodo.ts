@@ -13,7 +13,7 @@ type CreateTodo = {
 };
 
 const _CREATE_TODO_MUTAION = gql`
-  mutation DeleteTodo($id: Int!) {
+  mutation DeleteTodo($id: TodoId!) {
     deleteTodo(id: $id) {
       id
       result

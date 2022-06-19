@@ -1,20 +1,27 @@
 import { useReactiveVar } from "@apollo/client";
 import React, { useCallback, useMemo } from "react";
-import { newTaskVar, todoToDeleteVar } from "../../hooks/cache";
-import { Todo, UpdateTodoInput } from "../../__generated__/types";
+import { Todo, TodoId, UpdateTodoInput } from "../../__generated__/types";
 import { DeleteConfirmationModal } from "./DeleteConfirmationModal";
 import { TodoInput } from "./TodoInput";
 import { TodoList } from "./TodoList";
+import { newTaskVar, todoToDeleteVar, todoToEditVar } from "./todoReactiveVars";
 import { useTodos } from "./useTodos";
 
 export const TodoListContainerWithHooks: React.VFC = () => {
   const newTask = useReactiveVar(newTaskVar);
   const todoToDelete = useReactiveVar(todoToDeleteVar);
+  const todoToEdit = useReactiveVar(todoToEditVar);
   const { loading, todos, creating, createTodo, updateTodo, deleteTodo } = useTodos();
 
   const canSubmit = useMemo(() => {
     return newTask.length > 0;
   }, [newTask]);
+
+  const onChangeEditForm = (v: string) => {
+    if (todoToEdit) {
+      todoToEditVar({ ...todoToEdit, task: v });
+    }
+  };
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
     async (e) => {
@@ -30,9 +37,24 @@ export const TodoListContainerWithHooks: React.VFC = () => {
     [createTodo, newTask]
   );
 
-  const onSubmitUpdate = useCallback(
-    async (todo: UpdateTodoInput) => {
-      await updateTodo(todo);
+  const onSubmitUpdate = useCallback(async () => {
+    if (todoToEdit) {
+      const input: UpdateTodoInput = {
+        id: todoToEdit.id,
+        task: todoToEdit.task,
+      };
+      await updateTodo(input);
+      todoToEditVar(undefined);
+    }
+  }, [todoToEdit, updateTodo]);
+
+  const onCheck = useCallback(
+    async (id: TodoId, finishedAt: Date | undefined) => {
+      await updateTodo({
+        id,
+        finishedAt,
+      });
+      todoToEditVar(undefined);
     },
     [updateTodo]
   );
@@ -59,7 +81,16 @@ export const TodoListContainerWithHooks: React.VFC = () => {
         onSubmit={onSubmit}
       />
       <div className="block h-6" />
-      <TodoList todos={todos} onSave={onSubmitUpdate} onDelete={prepareToDelete} />
+      <TodoList
+        todos={todos}
+        editingTodo={todoToEdit}
+        onClickCheckbox={onCheck}
+        onClickEdit={todoToEditVar}
+        onClickCancelEdit={() => todoToEditVar(undefined)}
+        onChangeEditForm={onChangeEditForm}
+        onSubmitEdit={onSubmitUpdate}
+        onClickDelete={prepareToDelete}
+      />
       <DeleteConfirmationModal
         isOpen={Boolean(todoToDelete)}
         todo={todoToDelete}

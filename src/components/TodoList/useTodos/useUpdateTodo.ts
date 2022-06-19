@@ -39,6 +39,7 @@ export const useUpdateTodo = (): CreateTodo => {
         updateTodo: {
           todo: {
             ...variables.todo,
+            task: variables.todo.task!,
             updatedAt: new Date(),
             __typename: "Todo" as const,
           },

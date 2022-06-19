@@ -1,11 +1,16 @@
 import React from "react";
-import { Todo, UpdateTodoInput } from "../../__generated__/types";
+import { Todo, TodoId } from "../../__generated__/types";
 import { TodoListItem } from "./TodoListItem";
 
 type Props = {
   todos: Todo[];
-  onSave: (todo: UpdateTodoInput) => Promise<void>;
-  onDelete: (todoToDelete: Todo) => void;
+  editingTodo: Todo | undefined;
+  onClickCheckbox: (id: TodoId, finishedAt: Date | undefined) => void;
+  onClickEdit: (todo: Todo | undefined) => void;
+  onClickCancelEdit: () => void;
+  onChangeEditForm: (v: string) => void;
+  onSubmitEdit: () => Promise<void>;
+  onClickDelete: (todoToDelete: Todo) => void;
 };
 
 export const TodoList: React.VFC<Props> = (props) => {
@@ -14,7 +19,16 @@ export const TodoList: React.VFC<Props> = (props) => {
       {props.todos.map((todo) => {
         return (
           <li key={todo.id}>
-            <TodoListItem todo={todo} onEdit={props.onSave} onDelete={props.onDelete} />
+            <TodoListItem
+              todo={todo}
+              editingTodo={props.editingTodo}
+              onClickCheckbox={props.onClickCheckbox}
+              onClickEdit={props.onClickEdit}
+              onClickCancelEdit={props.onClickCancelEdit}
+              onChangeEditForm={props.onChangeEditForm}
+              onSubmitEdit={props.onSubmitEdit}
+              onClickDelete={props.onClickDelete}
+            />
           </li>
         );
       })}

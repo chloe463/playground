@@ -1,11 +1,16 @@
-import { gql, InMemoryCache, makeVar } from "@apollo/client";
+import { gql, InMemoryCache } from "@apollo/client";
 import { relayStylePagination } from "@apollo/client/utilities";
-import { Todo } from "../__generated__/types";
+import {
+  newTaskVar,
+  todoToDeleteVar,
+  todoToEditVar,
+} from "../components/TodoList/todoReactiveVars";
 
 export const extendedTypeDefs = gql`
   extend type Query {
     newTask: String
     todoToDelete: Todo
+    todoToEdit: Todo
   }
 `;
 
@@ -25,10 +30,12 @@ export const cache = new InMemoryCache({
             return todoToDeleteVar();
           },
         },
+        todoToEdit: {
+          read() {
+            return todoToEditVar();
+          },
+        },
       },
     },
   },
 });
-
-export const newTaskVar = makeVar<string>("");
-export const todoToDeleteVar = makeVar<Todo | undefined>(undefined);

@@ -301,7 +301,7 @@ export type UpdateQuestionnairePayload = {
 
 export type UpdateTodoInput = {
   id: Scalars["TodoId"];
-  task: Scalars["String"];
+  task?: Maybe<Scalars["String"]>;
   finishedAt?: Maybe<Scalars["DateTime"]>;
 };
 

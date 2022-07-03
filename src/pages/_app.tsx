@@ -7,7 +7,7 @@ import Head from "next/head";
 import React from "react";
 import { getPathNameAndQueryFromAsPath } from "../common/getPathNameAndQueryFromAsPath";
 import { SideBar, SIDEBAR_WIDTH } from "../components/SideBar";
-import { useApolloClient } from "../hooks/useAplloClient";
+import { useApolloClient } from "../hooks/useApolloClient";
 import "../index.css";
 
 if (process.env.NEXT_PUBLIC_API_MOCK) {

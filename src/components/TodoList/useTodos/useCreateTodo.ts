@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import {
   CreateTodoDocument,
   GetTodoConnectionQueryQuery,
-} from "../../__generated__/graphqlOperationTypes";
+} from "../../../__generated__/graphqlOperationTypes";
 
 type CreateTodo = {
   loading: boolean;

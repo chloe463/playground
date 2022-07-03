@@ -2,13 +2,13 @@ import { OverlayContainer } from "@react-aria/overlays";
 import React from "react";
 import { BaseButton, PrimaryButton } from "../../lib/components/Button";
 import { ModalDialog } from "../../lib/components/ModalDialog";
-import { Todo } from "../../__generated__/types";
+import { Todo, TodoId } from "../../__generated__/types";
 
 type Props = {
   isOpen: boolean;
   todo: Todo | undefined;
   onClose: () => void;
-  onSubmit: (id: number) => void;
+  onSubmit: (id: TodoId) => void;
 };
 
 export const DeleteConfirmationModal: React.VFC<Props> = (props) => {

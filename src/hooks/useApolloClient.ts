@@ -1,11 +1,11 @@
 // This functions are inspired by https://developers.wpengine.com/blog/apollo-client-cache-rehydration-in-next-js
 
-import { ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject } from "@apollo/client";
-import { relayStylePagination } from "@apollo/client/utilities";
+import { ApolloClient, HttpLink, NormalizedCacheObject } from "@apollo/client";
 import merge from "deepmerge";
 import { isEqual } from "lodash-es";
 import { useMemo } from "react";
 import { IS_SERVER } from "../common/isServer";
+import { cache, extendedTypeDefs } from "./cache";
 
 const GRAPHQL_SERVER_URI = process.env.NEXT_PUBLIC_GRAPHQL_SERVER_URI || "http://localhost:4000";
 
@@ -21,16 +21,8 @@ function createApolloClient() {
       uri: GRAPHQL_SERVER_URI + "/graphql",
       credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
     }),
-    cache: new InMemoryCache({
-      typePolicies: {
-        Query: {
-          fields: {
-            postConnection: relayStylePagination(["query"]),
-            questionnaireConnection: relayStylePagination(),
-          },
-        },
-      },
-    }),
+    cache,
+    typeDefs: extendedTypeDefs,
   });
 }
 

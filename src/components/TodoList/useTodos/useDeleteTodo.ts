@@ -3,8 +3,8 @@ import { useCallback } from "react";
 import {
   DeleteTodoDocument,
   GetTodoConnectionQueryQuery,
-} from "../../__generated__/graphqlOperationTypes";
-import { Todo } from "../../__generated__/types";
+} from "../../../__generated__/graphqlOperationTypes";
+import { Todo } from "../../../__generated__/types";
 
 type CreateTodo = {
   loading: boolean;
@@ -13,7 +13,7 @@ type CreateTodo = {
 };
 
 const _CREATE_TODO_MUTAION = gql`
-  mutation DeleteTodo($id: Int!) {
+  mutation DeleteTodo($id: TodoId!) {
     deleteTodo(id: $id) {
       id
       result

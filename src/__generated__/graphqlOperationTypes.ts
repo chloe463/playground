@@ -128,7 +128,7 @@ export type CreateTodoMutation = { __typename?: "Mutation" } & {
 };
 
 export type DeleteTodoMutationVariables = Types.Exact<{
-  id: Types.Scalars["Int"];
+  id: Types.Scalars["TodoId"];
 }>;
 
 export type DeleteTodoMutation = { __typename?: "Mutation" } & {
@@ -755,7 +755,7 @@ export const DeleteTodoDocument = {
           variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
           type: {
             kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+            type: { kind: "NamedType", name: { kind: "Name", value: "TodoId" } },
           },
         },
       ],

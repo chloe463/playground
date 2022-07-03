@@ -1,58 +1,48 @@
 import classnames from "classnames";
-import React, { useCallback, useState } from "react";
-import { Todo, UpdateTodoInput } from "../../__generated__/types";
+import React, { useCallback } from "react";
+import { Todo, TodoId } from "../../__generated__/types";
 
 type Props = {
   todo: Todo;
-  onEdit: (todo: UpdateTodoInput) => Promise<void>;
-  onDelete: (todoToDelete: Todo) => void;
+  editingTodo: Todo | undefined;
+  onClickCheckbox: (id: TodoId, finishedAt: Date | undefined) => void;
+  onClickEdit: (todo: Todo) => void;
+  onClickCancelEdit: () => void;
+  onChangeEditForm: (v: string) => void;
+  onSubmitEdit: () => Promise<void>;
+  onClickDelete: (todoToDelete: Todo) => void;
 };
 
 export const TodoListItem: React.FC<Props> = (props) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editingTask, setEditingTask] = useState(props.todo.task);
-
   const onSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
     (e) => {
       e.preventDefault();
-      props.onEdit({
-        id: props.todo.id,
-        task: editingTask,
-      });
-      setIsEditing(false);
+      props.onSubmitEdit();
     },
-    [editingTask, props]
+    [props]
   );
 
   const onCheck = useCallback(() => {
-    const newFinishedAt = props.todo.finishedAt ? null : new Date();
-    props.onEdit({
-      id: props.todo.id,
-      task: props.todo.task,
-      finishedAt: newFinishedAt,
-    });
-  }, [props]);
-
-  const onClickDelete = useCallback(() => {
-    props.onDelete(props.todo);
+    const newFinishedAt = props.todo.finishedAt ? undefined : new Date();
+    props.onClickCheckbox(props.todo.id, newFinishedAt);
   }, [props]);
 
   return (
     <div className="group flex justify-between items-center py-2 px-6 hover:bg-black-alpha50">
-      {isEditing ? (
+      {props.editingTodo ? (
         <form className="flex justify-between items-center w-full" onSubmit={onSubmit}>
           <input
             type="text"
             className="block ml-5 w-full"
-            value={editingTask}
-            onChange={(e) => setEditingTask(e.currentTarget.value)}
+            value={props.editingTodo?.task || ""}
+            onChange={(e) => props.onChangeEditForm(e.currentTarget.value)}
             autoFocus
           />
           <div className="flex items-center ml-4 space-x-2">
             <button
               type="button"
               className="text-black-alpha500 hover:text-black-alpha700"
-              onClick={() => setIsEditing(false)}
+              onClick={() => props.onClickCancelEdit()}
             >
               [cancel]
             </button>
@@ -78,14 +68,14 @@ export const TodoListItem: React.FC<Props> = (props) => {
             <button
               type="button"
               className="text-black-alpha500 hover:text-black-alpha700"
-              onClick={() => setIsEditing((v) => !v)}
+              onClick={() => props.onClickEdit(props.todo)}
             >
               [edit]
             </button>
             <button
               type="button"
               className="text-black-alpha500 hover:text-black-alpha700"
-              onClick={onClickDelete}
+              onClick={() => props.onClickDelete(props.todo)}
             >
               [delete]
             </button>

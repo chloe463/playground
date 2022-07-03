@@ -8,7 +8,7 @@ import { PageHeader } from "../../components/PageHeader";
 import { PostDetail } from "../../components/PostList";
 import { PostList } from "../../components/PostList/PostList";
 import { usePostList } from "../../components/PostList/usePostList";
-import { addApolloStateToPageProps, initializeApollo } from "../../hooks/useAplloClient";
+import { addApolloStateToPageProps, initializeApollo } from "../../hooks/useApolloClient";
 import {
   GetPostConnectionDocument,
   GetPostConnectionQuery,

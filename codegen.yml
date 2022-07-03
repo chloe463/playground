@@ -3,7 +3,13 @@ schema: "schema.json"
 documents: "src/**/!(*.d|*.generated).{ts,tsx,graphql}"
 generates:
   src/__generated__/types.ts:
-    - typescript
+    plugins:
+      - add:
+          content: "export type TodoId = number & { __todoIdBrand: any };"
+      - typescript
+    config:
+      scalars:
+        TodoId: TodoId
   src/__generated__/graphqlOperationTypes.ts:
     preset: import-types
     presetConfig:

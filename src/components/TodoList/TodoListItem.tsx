@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 import { Todo, TodoId } from "../../__generated__/types";
 
 type Props = {
@@ -14,10 +14,6 @@ type Props = {
 };
 
 export const TodoListItem: React.FC<Props> = (props) => {
-  const isEditing = useMemo(() => {
-    return props.todo.id === props.editingTodo?.id;
-  }, [props]);
-
   const onSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
     (e) => {
       e.preventDefault();
@@ -33,7 +29,7 @@ export const TodoListItem: React.FC<Props> = (props) => {
 
   return (
     <div className="group flex justify-between items-center py-2 px-6 hover:bg-black-alpha50">
-      {isEditing ? (
+      {props.editingTodo ? (
         <form className="flex justify-between items-center w-full" onSubmit={onSubmit}>
           <input
             type="text"

@@ -21,7 +21,7 @@ export const TodoList: React.VFC<Props> = (props) => {
           <li key={todo.id}>
             <TodoListItem
               todo={todo}
-              editingTodo={props.editingTodo}
+              editingTodo={todo.id === props.editingTodo?.id ? props.editingTodo : undefined}
               onClickCheckbox={props.onClickCheckbox}
               onClickEdit={props.onClickEdit}
               onClickCancelEdit={props.onClickCancelEdit}

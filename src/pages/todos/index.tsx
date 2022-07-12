@@ -10,6 +10,10 @@ const PAGES = [
     url: "/apollo-inmemory-cache",
     label: "Apollo InMemory Cache",
   },
+  {
+    url: "/redux",
+    label: "Redux",
+  },
 ];
 
 const Component: React.VFC<Props> = () => {

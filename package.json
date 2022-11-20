@@ -24,7 +24,7 @@
     "@types/jest": "27.4.1",
     "@types/node": "16.11.27",
     "@types/react": "17.0.44",
-    "@types/react-dom": "17.0.3",
+    "@types/react-dom": "17.0.18",
     "apollo": "2.32.5",
     "classnames": "2.3.1",
     "dayjs": "1.10.4",

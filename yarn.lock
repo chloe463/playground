@@ -5917,21 +5917,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:*":
-  version: 18.0.2
-  resolution: "@types/react-dom@npm:18.0.2"
+"@types/react-dom@npm:^17.0.0":
+  version: 17.0.18
+  resolution: "@types/react-dom@npm:17.0.18"
   dependencies:
-    "@types/react": "*"
-  checksum: 2b0b138d8634ccfd8a86b17cb5414b122ee0cb6f650377d772f6008761a27e4c2531c08e3cab71aaa19b6893af6a508c664aa314db3ebcff5b8179173c9c9307
-  languageName: node
-  linkType: hard
-
-"@types/react-dom@npm:17.0.3":
-  version: 17.0.3
-  resolution: "@types/react-dom@npm:17.0.3"
-  dependencies:
-    "@types/react": "*"
-  checksum: 102a3ee9ecf96fdd82d37d90860d0b80e160a368117e4e84512c801f8c7f381d7a2b9305f155670f42eab4784d036375cbf16c9905839dd0857e7031ff966803
+    "@types/react": ^17
+  checksum: b74525b1a13a0e27fe20859ff7a7e8f7e4581fb9d45ed1b6447ad1534d86f813818353c39d0df2e28f9d2b9be2e3af1908c244b2214a979393d19f217665e614
   languageName: node
   linkType: hard
 
@@ -5954,25 +5945,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*":
-  version: 18.0.6
-  resolution: "@types/react@npm:18.0.6"
+"@types/react@npm:^17.0.0":
+  version: 17.0.53
+  resolution: "@types/react@npm:17.0.53"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 368b40176f0dab30a611c3263bf1d9878cebede9ce8015bc5661a396787dbe41f0b667b8d6d448dea7bc8c0557bf3cb329ab2b16ad2dacb18eaa764358bd16d4
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:17.0.44, @types/react@npm:^17":
-  version: 17.0.44
-  resolution: "@types/react@npm:17.0.44"
-  dependencies:
-    "@types/prop-types": "*"
-    "@types/scheduler": "*"
-    csstype: ^3.0.2
-  checksum: ebee02778ca08f954c316dc907802264e0121c87b8fa2e7e0156ab0ef2a1b0a09d968c016a3600ec4c9a17dc09b4274f292d9b15a1a5369bb7e4072def82808f
+  checksum: dacfde02c260fd98bed2eb775ed0c7ce1397be4c0844f907a50763b081a4008f81f57071889a16eb1350ddcf0927f3cf1a6541702c8ad03de3c70383ef931e3f
   languageName: node
   linkType: hard
 

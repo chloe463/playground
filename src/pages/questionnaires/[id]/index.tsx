@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { appBaseStyle, transition } from "../../../components/layout";
 import { PageHeader } from "../../../components/PageHeader";
-import { addApolloStateToPageProps, initializeApollo } from "../../../hooks/useAplloClient";
+import { addApolloStateToPageProps, initializeApollo } from "../../../hooks/useApolloClient";
 import {
   GetQuestionnaireDocument,
   GetQuestionnaireQuery,

@@ -110,6 +110,74 @@ export type QuestionnaireConnectionQuery = { __typename?: "Query" } & {
     };
 };
 
+export type CreatedTodoFragmentFragment = { __typename?: "Todo" } & Pick<
+  Types.Todo,
+  "id" | "task" | "finishedAt" | "createdAt" | "updatedAt"
+>;
+
+export type CreateTodoMutationVariables = Types.Exact<{
+  todo: Types.CreateTodoInput;
+}>;
+
+export type CreateTodoMutation = { __typename?: "Mutation" } & {
+  createTodo?: Types.Maybe<
+    { __typename?: "CreateTodoPayload" } & {
+      todo?: Types.Maybe<{ __typename?: "Todo" } & CreatedTodoFragmentFragment>;
+    }
+  >;
+};
+
+export type DeleteTodoMutationVariables = Types.Exact<{
+  id: Types.Scalars["TodoId"];
+}>;
+
+export type DeleteTodoMutation = { __typename?: "Mutation" } & {
+  deleteTodo?: Types.Maybe<
+    { __typename?: "DeleteTodoPayload" } & Pick<Types.DeleteTodoPayload, "id" | "result">
+  >;
+};
+
+export type TodoFragmentFragment = { __typename?: "Todo" } & Pick<
+  Types.Todo,
+  "id" | "task" | "finishedAt" | "createdAt" | "updatedAt"
+>;
+
+export type GetTodoConnectionQueryQueryVariables = Types.Exact<{
+  first: Types.Scalars["Int"];
+  after?: Types.Maybe<Types.Scalars["String"]>;
+}>;
+
+export type GetTodoConnectionQueryQuery = { __typename?: "Query" } & {
+  todoConnection: { __typename?: "QueryTodoConnection_Connection" } & {
+    edges: Array<
+      { __typename?: "TodoEdge" } & Pick<Types.TodoEdge, "cursor"> & {
+          node: { __typename?: "Todo" } & TodoFragmentFragment;
+        }
+    >;
+    pageInfo: { __typename?: "PageInfo" } & Pick<
+      Types.PageInfo,
+      "hasNextPage" | "hasPreviousPage" | "startCursor" | "endCursor"
+    >;
+  };
+};
+
+export type UpdatedTodoFragmentFragment = { __typename?: "Todo" } & Pick<
+  Types.Todo,
+  "id" | "task" | "finishedAt" | "updatedAt"
+>;
+
+export type UpdateTodoMutationVariables = Types.Exact<{
+  todo: Types.UpdateTodoInput;
+}>;
+
+export type UpdateTodoMutation = { __typename?: "Mutation" } & {
+  updateTodo?: Types.Maybe<
+    { __typename?: "UpdateTodoPayload" } & {
+      todo?: Types.Maybe<{ __typename?: "Todo" } & UpdatedTodoFragmentFragment>;
+    }
+  >;
+};
+
 export type GetQuestionnaireQueryVariables = Types.Exact<{
   id: Types.Scalars["Int"];
 }>;
@@ -181,6 +249,65 @@ export const QuestionnaireFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<QuestionnaireFragment, unknown>;
+export const CreatedTodoFragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CreatedTodoFragment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Todo" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "task" } },
+          { kind: "Field", name: { kind: "Name", value: "finishedAt" } },
+          { kind: "Field", name: { kind: "Name", value: "createdAt" } },
+          { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CreatedTodoFragmentFragment, unknown>;
+export const TodoFragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TodoFragment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Todo" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "task" } },
+          { kind: "Field", name: { kind: "Name", value: "finishedAt" } },
+          { kind: "Field", name: { kind: "Name", value: "createdAt" } },
+          { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<TodoFragmentFragment, unknown>;
+export const UpdatedTodoFragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UpdatedTodoFragment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Todo" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "task" } },
+          { kind: "Field", name: { kind: "Name", value: "finishedAt" } },
+          { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdatedTodoFragmentFragment, unknown>;
 export const CreateQuestionnaireDocument = {
   kind: "Document",
   definitions: [
@@ -560,6 +687,247 @@ export const QuestionnaireConnectionDocument = {
     ...QuestionnaireFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<QuestionnaireConnectionQuery, QuestionnaireConnectionQueryVariables>;
+export const CreateTodoDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "CreateTodo" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "todo" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "CreateTodoInput" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "createTodo" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "todo" },
+                value: { kind: "Variable", name: { kind: "Name", value: "todo" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "todo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CreatedTodoFragment" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...CreatedTodoFragmentFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<CreateTodoMutation, CreateTodoMutationVariables>;
+export const DeleteTodoDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "DeleteTodo" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "TodoId" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteTodo" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: { kind: "Variable", name: { kind: "Name", value: "id" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "result" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<DeleteTodoMutation, DeleteTodoMutationVariables>;
+export const GetTodoConnectionQueryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetTodoConnectionQuery" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "first" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "after" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "todoConnection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "first" },
+                value: { kind: "Variable", name: { kind: "Name", value: "first" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "after" },
+                value: { kind: "Variable", name: { kind: "Name", value: "after" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "edges" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "cursor" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "node" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "TodoFragment" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "pageInfo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "hasNextPage" } },
+                      { kind: "Field", name: { kind: "Name", value: "hasPreviousPage" } },
+                      { kind: "Field", name: { kind: "Name", value: "startCursor" } },
+                      { kind: "Field", name: { kind: "Name", value: "endCursor" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...TodoFragmentFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<GetTodoConnectionQueryQuery, GetTodoConnectionQueryQueryVariables>;
+export const UpdateTodoDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateTodo" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "todo" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "UpdateTodoInput" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateTodo" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "todo" },
+                value: { kind: "Variable", name: { kind: "Name", value: "todo" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "todo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "UpdatedTodoFragment" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...UpdatedTodoFragmentFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<UpdateTodoMutation, UpdateTodoMutationVariables>;
 export const GetQuestionnaireDocument = {
   kind: "Document",
   definitions: [

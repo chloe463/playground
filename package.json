@@ -16,7 +16,7 @@
     "@react-aria/utils": "3.11.3",
     "@react-aria/visually-hidden": "3.2.7",
     "@react-stately/checkbox": "3.0.6",
-    "@react-stately/radio": "3.3.1",
+    "@react-stately/radio": "3.8.0",
     "@react-stately/tooltip": "3.0.8",
     "@testing-library/jest-dom": "5.16.2",
     "@testing-library/react": "12.1.3",

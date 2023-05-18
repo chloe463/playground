@@ -65,8 +65,8 @@ export const PostDetail: React.VFC<Props> = (props) => {
         style={{ pointerEvents: "auto", overflow: "scroll" }}
         className="grid fixed inset-0 place-items-center bg-black-alpha300"
       >
-        <Link href={`/virtualized-list`}>
-          <a className="block fixed inset-0" />
+        <Link href={`/virtualized-list`} className="block fixed inset-0">
+
         </Link>
         <motion.div
           initial={{ opacity: 0, transform: "scale(.9)" }}

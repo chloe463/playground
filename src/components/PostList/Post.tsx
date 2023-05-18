@@ -15,12 +15,16 @@ export const Post: React.VFC<Props> = ({ post }) => {
       <motion.img src={AVATAR_URL} className="rounded-full" width={64} height={64} />
       <div className="ml-4 w-[calc(100%-80px)]">
         <header>
-          <Link href={{ pathname: `/virtualized-list/${post.id}` }} shallow>
-            <a className="hover:underline" data-cy="link-to-post-detail">
-              <h3 className="inline text-subheading text-gray-800">
-                {post.id}. {post.title}
-              </h3>
-            </a>
+          <Link
+            href={{ pathname: `/virtualized-list/${post.id}` }}
+            shallow
+            className="hover:underline"
+            data-cy="link-to-post-detail">
+
+            <h3 className="inline text-subheading text-gray-800">
+              {post.id}. {post.title}
+            </h3>
+
           </Link>
         </header>
         <motion.div className="mt-1">

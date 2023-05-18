@@ -63,17 +63,17 @@ const QuestionnaireIndex: React.VFC<Props> = (props) => (
   >
     <PageHeader title={"Questionnaire"}></PageHeader>
     <div className="py-0 px-6 mt-4">
-      <Link href={"/questionnaires"}>
-        <a
-          className={`
-              text-body2 text-black-alpha500 transition-all duration-200 ease-out
-              hover:text-black-alpha700
-              active:text-black-alpha700
-              visited:text-black-alpha500
-            `}
-        >
+      <Link
+        href={"/questionnaires"}
+        className={`
+            text-body2 text-black-alpha500 transition-all duration-200 ease-out
+            hover:text-black-alpha700
+            active:text-black-alpha700
+            visited:text-black-alpha500
+          `}>
+        
           Back to list
-        </a>
+        
       </Link>
     </div>
     <div className="mt-9 mb-24">

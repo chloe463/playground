@@ -1,5 +1,6 @@
+/** @type {import('next').NextConfig} */
 module.exports = {
-  productionSourceMaps: true,
+  productionBrowserSourceMaps: true,
   webpack: (config, _options) => {
     return config;
   },
@@ -12,4 +13,7 @@ module.exports = {
     }
   },
   swcMinify: true,
+  experimental: {
+    serverActions: true,
+  },
 };

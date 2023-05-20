@@ -5,7 +5,13 @@ module.exports = {
     "@storybook/addon-controls",
     "@storybook/addon-links",
     "@storybook/addon-a11y",
-    "@storybook/addon-postcss",
   ],
   staticDirs: ["../public"],
+  framework: {
+    name: "@storybook/nextjs",
+    options: {}
+  },
+  docs: {
+    autodocs: true
+  }
 };

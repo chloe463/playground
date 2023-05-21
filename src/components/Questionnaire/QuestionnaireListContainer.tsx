@@ -1,6 +1,5 @@
-import { useOverlayTriggerState } from "@react-stately/overlays";
 import React, { useState } from "react";
-import { Snackbar } from "../../lib";
+import { Snackbar, useDialog } from "../../lib";
 import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
 import { DeleteConfirmationModal } from "./DeleteConfirmationModal";
 import { LoadMore } from "./LoadMore";
@@ -16,7 +15,7 @@ export const QuestionnaireListContainer: React.VFC = () => {
     deleteQuestionnaire,
     cancelToDeleteQuestionnaire,
   } = useQuestionnaireList();
-  const modalState = useOverlayTriggerState({});
+  const { ref, open: openModal, close: closeModal } = useDialog({});
   const [questionnaireToDelete, setQuestionnaireToDelete] = useState<QuestionnaireFragment | null>(
     null
   );
@@ -34,11 +33,11 @@ export const QuestionnaireListContainer: React.VFC = () => {
     const q = questionnaires.find((questionnaire) => questionnaire.id === id);
     if (!q) return;
     setQuestionnaireToDelete(q);
-    modalState.open();
+    openModal();
   };
 
   const onClickSubmitDeletion = async (id: number) => {
-    modalState.close();
+    closeModal();
     try {
       await deleteQuestionnaire(id);
       // TODO: Show success snackbar
@@ -62,9 +61,9 @@ export const QuestionnaireListContainer: React.VFC = () => {
       <div className="mt-6" />
       <LoadMore pageInfo={pageInfo} loading={loading} onClickLoadMore={onClickLoadMore} />
       <DeleteConfirmationModal
-        isOpen={modalState.isOpen}
+        dialogRef={ref}
         questionnaire={questionnaireToDelete}
-        onClose={modalState.close}
+        onClose={closeModal}
         submit={onClickSubmitDeletion}
       />
       <Snackbar

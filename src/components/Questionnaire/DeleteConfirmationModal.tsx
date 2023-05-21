@@ -1,30 +1,29 @@
-import { OverlayContainer } from "@react-aria/overlays";
 import React from "react";
 import { BaseButton, PrimaryButton } from "../../lib/components/Button";
-import { ModalDialog } from "../../lib/components/ModalDialog";
+import { Dialog } from "../../lib/components/Dialog";
 import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
 
 type Props = {
-  isOpen: boolean;
   questionnaire: QuestionnaireFragment | null;
+  dialogRef: React.MutableRefObject<HTMLDialogElement | null>;
   onClose: () => void;
   submit: (id: number) => void;
 };
 
 export const DeleteConfirmationModal: React.VFC<Props> = (props) => {
-  if (!props.questionnaire) return null;
+  // if (!props.questionnaire) return null;
   return (
-    <OverlayContainer>
-      <ModalDialog
-        title={"Are you sure to delete this questionnaire?"}
-        // @ts-expect-error
-        isOpen={props.isOpen}
-        onClose={props.onClose}
-        isDismissable
-      >
+    <Dialog ref={props.dialogRef}> 
+      <div className="w-[720px]">
+          <h3
+            style={{ margin: "40px 40px 0 40px" }}
+            className="text-heading2 font-bold text-black-alpha800"
+          >
+            Are you sure to delete this questionnaire?
+          </h3>
         <div className="mx-10 mt-4">
           <p className="text-body2 text-black-alpha800">
-            <b>{props.questionnaire.title}</b>
+            <b>{props.questionnaire?.title}</b>
             &nbsp; is going to be deleted.
           </p>
         </div>
@@ -37,7 +36,7 @@ export const DeleteConfirmationModal: React.VFC<Props> = (props) => {
             OK
           </PrimaryButton>
         </div>
-      </ModalDialog>
-    </OverlayContainer>
+      </div>
+    </Dialog>
   );
 };

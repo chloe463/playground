@@ -13,6 +13,7 @@ export const CheckboxGroupContext = createContext<CheckboxGroupState>({
   value: [],
   isDisabled: false,
   isReadOnly: false,
+  validationState: "invalid",
   isSelected: (_value: string) => false,
   setValue: (_value: string[]) => {},
   addValue: (_value: string) => {},

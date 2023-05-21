@@ -13,6 +13,7 @@ export const _Default = () => {
     <OverlayProvider>
       <button onClick={() => state.open()}>toggle</button>
       <OverlayContainer>
+        {/* @ts-expect-error */}
         <ModalDialog title={"Title"} isOpen={state.isOpen} onClose={state.close} isDismissable>
           <div className="mx-10 mt-4">Content goes here.</div>
           <div className="flex justify-end px-8 mt-8 mb-5">

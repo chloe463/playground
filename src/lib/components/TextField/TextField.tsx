@@ -4,7 +4,7 @@ import mergeRefs from "react-merge-refs";
 import styled from "styled-components";
 import { colors } from "../../styles";
 
-type TextFieldProps = {} & AriaTextFieldOptions;
+type TextFieldProps = {} & AriaTextFieldOptions<"input">;
 
 export const TextField: React.VFC<TextFieldProps> = forwardRef((props, ref) => {
   const localRef = useRef<HTMLInputElement>(null);

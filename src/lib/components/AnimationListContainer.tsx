@@ -50,7 +50,7 @@ type AnimationListContainerProps = {
   readonly animationParams: AnimationParams;
 };
 
-export const AnimationListContainer: React.FC<AnimationListContainerProps> = (props) => {
+export const AnimationListContainer: React.FC<React.PropsWithChildren<AnimationListContainerProps>> = (props) => {
   const { animationParams: params, children } = props;
   const [boundingBox, setBoundingBox] = useState<BoundingBox>({});
   const [prevBoudingBox, setPrevBoundingBox] = useState<BoundingBox>({});

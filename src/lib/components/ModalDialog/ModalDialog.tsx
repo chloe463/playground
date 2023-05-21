@@ -15,11 +15,13 @@ type Props = {
   AriaDialogProps;
 
 export const ModalDialog: React.VFC<Props> = (props) => {
+  // @ts-expect-error
   const { isOpen, title, children } = props;
 
   // Handle interacting outside the dialog and pressing
   // the Escape key to close the modal.
   const ref = useRef<HTMLDivElement | null>(null);
+  // @ts-expect-error
   const { overlayProps, underlayProps } = useOverlay(props, ref);
 
   // Prevent scrolling while the modal is open, and hide content

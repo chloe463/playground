@@ -17,6 +17,7 @@ export const DeleteConfirmationModal: React.VFC<Props> = (props) => {
     <OverlayContainer>
       <ModalDialog
         title={"Are you sure to delete this questionnaire?"}
+        // @ts-expect-error
         isOpen={props.isOpen}
         onClose={props.onClose}
         isDismissable

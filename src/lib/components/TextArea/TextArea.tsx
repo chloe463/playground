@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import { colors } from "../../styles";
 
-type TextAreaProps = {} & AriaTextFieldOptions;
+type TextAreaProps = {} & AriaTextFieldOptions<"textarea">;
 
 export const TextArea: React.VFC<TextAreaProps> = (props) => {
   const ref = useRef<HTMLTextAreaElement>(null);

@@ -5,132 +5,173 @@ export type CreateQuestionnaireMutationVariables = Types.Exact<{
   questionnaire: Types.CreateQuestionnaireInput;
 }>;
 
-export type CreateQuestionnaireMutation = { __typename?: "Mutation" } & {
-  createQuestionnaire?: Types.Maybe<
-    { __typename?: "CreateQuestionnairePayload" } & {
-      questionnaire?: Types.Maybe<
-        { __typename?: "Questionnaire" } & Pick<
-          Types.Questionnaire,
-          "id" | "title" | "description" | "state" | "startAt" | "endAt"
-        >
-      >;
-    }
-  >;
+export type CreateQuestionnaireMutation = {
+  __typename?: "Mutation";
+  createQuestionnaire?: {
+    __typename?: "CreateQuestionnairePayload";
+    questionnaire?: {
+      __typename?: "Questionnaire";
+      id: number;
+      title: string;
+      description: string;
+      state: number;
+      startAt: any;
+      endAt: any;
+    } | null;
+  } | null;
 };
 
 export type GetCommentsQueryVariables = Types.Exact<{
   postId: Types.Scalars["Int"];
 }>;
 
-export type GetCommentsQuery = { __typename?: "Query" } & {
-  comments: Array<
-    Types.Maybe<
-      { __typename?: "Comment" } & Pick<Types.Comment, "id" | "postId" | "name" | "email" | "body">
-    >
-  >;
+export type GetCommentsQuery = {
+  __typename?: "Query";
+  comments: Array<{
+    __typename?: "Comment";
+    id: number;
+    postId: number;
+    name: string;
+    email: string;
+    body: string;
+  } | null>;
 };
 
-export type PostFragment = { __typename?: "Post" } & Pick<
-  Types.Post,
-  "id" | "userId" | "title" | "body"
->;
+export type PostFragment = {
+  __typename?: "Post";
+  id: number;
+  userId: number;
+  title: string;
+  body: string;
+};
 
 export type GetPostConnectionQueryVariables = Types.Exact<{
-  first?: Types.Maybe<Types.Scalars["Int"]>;
-  after?: Types.Maybe<Types.Scalars["String"]>;
-  query?: Types.Maybe<Types.Scalars["String"]>;
+  first?: Types.InputMaybe<Types.Scalars["Int"]>;
+  after?: Types.InputMaybe<Types.Scalars["String"]>;
+  query?: Types.InputMaybe<Types.Scalars["String"]>;
 }>;
 
-export type GetPostConnectionQuery = { __typename?: "Query" } & {
-  postConnection: { __typename?: "QueryPostConnection_Connection" } & Pick<
-    Types.QueryPostConnection_Connection,
-    "totalCount"
-  > & {
-      pageInfo: { __typename?: "PageInfo" } & Pick<
-        Types.PageInfo,
-        "hasNextPage" | "hasPreviousPage" | "startCursor" | "endCursor"
-      >;
-      edges: Array<
-        { __typename?: "PostEdge" } & Pick<Types.PostEdge, "cursor"> & {
-            node: { __typename?: "Post" } & PostFragment;
-          }
-      >;
+export type GetPostConnectionQuery = {
+  __typename?: "Query";
+  postConnection: {
+    __typename?: "QueryPostConnection_Connection";
+    totalCount: number;
+    pageInfo: {
+      __typename?: "PageInfo";
+      hasNextPage: boolean;
+      hasPreviousPage: boolean;
+      startCursor?: string | null;
+      endCursor?: string | null;
     };
+    edges: Array<{
+      __typename?: "PostEdge";
+      cursor: string;
+      node: { __typename?: "Post"; id: number; userId: number; title: string; body: string };
+    }>;
+  };
 };
 
-export type QuestionnaireFragment = { __typename?: "Questionnaire" } & Pick<
-  Types.Questionnaire,
-  "id" | "title" | "description" | "state" | "startAt" | "endAt"
-> & { questions: Array<Types.Maybe<{ __typename?: "Question" } & Pick<Types.Question, "id">>> };
+export type QuestionnaireFragment = {
+  __typename?: "Questionnaire";
+  id: number;
+  title: string;
+  description: string;
+  state: number;
+  startAt: any;
+  endAt: any;
+  questions: Array<{ __typename?: "Question"; id: number } | null>;
+};
 
 export type CancelToDeleteQuestionnaireMutationVariables = Types.Exact<{
   id: Types.Scalars["Int"];
 }>;
 
-export type CancelToDeleteQuestionnaireMutation = { __typename?: "Mutation" } & {
-  cancelToDeleteQuestionnaire?: Types.Maybe<
-    { __typename?: "CancelToDeleteQuestionnairePayload" } & {
-      questionnaire?: Types.Maybe<{ __typename?: "Questionnaire" } & QuestionnaireFragment>;
-    }
-  >;
+export type CancelToDeleteQuestionnaireMutation = {
+  __typename?: "Mutation";
+  cancelToDeleteQuestionnaire?: {
+    __typename?: "CancelToDeleteQuestionnairePayload";
+    questionnaire?: {
+      __typename?: "Questionnaire";
+      id: number;
+      title: string;
+      description: string;
+      state: number;
+      startAt: any;
+      endAt: any;
+      questions: Array<{ __typename?: "Question"; id: number } | null>;
+    } | null;
+  } | null;
 };
 
 export type DeleteQuestionnaireMutationVariables = Types.Exact<{
   id: Types.Scalars["Int"];
 }>;
 
-export type DeleteQuestionnaireMutation = { __typename?: "Mutation" } & {
-  deleteQuestionnaire?: Types.Maybe<
-    { __typename?: "DeleteQuestionnairePayload" } & Pick<
-      Types.DeleteQuestionnairePayload,
-      "id" | "result"
-    >
-  >;
+export type DeleteQuestionnaireMutation = {
+  __typename?: "Mutation";
+  deleteQuestionnaire?: {
+    __typename?: "DeleteQuestionnairePayload";
+    id?: number | null;
+    result?: boolean | null;
+  } | null;
 };
 
 export type QuestionnaireConnectionQueryVariables = Types.Exact<{
-  first?: Types.Maybe<Types.Scalars["Int"]>;
-  after?: Types.Maybe<Types.Scalars["String"]>;
+  first?: Types.InputMaybe<Types.Scalars["Int"]>;
+  after?: Types.InputMaybe<Types.Scalars["String"]>;
 }>;
 
-export type QuestionnaireConnectionQuery = { __typename?: "Query" } & {
-  questionnaireConnection: { __typename?: "QueryQuestionnaireConnection_Connection" } & Pick<
-    Types.QueryQuestionnaireConnection_Connection,
-    "totalCount"
-  > & {
-      pageInfo: { __typename?: "PageInfo" } & Pick<
-        Types.PageInfo,
-        "hasNextPage" | "hasPreviousPage" | "startCursor" | "endCursor"
-      >;
-      edges: Array<
-        { __typename?: "QuestionnaireEdge" } & Pick<Types.QuestionnaireEdge, "cursor"> & {
-            node: { __typename?: "Questionnaire" } & QuestionnaireFragment;
-          }
-      >;
+export type QuestionnaireConnectionQuery = {
+  __typename?: "Query";
+  questionnaireConnection: {
+    __typename?: "QueryQuestionnaireConnection_Connection";
+    totalCount: number;
+    pageInfo: {
+      __typename?: "PageInfo";
+      hasNextPage: boolean;
+      hasPreviousPage: boolean;
+      startCursor?: string | null;
+      endCursor?: string | null;
     };
+    edges: Array<{
+      __typename?: "QuestionnaireEdge";
+      cursor: string;
+      node: {
+        __typename?: "Questionnaire";
+        id: number;
+        title: string;
+        description: string;
+        state: number;
+        startAt: any;
+        endAt: any;
+        questions: Array<{ __typename?: "Question"; id: number } | null>;
+      };
+    }>;
+  };
 };
 
 export type GetQuestionnaireQueryVariables = Types.Exact<{
   id: Types.Scalars["Int"];
 }>;
 
-export type GetQuestionnaireQuery = { __typename?: "Query" } & {
-  questionnaire?: Types.Maybe<
-    { __typename?: "Questionnaire" } & Pick<
-      Types.Questionnaire,
-      "id" | "title" | "description" | "state" | "startAt" | "endAt"
-    > & {
-        questions: Array<
-          Types.Maybe<
-            { __typename?: "Question" } & Pick<Types.Question, "id" | "type" | "text"> & {
-                options: Array<
-                  Types.Maybe<{ __typename?: "Option" } & Pick<Types.Option, "id" | "text">>
-                >;
-              }
-          >
-        >;
-      }
-  >;
+export type GetQuestionnaireQuery = {
+  __typename?: "Query";
+  questionnaire?: {
+    __typename?: "Questionnaire";
+    id: number;
+    title: string;
+    description: string;
+    state: number;
+    startAt: any;
+    endAt: any;
+    questions: Array<{
+      __typename?: "Question";
+      id: number;
+      type: number;
+      text: string;
+      options: Array<{ __typename?: "Option"; id: number; text: string } | null>;
+    } | null>;
+  } | null;
 };
 
 export const PostFragmentDoc = {

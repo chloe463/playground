@@ -1,4 +1,5 @@
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -20,11 +21,11 @@ export type CancelToDeleteQuestionnairePayload = {
 
 export type Comment = {
   __typename?: "Comment";
-  id: Scalars["Int"];
-  postId: Scalars["Int"];
-  name: Scalars["String"];
-  email: Scalars["String"];
   body: Scalars["String"];
+  email: Scalars["String"];
+  id: Scalars["Int"];
+  name: Scalars["String"];
+  postId: Scalars["Int"];
 };
 
 export type CreateOptionInput = {
@@ -32,19 +33,19 @@ export type CreateOptionInput = {
 };
 
 export type CreateQuestionInput = {
+  options?: InputMaybe<Array<InputMaybe<CreateOptionInput>>>;
+  required: Scalars["Boolean"];
   text: Scalars["String"];
   type: Scalars["Int"];
-  required: Scalars["Boolean"];
-  options?: Maybe<Array<Maybe<CreateOptionInput>>>;
 };
 
 export type CreateQuestionnaireInput = {
-  title: Scalars["String"];
   description: Scalars["String"];
-  state?: Maybe<Scalars["Int"]>;
-  startAt: Scalars["DateTime"];
   endAt: Scalars["DateTime"];
-  questions?: Maybe<Array<Maybe<CreateQuestionInput>>>;
+  questions?: InputMaybe<Array<InputMaybe<CreateQuestionInput>>>;
+  startAt: Scalars["DateTime"];
+  state?: InputMaybe<Scalars["Int"]>;
+  title: Scalars["String"];
 };
 
 export type CreateQuestionnairePayload = {
@@ -64,21 +65,21 @@ export type DeleteQuestionnairePayload = {
 
 export type Mutation = {
   __typename?: "Mutation";
+  cancelToDeleteQuestionnaire?: Maybe<CancelToDeleteQuestionnairePayload>;
   createQuestionnaire?: Maybe<CreateQuestionnairePayload>;
   deleteQuestionnaire?: Maybe<DeleteQuestionnairePayload>;
-  cancelToDeleteQuestionnaire?: Maybe<CancelToDeleteQuestionnairePayload>;
   updateQuestionnaire?: Maybe<UpdateQuestionnairePayload>;
 };
 
-export type MutationCreateQuestionnaireArgs = {
-  questionnaire?: Maybe<CreateQuestionnaireInput>;
-};
-
-export type MutationDeleteQuestionnaireArgs = {
+export type MutationCancelToDeleteQuestionnaireArgs = {
   id: Scalars["Int"];
 };
 
-export type MutationCancelToDeleteQuestionnaireArgs = {
+export type MutationCreateQuestionnaireArgs = {
+  questionnaire?: InputMaybe<CreateQuestionnaireInput>;
+};
+
+export type MutationDeleteQuestionnaireArgs = {
   id: Scalars["Int"];
 };
 
@@ -95,22 +96,22 @@ export type Option = {
 /** PageInfo cursor, as defined in https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo */
 export type PageInfo = {
   __typename?: "PageInfo";
+  /** The cursor corresponding to the last nodes in edges. Null if the connection is empty. */
+  endCursor?: Maybe<Scalars["String"]>;
   /** Used to indicate whether more edges exist following the set defined by the clients arguments. */
   hasNextPage: Scalars["Boolean"];
   /** Used to indicate whether more edges exist prior to the set defined by the clients arguments. */
   hasPreviousPage: Scalars["Boolean"];
   /** The cursor corresponding to the first nodes in edges. Null if the connection is empty. */
   startCursor?: Maybe<Scalars["String"]>;
-  /** The cursor corresponding to the last nodes in edges. Null if the connection is empty. */
-  endCursor?: Maybe<Scalars["String"]>;
 };
 
 export type Post = {
   __typename?: "Post";
-  id: Scalars["Int"];
-  userId: Scalars["Int"];
-  title: Scalars["String"];
   body: Scalars["String"];
+  id: Scalars["Int"];
+  title: Scalars["String"];
+  userId: Scalars["Int"];
 };
 
 export type PostEdge = {
@@ -136,27 +137,27 @@ export type QueryCommentsArgs = {
 };
 
 export type QueryPostConnectionArgs = {
-  query?: Maybe<Scalars["String"]>;
-  first?: Maybe<Scalars["Int"]>;
-  after?: Maybe<Scalars["String"]>;
-  last?: Maybe<Scalars["Int"]>;
-  before?: Maybe<Scalars["String"]>;
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  query?: InputMaybe<Scalars["String"]>;
 };
 
 export type QueryPostsArgs = {
-  start?: Maybe<Scalars["String"]>;
-  limit?: Maybe<Scalars["Int"]>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  start?: InputMaybe<Scalars["String"]>;
 };
 
 export type QueryQuestionnaireArgs = {
-  id?: Maybe<Scalars["Int"]>;
+  id?: InputMaybe<Scalars["Int"]>;
 };
 
 export type QueryQuestionnaireConnectionArgs = {
-  first?: Maybe<Scalars["Int"]>;
-  after?: Maybe<Scalars["String"]>;
-  last?: Maybe<Scalars["Int"]>;
-  before?: Maybe<Scalars["String"]>;
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
 };
 
 export type QueryPostConnection_Connection = {
@@ -180,20 +181,20 @@ export type QueryQuestionnaireConnection_Connection = {
 export type Question = {
   __typename?: "Question";
   id: Scalars["Int"];
-  type: Scalars["Int"];
-  text: Scalars["String"];
   options: Array<Maybe<Option>>;
+  text: Scalars["String"];
+  type: Scalars["Int"];
 };
 
 export type Questionnaire = {
   __typename?: "Questionnaire";
-  id: Scalars["Int"];
-  title: Scalars["String"];
   description: Scalars["String"];
-  state: Scalars["Int"];
-  startAt: Scalars["DateTime"];
   endAt: Scalars["DateTime"];
+  id: Scalars["Int"];
   questions: Array<Maybe<Question>>;
+  startAt: Scalars["DateTime"];
+  state: Scalars["Int"];
+  title: Scalars["String"];
 };
 
 export type QuestionnaireEdge = {
@@ -205,26 +206,26 @@ export type QuestionnaireEdge = {
 };
 
 export type UpdateOptionInput = {
-  id?: Maybe<Scalars["Int"]>;
-  text?: Maybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["Int"]>;
+  text?: InputMaybe<Scalars["String"]>;
 };
 
 export type UpdateQuestionInput = {
-  id?: Maybe<Scalars["Int"]>;
-  text?: Maybe<Scalars["String"]>;
-  type?: Maybe<Scalars["Int"]>;
-  required?: Maybe<Scalars["Boolean"]>;
-  options?: Maybe<Array<Maybe<UpdateOptionInput>>>;
+  id?: InputMaybe<Scalars["Int"]>;
+  options?: InputMaybe<Array<InputMaybe<UpdateOptionInput>>>;
+  required?: InputMaybe<Scalars["Boolean"]>;
+  text?: InputMaybe<Scalars["String"]>;
+  type?: InputMaybe<Scalars["Int"]>;
 };
 
 export type UpdateQuestionnaireInput = {
+  description?: InputMaybe<Scalars["String"]>;
+  endAt?: InputMaybe<Scalars["DateTime"]>;
   id: Scalars["Int"];
-  title?: Maybe<Scalars["String"]>;
-  description?: Maybe<Scalars["String"]>;
-  state?: Maybe<Scalars["Int"]>;
-  startAt?: Maybe<Scalars["DateTime"]>;
-  endAt?: Maybe<Scalars["DateTime"]>;
-  questions?: Maybe<Array<Maybe<UpdateQuestionInput>>>;
+  questions?: InputMaybe<Array<InputMaybe<UpdateQuestionInput>>>;
+  startAt?: InputMaybe<Scalars["DateTime"]>;
+  state?: InputMaybe<Scalars["Int"]>;
+  title?: InputMaybe<Scalars["String"]>;
 };
 
 export type UpdateQuestionnairePayload = {

@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
   }
 };
 
-const Questionnaires: React.VFC<Props> = () => {
+const Questionnaires: React.FC<Props> = () => {
   const router = useRouter();
   return (
     <motion.div

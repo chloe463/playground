@@ -23,7 +23,7 @@ const CREATE_NEW_QUESTIONNAIRE_MUTATION = gql`
 
 type Props = {};
 
-export const NewQuestionnaireFormContainer: React.VFC<Props> = () => {
+export const NewQuestionnaireFormContainer: React.FC<Props> = () => {
   const router = useRouter();
   const [mutate] = useMutation(CreateQuestionnaireDocument);
 

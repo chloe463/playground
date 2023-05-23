@@ -10,17 +10,17 @@ type Props = {
   submit: (id: number) => void;
 };
 
-export const DeleteConfirmationModal: React.VFC<Props> = (props) => {
+export const DeleteConfirmationModal: React.FC<Props> = (props) => {
   // if (!props.questionnaire) return null;
   return (
-    <Dialog ref={props.dialogRef}> 
+    <Dialog ref={props.dialogRef}>
       <div className="w-[720px]">
-          <h3
-            style={{ margin: "40px 40px 0 40px" }}
-            className="text-heading2 font-bold text-black-alpha800"
-          >
-            Are you sure to delete this questionnaire?
-          </h3>
+        <h3
+          style={{ margin: "40px 40px 0 40px" }}
+          className="text-heading2 font-bold text-black-alpha800"
+        >
+          Are you sure to delete this questionnaire?
+        </h3>
         <div className="mx-10 mt-4">
           <p className="text-body2 text-black-alpha800">
             <b>{props.questionnaire?.title}</b>

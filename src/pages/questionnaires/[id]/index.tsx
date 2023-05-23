@@ -53,7 +53,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ query }) =
   });
 };
 
-const QuestionnaireIndex: React.VFC<Props> = (props) => (
+const QuestionnaireIndex: React.FC<Props> = (props) => (
   <motion.div
     className={appBaseStyle}
     initial={{ opacity: 0, x: 32 }}
@@ -70,10 +70,9 @@ const QuestionnaireIndex: React.VFC<Props> = (props) => (
             hover:text-black-alpha700
             active:text-black-alpha700
             visited:text-black-alpha500
-          `}>
-        
-          Back to list
-        
+          `}
+      >
+        Back to list
       </Link>
     </div>
     <div className="mt-9 mb-24">

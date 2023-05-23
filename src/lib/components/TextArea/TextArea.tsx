@@ -5,7 +5,7 @@ import { colors } from "../../styles";
 
 type TextAreaProps = {} & AriaTextFieldOptions<"textarea">;
 
-export const TextArea: React.VFC<TextAreaProps> = (props) => {
+export const TextArea: React.FC<TextAreaProps> = (props) => {
   const ref = useRef<HTMLTextAreaElement>(null);
   const { inputProps, labelProps } = useTextField(props, ref) as {
     inputProps: React.TextareaHTMLAttributes<HTMLTextAreaElement>;

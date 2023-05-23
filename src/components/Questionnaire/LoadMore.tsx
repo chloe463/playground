@@ -7,7 +7,7 @@ type Props = {
   onClickLoadMore: () => void;
 };
 
-export const LoadMore: React.VFC<Props> = (props) => {
+export const LoadMore: React.FC<Props> = (props) => {
   const { pageInfo } = props;
 
   if (!pageInfo?.hasNextPage) {

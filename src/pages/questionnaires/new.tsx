@@ -7,7 +7,7 @@ import { PageHeader } from "../../components/PageHeader";
 
 type Props = {};
 
-const NewQuestionnaire: React.VFC<Props> = () => {
+const NewQuestionnaire: React.FC<Props> = () => {
   return (
     <motion.div
       className={appBaseStyle}
@@ -25,10 +25,9 @@ const NewQuestionnaire: React.VFC<Props> = () => {
             hover:text-black-alpha700
             active:text-black-alpha700
             visited:text-black-alpha500
-          `}>
-          
-            Back to list
-          
+          `}
+        >
+          Back to list
         </Link>
       </div>
       <div className="mt-9 mb-24">

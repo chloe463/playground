@@ -1,7 +1,7 @@
-import React, { createContext } from "react";
-import { CheckboxGroupState, useCheckboxGroupState } from "@react-stately/checkbox";
 import { useCheckboxGroup } from "@react-aria/checkbox";
+import { CheckboxGroupState, useCheckboxGroupState } from "@react-stately/checkbox";
 import { CheckboxGroupProps } from "@react-types/checkbox";
+import React, { createContext } from "react";
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
 
@@ -21,7 +21,7 @@ export const CheckboxGroupContext = createContext<CheckboxGroupState>({
   toggleValue: (_value: string) => {},
 });
 
-export const CheckboxGroup: React.VFC<CheckboxProps> = (props) => {
+export const CheckboxGroup: React.FC<CheckboxProps> = (props) => {
   const { label, children } = props;
   const state = useCheckboxGroupState(props);
   const { groupProps, labelProps } = useCheckboxGroup(props, state);

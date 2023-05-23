@@ -32,16 +32,14 @@ const PAGES: Page[] = [
   },
 ];
 
-export const SideBar: React.VFC<Props> = (props) => {
+export const SideBar: React.FC<Props> = (props) => {
   return (
     <nav className="block mt-6 w-[280px]">
       <Link href="/" className="flex items-center py-4 px-8 no-underline">
-
         <div className="block w-9 h-9 bg-black-alpha500 rounded" />
         <h2 className="ml-4 text-heading2 text-black-alpha700 hover:text-black-alpha800">
           My sandbox
         </h2>
-
       </Link>
       <ul className="mt-14">
         {PAGES.map((page) => {
@@ -61,8 +59,8 @@ export const SideBar: React.VFC<Props> = (props) => {
                     "text-black-alpha800": props.currentPathName.startsWith(page.url),
                     "text-black-alpha500": !props.currentPathName.startsWith(page.url),
                   }
-                )}>
-
+                )}
+              >
                 <div
                   className={classnames(
                     "block mr-4 w-6 h-6 rounded transition-all duration-200 ease-out",
@@ -73,7 +71,6 @@ export const SideBar: React.VFC<Props> = (props) => {
                   )}
                 />
                 {page.name}
-
               </Link>
             </li>
           );

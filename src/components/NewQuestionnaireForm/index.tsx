@@ -9,7 +9,7 @@ type Props = {
   onSubmit: (data: CreateQuestionnaireInput) => void;
 };
 
-export const NewQuestionnaireForm: React.VFC<Props> = ({ onSubmit }) => {
+export const NewQuestionnaireForm: React.FC<Props> = ({ onSubmit }) => {
   const { formState, handleSubmit, control, watch } = useForm<CreateQuestionnaireInput>({
     mode: "onChange",
     defaultValues: {

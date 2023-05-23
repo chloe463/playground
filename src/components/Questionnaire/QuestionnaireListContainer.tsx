@@ -6,7 +6,7 @@ import { LoadMore } from "./LoadMore";
 import { QuestionnaireList } from "./QuestionnaireList";
 import { useQuestionnaireList } from "./useQuestionnaireList";
 
-export const QuestionnaireListContainer: React.VFC = () => {
+export const QuestionnaireListContainer: React.FC = () => {
   const {
     loading,
     questionnaires,

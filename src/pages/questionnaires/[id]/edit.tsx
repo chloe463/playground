@@ -31,7 +31,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ query }) =
   });
 };
 
-const EditQuestionnaire: React.VFC<Props> = (props) => {
+const EditQuestionnaire: React.FC<Props> = (props) => {
   return (
     <motion.div
       className={appBaseStyle}
@@ -49,10 +49,9 @@ const EditQuestionnaire: React.VFC<Props> = (props) => {
             hover:text-black-alpha700
             active:text-black-alpha700
             visited:text-black-alpha500
-          `}>
-          
-            Back to list
-          
+          `}
+        >
+          Back to list
         </Link>
       </div>
       <div className="mt-9 mb-24">

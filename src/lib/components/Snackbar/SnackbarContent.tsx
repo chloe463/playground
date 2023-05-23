@@ -9,7 +9,7 @@ export type SnackbarContentProps = {
   children: React.ReactNode;
 };
 
-export const SnackbarContent: React.VFC<SnackbarContentProps> = (props) => {
+export const SnackbarContent: React.FC<SnackbarContentProps> = (props) => {
   const { position } = props;
   return createPortal(
     <motion.div

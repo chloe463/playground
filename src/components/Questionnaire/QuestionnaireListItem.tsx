@@ -37,7 +37,7 @@ const INDICATOR_COLORS: string[] = [
   colors.blackAlpha500,
 ];
 
-export const QuestionnaireListItem: React.VFC<Props> = (props) => {
+export const QuestionnaireListItem: React.FC<Props> = (props) => {
   const { questionnaire, onClickDelete } = props;
 
   const onClickAnswers = useCallback((e: React.MouseEvent) => {
@@ -59,11 +59,9 @@ export const QuestionnaireListItem: React.VFC<Props> = (props) => {
       />
       <div className="ml-4">
         <Link href={`/questionnaires/${questionnaire.id}`}>
-          <a>
-            <h3 className="text-subheading font-semibold tracking-wide text-black-alpha800 hover:text-black-alpha700 hover:underline">
-              {questionnaire.title}
-            </h3>
-          </a>
+          <h3 className="text-subheading font-semibold tracking-wide text-black-alpha800 hover:text-black-alpha700 hover:underline">
+            {questionnaire.title}
+          </h3>
         </Link>
         <div className="flex items-center">
           <span
@@ -80,14 +78,19 @@ export const QuestionnaireListItem: React.VFC<Props> = (props) => {
       <div className="flex absolute right-6 items-center space-x-4 opacity-0 group-hover:opacity-100 transition-transform duration-200 translate-x-4 group-hover:translate-x-0">
         <Tooltip delay={50} offset={{ y: 8 }} content={<span>Edit</span>}>
           <div>
-            <Link href={{ pathname: `/questionnaires/${questionnaire.id}/edit` }}>
-              <a aria-label={`Edit a questionnaire ${questionnaire.id}`}>
-                <Pencil className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
-              </a>
+            <Link
+              href={{ pathname: `/questionnaires/${questionnaire.id}/edit` }}
+              aria-label={`Edit a questionnaire ${questionnaire.id}`}
+            >
+              <Pencil className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
             </Link>
           </div>
         </Tooltip>
-        <Tooltip delay={50} offset={{ y: 8 }} content={<span className="whitespace-nowrap">See result</span>}>
+        <Tooltip
+          delay={50}
+          offset={{ y: 8 }}
+          content={<span className="whitespace-nowrap">See result</span>}
+        >
           <button
             onClick={onClickAnswers}
             aria-label={`See result of questionnaire ${questionnaire.id}`}

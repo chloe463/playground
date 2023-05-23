@@ -7,7 +7,7 @@ type Props = {
   onClickDelete: (id: number) => void;
 };
 
-export const QuestionnaireList: React.VFC<Props> = ({ questionnaires, onClickDelete }) => {
+export const QuestionnaireList: React.FC<Props> = ({ questionnaires, onClickDelete }) => {
   return (
     <div>
       <ul>

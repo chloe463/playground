@@ -17,7 +17,7 @@ type DropdownProps<T = string> = {
   onBlur?: () => void;
 };
 
-export const Dropdown: React.VFC<DropdownProps> = (props) => {
+export const Dropdown: React.FC<DropdownProps> = (props) => {
   const {
     placeholder,
     options,

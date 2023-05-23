@@ -7,7 +7,7 @@ import { PageHeader } from "../../components/PageHeader";
 
 type Props = {};
 
-const NewQuestionnaire: React.VFC<Props> = () => {
+const NewQuestionnaire: React.FC<Props> = () => {
   return (
     <motion.div
       className={appBaseStyle}
@@ -18,17 +18,16 @@ const NewQuestionnaire: React.VFC<Props> = () => {
     >
       <PageHeader title={"Create New Questionnaire"}></PageHeader>
       <div className="py-0 px-6 mt-4">
-        <Link href={"/questionnaires"}>
-          <a
-            className={`
-              text-body2 text-black-alpha500 transition-all duration-200 ease-out
-              hover:text-black-alpha700
-              active:text-black-alpha700
-              visited:text-black-alpha500
-            `}
-          >
-            Back to list
-          </a>
+        <Link
+          href={"/questionnaires"}
+          className={`
+            text-body2 text-black-alpha500 transition-all duration-200 ease-out
+            hover:text-black-alpha700
+            active:text-black-alpha700
+            visited:text-black-alpha500
+          `}
+        >
+          Back to list
         </Link>
       </div>
       <div className="mt-9 mb-24">

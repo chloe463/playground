@@ -3,6 +3,6 @@ import { NewQuestionEditForm } from "./NewQuestionEditForm";
 
 type Props = {};
 
-export const NewQuestionEditFormContainer: React.VFC<Props> = () => {
+export const NewQuestionEditFormContainer: React.FC<Props> = () => {
   return <NewQuestionEditForm />;
 };

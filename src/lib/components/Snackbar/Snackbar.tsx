@@ -14,7 +14,7 @@ export type SnackbarProps = {
   onHide?: () => void;
 };
 
-export const Snackbar: React.VFC<SnackbarProps> = (props) => {
+export const Snackbar: React.FC<SnackbarProps> = (props) => {
   useEffect(() => {
     if (props.duration) {
       const timerId = setTimeout(() => {

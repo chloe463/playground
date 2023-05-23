@@ -26,7 +26,7 @@ type Props = {
   post: PostFragment;
 };
 
-export const PostDetail: React.VFC<Props> = (props) => {
+export const PostDetail: React.FC<Props> = (props) => {
   const { post } = props;
   const contentRef = useRef<HTMLDivElement | null>(null);
 
@@ -65,9 +65,7 @@ export const PostDetail: React.VFC<Props> = (props) => {
         style={{ pointerEvents: "auto", overflow: "scroll" }}
         className="grid fixed inset-0 place-items-center bg-black-alpha300"
       >
-        <Link href={`/virtualized-list`}>
-          <a className="block fixed inset-0" />
-        </Link>
+        <Link href={`/virtualized-list`} className="block fixed inset-0"></Link>
         <motion.div
           initial={{ opacity: 0, transform: "scale(.9)" }}
           animate={{

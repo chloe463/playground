@@ -13,10 +13,10 @@ type OptionsProps<T = string> = {
   onChange: (v: T) => void;
 };
 
-type GetItemType<Comp> = Comp extends React.VFC<OptionsProps<infer T>> ? T : unknown;
+type GetItemType<Comp> = Comp extends React.FC<OptionsProps<infer T>> ? T : unknown;
 type ItemType = GetItemType<typeof Options>;
 
-export const Options: React.VFC<OptionsProps> = ({
+export const Options: React.FC<OptionsProps> = ({
   baseRef,
   options,
   selectedItem,

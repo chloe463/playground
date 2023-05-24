@@ -1,4 +1,3 @@
-import { gql } from "@apollo/client";
 import { motion } from "framer-motion";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
@@ -10,12 +9,13 @@ import {
   GetQuestionnaireDocument,
   GetQuestionnaireQuery,
 } from "../../../__generated__/graphqlOperationTypes";
+import { graphql } from "../../../__generated__/gql-masking";
 
 type Props = {
   questionnaire: GetQuestionnaireQuery;
 };
 
-export const _GET_QUESTIONNAIRE = gql`
+export const _GET_QUESTIONNAIRE = graphql(/* GraphQL */ `
   query GetQuestionnaire($id: Int!) {
     questionnaire(id: $id) {
       id
@@ -35,7 +35,7 @@ export const _GET_QUESTIONNAIRE = gql`
       }
     }
   }
-`;
+`);
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ query }) => {
   const { id } = query;

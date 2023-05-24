@@ -1,5 +1,6 @@
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useCallback } from "react";
+import { graphql } from "../../__generated__/gql-masking";
 import {
   CancelToDeleteQuestionnaireDocument,
   QuestionnaireConnectionDocument,
@@ -9,7 +10,7 @@ export type CancelToDeleteQuestionnaire = {
   cancelToDeleteQuestionnaire: (id: number) => Promise<void>;
 };
 
-export const QUESTIONNAIRE_FRAGMENT = gql`
+export const QUESTIONNAIRE_FRAGMENT = graphql(/* GraphQL */ `
   fragment Questionnaire on Questionnaire {
     id
     title
@@ -21,9 +22,9 @@ export const QUESTIONNAIRE_FRAGMENT = gql`
       id
     }
   }
-`;
+`);
 
-const _CANCEL_TO_DELETE_QUESTIONNAIRE_MUTATION = gql`
+const _CANCEL_TO_DELETE_QUESTIONNAIRE_MUTATION = graphql(/* GraphQL */ `
   mutation CancelToDeleteQuestionnaire($id: Int!) {
     cancelToDeleteQuestionnaire(id: $id) {
       questionnaire {
@@ -32,7 +33,7 @@ const _CANCEL_TO_DELETE_QUESTIONNAIRE_MUTATION = gql`
     }
   }
   ${QUESTIONNAIRE_FRAGMENT}
-`;
+`);
 
 export const useCancelToQuestionnaire = (): CancelToDeleteQuestionnaire => {
   const [cancelToDeleteQuestionnaireMutation] = useMutation(CancelToDeleteQuestionnaireDocument, {

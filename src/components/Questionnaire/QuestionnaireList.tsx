@@ -3,7 +3,7 @@ import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes
 import { QuestionnaireListItem } from "./QuestionnaireListItem";
 
 type Props = {
-  questionnaires: QuestionnaireFragment[];
+  questionnaires: readonly QuestionnaireFragment[];
   onClickDelete: (id: number) => void;
 };
 

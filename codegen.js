@@ -19,6 +19,13 @@ const config = {
         "typed-document-node",
       ],
     },
+    "src/__generated__/gql-masking/": {
+      preset: "client-preset",
+      /** @type {import("@graphql-codegen/client-preset").ClientPresetConfig } */
+      presetConfig: {
+        fragmentMasking: true,
+      },
+    },
   },
   hooks: {
     afterAllFileWrite: [

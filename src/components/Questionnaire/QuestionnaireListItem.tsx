@@ -1,15 +1,15 @@
-import { gql } from "@apollo/client";
 import Link from "next/link";
 import React, { useCallback } from "react";
 import { colors, Tooltip } from "../../lib";
 import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
+import { graphql } from "../../__generated__/gql-masking";
 import { Chart } from "./Chart";
 import { Pencil } from "./Pencil";
 import { Trash } from "./Trash";
 
 const DUMMY_COVER_IMAGE_URL = "https://dummyimage.com/128x64/b3b3b3/ffffff";
 
-export const QUESTIONNAIRE_FRAGMENT = gql`
+export const QUESTIONNAIRE_FRAGMENT = graphql(/* GraphQL */`
   fragment Questionnaire on Questionnaire {
     id
     title
@@ -21,7 +21,7 @@ export const QUESTIONNAIRE_FRAGMENT = gql`
       id
     }
   }
-`;
+`);
 
 type Props = {
   questionnaire: QuestionnaireFragment;

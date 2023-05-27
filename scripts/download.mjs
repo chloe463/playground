@@ -8,20 +8,24 @@ import { fileURLToPath } from "node:url";
 
 dotenv.config();
 
-const host = process.env.NEXT_PUBLIC_GRAPHQL_SERVER_URI || "http://localhost:4000";
-const url = `${host}/graphql`;
-
-const response = await axios({
-  url,
-  method: "POST",
-  data: {
-    query: getIntrospectionQuery(),
-  },
-});
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const outFile = join(__dirname, "../schema.json");
 
+const host = process.env.NEXT_PUBLIC_GRAPHQL_SERVER_URI || "http://localhost:4000";
+const url = `${host}/graphql`;
 
-writeFileSync(outFile, JSON.stringify(response.data.data, null, 2), "utf-8");
+try {
+  const response = await axios({
+    url,
+    method: "POST",
+    data: {
+      query: getIntrospectionQuery(),
+    },
+  });
+  writeFileSync(outFile, JSON.stringify(response.data.data, null, 2), "utf-8");
+  console.log(`Schema data is written to ${outFile}`);
+} catch (e) {
+  console.error(e);
+  process.exit(1);
+}

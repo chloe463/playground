@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { Snackbar, useDialog } from "../../lib";
+import { getFragmentData } from "../../__generated__/gql-masking";
 import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
+import { Snackbar, useDialog } from "../../lib";
 import { DeleteConfirmationModal } from "./DeleteConfirmationModal";
 import { LoadMore } from "./LoadMore";
 import { QuestionnaireList } from "./QuestionnaireList";
-import { useQuestionnaireList } from "./useQuestionnaireList";
+import { QUESTIONNAIRE_FRAGMENT, useQuestionnaireList } from "./useQuestionnaireList";
 
 export const QuestionnaireListContainer: React.FC = () => {
   const {
     loading,
-    questionnaires,
+    questionnaires: _questionnaires,
     pageInfo,
     loadMore,
     deleteQuestionnaire,
@@ -20,6 +21,7 @@ export const QuestionnaireListContainer: React.FC = () => {
     null
   );
   const [snackbarIsVisible, setSnackbarIsVisible] = useState(false);
+  const questionnaires = getFragmentData(QUESTIONNAIRE_FRAGMENT, _questionnaires);
 
   if (loading || !questionnaires) {
     return null;

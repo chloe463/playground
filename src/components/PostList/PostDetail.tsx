@@ -1,16 +1,17 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { useIsomorphicLayoutEffect } from "../../lib";
 import { GetCommentsDocument, PostFragment } from "../../__generated__/graphqlOperationTypes";
+import { graphql } from "../../__generated__/gql-masking";
 
 const AVATAR_URL = "https://dummyimage.com/88x88/b3b3b3/ffffff";
 const AVATAR_URL_36 = "https://dummyimage.com/36x36/b3b3b3/ffffff";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const _GET_COMMENTS_FRAGMENT = gql`
+const _GET_COMMENTS_FRAGMENT = graphql(/* GraphQL */`
   query GetComments($postId: Int!) {
     comments(postId: $postId) {
       id
@@ -20,7 +21,7 @@ const _GET_COMMENTS_FRAGMENT = gql`
       body
     }
   }
-`;
+`);
 
 type Props = {
   post: PostFragment;

@@ -1,23 +1,22 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { useMemo, useState } from "react";
 import {
   GetPostConnectionDocument,
   GetPostConnectionQueryVariables,
   PostFragment as Post,
 } from "../../__generated__/graphqlOperationTypes";
+import { graphql } from "../../__generated__/gql-masking";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const _POST_FRAGMENT = gql`
+export const _POST_FRAGMENT = graphql(/* GraphQL */`
   fragment Post on Post {
     id
     userId
     title
     body
   }
-`;
+`);
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const _GET_POST_CONNECTION_QUERY = gql`
+const _GET_POST_CONNECTION_QUERY = graphql(/* GraphQL */`
   query GetPostConnection($first: Int, $after: String, $query: String) {
     postConnection(first: $first, after: $after, query: $query) {
       pageInfo {
@@ -35,8 +34,7 @@ const _GET_POST_CONNECTION_QUERY = gql`
       }
     }
   }
-  ${_POST_FRAGMENT}
-`;
+`);
 
 const DEFAULT_FETCH_SIZE = 10;
 const FIRST_CURSOR = "0";

@@ -1,5 +1,4 @@
-import { gql } from "@apollo/client";
-import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
+import { FragmentType, graphql } from "../../__generated__/gql-masking";
 import { PageInfo } from "../../__generated__/types";
 import { useCancelToQuestionnaire } from "./useCancelToDeleteQuestionnaire";
 import { useDeleteQuestionnaire } from "./useDeleteQuestionnaire";
@@ -7,14 +6,15 @@ import { useQuestionnaireConnection } from "./useQuestionnaireConnection";
 
 export type QuestionnaireList = {
   loading: boolean;
-  questionnaires: QuestionnaireFragment[];
+  // questionnaires: QuestionnaireFragment[];
+  questionnaires: FragmentType<typeof QUESTIONNAIRE_FRAGMENT>[];
   pageInfo: PageInfo | undefined;
   loadMore: () => void;
   deleteQuestionnaire: (id: number) => Promise<void>;
   cancelToDeleteQuestionnaire: (id: number) => Promise<void>;
 };
 
-export const QUESTIONNAIRE_FRAGMENT = gql`
+export const QUESTIONNAIRE_FRAGMENT = graphql(/* GraphQL */ `
   fragment Questionnaire on Questionnaire {
     id
     title
@@ -26,7 +26,7 @@ export const QUESTIONNAIRE_FRAGMENT = gql`
       id
     }
   }
-`;
+`);
 
 export const useQuestionnaireList = (): QuestionnaireList => {
   const { loading, questionnaires, pageInfo, loadMore } = useQuestionnaireConnection();

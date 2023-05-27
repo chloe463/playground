@@ -155,7 +155,7 @@ export type OptionFragmentFragment = { __typename?: "Option"; id: number; text: 
 export type QuestionFragmentFragment = {
   __typename?: "Question";
   id: number;
-  type: number;
+  type: Types.QuestionType;
   text: string;
   options: Array<{ __typename?: "Option"; id: number; text: string } | null>;
 };
@@ -171,7 +171,7 @@ export type QuestionnaireDetailFragmentFragment = {
   questions: Array<{
     __typename?: "Question";
     id: number;
-    type: number;
+    type: Types.QuestionType;
     text: string;
     options: Array<{ __typename?: "Option"; id: number; text: string } | null>;
   } | null>;
@@ -194,7 +194,7 @@ export type GetQuestionnaireQuery = {
     questions: Array<{
       __typename?: "Question";
       id: number;
-      type: number;
+      type: Types.QuestionType;
       text: string;
       options: Array<{ __typename?: "Option"; id: number; text: string } | null>;
     } | null>;

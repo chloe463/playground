@@ -1,4 +1,5 @@
 import { FragmentType, getFragmentData, graphql } from "../../__generated__/gql-masking";
+import { QuestionType } from "../../__generated__/types";
 import { TextArea } from "../../lib";
 import { CheckboxOption, DropdownOptions, OptionComponent, RadioOption } from "./Option";
 export const QUESTION_FRAGMENT = graphql(/* GraphQL */ `
@@ -23,7 +24,7 @@ export const QuestionComponent = (props: Props) => {
       <h3 className="font-heading text-heading3 font-semibold text-black-alpha800">
         {question.text}
       </h3>
-      {question.type === 1 && (
+      {question.type === QuestionType.Checkbox && (
         <ul className="mt-4 space-y-2">
           {question.options.map((option) => {
             if (!option) return null;
@@ -36,7 +37,7 @@ export const QuestionComponent = (props: Props) => {
           })}
         </ul>
       )}
-      {question.type === 2 && (
+      {question.type === QuestionType.Radio && (
         <ul className="mt-4 space-y-2">
           {question.options.map((option) => {
             if (!option) return null;
@@ -49,12 +50,12 @@ export const QuestionComponent = (props: Props) => {
           })}
         </ul>
       )}
-      {question.type === 3 && (
+      {question.type === QuestionType.Select && (
         <div className="mt-4">
           <DropdownOptions data={question.options} />
         </div>
       )}
-      {question.type === 0 && (
+      {question.type === QuestionType.Text && (
         <div className="mt-4">
           <TextArea label={question.text} name={question.text} value={""} />
         </div>

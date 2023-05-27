@@ -52,7 +52,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "build": "next build",
     "test": "TZ=Asia/Tokyo jest --config=jest.config.js",
-    "download-schema:local": "apollo schema:download --endpoint http://localhost:4000/graphql schema.json",
+    "download-schema:local": "node scripts/download.mjs",
     "codegen": "graphql-codegen --config codegen.js",
     "codegen:clean": "./scripts/clean-types.sh",
     "codegen:watch": "yarn codegen --watch",

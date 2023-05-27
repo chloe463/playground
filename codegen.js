@@ -18,12 +18,18 @@ const config = {
         "typescript-operations",
         "typed-document-node",
       ],
+      /** @type {import("@graphql-codegen/typescript-operations").TypeScriptDocumentsPluginConfig } */
+      config: {
+        // omitOperationSuffix: true,
+      }
     },
     "src/__generated__/gql-masking/": {
       preset: "client-preset",
       /** @type {import("@graphql-codegen/client-preset").ClientPresetConfig } */
       presetConfig: {
-        fragmentMasking: true,
+        fragmentMasking: {
+          unmaskFunctionName: "getFragmentData"
+        },
       },
     },
   },

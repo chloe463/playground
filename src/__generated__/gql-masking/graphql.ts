@@ -372,28 +372,52 @@ export type QuestionnaireConnectionQuery = {
   };
 };
 
+export type OptionFragmentFragment = { __typename?: "Option"; id: number; text: string } & {
+  " $fragmentName"?: "OptionFragmentFragment";
+};
+
+export type QuestionFragmentFragment = {
+  __typename?: "Question";
+  id: number;
+  type: number;
+  text: string;
+  options: Array<
+    | ({ __typename?: "Option" } & {
+        " $fragmentRefs"?: { OptionFragmentFragment: OptionFragmentFragment };
+      })
+    | null
+  >;
+} & { " $fragmentName"?: "QuestionFragmentFragment" };
+
+export type QuestionnaireDetailFragmentFragment = {
+  __typename?: "Questionnaire";
+  id: number;
+  title: string;
+  description: string;
+  state: number;
+  startAt: any;
+  endAt: any;
+  questions: Array<
+    | ({ __typename?: "Question" } & {
+        " $fragmentRefs"?: { QuestionFragmentFragment: QuestionFragmentFragment };
+      })
+    | null
+  >;
+} & { " $fragmentName"?: "QuestionnaireDetailFragmentFragment" };
+
 export type GetQuestionnaireQueryVariables = Exact<{
   id: Scalars["Int"];
 }>;
 
 export type GetQuestionnaireQuery = {
   __typename?: "Query";
-  questionnaire?: {
-    __typename?: "Questionnaire";
-    id: number;
-    title: string;
-    description: string;
-    state: number;
-    startAt: any;
-    endAt: any;
-    questions: Array<{
-      __typename?: "Question";
-      id: number;
-      type: number;
-      text: string;
-      options: Array<{ __typename?: "Option"; id: number; text: string } | null>;
-    } | null>;
-  } | null;
+  questionnaire?:
+    | ({ __typename?: "Questionnaire" } & {
+        " $fragmentRefs"?: {
+          QuestionnaireDetailFragmentFragment: QuestionnaireDetailFragmentFragment;
+        };
+      })
+    | null;
 };
 
 export const PostFragmentDoc = {
@@ -444,6 +468,129 @@ export const QuestionnaireFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<QuestionnaireFragment, unknown>;
+export const OptionFragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "OptionFragment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Option" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<OptionFragmentFragment, unknown>;
+export const QuestionFragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "QuestionFragment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Question" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "OptionFragment" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "OptionFragment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Option" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<QuestionFragmentFragment, unknown>;
+export const QuestionnaireDetailFragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "QuestionnaireDetailFragment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Questionnaire" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "state" } },
+          { kind: "Field", name: { kind: "Name", value: "startAt" } },
+          { kind: "Field", name: { kind: "Name", value: "endAt" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "questions" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "QuestionFragment" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "OptionFragment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Option" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "QuestionFragment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Question" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "OptionFragment" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<QuestionnaireDetailFragmentFragment, unknown>;
 export const CreateQuestionnaireDocument = {
   kind: "Document",
   definitions: [
@@ -915,35 +1062,71 @@ export const GetQuestionnaireDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "description" } },
-                { kind: "Field", name: { kind: "Name", value: "state" } },
-                { kind: "Field", name: { kind: "Name", value: "startAt" } },
-                { kind: "Field", name: { kind: "Name", value: "endAt" } },
                 {
-                  kind: "Field",
-                  name: { kind: "Name", value: "questions" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "type" } },
-                      { kind: "Field", name: { kind: "Name", value: "text" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "options" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "text" } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "QuestionnaireDetailFragment" },
                 },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "OptionFragment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Option" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "QuestionFragment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Question" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "OptionFragment" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "QuestionnaireDetailFragment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Questionnaire" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "state" } },
+          { kind: "Field", name: { kind: "Name", value: "startAt" } },
+          { kind: "Field", name: { kind: "Name", value: "endAt" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "questions" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "QuestionFragment" } },
               ],
             },
           },

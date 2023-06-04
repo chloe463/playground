@@ -1,6 +1,30 @@
 import * as Types from "./types";
 
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
+export type GetQuestionnaireQueryVariables = Types.Exact<{
+  id: Types.Scalars["Int"];
+}>;
+
+export type GetQuestionnaireQuery = {
+  __typename?: "Query";
+  questionnaire?: {
+    __typename?: "Questionnaire";
+    id: number;
+    title: string;
+    description: string;
+    state: number;
+    startAt: any;
+    endAt: any;
+    questions: Array<{
+      __typename?: "Question";
+      id: number;
+      type: Types.QuestionType;
+      text: string;
+      options: Array<{ __typename?: "Option"; id: number; text: string } | null>;
+    } | null>;
+  } | null;
+};
+
 export type CreateQuestionnaireMutationVariables = Types.Exact<{
   questionnaire: Types.CreateQuestionnaireInput;
 }>;
@@ -177,30 +201,6 @@ export type QuestionnaireDetailFragmentFragment = {
   } | null>;
 };
 
-export type GetQuestionnaireQueryVariables = Types.Exact<{
-  id: Types.Scalars["Int"];
-}>;
-
-export type GetQuestionnaireQuery = {
-  __typename?: "Query";
-  questionnaire?: {
-    __typename?: "Questionnaire";
-    id: number;
-    title: string;
-    description: string;
-    state: number;
-    startAt: any;
-    endAt: any;
-    questions: Array<{
-      __typename?: "Question";
-      id: number;
-      type: Types.QuestionType;
-      text: string;
-      options: Array<{ __typename?: "Option"; id: number; text: string } | null>;
-    } | null>;
-  } | null;
-};
-
 export const PostFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -327,6 +327,52 @@ export const QuestionnaireDetailFragmentFragmentDoc = {
     ...QuestionFragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<QuestionnaireDetailFragmentFragment, unknown>;
+export const GetQuestionnaireDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetQuestionnaire" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "questionnaire" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: { kind: "Variable", name: { kind: "Name", value: "id" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "QuestionnaireDetailFragment" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...QuestionnaireDetailFragmentFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<GetQuestionnaireQuery, GetQuestionnaireQueryVariables>;
 export const CreateQuestionnaireDocument = {
   kind: "Document",
   definitions: [
@@ -706,49 +752,3 @@ export const QuestionnaireConnectionDocument = {
     ...QuestionnaireFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<QuestionnaireConnectionQuery, QuestionnaireConnectionQueryVariables>;
-export const GetQuestionnaireDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetQuestionnaire" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "questionnaire" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "id" },
-                value: { kind: "Variable", name: { kind: "Name", value: "id" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "FragmentSpread",
-                  name: { kind: "Name", value: "QuestionnaireDetailFragment" },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    ...QuestionnaireDetailFragmentFragmentDoc.definitions,
-  ],
-} as unknown as DocumentNode<GetQuestionnaireQuery, GetQuestionnaireQueryVariables>;

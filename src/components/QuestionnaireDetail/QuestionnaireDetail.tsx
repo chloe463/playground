@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
 
 import { FragmentType, getFragmentData, graphql } from "../../__generated__/gql-masking";
 import { QuestionComponent } from "./Question";
+import { SSRProvider } from "@react-aria/ssr";
 
 export const QEUSTIONAIRE_FRAGMENT = graphql(/* GraphQL */ `
   fragment QuestionnaireDetailFragment on Questionnaire {
@@ -25,7 +27,7 @@ export const QuestionnaireDetail: React.FC<Props> = (props) => {
   const questionnaire = getFragmentData(QEUSTIONAIRE_FRAGMENT, props.data);
   const { questions } = questionnaire;
   return (
-    <div>
+    <SSRProvider>
       <h2 className="font-heading text-heading2 font-bold text-black-alpha800">
         {questionnaire.title}
       </h2>
@@ -37,6 +39,6 @@ export const QuestionnaireDetail: React.FC<Props> = (props) => {
           return <QuestionComponent key={q.id} data={question} />;
         })}
       </div>
-    </div>
+    </SSRProvider>
   );
 };

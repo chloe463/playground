@@ -13,6 +13,8 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+  "\n  query GetQuestionnaire($id: Int!) {\n    questionnaire(id: $id) {\n      ...QuestionnaireDetailFragment\n    }\n  }\n":
+    types.GetQuestionnaireDocument,
   "\n  mutation CreateQuestionnaire($questionnaire: CreateQuestionnaireInput!) {\n    createQuestionnaire(questionnaire: $questionnaire) {\n      questionnaire {\n        id\n        title\n        description\n        state\n        startAt\n        endAt\n      }\n    }\n  }\n":
     types.CreateQuestionnaireDocument,
   "\n  query GetComments($postId: Int!) {\n    comments(postId: $postId) {\n      id\n      postId\n      name\n      email\n      body\n    }\n  }\n":
@@ -35,8 +37,6 @@ const documents = {
     types.QuestionFragmentFragmentDoc,
   "\n  fragment QuestionnaireDetailFragment on Questionnaire {\n    id\n    title\n    description\n    state\n    startAt\n    endAt\n    questions {\n      ...QuestionFragment\n    }\n  }\n":
     types.QuestionnaireDetailFragmentFragmentDoc,
-  "\n  query GetQuestionnaire($id: Int!) {\n    questionnaire(id: $id) {\n      ...QuestionnaireDetailFragment\n    }\n  }\n":
-    types.GetQuestionnaireDocument,
 };
 
 /**
@@ -53,6 +53,12 @@ const documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  query GetQuestionnaire($id: Int!) {\n    questionnaire(id: $id) {\n      ...QuestionnaireDetailFragment\n    }\n  }\n"
+): typeof documents["\n  query GetQuestionnaire($id: Int!) {\n    questionnaire(id: $id) {\n      ...QuestionnaireDetailFragment\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -119,12 +125,6 @@ export function graphql(
 export function graphql(
   source: "\n  fragment QuestionnaireDetailFragment on Questionnaire {\n    id\n    title\n    description\n    state\n    startAt\n    endAt\n    questions {\n      ...QuestionFragment\n    }\n  }\n"
 ): typeof documents["\n  fragment QuestionnaireDetailFragment on Questionnaire {\n    id\n    title\n    description\n    state\n    startAt\n    endAt\n    questions {\n      ...QuestionFragment\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(
-  source: "\n  query GetQuestionnaire($id: Int!) {\n    questionnaire(id: $id) {\n      ...QuestionnaireDetailFragment\n    }\n  }\n"
-): typeof documents["\n  query GetQuestionnaire($id: Int!) {\n    questionnaire(id: $id) {\n      ...QuestionnaireDetailFragment\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

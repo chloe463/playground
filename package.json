@@ -39,7 +39,7 @@
     "react-merge-refs": "1.1.0",
     "react-stately": "^3.22.0",
     "react-virtualized": "9.22.3",
-    "styled-components": "^5.2.1",
+    "styled-components": "^5.3.11",
     "typescript": "^5.0.0",
     "web-vitals": "1.1.1"
   },
@@ -101,7 +101,7 @@
     "@storybook/react": "7.0.12",
     "@types/lodash-es": "4.17.6",
     "@types/react-virtualized": "9.21.21",
-    "@types/styled-components": "5.1.9",
+    "@types/styled-components": "5.1.26",
     "@types/tailwindcss": "3.0.10",
     "@typescript-eslint/eslint-plugin": "5.13.0",
     "autoprefixer": "10.4.4",

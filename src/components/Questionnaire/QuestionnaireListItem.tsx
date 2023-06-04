@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import React, { useCallback } from "react";
 import { colors, Tooltip } from "../../lib";

@@ -1,3 +1,5 @@
+"use client";
+import { SSRProvider } from "@react-aria/ssr";
 import React, { useState } from "react";
 import { getFragmentData } from "../../__generated__/gql-masking";
 import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
@@ -58,7 +60,7 @@ export const QuestionnaireListContainer: React.FC = () => {
   };
 
   return (
-    <div>
+    <SSRProvider>
       <QuestionnaireList questionnaires={questionnaires} onClickDelete={onClickDelete} />
       <div className="mt-6" />
       <LoadMore pageInfo={pageInfo} loading={loading} onClickLoadMore={onClickLoadMore} />
@@ -85,6 +87,6 @@ export const QuestionnaireListContainer: React.FC = () => {
           </button>
         </div>
       </Snackbar>
-    </div>
+    </SSRProvider>
   );
 };

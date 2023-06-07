@@ -4,25 +4,18 @@ import { QuestionnaireListItem } from "./QuestionnaireListItem";
 
 type Props = {
   questionnaires: readonly QuestionnaireFragment[];
-  onClickDelete: (id: number) => void;
 };
 
-export const QuestionnaireList: React.FC<Props> = ({ questionnaires, onClickDelete }) => {
+export const QuestionnaireList: React.FC<Props> = ({ questionnaires }) => {
   return (
-    <div>
-      <ul>
-        {questionnaires.map((questionnaire) => {
-          return (
-            <li key={questionnaire.id} data-cy="questionnaire-list-item">
-              <QuestionnaireListItem
-                key={questionnaire.id}
-                questionnaire={questionnaire}
-                onClickDelete={onClickDelete}
-              />
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <ul>
+      {questionnaires.map((questionnaire) => {
+        return (
+          <li key={questionnaire.id} data-cy="questionnaire-list-item">
+            <QuestionnaireListItem questionnaire={questionnaire} />
+          </li>
+        );
+      })}
+    </ul>
   );
 };

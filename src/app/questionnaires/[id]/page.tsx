@@ -49,10 +49,8 @@ export default async function QuestionnaireIndex(props: Props) {
         </Link>
       </div>
       <ApolloProvider cache={cache}>
-        <div className="mt-9 mb-24">
-          <div className="ml-6">
-            <QuestionnaireDetail data={data.questionnaire!} />
-          </div>
+        <div className="mt-9 mb-24 ml-6">
+          <QuestionnaireDetail data={data.questionnaire!} />
         </div>
       </ApolloProvider>
     </div>

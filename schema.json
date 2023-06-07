@@ -1877,7 +1877,18 @@
           {
             "name": "questionnaires",
             "description": null,
-            "args": [],
+            "args": [
+              {
+                "name": "page",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": "1"
+              }
+            ],
             "type": {
               "kind": "LIST",
               "name": null,

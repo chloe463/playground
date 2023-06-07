@@ -25,6 +25,42 @@ export type GetQuestionnaireQuery = {
   } | null;
 };
 
+export type QuestionnairesPageQueryQueryVariables = Types.Exact<{
+  after?: Types.InputMaybe<Types.Scalars["String"]>;
+  before?: Types.InputMaybe<Types.Scalars["String"]>;
+  first?: Types.InputMaybe<Types.Scalars["Int"]>;
+  last?: Types.InputMaybe<Types.Scalars["Int"]>;
+}>;
+
+export type QuestionnairesPageQueryQuery = {
+  __typename?: "Query";
+  questionnaireConnection: {
+    __typename?: "QueryQuestionnaireConnection_Connection";
+    totalCount: number;
+    pageInfo: {
+      __typename?: "PageInfo";
+      hasNextPage: boolean;
+      hasPreviousPage: boolean;
+      startCursor?: string | null;
+      endCursor?: string | null;
+    };
+    edges: Array<{
+      __typename?: "QuestionnaireEdge";
+      cursor: string;
+      node: {
+        __typename?: "Questionnaire";
+        id: number;
+        title: string;
+        description: string;
+        state: number;
+        startAt: any;
+        endAt: any;
+        questions: Array<{ __typename?: "Question"; id: number } | null>;
+      };
+    }>;
+  };
+};
+
 export type CreateQuestionnaireMutationVariables = Types.Exact<{
   questionnaire: Types.CreateQuestionnaireInput;
 }>;
@@ -373,6 +409,112 @@ export const GetQuestionnaireDocument = {
     ...QuestionnaireDetailFragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<GetQuestionnaireQuery, GetQuestionnaireQueryVariables>;
+export const QuestionnairesPageQueryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "QuestionnairesPageQuery" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "after" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "before" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "first" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "last" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "questionnaireConnection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "after" },
+                value: { kind: "Variable", name: { kind: "Name", value: "after" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "before" },
+                value: { kind: "Variable", name: { kind: "Name", value: "before" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "first" },
+                value: { kind: "Variable", name: { kind: "Name", value: "first" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "last" },
+                value: { kind: "Variable", name: { kind: "Name", value: "last" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "totalCount" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "pageInfo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "hasNextPage" } },
+                      { kind: "Field", name: { kind: "Name", value: "hasPreviousPage" } },
+                      { kind: "Field", name: { kind: "Name", value: "startCursor" } },
+                      { kind: "Field", name: { kind: "Name", value: "endCursor" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "edges" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "cursor" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "node" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "Questionnaire" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...QuestionnaireFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<QuestionnairesPageQueryQuery, QuestionnairesPageQueryQueryVariables>;
 export const CreateQuestionnaireDocument = {
   kind: "Document",
   definitions: [

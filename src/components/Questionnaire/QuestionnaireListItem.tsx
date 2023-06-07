@@ -1,16 +1,13 @@
-"use client";
 import Link from "next/link";
-import React, { useCallback } from "react";
-import { colors, Tooltip } from "../../lib";
-import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
+import React from "react";
 import { graphql } from "../../__generated__/gql-masking";
-import { Chart } from "./Chart";
-import { Pencil } from "./Pencil";
-import { Trash } from "./Trash";
+import { QuestionnaireFragment } from "../../__generated__/graphqlOperationTypes";
+import colors from "../../lib/styles/colors";
+import { QuestionnaireAction } from "./QuestionnaireAction";
 
 const DUMMY_COVER_IMAGE_URL = "https://dummyimage.com/128x64/b3b3b3/ffffff";
 
-export const QUESTIONNAIRE_FRAGMENT = graphql(/* GraphQL */`
+export const QUESTIONNAIRE_FRAGMENT = graphql(/* GraphQL */ `
   fragment Questionnaire on Questionnaire {
     id
     title
@@ -26,7 +23,6 @@ export const QUESTIONNAIRE_FRAGMENT = graphql(/* GraphQL */`
 
 type Props = {
   questionnaire: QuestionnaireFragment;
-  onClickDelete: (id: number) => void;
 };
 
 const STATES: string[] = ["Draft", "Published", "Hidden", "Expired"];
@@ -39,13 +35,7 @@ const INDICATOR_COLORS: string[] = [
 ];
 
 export const QuestionnaireListItem: React.FC<Props> = (props) => {
-  const { questionnaire, onClickDelete } = props;
-
-  const onClickAnswers = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    e.preventDefault();
-    console.log("answers clicked");
-  }, []);
+  const { questionnaire } = props;
 
   return (
     <div className="group flex relative items-center py-3 px-6 hover:bg-black-alpha50">
@@ -76,39 +66,7 @@ export const QuestionnaireListItem: React.FC<Props> = (props) => {
           </p>
         </div>
       </div>
-      <div className="flex absolute right-6 items-center space-x-4 opacity-0 group-hover:opacity-100 transition-transform duration-200 translate-x-4 group-hover:translate-x-0">
-        <Tooltip delay={50} offset={{ y: 8 }} content={<span>Edit</span>}>
-          <div>
-            <Link
-              href={{ pathname: `/questionnaires/${questionnaire.id}/edit` }}
-              aria-label={`Edit a questionnaire ${questionnaire.id}`}
-            >
-              <Pencil className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
-            </Link>
-          </div>
-        </Tooltip>
-        <Tooltip
-          delay={50}
-          offset={{ y: 8 }}
-          content={<span className="whitespace-nowrap">See result</span>}
-        >
-          <button
-            onClick={onClickAnswers}
-            aria-label={`See result of questionnaire ${questionnaire.id}`}
-          >
-            <Chart className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
-          </button>
-        </Tooltip>
-        <Tooltip delay={50} offset={{ y: 8 }} content={<span>Delete</span>}>
-          <button
-            onClick={() => onClickDelete(questionnaire.id)}
-            aria-label={`Delete a questionnaire ${questionnaire.id}`}
-            data-cy={`delete-button-${questionnaire.id}`}
-          >
-            <Trash className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
-          </button>
-        </Tooltip>
-      </div>
+      <QuestionnaireAction questionnaire={questionnaire} />
     </div>
   );
 };

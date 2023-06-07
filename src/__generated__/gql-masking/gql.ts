@@ -15,6 +15,8 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
 const documents = {
   "\n  query GetQuestionnaire($id: Int!) {\n    questionnaire(id: $id) {\n      ...QuestionnaireDetailFragment\n    }\n  }\n":
     types.GetQuestionnaireDocument,
+  "\n  query QuestionnairesPageQuery($after: String, $before: String, $first: Int, $last: Int) {\n    questionnaireConnection(after: $after, before: $before, first: $first, last: $last) {\n      totalCount\n      pageInfo {\n        hasNextPage\n        hasPreviousPage\n        startCursor\n        endCursor\n      }\n      edges {\n        cursor\n        node {\n          ...Questionnaire\n        }\n      }\n    }\n  }\n":
+    types.QuestionnairesPageQueryDocument,
   "\n  mutation CreateQuestionnaire($questionnaire: CreateQuestionnaireInput!) {\n    createQuestionnaire(questionnaire: $questionnaire) {\n      questionnaire {\n        id\n        title\n        description\n        state\n        startAt\n        endAt\n      }\n    }\n  }\n":
     types.CreateQuestionnaireDocument,
   "\n  query GetComments($postId: Int!) {\n    comments(postId: $postId) {\n      id\n      postId\n      name\n      email\n      body\n    }\n  }\n":
@@ -59,6 +61,12 @@ export function graphql(source: string): unknown;
 export function graphql(
   source: "\n  query GetQuestionnaire($id: Int!) {\n    questionnaire(id: $id) {\n      ...QuestionnaireDetailFragment\n    }\n  }\n"
 ): typeof documents["\n  query GetQuestionnaire($id: Int!) {\n    questionnaire(id: $id) {\n      ...QuestionnaireDetailFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  query QuestionnairesPageQuery($after: String, $before: String, $first: Int, $last: Int) {\n    questionnaireConnection(after: $after, before: $before, first: $first, last: $last) {\n      totalCount\n      pageInfo {\n        hasNextPage\n        hasPreviousPage\n        startCursor\n        endCursor\n      }\n      edges {\n        cursor\n        node {\n          ...Questionnaire\n        }\n      }\n    }\n  }\n"
+): typeof documents["\n  query QuestionnairesPageQuery($after: String, $before: String, $first: Int, $last: Int) {\n    questionnaireConnection(after: $after, before: $before, first: $first, last: $last) {\n      totalCount\n      pageInfo {\n        hasNextPage\n        hasPreviousPage\n        startCursor\n        endCursor\n      }\n      edges {\n        cursor\n        node {\n          ...Questionnaire\n        }\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -131,6 +131,14 @@ export type GetPostConnectionQuery = {
   };
 };
 
+export type QuestionnaireListPageInfoFragment = {
+  __typename?: "PageInfo";
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+  startCursor?: string | null;
+  endCursor?: string | null;
+};
+
 export type QuestionnaireFragment = {
   __typename?: "Questionnaire";
   id: number;
@@ -256,6 +264,25 @@ export const PostFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<PostFragment, unknown>;
+export const QuestionnaireListPageInfoFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "QuestionnaireListPageInfo" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "PageInfo" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "hasNextPage" } },
+          { kind: "Field", name: { kind: "Name", value: "hasPreviousPage" } },
+          { kind: "Field", name: { kind: "Name", value: "startCursor" } },
+          { kind: "Field", name: { kind: "Name", value: "endCursor" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<QuestionnaireListPageInfoFragment, unknown>;
 export const QuestionnaireFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -476,10 +503,10 @@ export const QuestionnairesPageQueryDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "hasNextPage" } },
-                      { kind: "Field", name: { kind: "Name", value: "hasPreviousPage" } },
-                      { kind: "Field", name: { kind: "Name", value: "startCursor" } },
-                      { kind: "Field", name: { kind: "Name", value: "endCursor" } },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "QuestionnaireListPageInfo" },
+                      },
                     ],
                   },
                 },
@@ -512,6 +539,7 @@ export const QuestionnairesPageQueryDocument = {
         ],
       },
     },
+    ...QuestionnaireListPageInfoFragmentDoc.definitions,
     ...QuestionnaireFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<QuestionnairesPageQueryQuery, QuestionnairesPageQueryQueryVariables>;

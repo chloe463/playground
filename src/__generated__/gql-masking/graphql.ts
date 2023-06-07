@@ -350,12 +350,8 @@ export type QuestionnairesPageQueryQuery = {
   questionnaireConnection: {
     __typename?: "QueryQuestionnaireConnection_Connection";
     totalCount: number;
-    pageInfo: {
-      __typename?: "PageInfo";
-      hasNextPage: boolean;
-      hasPreviousPage: boolean;
-      startCursor?: string | null;
-      endCursor?: string | null;
+    pageInfo: { __typename?: "PageInfo" } & {
+      " $fragmentRefs"?: { QuestionnaireListPageInfoFragment: QuestionnaireListPageInfoFragment };
     };
     edges: Array<{
       __typename?: "QuestionnaireEdge";
@@ -436,6 +432,14 @@ export type GetPostConnectionQuery = {
     }>;
   };
 };
+
+export type QuestionnaireListPageInfoFragment = {
+  __typename?: "PageInfo";
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+  startCursor?: string | null;
+  endCursor?: string | null;
+} & { " $fragmentName"?: "QuestionnaireListPageInfoFragment" };
 
 export type QuestionnaireFragment = {
   __typename?: "Questionnaire";
@@ -556,6 +560,25 @@ export const PostFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<PostFragment, unknown>;
+export const QuestionnaireListPageInfoFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "QuestionnaireListPageInfo" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "PageInfo" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "hasNextPage" } },
+          { kind: "Field", name: { kind: "Name", value: "hasPreviousPage" } },
+          { kind: "Field", name: { kind: "Name", value: "startCursor" } },
+          { kind: "Field", name: { kind: "Name", value: "endCursor" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<QuestionnaireListPageInfoFragment, unknown>;
 export const QuestionnaireFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -881,10 +904,10 @@ export const QuestionnairesPageQueryDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      { kind: "Field", name: { kind: "Name", value: "hasNextPage" } },
-                      { kind: "Field", name: { kind: "Name", value: "hasPreviousPage" } },
-                      { kind: "Field", name: { kind: "Name", value: "startCursor" } },
-                      { kind: "Field", name: { kind: "Name", value: "endCursor" } },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "QuestionnaireListPageInfo" },
+                      },
                     ],
                   },
                 },
@@ -914,6 +937,20 @@ export const QuestionnairesPageQueryDocument = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "QuestionnaireListPageInfo" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "PageInfo" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "hasNextPage" } },
+          { kind: "Field", name: { kind: "Name", value: "hasPreviousPage" } },
+          { kind: "Field", name: { kind: "Name", value: "startCursor" } },
+          { kind: "Field", name: { kind: "Name", value: "endCursor" } },
         ],
       },
     },

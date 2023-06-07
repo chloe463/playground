@@ -15,7 +15,7 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
 const documents = {
   "\n  query GetQuestionnaire($id: Int!) {\n    questionnaire(id: $id) {\n      ...QuestionnaireDetailFragment\n    }\n  }\n":
     types.GetQuestionnaireDocument,
-  "\n  query QuestionnairesPageQuery($after: String, $before: String, $first: Int, $last: Int) {\n    questionnaireConnection(after: $after, before: $before, first: $first, last: $last) {\n      totalCount\n      pageInfo {\n        hasNextPage\n        hasPreviousPage\n        startCursor\n        endCursor\n      }\n      edges {\n        cursor\n        node {\n          ...Questionnaire\n        }\n      }\n    }\n  }\n":
+  "\n  query QuestionnairesPageQuery($after: String, $before: String, $first: Int, $last: Int) {\n    questionnaireConnection(after: $after, before: $before, first: $first, last: $last) {\n      totalCount\n      pageInfo {\n        ...QuestionnaireListPageInfo\n      }\n      edges {\n        cursor\n        node {\n          ...Questionnaire\n        }\n      }\n    }\n  }\n":
     types.QuestionnairesPageQueryDocument,
   "\n  mutation CreateQuestionnaire($questionnaire: CreateQuestionnaireInput!) {\n    createQuestionnaire(questionnaire: $questionnaire) {\n      questionnaire {\n        id\n        title\n        description\n        state\n        startAt\n        endAt\n      }\n    }\n  }\n":
     types.CreateQuestionnaireDocument,
@@ -25,6 +25,8 @@ const documents = {
     types.PostFragmentDoc,
   "\n  query GetPostConnection($first: Int, $after: String, $query: String) {\n    postConnection(first: $first, after: $after, query: $query) {\n      pageInfo {\n        hasNextPage\n        hasPreviousPage\n        startCursor\n        endCursor\n      }\n      totalCount\n      edges {\n        node {\n          ...Post\n        }\n        cursor\n      }\n    }\n  }\n":
     types.GetPostConnectionDocument,
+  "\n  fragment QuestionnaireListPageInfo on PageInfo {\n    hasNextPage\n    hasPreviousPage\n    startCursor\n    endCursor\n  }\n":
+    types.QuestionnaireListPageInfoFragmentDoc,
   "\n  fragment Questionnaire on Questionnaire {\n    id\n    title\n    description\n    state\n    startAt\n    endAt\n    questions {\n      id\n    }\n  }\n":
     types.QuestionnaireFragmentDoc,
   "\n  mutation CancelToDeleteQuestionnaire($id: Int!) {\n    cancelToDeleteQuestionnaire(id: $id) {\n      questionnaire {\n        ...Questionnaire\n      }\n    }\n  }\n  \n":
@@ -65,8 +67,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  query QuestionnairesPageQuery($after: String, $before: String, $first: Int, $last: Int) {\n    questionnaireConnection(after: $after, before: $before, first: $first, last: $last) {\n      totalCount\n      pageInfo {\n        hasNextPage\n        hasPreviousPage\n        startCursor\n        endCursor\n      }\n      edges {\n        cursor\n        node {\n          ...Questionnaire\n        }\n      }\n    }\n  }\n"
-): typeof documents["\n  query QuestionnairesPageQuery($after: String, $before: String, $first: Int, $last: Int) {\n    questionnaireConnection(after: $after, before: $before, first: $first, last: $last) {\n      totalCount\n      pageInfo {\n        hasNextPage\n        hasPreviousPage\n        startCursor\n        endCursor\n      }\n      edges {\n        cursor\n        node {\n          ...Questionnaire\n        }\n      }\n    }\n  }\n"];
+  source: "\n  query QuestionnairesPageQuery($after: String, $before: String, $first: Int, $last: Int) {\n    questionnaireConnection(after: $after, before: $before, first: $first, last: $last) {\n      totalCount\n      pageInfo {\n        ...QuestionnaireListPageInfo\n      }\n      edges {\n        cursor\n        node {\n          ...Questionnaire\n        }\n      }\n    }\n  }\n"
+): typeof documents["\n  query QuestionnairesPageQuery($after: String, $before: String, $first: Int, $last: Int) {\n    questionnaireConnection(after: $after, before: $before, first: $first, last: $last) {\n      totalCount\n      pageInfo {\n        ...QuestionnaireListPageInfo\n      }\n      edges {\n        cursor\n        node {\n          ...Questionnaire\n        }\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -91,6 +93,12 @@ export function graphql(
 export function graphql(
   source: "\n  query GetPostConnection($first: Int, $after: String, $query: String) {\n    postConnection(first: $first, after: $after, query: $query) {\n      pageInfo {\n        hasNextPage\n        hasPreviousPage\n        startCursor\n        endCursor\n      }\n      totalCount\n      edges {\n        node {\n          ...Post\n        }\n        cursor\n      }\n    }\n  }\n"
 ): typeof documents["\n  query GetPostConnection($first: Int, $after: String, $query: String) {\n    postConnection(first: $first, after: $after, query: $query) {\n      pageInfo {\n        hasNextPage\n        hasPreviousPage\n        startCursor\n        endCursor\n      }\n      totalCount\n      edges {\n        node {\n          ...Post\n        }\n        cursor\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment QuestionnaireListPageInfo on PageInfo {\n    hasNextPage\n    hasPreviousPage\n    startCursor\n    endCursor\n  }\n"
+): typeof documents["\n  fragment QuestionnaireListPageInfo on PageInfo {\n    hasNextPage\n    hasPreviousPage\n    startCursor\n    endCursor\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

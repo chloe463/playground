@@ -13,6 +13,8 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+  "\n  query GetQuestionnaireMeta($id: Int!) {\n    questionnaire(id: $id) {\n      id\n      title\n      description\n    }\n  }\n":
+    types.GetQuestionnaireMetaDocument,
   "\n  query GetQuestionnaire($id: Int!) {\n    questionnaire(id: $id) {\n      ...QuestionnaireDetailFragment\n    }\n  }\n":
     types.GetQuestionnaireDocument,
   "\n  query QuestionnairesPageQuery($after: String, $before: String, $first: Int, $last: Int) {\n    questionnaireConnection(after: $after, before: $before, first: $first, last: $last) {\n      totalCount\n      pageInfo {\n        ...QuestionnaireListPageInfo\n      }\n      edges {\n        cursor\n        node {\n          ...Questionnaire\n        }\n      }\n    }\n  }\n":
@@ -57,6 +59,12 @@ const documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  query GetQuestionnaireMeta($id: Int!) {\n    questionnaire(id: $id) {\n      id\n      title\n      description\n    }\n  }\n"
+): typeof documents["\n  query GetQuestionnaireMeta($id: Int!) {\n    questionnaire(id: $id) {\n      id\n      title\n      description\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

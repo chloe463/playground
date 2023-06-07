@@ -55,6 +55,9 @@ function buildVariables(searchParams: Params): QuestionnairesPageQueryQueryVaria
         before: searchParams.lastPageStartCursor || "0",
       };
 }
+export const metadata = {
+  title: "Questionnaires App",
+};
 
 export default async function QuestionnairesAppPage(props: Props) {
   const client = initializeApollo();

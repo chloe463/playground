@@ -1,10 +1,6 @@
 import { SIDEBAR_WIDTH, SideBar } from "../../components/SideBar";
 import { appBaseStyle } from "../../components/layout";
 
-export const metadata = {
-  title: "Questionnaires App",
-};
-
 export default function QuestionnaireAppLayout({ children }: { children: React.ReactNode }) {
   const pathname = "/foo";
   return (

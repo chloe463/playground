@@ -1,6 +1,20 @@
 import * as Types from "./types";
 
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
+export type GetQuestionnaireMetaQueryVariables = Types.Exact<{
+  id: Types.Scalars["Int"];
+}>;
+
+export type GetQuestionnaireMetaQuery = {
+  __typename?: "Query";
+  questionnaire?: {
+    __typename?: "Questionnaire";
+    id: number;
+    title: string;
+    description: string;
+  } | null;
+};
+
 export type GetQuestionnaireQueryVariables = Types.Exact<{
   id: Types.Scalars["Int"];
 }>;
@@ -390,6 +404,50 @@ export const QuestionnaireDetailFragmentFragmentDoc = {
     ...QuestionFragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<QuestionnaireDetailFragmentFragment, unknown>;
+export const GetQuestionnaireMetaDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetQuestionnaireMeta" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "questionnaire" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: { kind: "Variable", name: { kind: "Name", value: "id" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetQuestionnaireMetaQuery, GetQuestionnaireMetaQueryVariables>;
 export const GetQuestionnaireDocument = {
   kind: "Document",
   definitions: [

@@ -1,5 +1,7 @@
+/** @type {import('@types/tailwindcss/tailwind-config').TailwindFontConfig } */
 module.exports = {
   heading: [
+    "var(--font-poppins)",
     "Poppins",
     '"Helvetica Neue"',
     "Helvetica",
@@ -15,6 +17,7 @@ module.exports = {
     "sans-serif",
   ],
   body: [
+    "var(--font-lato)",
     "Lato",
     '"Helvetica Neue"',
     "Helvetica",

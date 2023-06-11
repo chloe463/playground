@@ -2,7 +2,9 @@ const colors = require("./tailwind/config/colors");
 const fontSize = require("./tailwind/config/fontSize");
 const fontFamily = require("./tailwind/config/fontFamily");
 const elevation = require("./tailwind/plugin/elevation");
+const shape = require("./tailwind/plugin/shape");
 const typography = require("./tailwind/plugin/typography");
+const link = require("./tailwind/plugin/link");
 
 /** @type {import('@types/tailwindcss/tailwind-config').TailwindConfig} */
 module.exports = {
@@ -19,6 +21,8 @@ module.exports = {
   },
   plugins: [
     elevation,
+    shape,
+    link,
     typography,
   ],
 }

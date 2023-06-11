@@ -192,6 +192,10 @@ export type QueryQuestionnaireConnectionArgs = {
   last?: InputMaybe<Scalars["Int"]>;
 };
 
+export type QueryQuestionnairesArgs = {
+  page?: InputMaybe<Scalars["Int"]>;
+};
+
 export type QueryTodoConnectionArgs = {
   after?: InputMaybe<Scalars["String"]>;
   before?: InputMaybe<Scalars["String"]>;

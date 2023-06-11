@@ -1,6 +1,7 @@
 // Supecial thahks to
 // https://itnext.io/animating-list-reordering-with-react-hooks-aca5e7eeafba
 
+"use client";
 import React, { useEffect, useState } from "react";
 import { useIsomorphicLayoutEffect } from "../hooks/useIsomarphicLayoutEffect";
 import { usePrevious } from "../hooks/usePrevious";

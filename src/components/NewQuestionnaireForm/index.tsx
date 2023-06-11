@@ -1,16 +1,13 @@
-import { DevTool } from "@hookform/devtools";
+"use client";
 import dayjs from "dayjs";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Datepicker, PrimaryButton, TextArea, TextField } from "../../lib";
 import { CreateQuestionnaireInput } from "../../__generated__/types";
+import { Datepicker, PrimaryButton, TextArea, TextField } from "../../lib";
+import { submitAction } from "./submitAction";
 
-type Props = {
-  onSubmit: (data: CreateQuestionnaireInput) => void;
-};
-
-export const NewQuestionnaireForm: React.FC<Props> = ({ onSubmit }) => {
-  const { formState, handleSubmit, control, watch } = useForm<CreateQuestionnaireInput>({
+export const NewQuestionnaireForm: React.FC = () => {
+  const { formState, control, watch } = useForm<CreateQuestionnaireInput>({
     mode: "onChange",
     defaultValues: {
       title: "",
@@ -23,8 +20,7 @@ export const NewQuestionnaireForm: React.FC<Props> = ({ onSubmit }) => {
 
   return (
     <div className="py-0 px-6">
-      {process.env.NODE_ENV !== "production" && <DevTool control={control} placement="top-right" />}
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form action={submitAction}>
         <div className="w-[720px]">
           <Controller
             name="title"
@@ -95,7 +91,7 @@ export const NewQuestionnaireForm: React.FC<Props> = ({ onSubmit }) => {
               return (
                 <Datepicker
                   id="end-at-date-picker"
-                  name="startAt"
+                  name="endAt"
                   placeholder={"Date"}
                   value={value}
                   min={

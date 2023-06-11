@@ -12,7 +12,7 @@ module.exports = {
         process.env.NODE_ENV === "production" ? ['^data-cy$'] : []
     }
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   experimental: {
     serverActions: true,

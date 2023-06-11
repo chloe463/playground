@@ -45,7 +45,7 @@ export const QuestionnaireAction: React.FC<Props> = ({ questionnaire }) => {
 
   return (
     <>
-      <div className="flex absolute right-6 items-center space-x-4 opacity-0 group-hover:opacity-100 transition-transform duration-200 translate-x-4 group-hover:translate-x-0">
+      <div className="flex items-center space-x-4">
         <Tooltip delay={50} offset={{ y: 8 }} content={<span>Edit</span>}>
           <div>
             <Link

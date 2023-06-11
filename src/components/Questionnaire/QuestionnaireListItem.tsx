@@ -38,19 +38,20 @@ export const QuestionnaireListItem: React.FC<Props> = (props) => {
   const { questionnaire } = props;
 
   return (
-    <div className="group flex relative items-center py-3 px-6 hover:bg-black-alpha50">
-      {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={DUMMY_COVER_IMAGE_URL}
-        className="rounded"
-        width={128}
-        height={64}
-        alt="cover-image"
-      />
+    <div className="group flex relative items-center py-3 px-6 hover:bg-black-alpha50 shape-r4">
+      <Link href={`/questionnaires/${questionnaire.id}`}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={DUMMY_COVER_IMAGE_URL}
+          className="rounded"
+          width={128}
+          height={64}
+          alt="cover-image"
+        />
+      </Link>
       <div className="ml-4">
         <Link href={`/questionnaires/${questionnaire.id}`}>
-          <h3 className="text-subheading font-semibold tracking-wide text-black-alpha800 hover:text-black-alpha700 hover:underline">
+          <h3 className="subheading text-black-alpha800 tracking-wide hover:underline">
             {questionnaire.title}
           </h3>
         </Link>
@@ -66,7 +67,9 @@ export const QuestionnaireListItem: React.FC<Props> = (props) => {
           </p>
         </div>
       </div>
-      <QuestionnaireAction questionnaire={questionnaire} />
+      <div className="absolute right-6 opacity-0 group-hover:opacity-100 transition-transform duration-200 translate-x-4 group-hover:translate-x-0">
+        <QuestionnaireAction questionnaire={questionnaire} />
+      </div>
     </div>
   );
 };

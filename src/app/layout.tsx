@@ -8,7 +8,7 @@ export const metadata = {
 
 const poppins = Poppins({
   subsets: [],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
 });
 const lato = Lato({

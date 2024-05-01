@@ -3,37 +3,37 @@
 exports[`Dropdown shoud opens options list on click 1`] = `
 <div>
   <div
-    class="sc-1e794db1-0 kEKrwh"
+    class="sc-1e794db1-0 gInAos"
     tabindex="0"
   >
     <label
-      class="sc-1e794db1-1 fgkxsK dropdown-placeholder"
+      class="sc-1e794db1-1 ePUmBU dropdown-placeholder"
     >
       placeholder
     </label>
     <p
-      class="sc-1e794db1-2 fgWnam dropdown-selected-value"
+      class="sc-1e794db1-2 biYRnI dropdown-selected-value"
     />
     <span
-      class="sc-1e794db1-3 gLAQWw dropdown-bottom-border"
+      class="sc-1e794db1-3 hjUGvk dropdown-bottom-border"
     />
   </div>
   <div
     id="options-entry-point"
   >
     <div
-      class="sc-8c3d854d-0 kxcCte"
+      class="sc-8c3d854d-0 iPkWzw"
     >
       <span
         hidden=""
       />
       <ul
-        class="sc-fbc7715f-0 dLhsZB"
+        class="sc-fbc7715f-0 fEzBxH"
         style="position: fixed; width: 0px; transform: translate(0px, 0px);"
       >
         <li
           aria-selected="false"
-          class="sc-fbc7715f-1 dZtgPu"
+          class="sc-fbc7715f-1 jgLpoS"
           data-selected="false"
           tabindex="0"
         >
@@ -41,7 +41,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
         </li>
         <li
           aria-selected="false"
-          class="sc-fbc7715f-1 dZtgPu"
+          class="sc-fbc7715f-1 jgLpoS"
           data-selected="false"
           tabindex="0"
         >
@@ -49,7 +49,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
         </li>
         <li
           aria-selected="false"
-          class="sc-fbc7715f-1 dZtgPu"
+          class="sc-fbc7715f-1 jgLpoS"
           data-selected="false"
           tabindex="0"
         >

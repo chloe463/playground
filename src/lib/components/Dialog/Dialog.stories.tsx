@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Dialog, useDialog } from "./";
 
 interface DialogContentProps {
@@ -43,9 +43,9 @@ export default {
       </>
     );
   },
-} as ComponentMeta<typeof Dialog>;
+} as Meta<typeof Dialog>;
 
-type DialogStory = ComponentStoryObj<typeof Dialog>;
+type DialogStory = StoryObj<typeof Dialog>;
 
 export const _Default: DialogStory = {
   args: {},

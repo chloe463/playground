@@ -3,31 +3,31 @@
 exports[`Dropdown shoud opens options list on click 1`] = `
 <div>
   <div
-    class="sc-54959e85-0 eFePxb"
+    class="sc-54959e85-0 eHUYbQ"
     tabindex="0"
   >
     <label
-      class="sc-54959e85-2 godByA datepicker-label"
+      class="sc-54959e85-2 dnQPO datepicker-label"
     />
     <input
-      class="sc-54959e85-1 brDXVw"
+      class="sc-54959e85-1 fyoUMA"
       type="hidden"
       value="2021-01-01"
     />
     <span
-      class="sc-54959e85-3 gQGYvu"
+      class="sc-54959e85-3 kZMJHU"
     >
       2021/01/01
     </span>
     <span
-      class="sc-54959e85-4 dQkKHG datepicker-bottom-border"
+      class="sc-54959e85-4 cZZvku datepicker-bottom-border"
     />
   </div>
   <div
     id="calendar-entry-point"
   >
     <div
-      class="sc-8c3d854d-0 kxcCte"
+      class="sc-8c3d854d-0 iPkWzw"
     >
       <span
         hidden=""
@@ -37,19 +37,19 @@ exports[`Dropdown shoud opens options list on click 1`] = `
       >
         <div
           aria-labelledby="date-picker"
-          class="sc-653c6af1-0 iuhPGB"
+          class="sc-653c6af1-0 yAqxv"
           role="dialog"
           style="position: fixed; transform: translate(0px, 0px);"
           tabindex="-1"
         >
           <header
-            class="sc-653c6af1-1 bmVHvc"
+            class="sc-653c6af1-1 jNOAsu"
           >
             <div
-              class="sc-653c6af1-2 gqXWVC"
+              class="sc-653c6af1-2 ibozXE"
             >
               <h2
-                class="sc-653c6af1-4 bfUugA"
+                class="sc-653c6af1-4 hFiEmO"
                 id="date-picker"
               >
                 January
@@ -58,33 +58,33 @@ exports[`Dropdown shoud opens options list on click 1`] = `
               </h2>
               <button
                 aria-label="Switch to year picker"
-                class="sc-653c6af1-5 dCXTkd"
+                class="sc-653c6af1-5 fexcAj"
                 type="button"
               >
                 <span
-                  class="sc-653c6af1-6 kJHMyW"
+                  class="sc-653c6af1-6 dAnBWG"
                 />
               </button>
             </div>
             <div
-              class="sc-653c6af1-3 gXxMb"
+              class="sc-653c6af1-3 bGcTWZ"
             >
               <button
                 aria-label="Show previous month"
-                class="sc-653c6af1-5 dCXTkd"
+                class="sc-653c6af1-5 fexcAj"
                 type="button"
               >
                 <span
-                  class="sc-653c6af1-7 goyvtS"
+                  class="sc-653c6af1-7 WAYNm"
                 />
               </button>
               <button
                 aria-label="Show next month"
-                class="sc-653c6af1-5 dCXTkd"
+                class="sc-653c6af1-5 fexcAj"
                 type="button"
               >
                 <span
-                  class="sc-653c6af1-8 dybsNv"
+                  class="sc-653c6af1-8 gvqdrD"
                 />
               </button>
             </div>
@@ -93,7 +93,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
             class="sc-653c6af1-9"
           >
             <div
-              class="sc-653c6af1-10 gtTvvX"
+              class="sc-653c6af1-10 QElnr"
             >
               <span>
                 S
@@ -118,7 +118,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
               </span>
             </div>
             <div
-              class="sc-653c6af1-11 hzEKRT"
+              class="sc-653c6af1-11 ddcZuJ"
             >
               <span />
               <span />
@@ -127,258 +127,258 @@ exports[`Dropdown shoud opens options list on click 1`] = `
               <span />
               <button
                 aria-label="2021-01-01"
-                class="sc-653c6af1-12 ePoAPb"
+                class="sc-653c6af1-12 kRNaf"
                 type="button"
               >
                 1
               </button>
               <button
                 aria-label="2021-01-02"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 2
               </button>
               <button
                 aria-label="2021-01-03"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 3
               </button>
               <button
                 aria-label="2021-01-04"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 4
               </button>
               <button
                 aria-label="2021-01-05"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 5
               </button>
               <button
                 aria-label="2021-01-06"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 6
               </button>
               <button
                 aria-label="2021-01-07"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 7
               </button>
               <button
                 aria-label="2021-01-08"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 8
               </button>
               <button
                 aria-label="2021-01-09"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 9
               </button>
               <button
                 aria-label="2021-01-10"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 10
               </button>
               <button
                 aria-label="2021-01-11"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 11
               </button>
               <button
                 aria-label="2021-01-12"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 12
               </button>
               <button
                 aria-label="2021-01-13"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 13
               </button>
               <button
                 aria-label="2021-01-14"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 14
               </button>
               <button
                 aria-label="2021-01-15"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 15
               </button>
               <button
                 aria-label="2021-01-16"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 16
               </button>
               <button
                 aria-label="2021-01-17"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 17
               </button>
               <button
                 aria-label="2021-01-18"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 18
               </button>
               <button
                 aria-label="2021-01-19"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 19
               </button>
               <button
                 aria-label="2021-01-20"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 20
               </button>
               <button
                 aria-label="2021-01-21"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 21
               </button>
               <button
                 aria-label="2021-01-22"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 22
               </button>
               <button
                 aria-label="2021-01-23"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 23
               </button>
               <button
                 aria-label="2021-01-24"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 24
               </button>
               <button
                 aria-label="2021-01-25"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 25
               </button>
               <button
                 aria-label="2021-01-26"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 26
               </button>
               <button
                 aria-label="2021-01-27"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 27
               </button>
               <button
                 aria-label="2021-01-28"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 28
               </button>
               <button
                 aria-label="2021-01-29"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 29
               </button>
               <button
                 aria-label="2021-01-30"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 30
               </button>
               <button
                 aria-label="2021-01-31"
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 type="button"
               >
                 31
               </button>
               <button
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 disabled=""
                 type="button"
               >
                 1
               </button>
               <button
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 disabled=""
                 type="button"
               >
                 2
               </button>
               <button
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 disabled=""
                 type="button"
               >
                 3
               </button>
               <button
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 disabled=""
                 type="button"
               >
                 4
               </button>
               <button
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 disabled=""
                 type="button"
               >
                 5
               </button>
               <button
-                class="sc-653c6af1-12 jpnlzC"
+                class="sc-653c6af1-12 fkemde"
                 disabled=""
                 type="button"
               >
@@ -387,16 +387,16 @@ exports[`Dropdown shoud opens options list on click 1`] = `
             </div>
           </div>
           <footer
-            class="sc-653c6af1-15 bQkzIr"
+            class="sc-653c6af1-15 bLoscH"
           >
             <button
-              class="sc-653c6af1-16 sc-653c6af1-17 eQRTFR"
+              class="sc-653c6af1-16 sc-653c6af1-17 WUjXj"
               type="button"
             >
               Cancel
             </button>
             <button
-              class="sc-653c6af1-16 sc-653c6af1-18 eQRTFR"
+              class="sc-653c6af1-16 sc-653c6af1-18 WUjXj"
               type="button"
             >
               OK

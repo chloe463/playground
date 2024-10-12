@@ -10,4 +10,4 @@ jobs:
       FOO: "bar"
 
     steps:
-      - uses: chloe463/reusable-actions-playground/.github/workflows/lint.yml
+      - uses: chloe463/reusable-actions-playground/.github/workflows/lint.yml@main

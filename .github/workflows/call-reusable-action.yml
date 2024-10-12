@@ -1,0 +1,8 @@
+name: Call reusable action
+
+on: [pull_request]
+
+jobs:
+  call-reusable:
+    uses: chloe463/reusable-actions-playground/.github/workflows/lint.yml@main
+

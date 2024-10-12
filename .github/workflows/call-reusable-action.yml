@@ -3,11 +3,6 @@ name: Call reusable action
 on: [pull_request]
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    env:
-      SKIP_PREFLIGHT_CHECK: true
-      FOO: "bar"
+  call-reusable:
+    uses: chloe463/reusable-actions-playground/.github/workflows/lint.yml@main
 
-    steps:
-      - uses: chloe463/reusable-actions-playground/.github/workflows/lint.yml@main

@@ -30,6 +30,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
       class="sc-8c3d854d-0 iPkWzw"
     >
       <span
+        data-focus-scope-start="true"
         hidden=""
       />
       <div
@@ -405,6 +406,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
         </div>
       </div>
       <span
+        data-focus-scope-end="true"
         hidden=""
       />
     </div>

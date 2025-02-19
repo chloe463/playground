@@ -25,6 +25,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
       class="sc-8c3d854d-0 iPkWzw"
     >
       <span
+        data-focus-scope-start="true"
         hidden=""
       />
       <ul
@@ -57,6 +58,7 @@ exports[`Dropdown shoud opens options list on click 1`] = `
         </li>
       </ul>
       <span
+        data-focus-scope-end="true"
         hidden=""
       />
     </div>

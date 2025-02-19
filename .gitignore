@@ -32,3 +32,7 @@ e2e/cypress/videos/*
 
 # Next.js
 .next
+
+.yarn/cache
+.yarn/install-state.gz
+!.yarn/releases/*

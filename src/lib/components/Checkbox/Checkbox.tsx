@@ -3,10 +3,10 @@ import { useFocusRing } from "@react-aria/focus";
 import { useFocusWithin } from "@react-aria/interactions";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { AriaCheckboxGroupItemProps } from "@react-types/checkbox";
-import React, { useContext, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 import { colors } from "../../styles/colors";
-import { CheckboxGroupContext } from "./CheckboxGroup";
+import { useCheckboxGroup } from "./CheckboxGroup";
 
 type CheckboxProps = {
   children: React.ReactNode;
@@ -18,7 +18,7 @@ const CLICK_RIPPLE_DURATION_MS = 800;
 export const Checkbox: React.FC<CheckboxProps> = (props) => {
   const { children, isIndeterminate } = props;
   const ref = useRef<HTMLInputElement>(null);
-  const state = useContext(CheckboxGroupContext);
+  const state = useCheckboxGroup();
   const { inputProps } = useCheckboxGroupItem(props, state, ref);
   const { isFocusVisible, focusProps } = useFocusRing();
   const { focusWithinProps } = useFocusWithin({

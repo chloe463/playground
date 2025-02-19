@@ -2,8 +2,8 @@ import { gql, useMutation } from "@apollo/client";
 import { useCallback } from "react";
 import {
   DeleteQuestionnaireDocument,
-  QuestionnaireConnectionDocument,
-  QuestionnaireConnectionQuery,
+  // QuestionnaireConnectionDocument,
+  // QuestionnaireConnectionQuery,
 } from "../../__generated__/graphqlOperationTypes";
 
 export type DeleteQuestionnaire = {
@@ -30,27 +30,27 @@ export const useDeleteQuestionnaire = (): DeleteQuestionnaire => {
         },
       };
     },
-    update: (cache, result) => {
-      if (!result.data?.deleteQuestionnaire?.result) {
-        return;
-      }
-      const d = cache.readQuery({ query: QuestionnaireConnectionDocument });
-      const filtered = d?.questionnaireConnection.edges.filter(
-        (edge) => edge.node.id !== result.data?.deleteQuestionnaire?.id
-      );
-      cache.modify({
-        fields: {
-          questionnaireConnection(
-            existing: QuestionnaireConnectionQuery["questionnaireConnection"]
-          ) {
-            return {
-              ...existing,
-              edges: filtered,
-            };
-          },
-        },
-      });
-    },
+    // update: (cache, result) => {
+    //   if (!result.data?.deleteQuestionnaire?.result) {
+    //     return;
+    //   }
+    //   const d = cache.readQuery({ query: QuestionnaireConnectionDocument });
+    //   const filtered = d?.questionnaireConnection.edges.filter(
+    //     (edge) => edge.node.id !== result.data?.deleteQuestionnaire?.id
+    //   );
+    //   cache.modify({
+    //     fields: {
+    //       questionnaireConnection(
+    //         existing: QuestionnaireConnectionQuery["questionnaireConnection"]
+    //       ) {
+    //         return {
+    //           ...existing,
+    //           edges: filtered,
+    //         };
+    //       },
+    //     },
+    //   });
+    // },
   });
 
   const deleteQuestionnaire = useCallback(

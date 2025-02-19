@@ -83,11 +83,11 @@ export const Options: React.FC<OptionsProps> = ({
       );
       switch (e.key) {
         case "ArrowDown": {
-          focusManager.focusNext({ wrap: true });
+          focusManager?.focusNext({ wrap: true });
           break;
         }
         case "ArrowUp": {
-          focusManager.focusPrevious({ wrap: true });
+          focusManager?.focusPrevious({ wrap: true });
           break;
         }
         case " ": {

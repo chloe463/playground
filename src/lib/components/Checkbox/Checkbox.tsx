@@ -15,7 +15,7 @@ type CheckboxProps = {
 const FOCUS_RIPPLE_DURATION_MS = 250;
 const CLICK_RIPPLE_DURATION_MS = 800;
 
-export const Checkbox: React.VFC<CheckboxProps> = (props) => {
+export const Checkbox: React.FC<CheckboxProps> = (props) => {
   const { children, isIndeterminate } = props;
   const ref = useRef<HTMLInputElement>(null);
   const state = useContext(CheckboxGroupContext);

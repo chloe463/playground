@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-export const PostPlaceholder: React.VFC = () => {
+export const PostPlaceholder: React.FC = () => {
   return (
     <div className="flex relative items-center py-4 px-6">
       <div className="block w-14 h-14 bg-black-alpha100 rounded-full" />

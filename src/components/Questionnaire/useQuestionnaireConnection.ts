@@ -1,19 +1,16 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { useCallback, useMemo } from "react";
-import {
-  QuestionnaireConnectionDocument,
-  QuestionnaireFragment,
-} from "../../__generated__/graphqlOperationTypes";
+import { FragmentType, graphql } from "../../__generated__/gql-masking";
 import { PageInfo } from "../../__generated__/types";
 
 export type QuestionnaireConnection = {
   loading: boolean;
-  questionnaires: QuestionnaireFragment[];
+  questionnaires: FragmentType<typeof QUESTIONNAIRE_FRAGMENT>[];
   pageInfo: PageInfo | undefined;
   loadMore: () => void;
 };
 
-export const QUESTIONNAIRE_FRAGMENT = gql`
+export const QUESTIONNAIRE_FRAGMENT = graphql(/* GraphQL */ `
   fragment Questionnaire on Questionnaire {
     id
     title
@@ -25,10 +22,10 @@ export const QUESTIONNAIRE_FRAGMENT = gql`
       id
     }
   }
-`;
+`);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const GET_QUESTIONNAIRE_CONNECTION_QUERY = gql`
+const GET_QUESTIONNAIRE_CONNECTION_QUERY = graphql(/* GraphQL */ `
   query QuestionnaireConnection($first: Int, $after: String) {
     questionnaireConnection(first: $first, after: $after) {
       totalCount
@@ -46,13 +43,12 @@ const GET_QUESTIONNAIRE_CONNECTION_QUERY = gql`
       }
     }
   }
-  ${QUESTIONNAIRE_FRAGMENT}
-`;
+`);
 
 const PER = 10;
 
 export const useQuestionnaireConnection = (): QuestionnaireConnection => {
-  const { data, loading, fetchMore } = useQuery(QuestionnaireConnectionDocument, {
+  const { data, loading, fetchMore } = useQuery(GET_QUESTIONNAIRE_CONNECTION_QUERY, {
     variables: {
       first: PER,
       after: "0",

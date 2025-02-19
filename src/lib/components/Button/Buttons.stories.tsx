@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { ComponentMeta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import { ComponentProps } from "react";
 import { BaseButton } from "./Button";
 import { ClearButton } from "./ClearButton";
@@ -25,7 +25,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof DangerButton>;
+} as Meta<typeof DangerButton>;
 
 type Args = Partial<ComponentProps<typeof DangerButton>> & {
   label: string;

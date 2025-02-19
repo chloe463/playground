@@ -1,1 +1,1 @@
-export * from "./Popper";
+export { Popper } from "./Popper";

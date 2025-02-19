@@ -1,3 +1,2 @@
-export * from "./QuestionnaireList";
-export * from "./QuestionnaireListContainer";
-export * from "./QuestionnaireListItem";
+export { QuestionnaireList } from "./QuestionnaireList";
+export { QUESTIONNAIRE_FRAGMENT, QuestionnaireListItem } from "./QuestionnaireListItem";

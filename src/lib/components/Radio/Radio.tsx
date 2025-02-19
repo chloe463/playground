@@ -16,7 +16,7 @@ type RadioProps = {
 const FOCUS_RIPPLE_DURATION_MS = 250;
 const CLICK_RIPPLE_DURATION_MS = 800;
 
-export const Radio: React.VFC<RadioProps> = (props) => {
+export const Radio: React.FC<RadioProps> = (props) => {
   const { children, isDisabled } = props;
   const ref = useRef<HTMLInputElement>(null);
   const state = useContext(RadioContext);

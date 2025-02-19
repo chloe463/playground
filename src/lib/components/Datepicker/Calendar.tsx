@@ -79,7 +79,7 @@ const isInRange = (min: dayjs.Dayjs, max: dayjs.Dayjs, value: dayjs.Dayjs): bool
   return true;
 };
 
-export const Calendar: React.VFC<CalendarProp> = ({
+export const Calendar: React.FC<CalendarProp> = ({
   innerValue,
   name,
   baseRef,

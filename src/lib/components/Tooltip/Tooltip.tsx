@@ -13,7 +13,7 @@ type Props = TooltipTriggerProps & {
   children: React.ReactElement;
 };
 
-export const Tooltip: React.VFC<Props> = (props) => {
+export const Tooltip: React.FC<Props> = (props) => {
   const { content, placement = "top-center", offset = { x: 0, y: 0 }, children, ...rest } = props;
   const state = useTooltipTriggerState(rest);
   const ref = useRef<HTMLElement | null>(null);

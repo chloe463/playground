@@ -21,6 +21,7 @@ function createApolloClient() {
       uri: GRAPHQL_SERVER_URI + "/graphql",
       credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
     }),
+    connectToDevTools: true,
     cache: new InMemoryCache({
       typePolicies: {
         Query: {

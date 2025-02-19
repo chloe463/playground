@@ -9,10 +9,10 @@ jobs:
       SKIP_PREFLIGHT_CHECK: true
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "16"
+          node-version-file: ".node-version"
           cache: "yarn"
       - name: Build app
         run: |

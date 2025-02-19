@@ -25,7 +25,7 @@ type DatepickerProps = {
 const DEFAULT_MAX = "2100/12/31";
 const DEFAULT_MIN = "1900/01/01";
 
-export const Datepicker: React.VFC<DatepickerProps> = ({
+export const Datepicker: React.FC<DatepickerProps> = ({
   id,
   name,
   placeholder,

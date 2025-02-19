@@ -21,7 +21,7 @@ type Props = {
   fetchMorePosts: () => Promise<void>;
 };
 
-export const PostList: React.VFC<Props> = (props) => {
+export const PostList: React.FC<Props> = (props) => {
   const { totalCount, posts } = props;
   const isRowLoaded = useCallback(
     ({ index }: { index: number }) => {

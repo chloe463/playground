@@ -1,5 +1,6 @@
+/** @type {import('next').NextConfig} */
 module.exports = {
-  productionSourceMaps: true,
+  productionBrowserSourceMaps: true,
   webpack: (config, _options) => {
     return config;
   },
@@ -11,5 +12,9 @@ module.exports = {
         process.env.NODE_ENV === "production" ? ['^data-cy$'] : []
     }
   },
+  reactStrictMode: false,
   swcMinify: true,
+  experimental: {
+    serverActions: true,
+  },
 };

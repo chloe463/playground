@@ -1,2 +1,2 @@
-export * from "./Checkbox";
-export * from "./CheckboxGroup";
+export { Checkbox } from "./Checkbox";
+export { CheckboxGroup, CheckboxGroupContext } from "./CheckboxGroup";

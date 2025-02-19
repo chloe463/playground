@@ -12,7 +12,7 @@ type PopperProps = {
   entryPointId?: string;
 };
 
-export const Popper: React.VFC<PopperProps> = ({
+export const Popper: React.FC<PopperProps> = ({
   onClose,
   shouldCloseClickOverlay,
   shouldCloseOnKeyupEscape,

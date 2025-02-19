@@ -4,10 +4,10 @@ import { useFocusWithin } from "@react-aria/interactions";
 import { useRadio } from "@react-aria/radio";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { AriaRadioProps } from "@react-types/radio";
-import React, { useContext, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 import { colors } from "../../styles/colors";
-import { RadioContext } from "./RadioGroup";
+import { useRadioGroup } from "./RadioGroup";
 
 type RadioProps = {
   children: React.ReactNode;
@@ -19,7 +19,7 @@ const CLICK_RIPPLE_DURATION_MS = 800;
 export const Radio: React.FC<RadioProps> = (props) => {
   const { children, isDisabled } = props;
   const ref = useRef<HTMLInputElement>(null);
-  const state = useContext(RadioContext);
+  const state = useRadioGroup();
   const { inputProps } = useRadio(props, state, ref);
   const { isFocusVisible, focusProps } = useFocusRing();
   const { focusWithinProps } = useFocusWithin({

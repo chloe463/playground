@@ -1,6 +1,6 @@
 import { FragmentType, getFragmentData, graphql } from "../../__generated__/gql-masking";
 import { QuestionType } from "../../__generated__/types";
-import { TextArea } from "../../lib";
+import { CheckboxGroup, RadioGroup, TextArea } from "../../lib";
 import { CheckboxOption, DropdownOptions, OptionComponent, RadioOption } from "./Option";
 export const QUESTION_FRAGMENT = graphql(/* GraphQL */ `
   fragment QuestionFragment on Question {
@@ -26,28 +26,32 @@ export const QuestionComponent = (props: Props) => {
       </h3>
       {question.type === QuestionType.Checkbox && (
         <ul className="mt-4 space-y-2">
-          {question.options.map((option) => {
-            if (!option) return null;
-            const q = getFragmentData(OptionComponent.Fragment, option);
-            return (
-              <li key={q.id}>
-                <CheckboxOption data={option} />
-              </li>
-            );
-          })}
+          <CheckboxGroup name={`question:checkbox:${question.id}`}>
+            {question.options.map((option) => {
+              if (!option) return null;
+              const q = getFragmentData(OptionComponent.Fragment, option);
+              return (
+                <li key={q.id}>
+                  <CheckboxOption data={option} />
+                </li>
+              );
+            })}
+          </CheckboxGroup>
         </ul>
       )}
       {question.type === QuestionType.Radio && (
         <ul className="mt-4 space-y-2">
-          {question.options.map((option) => {
-            if (!option) return null;
-            const q = getFragmentData(OptionComponent.Fragment, option);
-            return (
-              <li key={q.id}>
-                <RadioOption data={option} />
-              </li>
-            );
-          })}
+          <RadioGroup name={`question:radio:${question.id}`}>
+            {question.options.map((option) => {
+              if (!option) return null;
+              const q = getFragmentData(OptionComponent.Fragment, option);
+              return (
+                <li key={q.id}>
+                  <RadioOption data={option} />
+                </li>
+              );
+            })}
+          </RadioGroup>
         </ul>
       )}
       {question.type === QuestionType.Select && (

@@ -46,7 +46,7 @@
     "prestart": "yarn codegen:clean",
     "dev": "concurrently \"next dev\" \"yarn codegen:watch\"",
     "prebuild": "yarn codegen",
-    "lint": "next lint",
+    "lint": "eslint --cache",
     "lint-fix": "next lint --fix && prettier --write \"{src,tailwind,.storybook}/**/*.{js,jsx,ts,tsx}\"",
     "prettier-fix": "prettier --write \"{src,tailwind,.storybook}/**/*.{js,jsx,ts,tsx}\"",
     "typecheck": "tsc -p tsconfig.json --noEmit",

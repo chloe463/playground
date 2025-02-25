@@ -24,7 +24,6 @@ export const QUESTIONNAIRE_FRAGMENT = graphql(/* GraphQL */ `
   }
 `);
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const GET_QUESTIONNAIRE_CONNECTION_QUERY = graphql(/* GraphQL */ `
   query QuestionnaireConnection($first: Int, $after: String) {
     questionnaireConnection(first: $first, after: $after) {
@@ -61,7 +60,7 @@ export const useQuestionnaireConnection = (): QuestionnaireConnection => {
 
   const loadMore = useCallback(() => {
     if (!data) return;
-    fetchMore({
+    void fetchMore({
       variables: {
         first: PER,
         after: data.questionnaireConnection.pageInfo.endCursor,

@@ -1,16 +1,16 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components/macro";
 
 export const PostPlaceholder: React.FC = () => {
   return (
-    <div className="flex relative items-center py-4 px-6">
-      <div className="block w-14 h-14 bg-black-alpha100 rounded-full" />
+    <div className="relative flex items-center px-6 py-4">
+      <div className="block size-14 rounded-full bg-black-alpha100" />
       <div className="ml-4">
         <header>
-          <div className="p-0 m-0 w-[180px] h-[22px] text-subheading bg-black-alpha100 rounded-full" />
+          <div className="m-0 h-[22px] w-[180px] rounded-full bg-black-alpha100 p-0 text-subheading" />
         </header>
         <div className="mt-3">
-          <p className="block p-0 m-0 w-[240px] h-[18px] text-body2 bg-black-alpha100 rounded-full" />
+          <p className="m-0 block h-[18px] w-[240px] rounded-full bg-black-alpha100 p-0 text-body2" />
         </div>
       </div>
       <ShimmerBg />

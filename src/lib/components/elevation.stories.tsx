@@ -1,8 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { getElevation } from ".";
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   title: "lib/elevation",
 };
@@ -12,6 +11,7 @@ export const ElevationSamples = () => {
     <div className="flex flex-col space-y-8">
       {Array.from({ length: 41 }).map((_, i) => {
         return (
+          // eslint-disable-next-line react/no-array-index-key
           <Card key={i} elevation={i}>
             Elevation {i}
           </Card>

@@ -1,8 +1,9 @@
+import { MutableRefObject } from "react";
 import { useIsomorphicLayoutEffect } from "../../hooks/useIsomarphicLayoutEffect";
 import type { Offset, Placement } from "./types";
 
 type UseTooltipPositionOptions = {
-  ref: React.MutableRefObject<HTMLSpanElement | null>;
+  ref: MutableRefObject<HTMLSpanElement | null>;
   placement: Placement;
   offset: Offset;
   anchorSizeAndPosition: { x: number; y: number; width: number; height: number };

@@ -18,7 +18,7 @@ function createApolloClient() {
     ssrMode: IS_SERVER,
     link: new HttpLink({
       // uri: process.env.NEXT_PUBLIC_WORDPRESS_API_URL, // Server URL (must be absolute)
-      uri: GRAPHQL_SERVER_URI + "/graphql",
+      uri: `${GRAPHQL_SERVER_URI  }/graphql`,
       credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
     }),
     connectToDevTools: true,

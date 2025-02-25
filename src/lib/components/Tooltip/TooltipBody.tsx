@@ -5,7 +5,7 @@ import { AriaTooltipProps } from "@react-types/tooltip";
 import { motion } from "framer-motion";
 import React, { useRef } from "react";
 import ReactDOM from "react-dom";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { colors } from "../../styles/colors";
 import { Offset, Placement } from "./types";
 import { useTooltipPosition } from "./useTooltipPosition";

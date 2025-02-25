@@ -11,7 +11,7 @@ export const PillsContainer = (props: Props) => {
   const { items, selectItem } = props;
   return (
     <AnimatePresence initial={true}>
-      <div className="flex flex-wrap justify-center items-center mx-auto mt-4 mb-0 w-full">
+      <div className="mx-auto mb-0 mt-4 flex w-full flex-wrap items-center justify-center">
         {items.map((item) => (
           <motion.div
             key={item.key}
@@ -30,18 +30,18 @@ export const PillsContainer = (props: Props) => {
               }}
             >
               <div
-                // eslint-disable-next-line tailwindcss/no-custom-classname
+                 
                 className="
-                  py-2
-                  px-6 text-button text-white bg-gradient-to-r
-                  from-indigo-500
+                  pill
+                  cursor-pointer rounded-full bg-gradient-to-r from-indigo-500
                   via-purple-500
-                  to-pink-500 rounded-full
-                  hover:shadow-xl
+                  to-pink-500
+                  px-6 py-2
+                  text-button
+                  text-white
                   transition-all
                   duration-200
-                  cursor-pointer
-                  pill
+                  hover:shadow-xl
                 "
                 onClick={() => selectItem(item)}
                 data-cy="pill"

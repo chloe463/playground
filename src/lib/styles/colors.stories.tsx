@@ -1,8 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { colors } from "./colors";
 
-// eslint-disable-next-line import/no-anonymous-default-export
+ 
 export default {
   title: "lib/colors",
 };

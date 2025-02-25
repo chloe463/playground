@@ -1,4 +1,5 @@
 import { Lato, Poppins } from "next/font/google";
+import type { ReactNode } from "react";
 import { StyledComponentsRegistry } from "./StyledComponentsRegistry";
 
 import "../index.css";
@@ -17,13 +18,11 @@ const lato = Lato({
   variable: "--font-lato",
 });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${lato.variable}`}>
-        <StyledComponentsRegistry>
-          {children}
-        </StyledComponentsRegistry>
+        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
     </html>
   );

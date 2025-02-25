@@ -1,8 +1,8 @@
-import { useCheckboxGroup as useCheckboxGroup_reactAria } from "@react-aria/checkbox";
+import { useCheckboxGroup as useCheckboxGroupReactAria } from "@react-aria/checkbox";
 import { CheckboxGroupState, useCheckboxGroupState } from "@react-stately/checkbox";
 import { CheckboxGroupProps } from "@react-types/checkbox";
 import React, { createContext, useContext } from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { colors } from "../../styles/colors";
 
 type CheckboxProps = {
@@ -14,7 +14,7 @@ export const CheckboxGroupContext = createContext<CheckboxGroupState | null>(nul
 export const CheckboxGroup: React.FC<CheckboxProps> = (props) => {
   const { label, children } = props;
   const state = useCheckboxGroupState(props);
-  const { groupProps, labelProps } = useCheckboxGroup_reactAria(props, state);
+  const { groupProps, labelProps } = useCheckboxGroupReactAria(props, state);
   return (
     <Base {...groupProps}>
       <Label {...labelProps}>{label}</Label>

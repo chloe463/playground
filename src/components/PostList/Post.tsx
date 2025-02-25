@@ -11,7 +11,7 @@ type Props = {
 
 export const Post: React.FC<Props> = ({ post }) => {
   return (
-    <div className="flex items-center py-4 px-6 mb-2 hover:bg-black-alpha50 transition duration-75">
+    <div className="mb-2 flex items-center px-6 py-4 transition duration-75 hover:bg-black-alpha50">
       <motion.img src={AVATAR_URL} className="rounded-full" width={64} height={64} />
       <div className="ml-4 w-[calc(100%-80px)]">
         <header>
@@ -27,7 +27,7 @@ export const Post: React.FC<Props> = ({ post }) => {
           </Link>
         </header>
         <motion.div className="mt-1">
-          <p className="overflow-x-hidden min-w-[592px] max-w-[1154px] text-body2 text-gray-500 text-ellipsis whitespace-nowrap">
+          <p className="min-w-[592px] max-w-[1154px] overflow-x-hidden text-ellipsis whitespace-nowrap text-body2 text-gray-500">
             {post.body}
           </p>
         </motion.div>

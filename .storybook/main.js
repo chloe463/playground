@@ -9,9 +9,9 @@ module.exports = {
   staticDirs: ["../public"],
   framework: {
     name: "@storybook/nextjs",
-    options: {}
+    options: {},
   },
   docs: {
-    autodocs: true
-  }
+    autodocs: true,
+  },
 };

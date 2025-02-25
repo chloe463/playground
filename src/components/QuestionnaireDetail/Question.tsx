@@ -20,7 +20,7 @@ type Props = {
 export const QuestionComponent = (props: Props) => {
   const question = getFragmentData(QUESTION_FRAGMENT, props.data);
   return (
-    <section className="p-4 -mx-4 rounded-md border border-black-alpha400 border-solid">
+    <section className="-mx-4 rounded-md border border-solid border-black-alpha400 p-4">
       <h3 className="font-heading text-heading3 font-semibold text-black-alpha800">
         {question.text}
       </h3>

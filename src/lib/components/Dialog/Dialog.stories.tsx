@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Meta, StoryObj } from "@storybook/react";
 import { Dialog, useDialog } from "./";
 
@@ -7,14 +6,14 @@ interface DialogContentProps {
 }
 const DialogContent = ({ close }: DialogContentProps) => {
   return (
-    <div className="p-8 w-[720px]">
+    <div className="w-[720px] p-8">
       <h2 className="text-heading2">Title</h2>
       <p className="mt-2 text-body1">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi praesentium itaque, quae
         voluptatum aliquid rerum cupiditate. Tempora, explicabo sed nesciunt sequi assumenda quam
         magnam, voluptas, ipsum mollitia non molestiae quo?
       </p>
-      <div className="flex justify-end mt-4">
+      <div className="mt-4 flex justify-end">
         <button onClick={close}>Close</button>
       </div>
     </div>
@@ -25,6 +24,7 @@ export default {
   title: "lib/Dialog",
   component: Dialog,
   render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const { ref, open, close } = useDialog({});
     const props = {
       ...args,
@@ -54,6 +54,7 @@ export const _Default: DialogStory = {
 export const _Default2: DialogStory = {
   args: {},
   render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const { ref, open2, close } = useDialog({});
     const props = {
       ...args,

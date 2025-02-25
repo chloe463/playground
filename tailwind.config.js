@@ -12,7 +12,7 @@ module.exports = {
   theme: {
     extend: {
       transitionTimingFunction: {
-        'in': 'cubic-bezier(0.3, 0.3, 0.3, 1)',
+        in: 'cubic-bezier(0.3, 0.3, 0.3, 1)',
       },
       colors,
       fontSize,
@@ -25,4 +25,4 @@ module.exports = {
     link,
     typography,
   ],
-}
+};

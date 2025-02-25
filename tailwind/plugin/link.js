@@ -3,7 +3,7 @@ const colors = require("../config/colors");
 
 module.exports = plugin(({ addComponents }) => {
   addComponents(() => {
-    const classNames ={
+    const classNames = {
       "a.link": {
         color: colors["black-alpha500"],
         textDecoration: "underline",
@@ -15,7 +15,7 @@ module.exports = plugin(({ addComponents }) => {
         transitionTimingFunction: "cubic-bezier(0.3, 0, 0.3, 1)",
       },
     };
-    console.log({classNames});
+    // console.log({classNames});
     return classNames;
   });
 });

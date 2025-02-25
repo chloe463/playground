@@ -21,20 +21,20 @@ export default async function EditQuestionnaire(props: Props) {
   return (
     <div>
       <PageHeader title={"Questionnaire"}></PageHeader>
-      <div className="py-0 px-6 mt-4">
+      <div className="mt-4 px-6 py-0">
         <Link
           href={"/questionnaires"}
           className={`
               text-body2 text-black-alpha500 transition-all duration-200 ease-out
+              visited:text-black-alpha500
               hover:text-black-alpha700
               active:text-black-alpha700
-              visited:text-black-alpha500
             `}
         >
           Back to list
         </Link>
       </div>
-      <div className="mt-9 mb-24 ml-6">
+      <div className="mb-24 ml-6 mt-9">
         <h2 className="heading2 text-black-alpha800">
           {data.questionnaire?.title}
         </h2>

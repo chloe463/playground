@@ -30,4 +30,4 @@ module.exports = (on, config) => {
     true
   );
   return config;
-}
+};

@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 import React, { forwardRef } from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components/macro";
 import { getElevation } from "../elevation";
 
 interface Props {

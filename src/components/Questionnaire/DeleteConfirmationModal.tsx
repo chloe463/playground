@@ -27,9 +27,10 @@ export const DeleteConfirmationModal: React.FC<Props> = (props) => {
             &nbsp; is going to be deleted.
           </p>
         </div>
-        <div className="flex justify-end my-6 mx-8 space-x-4">
+        <div className="mx-8 my-6 flex justify-end space-x-4">
           <BaseButton onClick={() => props.onClose()}>Cancel</BaseButton>
           <PrimaryButton
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             onClick={() => props.submit(props.questionnaire!.id)}
             data-cy="submit-deletion"
           >

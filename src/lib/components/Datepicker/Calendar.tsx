@@ -2,7 +2,7 @@ import { useDialog } from "@react-aria/dialog";
 import dayjs from "dayjs";
 import { motion, Variants } from "framer-motion";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import styled from "styled-components/macro";
+import { styled } from "styled-components";
 import { useIsomorphicLayoutEffect } from "../../hooks/useIsomarphicLayoutEffect";
 import { colors } from "../../styles";
 import { getElevation } from "../elevation";

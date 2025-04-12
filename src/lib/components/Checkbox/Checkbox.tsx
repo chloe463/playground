@@ -4,7 +4,7 @@ import { useFocusWithin } from "@react-aria/interactions";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { AriaCheckboxGroupItemProps } from "@react-types/checkbox";
 import React, { useMemo, useRef, useState } from "react";
-import styled, { css, keyframes } from "styled-components/macro";
+import { css, keyframes, styled } from "styled-components";
 import { colors } from "../../styles/colors";
 import { useCheckboxGroup } from "./CheckboxGroup";
 

@@ -1,9 +1,8 @@
- 
 import { FocusScope } from "@react-aria/focus";
 import dayjs from "dayjs";
 import { AnimatePresence } from "framer-motion";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import styled, { css } from "styled-components/macro";
+import { css, styled } from "styled-components";
 import { colors } from "../../styles";
 import { Popper } from "../Popper";
 import { Calendar, DateString } from "./Calendar";

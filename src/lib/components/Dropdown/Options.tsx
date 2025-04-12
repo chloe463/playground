@@ -1,6 +1,6 @@
 import { useFocusManager } from "@react-aria/focus";
 import React, { useEffect, useRef } from "react";
-import styled, { css } from "styled-components/macro";
+import { css, styled } from "styled-components";
 import { useIsomorphicLayoutEffect } from "../../hooks/useIsomarphicLayoutEffect";
 import { colors } from "../../styles";
 import { getElevation } from "../elevation";

@@ -1,7 +1,7 @@
 import { AriaTextFieldOptions, useTextField } from "@react-aria/textfield";
 import React, { forwardRef, useRef } from "react";
 import mergeRefs from "react-merge-refs";
-import styled from "styled-components/macro";
+import { styled } from "styled-components";
 import { colors } from "../../styles";
 
 type TextFieldProps = {} & AriaTextFieldOptions<"input">;
@@ -17,11 +17,11 @@ export const TextField: React.FC<TextFieldProps> = forwardRef((props, ref) => {
   return (
     <Base>
       <TextInput {...inputProps} placeholder="&nbsp;" ref={mergedRef} />
-      { }
+      {}
       <Label {...labelProps} className="placeholder">
         {props.label}
       </Label>
-      { }
+      {}
       <BottomBorder className="bottom-border" />
     </Base>
   );

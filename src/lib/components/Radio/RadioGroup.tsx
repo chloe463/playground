@@ -2,7 +2,7 @@ import { useRadioGroup as useRadioGroupReactAria } from "@react-aria/radio";
 import { RadioGroupState, useRadioGroupState } from "@react-stately/radio";
 import { RadioGroupProps } from "@react-types/radio";
 import React, { createContext, useContext } from "react";
-import styled from "styled-components/macro";
+import { styled } from "styled-components";
 import { colors } from "../../styles/colors";
 
 type RadioProps = RadioGroupProps;

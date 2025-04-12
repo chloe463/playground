@@ -2,7 +2,7 @@ import { useCheckboxGroup as useCheckboxGroupReactAria } from "@react-aria/check
 import { CheckboxGroupState, useCheckboxGroupState } from "@react-stately/checkbox";
 import { CheckboxGroupProps } from "@react-types/checkbox";
 import React, { createContext, useContext } from "react";
-import styled from "styled-components/macro";
+import { styled } from "styled-components";
 import { colors } from "../../styles/colors";
 
 type CheckboxProps = {

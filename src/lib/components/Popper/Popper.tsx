@@ -1,7 +1,7 @@
 import { useOverlay, usePreventScroll } from "@react-aria/overlays";
 import React, { useRef } from "react";
 import ReactDOM from "react-dom";
-import styled from "styled-components/macro";
+import { styled } from "styled-components";
 
 type PopperProps = {
   onClose: (args?: any) => void;

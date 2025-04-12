@@ -1,7 +1,6 @@
- 
 import { FocusScope } from "@react-aria/focus";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import styled, { css } from "styled-components/macro";
+import { css, styled } from "styled-components";
 import { colors } from "../../styles";
 import { Popper } from "../Popper";
 import { Options } from "./Options";

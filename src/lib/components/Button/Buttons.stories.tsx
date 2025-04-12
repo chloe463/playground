@@ -6,7 +6,7 @@ import { ClearButton } from "./ClearButton";
 import { DangerButton } from "./DangerButton";
 import { PrimaryButton } from "./PrimaryButton";
 
-// eslint-disable-next-line import/no-anonymous-default-export
+ 
 export default {
   title: "lib/Buttons",
   args: {

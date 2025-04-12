@@ -23,7 +23,7 @@ export const QuestionnaireAction: React.FC<Props> = ({ questionnaire }) => {
 
   const onClickDelete = () => {
     openModal();
-  }
+  };
 
   const onClickSubmitDeletion = async (id: number) => {
     closeModal();
@@ -32,6 +32,7 @@ export const QuestionnaireAction: React.FC<Props> = ({ questionnaire }) => {
       // TODO: Show success snackbar
       setSnackbarIsVisible(true);
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.error(e);
       // TODO: Show error snackbar
     }
@@ -52,7 +53,7 @@ export const QuestionnaireAction: React.FC<Props> = ({ questionnaire }) => {
               href={{ pathname: `/questionnaires/${id}/edit` }}
               aria-label={`Edit a questionnaire ${id}`}
             >
-              <Pencil className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
+              <Pencil className="block size-8 text-black-alpha400 transition-colors duration-200 ease-in hover:text-black-alpha500" />
             </Link>
           </div>
         </Tooltip>
@@ -65,7 +66,7 @@ export const QuestionnaireAction: React.FC<Props> = ({ questionnaire }) => {
             // onClick={onClickAnswers}
             aria-label={`See result of questionnaire ${id}`}
           >
-            <Chart className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
+            <Chart className="block size-8 text-black-alpha400 transition-colors duration-200 ease-in hover:text-black-alpha500" />
           </button>
         </Tooltip>
         <Tooltip delay={50} offset={{ y: 8 }} content={<span>Delete</span>}>
@@ -74,7 +75,7 @@ export const QuestionnaireAction: React.FC<Props> = ({ questionnaire }) => {
             aria-label={`Delete a questionnaire ${id}`}
             data-cy={`delete-button-${id}`}
           >
-            <Trash className="block w-8 h-8 text-black-alpha400 hover:text-black-alpha500 transition-colors duration-200 ease-in" />
+            <Trash className="block size-8 text-black-alpha400 transition-colors duration-200 ease-in hover:text-black-alpha500" />
           </button>
         </Tooltip>
       </div>

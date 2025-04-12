@@ -21,23 +21,23 @@ const config = {
       /** @type {import("@graphql-codegen/typescript-operations").TypeScriptDocumentsPluginConfig } */
       config: {
         // omitOperationSuffix: true,
-      }
+      },
     },
     "src/__generated__/gql-masking/": {
       preset: "client-preset",
       /** @type {import("@graphql-codegen/client-preset").ClientPresetConfig } */
       presetConfig: {
         fragmentMasking: {
-          unmaskFunctionName: "getFragmentData"
+          unmaskFunctionName: "getFragmentData",
         },
       },
     },
   },
   hooks: {
     afterAllFileWrite: [
-      "prettier --write"
-    ]
-  }
+      "prettier --write",
+    ],
+  },
 };
 
 module.exports = config;

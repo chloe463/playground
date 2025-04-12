@@ -2,7 +2,7 @@ import { useDialog } from "@react-aria/dialog";
 import dayjs from "dayjs";
 import { motion, Variants } from "framer-motion";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import styled from "styled-components";
+import { styled } from "styled-components";
 import { useIsomorphicLayoutEffect } from "../../hooks/useIsomarphicLayoutEffect";
 import { colors } from "../../styles";
 import { getElevation } from "../elevation";
@@ -121,7 +121,7 @@ export const Calendar: React.FC<CalendarProp> = ({
   useIsomorphicLayoutEffect(() => {
     if (picking === "YEAR_MONTH" && yearGridRef.current) {
       const selectedYearDOM = Array.from(yearGridRef.current.children).find(
-        (v) => (v as HTMLButtonElement).dataset["selected"] === "true"
+        (v) => (v as HTMLButtonElement).dataset.selected === "true"
       );
       if (selectedYearDOM) {
         selectedYearDOM.scrollIntoView({ block: "center" });
@@ -202,7 +202,7 @@ export const Calendar: React.FC<CalendarProp> = ({
   useEffect(() => {
     const listener = throttle((_e: Event) => {
       if (baseRef.current && calendarRef.current) {
-        const { x, y, height } = baseRef.current?.getBoundingClientRect();
+        const { x, y, height } = baseRef.current.getBoundingClientRect();
         const { height: calendarHeight } = calendarRef.current.getBoundingClientRect();
         const innerHeight = window.innerHeight;
         if (y + height + calendarHeight > innerHeight) {
@@ -334,6 +334,7 @@ export const Calendar: React.FC<CalendarProp> = ({
             <>
               <WeekDays>
                 {WEEK_DAYS.map((day, idx) => {
+                  // eslint-disable-next-line react/no-array-index-key
                   return <span key={`${day}--${idx}`}>{day}</span>;
                 })}
               </WeekDays>

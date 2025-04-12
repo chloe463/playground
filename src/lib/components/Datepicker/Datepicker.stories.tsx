@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { Calendar } from "./Calendar";
 import { Datepicker } from "./index";
 
-// eslint-disable-next-line import/no-anonymous-default-export
+ 
 export default {
   title: "lib/Datepicker",
 };

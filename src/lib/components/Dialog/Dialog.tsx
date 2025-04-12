@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 import React, { forwardRef } from "react";
-import styled, { keyframes } from "styled-components";
+import { keyframes, styled } from "styled-components";
 import { getElevation } from "../elevation";
 
 interface Props {
@@ -8,11 +8,7 @@ interface Props {
 }
 
 export const Dialog = forwardRef<HTMLDialogElement, Props>((props, ref) => {
-  return (
-    <Base ref={ref}>
-      {props.children}
-    </Base>
-  );
+  return <Base ref={ref}>{props.children}</Base>;
 });
 Dialog.displayName = "Dialog";
 

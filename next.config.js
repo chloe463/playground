@@ -9,8 +9,8 @@ module.exports = {
     styledComponents: true,
     reactRemoveProperties: {
       properties: 
-        process.env.NODE_ENV === "production" ? ['^data-cy$'] : []
-    }
+        process.env.NODE_ENV === "production" ? ['^data-cy$'] : [],
+    },
   },
   reactStrictMode: false,
   swcMinify: true,

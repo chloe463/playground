@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Snackbar } from "./Snackbar";
 
-// eslint-disable-next-line import/no-anonymous-default-export
+ 
 export default {
   title: "lib/Snackbar",
 };

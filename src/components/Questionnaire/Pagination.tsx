@@ -18,7 +18,7 @@ export const Pagination: React.FC<Props> = (props) => {
   const pageInfo = getFragmentData(PageInfoFragment, props.data);
   const { hasPreviousPage, hasNextPage, startCursor, endCursor } = pageInfo;
   return (
-    <div className="flex gap-2 items-center justify-between">
+    <div className="flex items-center justify-between gap-2">
       {hasPreviousPage && (
         <Link
           href={{
@@ -29,9 +29,9 @@ export const Pagination: React.FC<Props> = (props) => {
           }}
           className={`
             text-body2 text-black-alpha500 transition-all duration-200 ease-out
+            visited:text-black-alpha500
             hover:text-black-alpha700
             active:text-black-alpha700
-            visited:text-black-alpha500
           `}
         >
           Previous page
@@ -47,9 +47,9 @@ export const Pagination: React.FC<Props> = (props) => {
           }}
           className={`
             text-body2 text-black-alpha500 transition-all duration-200 ease-out
+            visited:text-black-alpha500
             hover:text-black-alpha700
             active:text-black-alpha700
-            visited:text-black-alpha500
           `}
         >
           Next page

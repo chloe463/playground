@@ -23,7 +23,7 @@ export const useCrudPage = (): CrudPage => {
     const path = `/questionnaires/${id}/edit`;
     const searchParams = router.asPath.split("?")[1];
     const asPath = searchParams ? `${path}?${searchParams}` : path;
-    router.push(
+    void router.push(
       {
         pathname: path,
         query: {

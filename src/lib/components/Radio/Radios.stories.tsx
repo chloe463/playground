@@ -1,8 +1,7 @@
-/* eslint-disable tailwindcss/no-custom-classname */
+ 
 import { Radio } from "./Radio";
 import { RadioGroup } from "./RadioGroup";
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   title: "lib/Radio",
 };
@@ -19,7 +18,7 @@ export const Normal = () => {
       {OPTIONS.map((option) => {
         return (
           <Radio key={option.value} value={`${option.value}`}>
-            <span className="text-body2 text-black-alaph800">{option.label}</span>
+            <span className="text-black-alaph800 text-body2">{option.label}</span>
           </Radio>
         );
       })}

@@ -19,9 +19,9 @@ export const LoadMore: React.FC<Props> = (props) => {
       <button
         type="button"
         className={`
-          relative inline-block py-2 px-6 appearance-none outline-none border-none bg-transparent
-          text-black-alpha500 text-body2 uppercase rounded-full
-          cursor-pointer overflow-hidden
+          relative inline-block cursor-pointer appearance-none overflow-hidden rounded-full border-none bg-transparent
+          px-6 py-2 text-body2 uppercase
+          text-black-alpha500 outline-none
           transition-all duration-200 ease-in
           hover:text-black-alpha700 focus:text-black-alpha700 active:text-black
         `}

@@ -1,7 +1,7 @@
 import { Checkbox } from "./Checkbox";
 import { CheckboxGroup } from "./CheckboxGroup";
 
-// eslint-disable-next-line import/no-anonymous-default-export
+ 
 export default {
   title: "lib/Checkbox",
 };

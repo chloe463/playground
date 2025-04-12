@@ -2,7 +2,7 @@ import { graphql } from "msw";
 
 export const cancelToDeleteQuestionnaireMock = graphql.mutation(
   "CancelToDeleteQuestionnaire",
-  (req, res, ctx) => {
+  (_req, res, ctx) => {
     return res(
       ctx.data({
         cancelToDeleteQuestionnaire: {

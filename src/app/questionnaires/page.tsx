@@ -80,7 +80,7 @@ export default async function QuestionnairesAppPage(props: Props) {
         <div className="mt-6">
           <QuestionnaireList questionnaires={questionnaires} />
         </div>
-        <div className="py-0 px-6 mt-4">
+        <div className="mt-4 px-6 py-0">
           <Pagination data={data.questionnaireConnection.pageInfo} />
         </div>
       </ApolloProvider>

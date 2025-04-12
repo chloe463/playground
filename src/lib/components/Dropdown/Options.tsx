@@ -1,6 +1,6 @@
 import { useFocusManager } from "@react-aria/focus";
 import React, { useEffect, useRef } from "react";
-import styled, { css } from "styled-components";
+import { css, styled } from "styled-components";
 import { useIsomorphicLayoutEffect } from "../../hooks/useIsomarphicLayoutEffect";
 import { colors } from "../../styles";
 import { getElevation } from "../elevation";
@@ -113,7 +113,7 @@ export const Options: React.FC<OptionsProps> = ({
     return () => baseDom?.focus();
   }, [baseRef]);
 
-  const onClickItem = (e: React.MouseEvent, v: ItemType) => {
+  const onClickItem = (_e: React.MouseEvent, v: ItemType) => {
     onChange(v);
   };
 

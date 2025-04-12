@@ -10,8 +10,7 @@ import { graphql } from "../../__generated__/gql-masking";
 const AVATAR_URL = "https://dummyimage.com/88x88/b3b3b3/ffffff";
 const AVATAR_URL_36 = "https://dummyimage.com/36x36/b3b3b3/ffffff";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const _GET_COMMENTS_FRAGMENT = graphql(/* GraphQL */`
+const _GET_COMMENTS_FRAGMENT = graphql(/* GraphQL */ `
   query GetComments($postId: Int!) {
     comments(postId: $postId) {
       id
@@ -49,7 +48,7 @@ export const PostDetail: React.FC<Props> = (props) => {
   }, [post, commentsQueryRes]);
 
   useEffect(() => {
-    let original = document.documentElement.style.overflow;
+    const original = document.documentElement.style.overflow;
     document.documentElement.style.overflow = "hidden";
     return () => {
       document.documentElement.style.overflow = original;
@@ -64,9 +63,9 @@ export const PostDetail: React.FC<Props> = (props) => {
         exit={{ opacity: 0, transition: { duration: 0.15 } }}
         transition={{ duration: 0.2, delay: 0.15 }}
         style={{ pointerEvents: "auto", overflow: "scroll" }}
-        className="grid fixed inset-0 place-items-center bg-black-alpha300"
+        className="fixed inset-0 grid place-items-center bg-black-alpha300"
       >
-        <Link href={`/virtualized-list`} className="block fixed inset-0"></Link>
+        <Link href={`/virtualized-list`} className="fixed inset-0 block"></Link>
         <motion.div
           initial={{ opacity: 0, transform: "scale(.9)" }}
           animate={{
@@ -79,7 +78,7 @@ export const PostDetail: React.FC<Props> = (props) => {
             transform: "scale(.9)",
             transition: { duration: 0.2 },
           }}
-          className="box-border block z-10 py-10 px-6 w-[640px] bg-white rounded-lg"
+          className="z-10 box-border block w-[640px] rounded-lg bg-white px-6 py-10"
           ref={contentRef}
           data-cy="post-detail-card"
         >
@@ -102,15 +101,14 @@ export const PostDetail: React.FC<Props> = (props) => {
             <p>{post.body}</p>
           </motion.div>
           {commentsQueryRes && (
-            <ul className="mt-12 ml-16 space-y-4 list-none">
+            <ul className="ml-16 mt-12 list-none space-y-4">
               {commentsQueryRes.comments.map((comment) => {
                 return (
                   <li key={comment?.id} className="list-none">
                     <div className="flex items-center">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={AVATAR_URL_36}
-                        className="w-9 h-9 rounded-full"
+                        className="size-9 rounded-full"
                         width="36"
                         height="36"
                         alt={`${comment?.name}'s avatar'`}
@@ -124,12 +122,12 @@ export const PostDetail: React.FC<Props> = (props) => {
             </ul>
           )}
           {loading && (
-            <ul className="mt-12 ml-16 space-y-4 list-none">
+            <ul className="ml-16 mt-12 list-none space-y-4">
               {Array.from({ length: 5 }, (_, i) => i).map((key) => {
                 return (
                   <li
                     key={key}
-                    className="block w-[480px] h-6 list-none bg-black-alpha100 rounded-sm"
+                    className="block h-6 w-[480px] list-none rounded-sm bg-black-alpha100"
                   />
                 );
               })}

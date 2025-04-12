@@ -19,7 +19,7 @@ export const NewQuestionnaireForm: React.FC = () => {
   const { isDirty, isValid } = formState;
 
   return (
-    <div className="py-0 px-6">
+    <div className="px-6 py-0">
       <form action={submitAction}>
         <div className="w-[720px]">
           <Controller
@@ -106,7 +106,7 @@ export const NewQuestionnaireForm: React.FC = () => {
             }}
           />
         </div>
-        <div className="flex justify-center mt-12">
+        <div className="mt-12 flex justify-center">
           <PrimaryButton type="submit" style={{ width: "136px" }} disabled={!isValid || !isDirty}>
             Submit
           </PrimaryButton>

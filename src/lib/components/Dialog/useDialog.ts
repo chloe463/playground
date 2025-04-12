@@ -7,8 +7,8 @@ interface DialogElement extends HTMLDialogElement {
   close: () => void;
 }
 
-interface UseDialogOptions {
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+interface UseDialogOptions {}
 
 export const useDialog = (_options: UseDialogOptions) => {
   const [isOpen, setIsOpen] = useState(false);

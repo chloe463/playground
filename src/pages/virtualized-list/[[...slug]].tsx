@@ -76,7 +76,7 @@ const VirtualizedList: React.FC<Props> = () => {
         transition={transition}
       >
         <PageHeader title={"Virtualized List example"} />
-        <div className="mt-9 mb-24">
+        <div className="mb-24 mt-9">
           <PostList totalCount={totalCount} posts={posts} fetchMorePosts={fetchMorePosts} />
         </div>
       </motion.div>

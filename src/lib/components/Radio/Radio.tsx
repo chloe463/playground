@@ -1,11 +1,10 @@
-/* eslint-disable tailwindcss/no-custom-classname */
 import { useFocusRing } from "@react-aria/focus";
 import { useFocusWithin } from "@react-aria/interactions";
 import { useRadio } from "@react-aria/radio";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { AriaRadioProps } from "@react-types/radio";
 import React, { useMemo, useRef, useState } from "react";
-import styled, { css, keyframes } from "styled-components";
+import { css, keyframes, styled } from "styled-components";
 import { colors } from "../../styles/colors";
 import { useRadioGroup } from "./RadioGroup";
 

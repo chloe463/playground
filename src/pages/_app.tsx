@@ -12,7 +12,7 @@ import "../index.css";
 
 if (process.env.NEXT_PUBLIC_API_MOCK) {
   const mockWorker = () => import("../mocks");
-  mockWorker();
+  void mockWorker();
 }
 
 const App = ({ Component, pageProps, router }: AppProps) => {
@@ -29,11 +29,11 @@ const App = ({ Component, pageProps, router }: AppProps) => {
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
           </Head>
           <div className="flex">
-            <div className="block sticky top-0 w-[280px] h-screen">
+            <div className="sticky top-0 block h-screen w-[280px]">
               <SideBar currentPathName={pathname} />
             </div>
             <div
-              className={`block flex-shrink elevation4`}
+              className={`elevation4 block shrink`}
               style={{ width: `calc(100vw - ${SIDEBAR_WIDTH}px)` }}
             >
               <AnimatePresence exitBeforeEnter initial={false}>

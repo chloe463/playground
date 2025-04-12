@@ -20,7 +20,7 @@ const defs = {
 
 module.exports = plugin(({ addComponents }) => {
   addComponents(() => {
-    classNames = Object.entries(defs).reduce((acc, entry) => {
+    const classNames = Object.entries(defs).reduce((acc, entry) => {
       const [className, values] = entry;
       const [fontSize, lineHeight, fontWeight, fontFamily] = values;
       acc[`.${className}`] = {

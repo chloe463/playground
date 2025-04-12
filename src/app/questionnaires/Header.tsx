@@ -8,7 +8,7 @@ export const Header: React.FC = () => {
   const router = useRouter();
   return (
     <PageHeader title={"CRUD examples"}>
-      <div className="absolute top-0 right-6">
+      <div className="absolute right-6 top-0">
         <PrimaryButton type="button" onClick={() => router.push("/questionnaires/new")}>
           Create New
         </PrimaryButton>

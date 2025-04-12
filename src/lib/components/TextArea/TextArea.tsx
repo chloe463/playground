@@ -1,6 +1,6 @@
 import { AriaTextFieldOptions, useTextField } from "@react-aria/textfield";
 import React, { useRef } from "react";
-import styled from "styled-components";
+import { styled } from "styled-components";
 import { colors } from "../../styles";
 
 type TextAreaProps = {} & AriaTextFieldOptions<"textarea">;
@@ -15,7 +15,7 @@ export const TextArea: React.FC<TextAreaProps> = (props) => {
   return (
     <Base>
       <StyledTextArea {...inputProps} placeholder="&nbsp;" ref={ref} />
-      {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
+      {}
       <Label {...labelProps} className="placeholder">
         {props.label}
       </Label>
